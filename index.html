@@ -1,1 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FX LEVEL Overlay</title>
+  <style>
+    body {
+      margin: 0;
+      background: radial-gradient(circle at center, #0a0a0a 0%, #000 100%);
+      color: #00ff88;
+      font-family: 'Orbitron', sans-serif;
+      overflow: hidden;
+    }
+    .overlay {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+    }
+    .webcam {
+      position: absolute;
+      left: 2%;
+      bottom: 10%;
+      width: 22%;
+      height: 35%;
+      border: 3px solid #00ff88;
+      box-shadow: 0 0 20px #00ff88;
+      border-radius: 10px;
+    }
+    .vip {
+      position: absolute;
+      left: 2%;
+      bottom: 5%;
+      font-size: 1.2em;
+      color: #00ff88;
+    }
+    .support {
+      position: absolute;
+      left: 15%;
+      bottom: 5%;
+      font-size: 1.2em;
+      color: #fff;
+    }
+    .session {
+      position: absolute;
+      top: 2%;
+      left: 2%;
+      font-size: 1.5em;
+      color: #00ff88;
+    }
+    .news {
+      position: absolute;
+      top: 2%;
+      left: 40%;
+      font-size: 1.2em;
+      color: #fff;
+    }
+    .clock {
+      position: absolute;
+      top: 2%;
+      right: 2%;
+      text-align: right;
+      color: #00ff88;
+      font-size: 1em;
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <div class="session">LONDON SESSION</div>
+    <div class="news" id="news">Loading next news...</div>
+    <div class="clock" id="clock"></div>
+    <div class="webcam"></div>
+    <div class="vip">LEVEL VIP</div>
+    <div class="support">Support Contact</div>
+  </div>
 
+  <script>
+    // ساعت‌ها و تاریخ
+    function updateClock() {
+      const now = new Date();
+      const london = now.toLocaleTimeString('en-GB', { timeZone: 'Europe/London' });
+      const newYork = now.toLocaleTimeString('en-US', { timeZone: 'America/New_York' });
+      const tehran = now.toLocaleTimeString('fa-IR', { timeZone: 'Asia/Tehran' });
+      const date = now.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+      document.getElementById('clock').innerHTML = `
+        London: ${london}<br>
+        New York: ${newYork}<br>
+        Tehran: ${tehran}<br>
+        ${date}
+      `;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    // خبر بعدی (نمونه تستی)
+    document.getElementById('news').innerText = 'GDP m/m (USD) in 15 mins – High Impact';
+  </script>
+</body>
+</html>
