@@ -100,21 +100,21 @@
   </div>
 
   <script>
-    // ساعت‌ها
-    function updateClock() {
-      const now = new Date();
+  function updateClock() {
+    const now = new Date();
 
-      const london = now.toLocaleTimeString('en-GB', { timeZone: 'Europe/London' });
-      const newYork = now.toLocaleTimeString('en-US', { timeZone: 'America/New_York' });
-      const tehran = now.toLocaleTimeString('en-US', { timeZone: 'Asia/Tehran' });
+    const london = now.toLocaleTimeString('en-GB', { timeZone: 'Europe/London' });
+    const newYork = now.toLocaleTimeString('en-US', { timeZone: 'America/New_York' });
+    const tehran = now.toLocaleTimeString('en-US', { timeZone: 'Asia/Tehran' });
 
-      document.getElementById('london').innerHTML = London<br>${london};
-      document.getElementById('newyork').innerHTML = New York<br>${newYork};
-      document.getElementById('tehran').innerHTML = Tehran<br>${tehran};
-    }
+    document.getElementById('london').innerHTML = London<br>${london};
+    document.getElementById('newyork').innerHTML = New York<br>${newYork};
+    document.getElementById('tehran').innerHTML = Tehran<br>${tehran};
+  }
 
-    setInterval(updateClock, 1000);
-    updateClock();
+  setInterval(updateClock, 1000);
+  updateClock();
+</script>
 
     // خبر تستی
     document.getElementById('news').innerText =
