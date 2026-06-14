@@ -27,9 +27,21 @@
   bottom: 14%;
   width: 15%;
   height: 24%;
-  border: 3px solid #00ff88;
+  border: 2px solid #00ff88;
   border-radius: 12px;
-  box-shadow: 0 0 18px #00ff88;
+  box-shadow: 0 0 12px #00ff88;
+  animation: softGlow 4s ease-in-out infinite alternate;
+}
+
+@keyframes softGlow {
+  0% {
+    box-shadow: 0 0 10px #00ff88;
+    border-color: #00ff88;
+  }
+  100% {
+    box-shadow: 0 0 22px #00ff88;
+    border-color: #33ff99;
+  }
 }
 
     .vip {
