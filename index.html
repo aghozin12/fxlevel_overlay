@@ -203,12 +203,28 @@ body::before {
 }
 
 /* آیکون‌های پایین */
+/* تراز کامل آیکون و متن */
+.bottom-item {
+    display: flex;
+    align-items: center; /* مهم‌ترین خط */
+    gap: 10px;
+}
+
+/* متن نوار پایین */
+.bottom-item span {
+    line-height: 1; /* جلوگیری از افتادن پایین */
+    display: flex;
+    align-items: center; /* تراز عمودی */
+}
+
+/* آیکون‌های نوار پایین */
 .bottom-icon {
-    width: 36px;
-    height: 36px;
+    width: 30px;      /* کمی کوچکتر برای تراز بهتر */
+    height: 30px;
     stroke: #ffffff;
     fill: none;
-    filter: drop-shadow(0 0 3px #00ff88); /* Glow کمتر */
+    display: flex;
+    align-items: center; /* تراز عمودی */
 }
 
 /* جداکننده پایین */
