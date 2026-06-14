@@ -30,7 +30,7 @@ body::before {
     pointer-events: none;
 }
 
-/* فریم سبز زاویه‌دار */
+/* فریم زاویه‌دار اصلی با استروک دو‌لایه */
 .main-frame {
     position: absolute;
     top: 40px;
@@ -50,24 +50,16 @@ body::before {
     );
 
     background: rgba(0, 0, 0, 0.18);
+
     border: 3px solid #00ff88;
     box-shadow:
         0 0 25px #00ff88,
-        inset 0 0 25px #00ff88;
+        inset 0 0 25px #00ff88,
+        0 0 10px #ffae4a,
+        inset 0 0 10px #ffae4a;
 }
 
-/* خط نارنجی دور فریم (بیرون از clip-path) */
-.main-frame-outline {
-    position: absolute;
-    top: 40px;
-    left: 40px;
-    width: calc(100% - 80px);
-    height: calc(100% - 80px);
-    border: 1px solid #ffae4a;
-    pointer-events: none;
-}
-
-/* نوار بالا سبز زاویه‌دار */
+/* نوار بالا زاویه‌دار */
 .top-bar {
     position: absolute;
     top: 55px;
@@ -95,25 +87,15 @@ body::before {
     border: 2px solid #00ff88;
     box-shadow:
         0 0 14px #00ff88,
-        inset 0 0 14px #00ff88;
+        inset 0 0 14px #00ff88,
+        0 0 8px #ffae4a,
+        inset 0 0 8px #ffae4a;
 
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 40px;
     box-sizing: border-box;
-}
-
-/* خط نارنجی دور نوار بالا (بیرون از clip-path) */
-.top-bar-outline {
-    position: absolute;
-    top: 55px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 86%;
-    height: 80px;
-    border: 1px solid #ffae4a;
-    pointer-events: none;
 }
 
 /* آیتم‌های نوار بالا */
@@ -139,7 +121,7 @@ body::before {
     text-shadow: 0 0 8px #00ff88;
 }
 
-/* نوار پایین سبز زاویه‌دار */
+/* نوار پایین زاویه‌دار */
 .bottom-bar {
     position: absolute;
     bottom: 55px;
@@ -167,25 +149,15 @@ body::before {
     border: 2px solid #00ff88;
     box-shadow:
         0 0 14px #00ff88,
-        inset 0 0 14px #00ff88;
+        inset 0 0 14px #00ff88,
+        0 0 8px #ffae4a,
+        inset 0 0 8px #ffae4a;
 
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 40px;
     box-sizing: border-box;
-}
-
-/* خط نارنجی دور نوار پایین (بیرون از clip-path) */
-.bottom-bar-outline {
-    position: absolute;
-    bottom: 55px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 86%;
-    height: 80px;
-    border: 1px solid #ffae4a;
-    pointer-events: none;
 }
 
 .bottom-left {
@@ -203,7 +175,7 @@ body::before {
     text-shadow: 0 0 8px #ffae4a;
 }
 
-/* قاب وبکم سبز زاویه‌دار */
+/* قاب وبکم زاویه‌دار */
 .webcam-frame {
     position: absolute;
     bottom: 170px;
@@ -214,9 +186,7 @@ body::before {
 
     clip-path: polygon(
         20px 0,
-
-
-calc(100% - 20px) 0,
+        calc(100% - 20px) 0,
         100% 20px,
         100% calc(100% - 20px),
         calc(100% - 20px) 100%,
@@ -226,21 +196,13 @@ calc(100% - 20px) 0,
     );
 
     background: rgba(0, 0, 0, 0.25);
+
     border: 3px solid #00ff88;
     box-shadow:
         0 0 18px #00ff88,
-        inset 0 0 18px #00ff88;
-}
-
-/* خط نارنجی دور قاب وبکم (بیرون از clip-path) */
-.webcam-frame-outline {
-    position: absolute;
-    bottom: 170px;
-    left: 80px;
-    width: 430px;
-    height: 250px;
-    border: 1px solid #ffae4a;
-    pointer-events: none;
+        inset 0 0 18px #00ff88,
+        0 0 10px #ffae4a,
+        inset 0 0 10px #ffae4a;
 }
 
 </style>
@@ -249,10 +211,16 @@ calc(100% - 20px) 0,
 <body>
 
 <div class="main-frame"></div>
-<div class="main-frame-outline"></div>
 
-<div class="top-bar"></div>
-<div class="top-bar-outline"></div>
+<div class="top-bar">
+    <div class="top-item"><span>SESSION</span><span>London</span></div>
+    <div class="top-item"><span>NEW YORK</span><span>--:--</span></div>
+    <div class="top-item"><span>TEHRAN</span><span>--:--</span></div>
+    <div class="top-item"><span>DATE</span><span>-- --- ----</span></div>
+    <div class="top-item"><span>NEWS</span><span>Waiting...</span></div>
+</div>
+
+<div class="webcam-frame"></div>
 
 <div class="bottom-bar">
     <div class="bottom-left">FX LEVEL</div>
@@ -262,22 +230,6 @@ calc(100% - 20px) 0,
         <span>VIP SIGNAL</span>
     </div>
 </div>
-<div class="bottom-bar-outline"></div>
-
-<div class="webcam-frame"></div>
-<div class="webcam-frame-outline"></div>
-
-<!-- محتوای نوار بالا (جدا از خود باکس برای اینکه روی outline نیفته) -->
-<div class="top-bar" style="pointer-events:none;">
-    <div class="top-item"><span>SESSION</span><span>London</span></div>
-    <div class="top-item"><span>NEW YORK</span><span>--:--</span></div>
-    <div class="top-item"><span>TEHRAN</span><span>--:--</span></div>
-    <div class="top-item"><span>DATE</span><span>-- --- ----</span></div>
-    <div class="top-item"><span>NEWS</span><span>Waiting...</span></div>
-</div>
 
 </body>
 </html>
-
-
-    
