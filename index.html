@@ -18,18 +18,20 @@ body {
 
 /* نوار بالا نئونی */
 .top-bar {
-    width: 100%;
+    width: calc(100% - 60px); /* فاصله 30px از چپ و راست */
+    margin: 0 auto; /* وسط‌چین واقعی */
     height: 85px;
+
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 70px; /* فاصله بین آیتم‌ها */
-    padding: 0 20px;
-    box-sizing: border-box;
+    gap: 70px;
 
     background: rgba(0, 0, 0, 0.35);
     border: 2px solid #00ff88;
     border-radius: 10px;
+
+    box-sizing: border-box;
 
     box-shadow:
         0 0 12px #00ff88,
