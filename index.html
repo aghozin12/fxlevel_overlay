@@ -29,8 +29,23 @@
   height: 24%;
   border: 2px solid #00ff88;
   border-radius: 12px;
-  box-shadow: 0 0 14px #00ff88;
-  animation: softGlow 6s ease-in-out infinite alternate;
+  box-shadow: 0 0 10px #00ff88;
+  animation: ultraSoftGlow 8s ease-in-out infinite alternate;
+}
+
+@keyframes ultraSoftGlow {
+  0% {
+    box-shadow: 0 0 10px #00ff88;
+    border-color: #00ff88;
+  }
+  50% {
+    box-shadow: 0 0 13px #33ff99;
+    border-color: #33ff99;
+  }
+  100% {
+    box-shadow: 0 0 10px #00ff88;
+    border-color: #00ff88;
+  }
 }
 
 @keyframes softGlow {
