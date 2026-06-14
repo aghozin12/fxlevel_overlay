@@ -6,12 +6,14 @@
 
 <style>
 
-body {
-    margin: 0;
-    background: #000;
+/* صفحه ثابت مثل OBS */
+html, body {
     width: 1920px;
     height: 1080px;
+    margin: 0;
+    padding: 0;
     overflow: hidden;
+    background: #000;
     font-family: Arial, sans-serif;
     color: white;
 }
@@ -19,8 +21,9 @@ body {
 /* نوار بالا */
 .top-bar {
     width: 94%;
-    margin: 20px auto 0;
     height: 85px;
+
+    margin: 20px auto 0; /* فاصله مساوی از چپ و راست */
 
     display: flex;
     justify-content: center;
@@ -38,6 +41,7 @@ body {
     box-sizing: border-box;
 }
 
+/* آیتم‌های نوار بالا */
 .top-item {
     display: flex;
     flex-direction: column;
@@ -75,11 +79,11 @@ body {
 
 /* نوار پایین */
 .bottom-bar {
-    width: 94%;                 /* مثل نوار بالا */
-    height: 85px;               /* هم‌ارتفاع نوار بالا (اگر خواستی می‌تونی 95px بذاری) */
+    width: 94%;
+    height: 85px; /* هماهنگ با نوار بالا */
 
     position: absolute;
-    bottom: 20px;               /* فاصله منطقی از پایین */
+    bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
 
