@@ -1,15 +1,160 @@
 <!DOCTYPE html>
-<html lang="fa">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Overlay + Starting Soon</title>
+<title>FX LEVEL Overlay</title>
 
 <style>
 
-/* ——————————————————————— */
-/*  استایل اورلی اصلی (فریم وبکم)  */
-/* ——————————————————————— */
+/* صفحه اصلی */
+html, body {
+    width: 1920px;
+    height: 1080px;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background: #000;
+    font-family: Arial, sans-serif;
+    color: white;
+}
 
+/* افکت شبکه‌ای پس‌زمینه */
+body::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(0,255,136,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,255,136,0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+}
+
+/* فریم اصلی */
+.main-frame {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    width: calc(100% - 80px);
+    height: calc(100% - 80px);
+
+    clip-path: polygon(
+        25px 0,
+        calc(100% - 25px) 0,
+        100% 25px,
+        100% calc(100% - 25px),
+        calc(100% - 25px) 100%,
+        25px 100%,
+        0 calc(100% - 25px),
+        0 25px
+    );
+
+    background: rgba(0, 0, 0, 0.18);
+
+    border: 3px solid #00ff88;
+    box-shadow:
+        0 0 25px #00ff88,
+        inset 0 0 25px #00ff88;
+}
+
+/* نوار بالا */
+.top-bar {
+    position: absolute;
+    top: 55px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 86%;
+    height: 90px;
+
+    clip-path: polygon(
+        18px 0,
+        calc(100% - 18px) 0,
+        100% 18px,
+        100% 100%,
+        0 100%,
+        0 18px
+    );
+
+    background: rgba(0, 0, 0, 0.35);
+    border: 2px solid #00ff88;
+    box-shadow:
+        0 0 14px #00ff88,
+        inset 0 0 14px #00ff88;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 35px;
+    box-sizing: border-box;
+}
+
+/* ساختار آیتم‌های بالا */
+.top-item {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.item-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+/* آیکون‌های سفید */
+.icon {
+    width: 40px;
+    height: 40px;
+    stroke: #ffffff;
+    fill: none;
+    filter: drop-shadow(0 0 6px #00ff88);
+}
+
+/* متن‌ها */
+.text-box {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+}
+
+.text-box span:first-child {
+    font-size: 14px;
+    color: #ffae4a;
+    text-shadow: 0 0 6px #ffae4a;
+}
+
+.text-box span:last-child {
+    font-size: 22px;
+    font-weight: bold;
+    color: #00ff88;
+    text-shadow: 0 0 8px #00ff88;
+}
+
+/* جداکننده سفید */
+.divider {
+    width: 1px;
+    height: 60%;
+    background: rgba(255,255,255,0.35);
+}
+/* 1) انیمیشن نئونی */
+@keyframes neonPulse {
+    0% {
+        box-shadow:
+            0 0 18px rgba(0, 255, 102, 0.9),
+            0 0 45px rgba(0, 255, 102, 0.7),
+            0 0 90px rgba(0, 255, 102, 0.45),
+            0 0 140px rgba(0, 255, 102, 0.25);
+    }
+    100% {
+        box-shadow:
+            0 0 28px rgba(0, 255, 102, 1),
+            0 0 70px rgba(0, 255, 102, 0.9),
+            0 0 140px rgba(0, 255, 102, 0.65),
+            0 0 200px rgba(0, 255, 102, 0.45);
+    }
+}
+
+/* 2) استایل باکس وبکم */
 .webcam-frame {
     position: absolute;
     bottom: 170px;
@@ -19,66 +164,181 @@
     height: 250px;
 
     border: 4px solid #00ff66;
+    border-radius: 0;
+
     background: rgba(0, 0, 0, 0.18);
 
+    /* هاله اولیه */
     box-shadow:
         0 0 22px rgba(0, 255, 102, 1),
         0 0 55px rgba(0, 255, 102, 0.85),
         0 0 110px rgba(0, 255, 102, 0.65),
         0 0 160px rgba(0, 255, 102, 0.45);
+
+    /* فعال‌سازی انیمیشن */
+    animation: neonPulse 2.4s ease-in-out infinite alternate;
 }
-
-/* ——————————————————————— */
-/*  استایل صفحه Starting Soon  */
-/* ——————————————————————— */
-
-.starting-soon {
+/* قاب وبکم */
+/* قاب وبکم – نسخه نهایی نئونی */
+/* قاب وبکم – خط ملایم + هاله نئونی عمیق */
+/* قاب وبکم – هالهٔ عمیق داخل و خارج */
+/* قاب وبکم – مربع ساده با هاله نئونی بیرونی */
+.webcam-frame {
     position: absolute;
-    top: 50%;
+    bottom: 170px;
+    left: 80px;
+
+    width: 430px;
+    height: 250px;
+
+    /* مربع ساده */
+    border: 4px solid #00ff66;
+    border-radius: 0;
+
+    background: rgba(0, 0, 0, 0.18);
+
+    /* هاله نئونی فقط بیرون – عمیق و پخش‌شده */
+    box-shadow:
+        0 0 25px rgba(0, 255, 102, 1),      /* هاله نزدیک */
+        0 0 55px rgba(0, 255, 102, 0.85),   /* هاله اصلی */
+        0 0 110px rgba(0, 255, 102, 0.65),  /* هاله پخش‌شده */
+        0 0 160px rgba(0, 255, 102, 0.45);  /* هاله عمیق */
+}
+
+/* نوار پایین */
+.bottom-bar {
+    position: absolute;
+    bottom: 55px;
     left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    color: #fff;
-    font-family: 'Orbitron', sans-serif;
-    z-index: 999;
+    transform: translateX(-50%);
+    width: 86%;
+    height: 80px;
+
+    clip-path: polygon(
+        0 0,
+        100% 0,
+        100% calc(100% - 18px),
+        calc(100% - 18px) 100%,
+        18px 100%,
+        0 calc(100% - 18px)
+    );
+
+    background: rgba(0, 0, 0, 0.35);
+    border: 2px solid #00ff88;
+    box-shadow:
+        0 0 14px #00ff88,
+        inset 0 0 14px #00ff88;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+    box-sizing: border-box;
 }
 
-.title {
-    color: #ffeb00;
-    font-size: 36px;
-    margin-bottom: 10px;
+/* آیتم‌های نوار پایین */
+.bottom-item span {
+    color: #4da6ff;
+    text-shadow: 0 0 6px #4da6ff;
 }
 
-.main-text {
-    font-size: 64px;
-    font-weight: 700;
+/* آیکون‌های پایین */
+/* تراز کامل آیکون و متن */
+.bottom-item {
+    display: flex;
+    align-items: center; /* مهم‌ترین خط */
+    gap: 10px;
 }
 
-.cyan { color: #00fff0; }
-.purple { color: #a000ff; }
-
-#countdown {
-    font-size: 72px;
-    font-weight: 800;
-    margin-top: 20px;
-    color: #ffffff;
-    text-shadow:
-        0 0 12px #ffffff,
-        0 0 24px #00fff0,
-        0 0 48px #00fff0;
+/* متن نوار پایین */
+.bottom-item span {
+    line-height: 1; /* جلوگیری از افتادن پایین */
+    display: flex;
+    align-items: center; /* تراز عمودی */
 }
 
-/* ——————————————————————— */
-/*  افکت محو شدن بعد از پایان تایمر  */
-/* ——————————————————————— */
-
-.fade-out {
-    animation: fadeOut 1.5s ease forwards;
+/* آیکون‌های نوار پایین */
+.bottom-icon {
+    width: 40px;      /* کمی کوچکتر برای تراز بهتر */
+    height: 40px;
+    stroke: #ffffff;
+    fill: none;
+    display: flex;
+    align-items: center; /* تراز عمودی */
+}
+.bottom-icon {
+    filter: drop-shadow(0 0 4px #ffb347);
+}
+/* جداکننده پایین */
+.bottom-divider {
+    width: 1px;
+    height: 45%;
+    background: rgba(255,255,255,0.35);
 }
 
-@keyframes fadeOut {
-    from { opacity: 1; }
-    to { opacity: 0; visibility: hidden; }
+/* SUBSCRIBE افکت ملایم */
+.subscribe span {
+
+    animation: softGlow 2.5s infinite ease-in-out;
+}
+  /* انیمیشن نرم برای همه آیتم‌ها */
+.soft-pulse {
+    animation: softPulse 4s ease-in-out infinite;
+}
+
+@keyframes softPulse {
+    0% {
+        opacity: 0.85;
+        text-shadow: 0 0 4px currentColor;
+    }
+    50% {
+        opacity: 1;
+        text-shadow: 0 0 10px currentColor;
+    }
+    100% {
+        opacity: 0.85;
+        text-shadow: 0 0 4px currentColor;
+    }
+}  
+
+@keyframes softGlow {
+    0% { text-shadow: 0 0 4px #00ff88; opacity: 0.8; }
+    50% { text-shadow: 0 0 12px #00ff88; opacity: 1; }
+    100% { text-shadow: 0 0 4px #00ff88; opacity: 0.8; }
+}
+
+/* VIP SIGNAL افکت لوکس */
+.vip {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Pulse Glow */
+.vip span {
+    animation: vipPulse 1.8s infinite ease-in-out;
+}
+
+@keyframes vipPulse {
+    0% { text-shadow: 0 0 6px #00ff88; }
+    50% { text-shadow: 0 0 18px #00ff88; }
+    100% { text-shadow: 0 0 6px #00ff88; }
+}
+
+/* Shine Sweep */
+.vip .shine {
+    position: absolute;
+    top: 0;
+    left: -120%;
+    width: 80%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.4), transparent);
+    animation: shineSweep 3s infinite;
+}
+
+@keyframes shineSweep {
+    0% { left: -120%; }
+    50% { left: 120%; }
+    100% { left: 120%; }
 }
 
 </style>
@@ -86,55 +346,228 @@
 
 <body>
 
-<!-- ——————————————————————— -->
-<!--  اورلی اصلی  -->
-<!-- ——————————————————————— -->
+<div class="main-frame"></div>
 
-<div class="webcam-frame"></div>
+<!-- نوار بالا -->
+<div class="top-bar">
 
+    <!-- SESSION -->
+    <div class="top-item">
+        <div class="item-row">
+            <svg class="icon" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10" stroke-width="2"/>
+                <path d="M12 6v6l4 2" stroke-width="2"/>
+            </svg>
+            <div class="text-box">
+                <span>SESSION</span>
+                <span id="session-value">London</span>
+            </div>
+        </div>
+    </div>
 
-<!-- ——————————————————————— -->
-<!--  صفحه Starting Soon  -->
-<!-- ——————————————————————— -->
+    <div class="divider"></div>
 
-<div class="starting-soon" id="startScreen">
-    <h2 class="title">Live Trade</h2>
+    <!-- NEW YORK -->
+    <div class="top-item">
+        <div class="item-row">
+            <svg class="icon" viewBox="0 0 24 24">
+                <path d="M12 1v22M1 12h22" stroke-width="2"/>
+            </svg>
+            <div class="text-box">
+                <span>NEW YORK</span>
+                <span id="newyork-value">--:--</span>
+            </div>
+        </div>
+    </div>
 
-    <h1 class="main-text">
-        <span class="cyan">STARTING</span>
-        <span class="purple">SOON</span>
-    </h1>
+    <div class="divider"></div>
 
-    <div id="countdown">10:00</div>
+    <!-- TEHRAN -->
+    <div class="top-item">
+        <div class="item-row">
+            <svg class="icon" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10" stroke-width="2"/>
+                <path d="M12 12l4 2" stroke-width="2"/>
+            </svg>
+            <div class="text-box">
+                <span>TEHRAN</span>
+                <span id="tehran-value">--:--</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- DATE -->
+    <div class="top-item">
+        <div class="item-row">
+            <svg class="icon" viewBox="0 0 24 24">
+                <rect x="3" y="5" width="18" height="16" stroke-width="2" fill="none"/>
+                <line x1="3" y1="10" x2="21" y2="10" stroke-width="2"/>
+            </svg>
+            <div class="text-box">
+                <span>DATE</span>
+                <span id="date-value">-- --- ----</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- NEWS -->
+    <div class="top-item">
+        <div class="item-row">
+            <svg class="icon" viewBox="0 0 24 24">
+                <rect x="3" y="4" width="18" height="16" stroke-width="2" fill="none"/>
+                <line x1="7" y1="8" x2="17" y2="8" stroke-width="2"/>
+                <line x1="7" y1="12" x2="17" y2="12" stroke-width="2"/>
+            </svg>
+            <div class="text-box">
+                <span>NEWS</span>
+                <span id="news-value">Loading...</span>
+            </div>
+        </div>
+    </div>
+
 </div>
 
+<!-- وبکم -->
+<div class="webcam-frame"></div>
 
-<!-- ——————————————————————— -->
-<!--  تایمر ۱۰ دقیقه‌ای  -->
-<!-- ——————————————————————— -->
+<!-- نوار پایین -->
+<div class="bottom-bar">
 
+    <!-- SUBSCRIBE -->
+    <div class="bottom-item subscribe">
+        <svg class="bottom-icon" viewBox="0 0 24 24">
+            <path d="M12 22s8-4 8-10V6l-8-4-8 4v6c0 6 8 10 8 10z" stroke-width="2"/>
+        </svg>
+        <span>SUBSCRIBE</span>
+    </div>
+
+    <div class="bottom-divider"></div>
+
+    <!-- WEBSITE -->
+    <div class="bottom-item">
+        <svg class="bottom-icon" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" stroke-width="2"/>
+<path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20" stroke-width="2"/>
+        </svg>
+        <span>freeforexsignal.org</span>
+    </div>
+
+    <div class="bottom-divider"></div>
+
+    <!-- INSTAGRAM -->
+    <div class="bottom-item">
+        <svg class="bottom-icon" viewBox="0 0 24 24">
+            <rect x="3" y="3" width="18" height="18" rx="5" stroke-width="2"/>
+            <circle cx="12" cy="12" r="4" stroke-width="2"/>
+            <circle cx="17" cy="7" r="1.5" fill="#fff"/>
+        </svg>
+        <span>instagram.com/fx_level3</span>
+    </div>
+
+    <div class="bottom-divider"></div>
+
+    <!-- YOUTUBE -->
+    <div class="bottom-item">
+        <svg class="bottom-icon" viewBox="0 0 24 24">
+            <rect x="3" y="6" width="18" height="12" rx="3" stroke-width="2"/>
+            <polygon points="10,9 16,12 10,15" fill="#fff"/>
+        </svg>
+        <span>youtube.com/@FX_LEVEL3</span>
+    </div>
+
+    <div class="bottom-divider"></div>
+
+    <!-- TELEGRAM -->
+    <div class="bottom-item">
+        <svg class="bottom-icon" viewBox="0 0 24 24">
+            <path d="M22 2L11 13" stroke-width="2"/>
+            <path d="M22 2L15 22l-4-9-9-4 20-7z" stroke-width="2"/>
+        </svg>
+        <span>t.me/FX_LEVEL3</span>
+    </div>
+
+    <div class="bottom-divider"></div>
+
+    <!-- VIP SIGNAL -->
+    <div class="bottom-item vip">
+        <svg class="bottom-icon diamond" viewBox="0 0 24 24">
+            <polygon points="12 2 22 9 12 22 2 9" stroke-width="2"/>
+        </svg>
+        <span>VIP SIGNAL — @FX_LEVEL3_Support</span>
+        <div class="shine"></div>
+    </div>
+
+</div>
+
+<!-- اسکریپت ساعت + تاریخ + سشن + خبر -->
 <script>
-let time = 10 * 60; // 10 دقیقه
-const countdown = document.getElementById("countdown");
-const startScreen = document.getElementById("startScreen");
 
-const timer = setInterval(() => {
-    const minutes = Math.floor(time / 60);
-    const seconds = time % 60;
+function updateClocks() {
 
-    countdown.textContent =
-        ${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")};
+    const tehranTime = new Date().toLocaleTimeString("en-US", {
+        timeZone: "Asia/Tehran",
+        hour12: true
+    });
 
-    if (time > 0) {
-        time--;
-    } else {
-        clearInterval(timer);
+    const newYorkTime = new Date().toLocaleTimeString("en-US", {
+        timeZone: "America/New_York",
+        hour12: true
+    });
 
-        // محو شدن صفحه Starting Soon
-        startScreen.classList.add("fade-out");
+    const today = new Date().toLocaleDateString("en-US", {
+        timeZone: "Asia/Tehran",
+        day: "2-digit",
+        month: "short",
+        year: "numeric"
+    });
+
+    const tehranHour = new Date().toLocaleString("en-US", {
+        timeZone: "Asia/Tehran",
+        hour: "numeric",
+        hour12: false
+    });
+
+    let sessionName = (tehranHour < 17) ? "London" : "New York";
+
+    document.getElementById("session-value").innerText = sessionName;
+    document.getElementById("tehran-value").innerText = tehranTime;
+    document.getElementById("newyork-value").innerText = newYorkTime;
+    document.getElementById("date-value").innerText = today;
+}
+
+setInterval(updateClocks, 1000);
+updateClocks();
+
+async function updateNews() {
+    try {
+        const rssUrl = "https://www.marketwatch.com/rss/topstories";
+
+        const response = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(rssUrl)}`);
+        const data = await response.json();
+
+        const parser = new DOMParser();
+        const xml = parser.parseFromString(data.contents, "text/xml");
+
+        const firstItem = xml.querySelector("item > title").textContent;
+
+        const shortTitle = firstItem.length > 55 ? firstItem.slice(0, 55) + "..." : firstItem;
+
+        document.getElementById("news-value").innerText = shortTitle;
+
+    } catch (e) {
+        document.getElementById("news-value").innerText = "Loading...";
     }
-}, 1000);
+}
+
+updateNews();
+setInterval(updateNews, 30000);
+
 </script>
 
 </body>
 </html>
+            
