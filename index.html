@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>FX Overlay</title>
+<title>FX LEVEL Overlay</title>
 
 <style>
 
-/* صفحه ثابت */
+/* صفحه اصلی */
 html, body {
     width: 1920px;
     height: 1080px;
@@ -30,7 +30,7 @@ body::before {
     pointer-events: none;
 }
 
-/* فریم زاویه‌دار اصلی */
+/* فریم اصلی */
 .main-frame {
     position: absolute;
     top: 40px;
@@ -88,7 +88,7 @@ body::before {
     box-sizing: border-box;
 }
 
-/* ساختار آیتم */
+/* ساختار آیتم‌های بالا */
 .top-item {
     flex: 1;
     display: flex;
@@ -101,7 +101,7 @@ body::before {
     gap: 14px;
 }
 
-/* آیکون‌های SVG سفید */
+/* آیکون‌های سفید */
 .icon {
     width: 40px;
     height: 40px;
@@ -137,6 +137,32 @@ body::before {
     background: rgba(255,255,255,0.35);
 }
 
+/* قاب وبکم */
+.webcam-frame {
+    position: absolute;
+    bottom: 170px;
+    left: 80px;
+    width: 430px;
+    height: 250px;
+
+    clip-path: polygon(
+        20px 0,
+        calc(100% - 20px) 0,
+        100% 20px,
+        100% calc(100% - 20px),
+        calc(100% - 20px) 100%,
+        20px 100%,
+        0 calc(100% - 20px),
+        0 20px
+    );
+
+    background: rgba(0, 0, 0, 0.25);
+    border: 3px solid #00ff88;
+    box-shadow:
+        0 0 18px #00ff88,
+        inset 0 0 18px #00ff88;
+}
+
 /* نوار پایین */
 .bottom-bar {
     position: absolute;
@@ -168,45 +194,77 @@ body::before {
     box-sizing: border-box;
 }
 
-.bottom-left {
-    font-size: 28px;
-    font-weight: bold;
-    color: #00ff88;
-    text-shadow: 0 0 10px #00ff88;
-}
-
-.bottom-right {
+/* آیتم‌های نوار پایین */
+.bottom-item {
     display: flex;
-    gap: 40px;
+    align-items: center;
+    gap: 12px;
     font-size: 20px;
     color: #00ff88;
     text-shadow: 0 0 8px #00ff88;
+    position: relative;
 }
 
-/* قاب وبکم */
-.webcam-frame {
+/* آیکون‌های پایین */
+.bottom-icon {
+    width: 32px;
+    height: 32px;
+    stroke: #ffffff;
+    fill: none;
+    filter: drop-shadow(0 0 6px #00ff88);
+}
+
+/* جداکننده پایین */
+.bottom-divider {
+    width: 1px;
+    height: 45%;
+    background: rgba(255,255,255,0.35);
+}
+
+/* SUBSCRIBE افکت ملایم */
+.subscribe span {
+
+    animation: softGlow 2.5s infinite ease-in-out;
+}
+
+@keyframes softGlow {
+    0% { text-shadow: 0 0 4px #00ff88; opacity: 0.8; }
+    50% { text-shadow: 0 0 12px #00ff88; opacity: 1; }
+    100% { text-shadow: 0 0 4px #00ff88; opacity: 0.8; }
+}
+
+/* VIP SIGNAL افکت لوکس */
+.vip {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Pulse Glow */
+.vip span {
+    animation: vipPulse 1.8s infinite ease-in-out;
+}
+
+@keyframes vipPulse {
+    0% { text-shadow: 0 0 6px #00ff88; }
+    50% { text-shadow: 0 0 18px #00ff88; }
+    100% { text-shadow: 0 0 6px #00ff88; }
+}
+
+/* Shine Sweep */
+.vip .shine {
     position: absolute;
-    bottom: 170px;
-    left: 80px;
-    width: 430px;
-    height: 250px;
+    top: 0;
+    left: -120%;
+    width: 80%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.4), transparent);
+    animation: shineSweep 3s infinite;
+}
 
-    clip-path: polygon(
-        20px 0,
-        calc(100% - 20px) 0,
-        100% 20px,
-        100% calc(100% - 20px),
-        calc(100% - 20px) 100%,
-        20px 100%,
-        0 calc(100% - 20px),
-        0 20px
-    );
-
-    background: rgba(0, 0, 0, 0.25);
-    border: 3px solid #00ff88;
-    box-shadow:
-        0 0 18px #00ff88,
-        inset 0 0 18px #00ff88;
+@keyframes shineSweep {
+    0% { left: -120%; }
+    50% { left: 120%; }
+    100% { left: 120%; }
 }
 
 </style>
@@ -216,14 +274,14 @@ body::before {
 
 <div class="main-frame"></div>
 
-<!-- نوار بالا با آیکون سفید -->
+<!-- نوار بالا -->
 <div class="top-bar">
 
     <!-- SESSION -->
     <div class="top-item">
         <div class="item-row">
             <svg class="icon" viewBox="0 0 24 24">
-<circle cx="12" cy="12" r="10" stroke-width="2"/>
+                <circle cx="12" cy="12" r="10" stroke-width="2"/>
                 <path d="M12 6v6l4 2" stroke-width="2"/>
             </svg>
             <div class="text-box">
@@ -299,36 +357,93 @@ body::before {
 
 </div>
 
+<!-- وبکم -->
 <div class="webcam-frame"></div>
 
+<!-- نوار پایین -->
 <div class="bottom-bar">
-    <div class="bottom-left">FX LEVEL</div>
-    <div class="bottom-right">
-        <span>Instagram</span>
-        <span>Telegram</span>
-        <span>VIP SIGNAL</span>
+
+    <!-- SUBSCRIBE -->
+    <div class="bottom-item subscribe">
+        <svg class="bottom-icon" viewBox="0 0 24 24">
+            <path d="M12 22s8-4 8-10V6l-8-4-8 4v6c0 6 8 10 8 10z" stroke-width="2"/>
+        </svg>
+        <span>SUBSCRIBE</span>
     </div>
+
+    <div class="bottom-divider"></div>
+
+    <!-- WEBSITE -->
+    <div class="bottom-item">
+        <svg class="bottom-icon" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" stroke-width="2"/>
+<path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20" stroke-width="2"/>
+        </svg>
+        <span>freeforexsignal.org</span>
+    </div>
+
+    <div class="bottom-divider"></div>
+
+    <!-- INSTAGRAM -->
+    <div class="bottom-item">
+        <svg class="bottom-icon" viewBox="0 0 24 24">
+            <rect x="3" y="3" width="18" height="18" rx="5" stroke-width="2"/>
+            <circle cx="12" cy="12" r="4" stroke-width="2"/>
+            <circle cx="17" cy="7" r="1.5" fill="#fff"/>
+        </svg>
+        <span>instagram.com/fx_level3</span>
+    </div>
+
+    <div class="bottom-divider"></div>
+
+    <!-- YOUTUBE -->
+    <div class="bottom-item">
+        <svg class="bottom-icon" viewBox="0 0 24 24">
+            <rect x="3" y="6" width="18" height="12" rx="3" stroke-width="2"/>
+            <polygon points="10,9 16,12 10,15" fill="#fff"/>
+        </svg>
+        <span>youtube.com/@FX_LEVEL3</span>
+    </div>
+
+    <div class="bottom-divider"></div>
+
+    <!-- TELEGRAM -->
+    <div class="bottom-item">
+        <svg class="bottom-icon" viewBox="0 0 24 24">
+            <path d="M22 2L11 13" stroke-width="2"/>
+            <path d="M22 2L15 22l-4-9-9-4 20-7z" stroke-width="2"/>
+        </svg>
+        <span>t.me/FX_LEVEL3</span>
+    </div>
+
+    <div class="bottom-divider"></div>
+
+    <!-- VIP SIGNAL -->
+    <div class="bottom-item vip">
+        <svg class="bottom-icon diamond" viewBox="0 0 24 24">
+            <polygon points="12 2 22 9 12 22 2 9" stroke-width="2"/>
+        </svg>
+        <span>VIP SIGNAL — @FX_LEVEL3_Support</span>
+        <div class="shine"></div>
+    </div>
+
 </div>
 
 <!-- اسکریپت ساعت + تاریخ + سشن + خبر -->
 <script>
 
-// ---------------------- CLOCKS + SESSION ----------------------
 function updateClocks() {
 
-    // ساعت تهران
     const tehranTime = new Date().toLocaleTimeString("en-US", {
         timeZone: "Asia/Tehran",
         hour12: true
     });
 
-    // ساعت نیویورک
     const newYorkTime = new Date().toLocaleTimeString("en-US", {
         timeZone: "America/New_York",
         hour12: true
     });
 
-    // تاریخ امروز
     const today = new Date().toLocaleDateString("en-US", {
         timeZone: "Asia/Tehran",
         day: "2-digit",
@@ -336,7 +451,6 @@ function updateClocks() {
         year: "numeric"
     });
 
-    // تعیین سشن بر اساس ساعت تهران
     const tehranHour = new Date().toLocaleString("en-US", {
         timeZone: "Asia/Tehran",
         hour: "numeric",
@@ -345,7 +459,6 @@ function updateClocks() {
 
     let sessionName = (tehranHour < 17) ? "London" : "New York";
 
-    // نمایش در صفحه
     document.getElementById("session-value").innerText = sessionName;
     document.getElementById("tehran-value").innerText = tehranTime;
     document.getElementById("newyork-value").innerText = newYorkTime;
@@ -355,22 +468,18 @@ function updateClocks() {
 setInterval(updateClocks, 1000);
 updateClocks();
 
-
-// ---------------------- AUTO NEWS ----------------------
 async function updateNews() {
     try {
         const rssUrl = "https://www.marketwatch.com/rss/topstories";
 
         const response = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(rssUrl)}`);
-        const data = await response.
-                json();
+        const data = await response.json();
 
         const parser = new DOMParser();
         const xml = parser.parseFromString(data.contents, "text/xml");
 
         const firstItem = xml.querySelector("item > title").textContent;
 
-        // کوتاه کردن تیتر برای زیبایی
         const shortTitle = firstItem.length > 55 ? firstItem.slice(0, 55) + "..." : firstItem;
 
         document.getElementById("news-value").innerText = shortTitle;
@@ -380,7 +489,6 @@ async function updateNews() {
     }
 }
 
-// هر ۳۰ ثانیه آپدیت شود
 updateNews();
 setInterval(updateNews, 30000);
 
@@ -388,3 +496,4 @@ setInterval(updateNews, 30000);
 
 </body>
 </html>
+            
