@@ -239,6 +239,25 @@ body::before {
 
     animation: softGlow 2.5s infinite ease-in-out;
 }
+  /* انیمیشن نرم برای همه آیتم‌ها */
+.soft-pulse {
+    animation: softPulse 4s ease-in-out infinite;
+}
+
+@keyframes softPulse {
+    0% {
+        opacity: 0.85;
+        text-shadow: 0 0 4px currentColor;
+    }
+    50% {
+        opacity: 1;
+        text-shadow: 0 0 10px currentColor;
+    }
+    100% {
+        opacity: 0.85;
+        text-shadow: 0 0 4px currentColor;
+    }
+}  
 
 @keyframes softGlow {
     0% { text-shadow: 0 0 4px #00ff88; opacity: 0.8; }
