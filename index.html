@@ -1,245 +1,199 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fa">
 <head>
 <meta charset="UTF-8">
-<title>FX LEVEL Overlay</title>
-
+<title>FXLEVEL Overlay</title>
 <style>
-
 /* صفحه اصلی */
-html, body {
-    width: 1920px;
-    height: 1080px;
+body {
     margin: 0;
     padding: 0;
+    background: #050608;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    color: #e6e6e6;
+}
+
+/* کانتینر اصلی اورلی */
+.overlay-root {
+    position: relative;
+    width: 1920px;
+    height: 1080px;
+    margin: 0 auto;
+    background: radial-gradient(circle at top, #0b1b16 0%, #050608 55%, #000000 100%);
     overflow: hidden;
-    background: #000;
-    font-family: Arial, sans-serif;
-    color: white;
-}
-
-/* افکت شبکه‌ای پس‌زمینه */
-body::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-image:
-        linear-gradient(rgba(0,255,136,0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,255,136,0.05) 1px, transparent 1px);
-    background-size: 40px 40px;
-    pointer-events: none;
-}
-
-/* فریم اصلی */
-.main-frame {
-    position: absolute;
-    top: 40px;
-    left: 40px;
-    width: calc(100% - 80px);
-    height: calc(100% - 80px);
-
-    clip-path: polygon(
-        25px 0,
-        calc(100% - 25px) 0,
-        100% 25px,
-        100% calc(100% - 25px),
-        calc(100% - 25px) 100%,
-        25px 100%,
-        0 calc(100% - 25px),
-        0 25px
-    );
-
-    background: rgba(0, 0, 0, 0.18);
-
-    border: 3px solid #00ff88;
-    box-shadow:
-        0 0 25px #00ff88,
-        inset 0 0 25px #00ff88;
 }
 
 /* نوار بالا */
 .top-bar {
     position: absolute;
-    top: 55px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 86%;
-    height: 90px;
-
-    clip-path: polygon(
-        18px 0,
-        calc(100% - 18px) 0,
-        100% 18px,
-        100% 100%,
-        0 100%,
-        0 18px
-    );
-
-    background: rgba(0, 0, 0, 0.35);
-    border: 2px solid #00ff88;
-    box-shadow:
-        0 0 14px #00ff88,
-        inset 0 0 14px #00ff88;
-
+    top: 24px;
+    left: 60px;
+    right: 60px;
+    height: 60px;
+    border-radius: 14px;
+    background: rgba(5, 10, 8, 0.9);
+    border: 1px solid rgba(0, 255, 136, 0.35);
+    box-shadow: 0 0 18px rgba(0, 255, 136, 0.35);
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 0 35px;
-    box-sizing: border-box;
+    padding: 0 22px;
+    gap: 22px;
 }
 
-/* ساختار آیتم‌های بالا */
+/* آیتم‌های نوار بالا */
 .top-item {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-}
-
-.item-row {
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 10px;
+    color: #e6e6e6;
+    font-size: 16px;
+    font-weight: 600;
 }
 
-/* آیکون‌های سفید */
-.icon {
-    width: 40px;
-    height: 40px;
+/* آیکون‌های نوار بالا */
+.top-icon {
+    width: 26px;
+    height: 26px;
     stroke: #ffffff;
     fill: none;
-    filter: drop-shadow(0 0 6px #00ff88);
 }
 
-/* متن‌ها */
-.text-box {
-    display: flex;
-    flex-direction: column;
-    line-height: 1.1;
-}
-
-.text-box span:first-child {
-    font-size: 14px;
-    color: #ffae4a;
-    text-shadow: 0 0 6px #ffae4a;
-}
-
-.text-box span:last-child {
-    font-size: 22px;
-    font-weight: bold;
-    color: #00ff88;
-    text-shadow: 0 0 8px #00ff88;
-}
-
-/* جداکننده سفید */
-.divider {
+/* جداکننده نوار بالا */
+.top-separator {
     width: 1px;
-    height: 60%;
+    height: 26px;
     background: rgba(255,255,255,0.35);
 }
 
-/* قاب وبکم */
+/* بخش مارکت‌سشن‌ها */
+.market-session {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+}
+
+/* ساعت‌ها */
+.clock-label {
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+/* فریم اصلی چارت */
+.chart-frame {
+    position: absolute;
+    top: 120px;
+    left: 60px;
+    width: 1320px;
+    height: 780px;
+    border-radius: 18px;
+    border: 2px solid rgba(0, 255, 136, 0.7);
+    box-shadow:
+        0 0 22px rgba(0, 255, 136, 0.45),
+        0 0 60px rgba(0, 255, 136, 0.25);
+    background: rgba(3, 8, 6, 0.85);
+}
+
+/* ناحیه خالی برای چارت (داخل فریم) */
+.chart-inner {
+    position: absolute;
+    top: 18px;
+    left: 18px;
+    right: 18px;
+    bottom: 18px;
+    background: transparent; /* اینجا چارت OBS می‌افته */
+    overflow: hidden;
+}
+
+/* فریم وبکم */
 .webcam-frame {
     position: absolute;
-    bottom: 170px;
-    left: 80px;
-    width: 430px;
-    height: 250px;
-
-    clip-path: polygon(
-        20px 0,
-        calc(100% - 20px) 0,
-        100% 20px,
-        100% calc(100% - 20px),
-        calc(100% - 20px) 100%,
-        20px 100%,
-        0 calc(100% - 20px),
-        0 20px
-    );
-
-    background: rgba(0, 0, 0, 0.25);
-    border: 3px solid #00ff88;
+    right: 60px;
+    bottom: 140px;
+    width: 420px;
+    height: 240px;
+    border-radius: 16px;
+    border: 2px solid rgba(0, 255, 136, 0.7);
     box-shadow:
-        0 0 18px #00ff88,
-        inset 0 0 18px #00ff88;
+        0 0 20px rgba(0, 255, 136, 0.45),
+        0 0 50px rgba(0, 255, 136, 0.25);
+    background: rgba(3, 8, 6, 0.85);
+}
+
+/* ناحیه خالی وبکم */
+.webcam-inner {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    right: 14px;
+    bottom: 14px;
+    background: transparent; /* اینجا وبکم OBS می‌افته */
+    overflow: hidden;
 }
 
 /* نوار پایین */
 .bottom-bar {
     position: absolute;
-    bottom: 55px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 86%;
-    height: 80px;
-
-    clip-path: polygon(
-        0 0,
-        100% 0,
-        100% calc(100% - 18px),
-        calc(100% - 18px) 100%,
-        18px 100%,
-        0 calc(100% - 18px)
-    );
-
-    background: rgba(0, 0, 0, 0.35);
-    border: 2px solid #00ff88;
-    box-shadow:
-        0 0 14px #00ff88,
-        inset 0 0 14px #00ff88;
-
+    left: 60px;
+    right: 60px;
+    bottom: 40px;
+    height: 70px;
+    border-radius: 16px;
+    background: rgba(5, 10, 8, 0.9);
+    border: 1px solid rgba(0, 255, 136, 0.35);
+    box-shadow: 0 0 18px rgba(0, 255, 136, 0.35);
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 0 40px;
-    box-sizing: border-box;
+    justify-content: space-between;
+    padding: 0 26px;
 }
 
 /* آیتم‌های نوار پایین */
-.bottom-item span {
-    color: #4da6ff;
-    text-shadow: 0 0 6px #4da6ff;
-}
-
-/* آیکون‌های پایین */
-/* تراز کامل آیکون و متن */
 .bottom-item {
     display: flex;
-    align-items: center; /* مهم‌ترین خط */
-    gap: 10px;
+    align-items: center;
+    gap: 12px;
 }
 
 /* متن نوار پایین */
 .bottom-item span {
-    line-height: 1; /* جلوگیری از افتادن پایین */
-    display: flex;
-    align-items: center; /* تراز عمودی */
+    font-size: 20px;
+    font-weight: bold;
+    color: #e6e6e6;
+    text-shadow: 0 0 6px rgba(255,255,255,0.4);
+    line-height: 1;
 }
 
 /* آیکون‌های نوار پایین */
 .bottom-icon {
-    width: 40px;      /* کمی کوچکتر برای تراز بهتر */
+    width: 40px;
     height: 40px;
-    stroke: #ffffff;
+    stroke: #e6e6e6;
     fill: none;
-    display: flex;
-    align-items: center; /* تراز عمودی */
-}
-.bottom-icon {
-    filter: drop-shadow(0 0 4px #ffb347);
-}
-/* جداکننده پایین */
-.bottom-divider {
-    width: 1px;
-    height: 45%;
-    background: rgba(255,255,255,0.35);
+    filter: drop-shadow(0 0 4px rgba(255,255,255,0.4));
 }
 
-/* SUBSCRIBE افکت ملایم */
-.subscribe span {
-
-    animation: softGlow 2.5s infinite ease-in-out;
+/* انیمیشن SUBSCRIBE (قوی‌تر) */
+.subscribe-text {
+    animation: subscribePulse 3s ease-in-out infinite;
 }
-  /* انیمیشن نرم برای همه آیتم‌ها */
+
+@keyframes subscribePulse {
+    0% {
+        opacity: 0.85;
+        text-shadow: 0 0 8px #00ff88;
+    }
+    50% {
+        opacity: 1;
+        text-shadow: 0 0 16px #00ff88;
+    }
+    100% {
+        opacity: 0.85;
+        text-shadow: 0 0 8px #00ff88;
+    }
+}
+
+/* انیمیشن نرم برای همه آیتم‌ها (به‌جز VIP) */
 .soft-pulse {
     animation: softPulse 4s ease-in-out infinite;
 }
@@ -252,280 +206,118 @@ body::before {
     50% {
         opacity: 1;
         text-shadow: 0 0 10px currentColor;
-    }
+}
     100% {
         opacity: 0.85;
         text-shadow: 0 0 4px currentColor;
     }
-}  
-
-@keyframes softGlow {
-    0% { text-shadow: 0 0 4px #00ff88; opacity: 0.8; }
-    50% { text-shadow: 0 0 12px #00ff88; opacity: 1; }
-    100% { text-shadow: 0 0 4px #00ff88; opacity: 0.8; }
 }
 
-/* VIP SIGNAL افکت لوکس */
-.vip {
-    position: relative;
-    overflow: hidden;
+/* انیمیشن VIP */
+.vip-signal span {
+    animation: vipShine 2.8s linear infinite;
 }
 
-/* Pulse Glow */
-.vip span {
-    animation: vipPulse 1.8s infinite ease-in-out;
-}
-
-@keyframes vipPulse {
-    0% { text-shadow: 0 0 6px #00ff88; }
-    50% { text-shadow: 0 0 18px #00ff88; }
-    100% { text-shadow: 0 0 6px #00ff88; }
-}
-
-/* Shine Sweep */
-.vip .shine {
-    position: absolute;
-    top: 0;
-    left: -120%;
-    width: 80%;
-    height: 100%;
-    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.4), transparent);
-    animation: shineSweep 3s infinite;
-}
-
-@keyframes shineSweep {
-    0% { left: -120%; }
-    50% { left: 120%; }
-    100% { left: 120%; }
-}
-
-</style>
-</head>
-
-<body>
-
-<div class="main-frame"></div>
-
-<!-- نوار بالا -->
-<div class="top-bar">
-
-    <!-- SESSION -->
-    <div class="top-item">
-        <div class="item-row">
-            <svg class="icon" viewBox="0 0 24 24">
-                <circle cx="12" cy="12" r="10" stroke-width="2"/>
-                <path d="M12 6v6l4 2" stroke-width="2"/>
-            </svg>
-            <div class="text-box">
-                <span>SESSION</span>
-                <span id="session-value">London</span>
-            </div>
-        </div>
-    </div>
-
-    <div class="divider"></div>
-
-    <!-- NEW YORK -->
-    <div class="top-item">
-        <div class="item-row">
-            <svg class="icon" viewBox="0 0 24 24">
-                <path d="M12 1v22M1 12h22" stroke-width="2"/>
-            </svg>
-            <div class="text-box">
-                <span>NEW YORK</span>
-                <span id="newyork-value">--:--</span>
-            </div>
-        </div>
-    </div>
-
-    <div class="divider"></div>
-
-    <!-- TEHRAN -->
-    <div class="top-item">
-        <div class="item-row">
-            <svg class="icon" viewBox="0 0 24 24">
-                <circle cx="12" cy="12" r="10" stroke-width="2"/>
-                <path d="M12 12l4 2" stroke-width="2"/>
-            </svg>
-            <div class="text-box">
-                <span>TEHRAN</span>
-                <span id="tehran-value">--:--</span>
-            </div>
-        </div>
-    </div>
-
-    <div class="divider"></div>
-
-    <!-- DATE -->
-    <div class="top-item">
-        <div class="item-row">
-            <svg class="icon" viewBox="0 0 24 24">
-                <rect x="3" y="5" width="18" height="16" stroke-width="2" fill="none"/>
-                <line x1="3" y1="10" x2="21" y2="10" stroke-width="2"/>
-            </svg>
-            <div class="text-box">
-                <span>DATE</span>
-                <span id="date-value">-- --- ----</span>
-            </div>
-        </div>
-    </div>
-
-    <div class="divider"></div>
-
-    <!-- NEWS -->
-    <div class="top-item">
-        <div class="item-row">
-            <svg class="icon" viewBox="0 0 24 24">
-                <rect x="3" y="4" width="18" height="16" stroke-width="2" fill="none"/>
-                <line x1="7" y1="8" x2="17" y2="8" stroke-width="2"/>
-                <line x1="7" y1="12" x2="17" y2="12" stroke-width="2"/>
-            </svg>
-            <div class="text-box">
-                <span>NEWS</span>
-                <span id="news-value">Loading...</span>
-            </div>
-        </div>
-    </div>
-
-</div>
-
-<!-- وبکم -->
-<div class="webcam-frame"></div>
-
-<!-- نوار پایین -->
-<div class="bottom-bar">
-
-    <!-- SUBSCRIBE -->
-    <div class="bottom-item subscribe">
-        <svg class="bottom-icon" viewBox="0 0 24 24">
-            <path d="M12 22s8-4 8-10V6l-8-4-8 4v6c0 6 8 10 8 10z" stroke-width="2"/>
-        </svg>
-        <span>SUBSCRIBE</span>
-    </div>
-
-    <div class="bottom-divider"></div>
-
-    <!-- WEBSITE -->
-    <div class="bottom-item">
-        <svg class="bottom-icon" viewBox="0 0 24 24">
-            <circle cx="12" cy="12" r="10" stroke-width="2"/>
-<path d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20" stroke-width="2"/>
-        </svg>
-        <span>freeforexsignal.org</span>
-    </div>
-
-    <div class="bottom-divider"></div>
-
-    <!-- INSTAGRAM -->
-    <div class="bottom-item">
-        <svg class="bottom-icon" viewBox="0 0 24 24">
-            <rect x="3" y="3" width="18" height="18" rx="5" stroke-width="2"/>
-            <circle cx="12" cy="12" r="4" stroke-width="2"/>
-            <circle cx="17" cy="7" r="1.5" fill="#fff"/>
-        </svg>
-        <span>instagram.com/fx_level3</span>
-    </div>
-
-    <div class="bottom-divider"></div>
-
-    <!-- YOUTUBE -->
-    <div class="bottom-item">
-        <svg class="bottom-icon" viewBox="0 0 24 24">
-            <rect x="3" y="6" width="18" height="12" rx="3" stroke-width="2"/>
-            <polygon points="10,9 16,12 10,15" fill="#fff"/>
-        </svg>
-        <span>youtube.com/@FX_LEVEL3</span>
-    </div>
-
-    <div class="bottom-divider"></div>
-
-    <!-- TELEGRAM -->
-    <div class="bottom-item">
-        <svg class="bottom-icon" viewBox="0 0 24 24">
-            <path d="M22 2L11 13" stroke-width="2"/>
-            <path d="M22 2L15 22l-4-9-9-4 20-7z" stroke-width="2"/>
-        </svg>
-        <span>t.me/FX_LEVEL3</span>
-    </div>
-
-    <div class="bottom-divider"></div>
-
-    <!-- VIP SIGNAL -->
-    <div class="bottom-item vip">
-        <svg class="bottom-icon diamond" viewBox="0 0 24 24">
-            <polygon points="12 2 22 9 12 22 2 9" stroke-width="2"/>
-        </svg>
-        <span>VIP SIGNAL — @FX_LEVEL3_Support</span>
-        <div class="shine"></div>
-    </div>
-
-</div>
-
-<!-- اسکریپت ساعت + تاریخ + سشن + خبر -->
-<script>
-
-function updateClocks() {
-
-    const tehranTime = new Date().toLocaleTimeString("en-US", {
-        timeZone: "Asia/Tehran",
-        hour12: true
-    });
-
-    const newYorkTime = new Date().toLocaleTimeString("en-US", {
-        timeZone: "America/New_York",
-        hour12: true
-    });
-
-    const today = new Date().toLocaleDateString("en-US", {
-        timeZone: "Asia/Tehran",
-        day: "2-digit",
-        month: "short",
-        year: "numeric"
-    });
-
-    const tehranHour = new Date().toLocaleString("en-US", {
-        timeZone: "Asia/Tehran",
-        hour: "numeric",
-        hour12: false
-    });
-
-    let sessionName = (tehranHour < 17) ? "London" : "New York";
-
-    document.getElementById("session-value").innerText = sessionName;
-    document.getElementById("tehran-value").innerText = tehranTime;
-    document.getElementById("newyork-value").innerText = newYorkTime;
-    document.getElementById("date-value").innerText = today;
-}
-
-setInterval(updateClocks, 1000);
-updateClocks();
-
-async function updateNews() {
-    try {
-        const rssUrl = "https://www.marketwatch.com/rss/topstories";
-
-        const response = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(rssUrl)}`);
-        const data = await response.json();
-
-        const parser = new DOMParser();
-        const xml = parser.parseFromString(data.contents, "text/xml");
-
-        const firstItem = xml.querySelector("item > title").textContent;
-
-        const shortTitle = firstItem.length > 55 ? firstItem.slice(0, 55) + "..." : firstItem;
-
-        document.getElementById("news-value").innerText = shortTitle;
-
-    } catch (e) {
-        document.getElementById("news-value").innerText = "Loading...";
+@keyframes vipShine {
+    0% {
+        text-shadow: 0 0 8px #00ff88;
+    }
+    50% {
+        text-shadow: 0 0 18px #00ff88;
+    }
+    100% {
+        text-shadow: 0 0 8px #00ff88;
     }
 }
+</style>
+</head>
+<body>
+<div class="overlay-root">
 
-updateNews();
-setInterval(updateNews, 30000);
+    <!-- نوار بالا -->
+    <div class="top-bar">
+        <div class="top-item">
+            <svg class="top-icon" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="9"/>
+            </svg>
+            <span>FXLEVEL</span>
+        </div>
 
-</script>
+        <div class="top-separator"></div>
 
+        <div class="top-item">
+            <svg class="top-icon" viewBox="0 0 24 24">
+                <path d="M4 4h16v16H4z"/>
+            </svg>
+            <span>London Session</span>
+        </div>
+
+        <div class="top-item market-session">
+            <span class="clock-label">Tehran</span>
+            <span>12:34</span>
+        </div>
+
+        <div class="top-item market-session">
+            <span class="clock-label">New York</span>
+            <span>05:04</span>
+        </div>
+    </div>
+
+    <!-- فریم اصلی چارت -->
+    <div class="chart-frame">
+        <div class="chart-inner">
+            <!-- اینجا چارت OBS می‌افته -->
+        </div>
+    </div>
+
+    <!-- فریم وبکم -->
+    <div class="webcam-frame">
+        <div class="webcam-inner">
+            <!-- اینجا وبکم OBS می‌افته -->
+        </div>
+    </div>
+
+    <!-- نوار پایین -->
+    <div class="bottom-bar">
+
+        <div class="bottom-item vip-signal">
+            <svg class="bottom-icon" viewBox="0 0 24 24">
+                <path d="M12 2L2 7l10 5 10-5z"/>
+            </svg>
+            <span>VIP SIGNAL</span>
+        </div>
+
+        <div class="bottom-item soft-pulse">
+            <svg class="bottom-icon" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10"/>
+            </svg>
+            <span>INSTAGRAM</span>
+        </div>
+
+        <div class="bottom-item soft-pulse">
+            <svg class="bottom-icon" viewBox="0 0 24 24">
+                <rect x="4" y="4" width="16" height="16"/>
+            </svg>
+            <span>WEBSITE</span>
+        </div>
+
+        <div class="bottom-item soft-pulse">
+            <svg class="bottom-icon" viewBox="0 0 24 24">
+                <path d="M2 12h20"/>
+            </svg>
+            <span>TELEGRAM</span>
+        </div>
+
+        <div class="bottom-item soft-pulse">
+            <svg class="bottom-icon" viewBox="0 0 24 24">
+                <path d="M4 4h16v16H4z"/>
+            </svg>
+            <span class="subscribe-text">SUBSCRIBE</span>
+        </div>
+
+    </div>
+
+</div>
 </body>
 </html>
-            
+    
