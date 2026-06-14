@@ -1,111 +1,89 @@
-<div class="top-bar">
-
-    <div class="top-item">
-        <img src="https://cdn-icons-png.flaticon.com/512/992/992700.png" class="icon">
-        <span>SESSION</span>
-        <span>New York</span>
-    </div>
-
-    <div class="divider"></div>
-
-    <div class="top-item">
-        <img src="https://cdn-icons-png.flaticon.com/512/1827/1827504.png" class="icon">
-        <span>NY TIME</span>
-        <span>10:24:35 PM</span>
-    </div>
-
-    <div class="divider"></div>
-
-    <div class="top-item">
-        <img src="https://cdn-icons-png.flaticon.com/512/1827/1827504.png" class="icon">
-        <span>TEHRAN</span>
-        <span>07:54:35 AM</span>
-    </div>
-
-    <div class="divider"></div>
-
-    <div class="top-item">
-        <img src="https://cdn-icons-png.flaticon.com/512/747/747310.png" class="icon">
-        <span>DATE</span>
-        <span>14 JUN 2026</span>
-    </div>
-
-    <div class="divider"></div>
-
-    <div class="top-item">
-        <img src="https://cdn-icons-png.flaticon.com/512/1828/1828859.png" class="icon">
-        <span>NEWS</span>
-        <span>CPI at 8:30 PM</span>
-    </div>
-.top-bar {
-    position: absolute;
-    top: 55px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 86%;
-    height: 90px;
-
-    clip-path: polygon(
-        18px 0,
-        calc(100% - 18px) 0,
-        100% 18px,
-        100% 100%,
-        0 100%,
-        0 18px
+20px 100%,
+        0 calc(100% - 20px),
+        0 20px
     );
 
-    background: rgba(0, 0, 0, 0.35);
-    border: 2px solid #00ff88;
+    background: rgba(0, 0, 0, 0.25);
+
+    border: 3px solid #00ff88;
     box-shadow:
-        0 0 14px #00ff88,
-        inset 0 0 14px #00ff88;
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 35px;
-    box-sizing: border-box;
+        0 0 18px #00ff88,
+        inset 0 0 18px #00ff88;
 }
 
-/* آیتم‌ها */
-.top-item {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    color: #ffffff;
-    gap: 3px;
+/* خطوط نارنجی واقعی روی قاب وبکم */
+.webcam-frame::before {
+    content: "";
+    position: absolute;
+    inset: 5px;
+    clip-path: inherit;
+    border: 1px solid #ffae4a;
+    opacity: 0.8;
+    pointer-events: none;
 }
 
-/* آیکون‌ها */
-.icon {
-    width: 22px;
-    height: 22px;
-    margin: 0 auto 2px auto;
-    filter: drop-shadow(0 0 6px #00ff88);
-}
+</style>
+</head>
 
-/* عنوان کوچک */
-.top-item span:first-of-type {
-    font-size: 12px;
-    color: #00ff88;
-    text-shadow: 0 0 6px #00ff88;
-}
+<body>
 
-/* مقدار اصلی */
-.top-item span:last-of-type {
-    font-size: 18px;
-    font-weight: bold;
-    color: #ffffff;
-    text-shadow: 0 0 8px #00ff88;
-}
+<div class="main-frame"></div>
 
-/* جداکننده سفید */
-.divider {
-    width: 1px;
-    height: 60%;
-    background: #ffffff;
-    opacity: 0.6;
-}
+<div class="top-bar">
+    <div class="top-item"><span>SESSION</span><span>London</span></div>
+    <div class="top-item"><span>NEW YORK</span><span>--:--</span></div>
+    <div class="top-item"><span>TEHRAN</span><span>--:--</span></div>
+    <div class="top-item"><span>DATE</span><span>-- --- ----</span></div>
+    <div class="top-item"><span>NEWS</span><span>Waiting...</span></div>
 </div>
 
+<div class="webcam-frame"></div>
+
+<div class="bottom-bar">
+    <div class="bottom-left">FX LEVEL</div>
+    <div class="bottom-right">
+        <span>Instagram</span>
+        <span>Telegram</span>
+        <span>VIP SIGNAL</span>
+    </div>
+</div>
+    /* فریم سبز زاویه‌دار */
+.main-frame {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    width: calc(100% - 80px);
+    height: calc(100% - 80px);
+
+    clip-path: polygon(
+        25px 0,
+        calc(100% - 25px) 0,
+        100% 25px,
+        100% calc(100% - 25px),
+        calc(100% - 25px) 100%,
+        25px 100%,
+        0 calc(100% - 25px),
+        0 25px
+    );
+
+    background: rgba(0, 0, 0, 0.18);
+    border: 3px solid #00ff88;
+    box-shadow:
+        0 0 25px #00ff88,
+        inset 0 0 25px #00ff88;
+}
+
+/* لایهٔ نارنجی واقعی بیرون از clip-path */
+.main-frame-outline {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    width: calc(100% - 80px);
+    height: calc(100% - 80px);
+
+    border: 1px solid #ffae4a;
+    pointer-events: none;
+}
+
+</body>
+</html>
