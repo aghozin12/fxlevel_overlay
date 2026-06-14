@@ -6,7 +6,7 @@
 
 <style>
 
-/* صفحه ثابت مثل OBS */
+/* صفحه ثابت */
 html, body {
     width: 1920px;
     height: 1080px;
@@ -18,35 +18,61 @@ html, body {
     color: white;
 }
 
-body::-webkit-scrollbar {
-    display: none;
+/* فریم زاویه‌دار اصلی */
+.main-frame {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    width: calc(100% - 80px);
+    height: calc(100% - 80px);
+
+    clip-path: polygon(
+        25px 0,
+        calc(100% - 25px) 0,
+        100% 25px,
+        100% calc(100% - 25px),
+        calc(100% - 25px) 100%,
+        25px 100%,
+        0 calc(100% - 25px),
+        0 25px
+    );
+
+    border: 3px solid #00ff88;
+    box-shadow:
+        0 0 20px #00ff88,
+        inset 0 0 20px #00ff88;
+    background: rgba(0, 0, 0, 0.25);
 }
 
-/* نوار بالا — کپی نوار پایین */
+/* نوار بالا زاویه‌دار */
 .top-bar {
-    width: 94%;
-    height: 85px;
-
     position: absolute;
-    top: 20px;
+    top: 70px;
     left: 50%;
     transform: translateX(-50%);
+
+    width: 88%;
+    height: 80px;
+
+    clip-path: polygon(
+        20px 0,
+        calc(100% - 20px) 0,
+        100% 20px,
+        100% 100%,
+        0 100%,
+        0 20px
+    );
+
+    background: rgba(0, 0, 0, 0.35);
+    border: 2px solid #00ff88;
+    box-shadow:
+        0 0 12px #00ff88,
+        inset 0 0 12px #00ff88;
 
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 70px;
-
-    padding: 0 40px;
-    box-sizing: border-box;
-
-    background: rgba(0, 0, 0, 0.35);
-    border: 2px solid #00ff88;
-    border-radius: 10px;
-
-    box-shadow:
-        0 0 12px #00ff88,
-        inset 0 0 12px #00ff88;
 }
 
 /* آیتم‌های نوار بالا */
@@ -55,7 +81,6 @@ body::-webkit-scrollbar {
     flex-direction: column;
     text-align: center;
     font-size: 14px;
-    letter-spacing: 1px;
     color: #d0ffd0;
 }
 
@@ -72,47 +97,36 @@ body::-webkit-scrollbar {
     text-shadow: 0 0 8px #00ff88;
 }
 
-/* قاب وبکم – اندازه شبیه تصویر مرجع، پایین چپ */
-.webcam-frame {
-    width: 430px;
-    height: 250px;
-
+/* نوار پایین زاویه‌دار */
+.bottom-bar {
     position: absolute;
-    bottom: 130px;   /* فاصله از نوار پایین */
-    left: 40px;      /* فاصله از لبه چپ */
+    bottom: 70px;
+    left: 50%;
+    transform: translateX(-50%);
 
-    border: 3px solid #00ff88;
-    border-radius: 12px;
+    width: 88%;
+    height: 80px;
 
+    clip-path: polygon(
+        0 0,
+        100% 0,
+        100% calc(100% - 20px),
+        calc(100% - 20px) 100%,
+        20px 100%,
+        0 calc(100% - 20px)
+    );
+
+    background: rgba(0, 0, 0, 0.35);
+    border: 2px solid #00ff88;
     box-shadow:
         0 0 12px #00ff88,
         inset 0 0 12px #00ff88;
-}
-
-/* نوار پایین */
-.bottom-bar {
-    width: 94%;
-    height: 85px;
-
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
 
     display: flex;
     justify-content: space-between;
     align-items: center;
-
     padding: 0 40px;
     box-sizing: border-box;
-
-    background: rgba(0, 0, 0, 0.35);
-    border: 2px solid #00ff88;
-    border-radius: 10px;
-
-    box-shadow:
-        0 0 12px #00ff88,
-        inset 0 0 12px #00ff88;
 }
 
 .bottom-left {
@@ -128,39 +142,49 @@ body::-webkit-scrollbar {
     color: #ffae4a;
 }
 
+/* قاب وبکم زاویه‌دار */
+.webcam-frame {
+    position: absolute;
+    bottom: 180px;
+    left: 80px;
+
+    width: 430px;
+    height: 250px;
+
+    clip-path: polygon(
+        20px 0,
+        calc(100% - 20px) 0,
+        100% 20px,
+        100% calc(100% - 20px),
+        calc(100% - 20px) 100%,
+        20px 100%,
+        0 calc(100% - 20px),
+        0 20px
+    );
+
+    border: 3px solid #00ff88;
+    box-shadow:
+        0 0 15px #00ff88,
+        inset 0 0 15px #00ff88;
+}
+
 </style>
 </head>
 
 <body>
 
-<!-- نوار بالا -->
+<div class="main-frame"></div>
+
 <div class="top-bar">
-    <div class="top-item">
-        <span>SESSION</span>
-        <span id="session">London</span>
-    </div>
-    <div class="top-item">
-        <span>NEW YORK</span>
-        <span id="nytime">--:--</span>
-    </div>
-    <div class="top-item">
-        <span>TEHRAN</span>
-        <span id="tehrantime">--:--</span>
-    </div>
-    <div class="top-item">
-        <span>DATE</span>
-        <span id="date">-- --- ----</span>
-    </div>
-    <div class="top-item">
-        <span>NEWS</span>
-        <span id="news">Waiting...</span>
-    </div>
+    <div class="top-item"><span>SESSION</span><span>London</span></div>
+    <div class="top-item"><span>NEW YORK</span><span>--:--</span></div>
+    <div class="top-item"><span>TEHRAN</span><span>--:--</span></div>
+    <div class="top-item"><span>DATE</span><span>-- --- ----</span></div>
+    <div class="top-item"><span>NEWS</span><span>Waiting...</span></div>
 </div>
 
-<!-- قاب وبکم (اینجا در OBS دوربین رو پشتش می‌ذاری) -->
 <div class="webcam-frame"></div>
 
-<!-- نوار پایین -->
 <div class="bottom-bar">
     <div class="bottom-left">FX LEVEL</div>
     <div class="bottom-right">
