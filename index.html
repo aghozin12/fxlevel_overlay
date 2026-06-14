@@ -20,6 +20,7 @@
       height: 100vh;
     }
 
+    /* وبکم */
     .webcam {
       position: absolute;
       left: 2%;
@@ -63,6 +64,7 @@
       color: #fff;
     }
 
+    /* سه باکس ساعت */
     .clocks {
       position: absolute;
       top: 2%;
@@ -78,7 +80,8 @@
       box-shadow: 0 0 10px #00ff88;
       font-size: 0.9em;
       text-align: center;
-      min-width: 110px;
+      min-width: 130px;
+      font-family: monospace; /* جلوگیری از لرزش */
     }
   </style>
 </head>
@@ -102,39 +105,46 @@
 
   </div>
 
- <script>
-  function formatTime(timeZone) {
-    var now = new Date();
+  <!-- ساعت‌ها -->
+  <script>
+    function formatTime(timeZone) {
+      var now = new Date();
 
-    var options = {
-      timeZone: timeZone,
-      hour12: true,
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit'
-    };
+      var options = {
+        timeZone: timeZone,
+        hour12: true,
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+      };
 
-    var parts = now.toLocaleTimeString('en-US', options).split(" ");
-    var time = parts[0];   // 01:20:30
-    var ampm = parts[1];   // AM یا PM
+      var parts = now.toLocaleTimeString('en-US', options).split(" ");
+      var time = parts[0];   // 01:20:30
+      var ampm = parts[1];   // AM یا PM
 
-    return ampm + " " + time;
-  }
+      return ampm + " " + time;
+    }
 
-  function updateClock() {
-    document.getElementById('london').innerHTML =
-      "London<br>" + formatTime("Europe/London");
+    function updateClock() {
+      document.getElementById('london').innerHTML =
+        "London<br>" + formatTime("Europe/London");
 
-    document.getElementById('newyork').innerHTML =
-      "New York<br>" + formatTime("America/New_York");
+      document.getElementById('newyork').innerHTML =
+        "New York<br>" + formatTime("America/New_York");
 
-    document.getElementById('tehran').innerHTML =
-      "Tehran<br>" + formatTime("Asia/Tehran");
-  }
+      document.getElementById('tehran').innerHTML =
+        "Tehran<br>" + formatTime("Asia/Tehran");
+    }
 
-  setInterval(updateClock, 1000);
-  updateClock();
-</script>
+    setInterval(updateClock, 1000);
+    updateClock();
+  </script>
+
+  <!-- خبر تستی -->
+  <script>
+    document.getElementById('news').innerText =
+      "GDP m/m (USD) in 15 mins – High Impact";
+  </script>
 
 </body>
 </html>
