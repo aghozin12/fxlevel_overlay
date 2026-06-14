@@ -223,14 +223,12 @@ body::before {
     <div class="top-item">
         <div class="item-row">
             <svg class="icon" viewBox="0 0 24 24">
-
-
-                <circle cx="12" cy="12" r="10" stroke-width="2"/>
+<circle cx="12" cy="12" r="10" stroke-width="2"/>
                 <path d="M12 6v6l4 2" stroke-width="2"/>
             </svg>
             <div class="text-box">
                 <span>SESSION</span>
-                <span>London</span>
+                <span id="session-value">London</span>
             </div>
         </div>
     </div>
@@ -245,7 +243,7 @@ body::before {
             </svg>
             <div class="text-box">
                 <span>NEW YORK</span>
-                <span>--:--</span>
+                <span id="newyork-value">--:--</span>
             </div>
         </div>
     </div>
@@ -261,7 +259,7 @@ body::before {
             </svg>
             <div class="text-box">
                 <span>TEHRAN</span>
-                <span>--:--</span>
+                <span id="tehran-value">--:--</span>
             </div>
         </div>
     </div>
@@ -277,7 +275,7 @@ body::before {
             </svg>
             <div class="text-box">
                 <span>DATE</span>
-                <span>-- --- ----</span>
+                <span id="date-value">-- --- ----</span>
             </div>
         </div>
     </div>
@@ -312,5 +310,50 @@ body::before {
     </div>
 </div>
 
+<!-- اسکریپت ساعت + تاریخ + سشن -->
+<script>
+function updateClocks() {
+
+    // ساعت تهران
+    const tehranTime = new Date().toLocaleTimeString("en-US", {
+        timeZone: "Asia/Tehran",
+        hour12: true
+    });
+
+    // ساعت نیویورک
+    const newYorkTime = new Date().toLocaleTimeString("en-US", {
+        timeZone: "America/New_York",
+        hour12: true
+    });
+
+    // تاریخ امروز
+    const today = new Date().toLocaleDateString("en-US", {
+        timeZone: "Asia/Tehran",
+        day: "2-digit",
+        month: "short",
+        year: "numeric"
+    });
+
+    // تعیین سشن بر اساس ساعت تهران
+    const tehranHour = new Date().toLocaleString("en-US", {
+        timeZone: "Asia/Tehran",
+        hour: "numeric",
+        hour12: false
+    });
+
+    let sessionName = (tehranHour < 17) ? "London" : "New York";
+
+    // نمایش در صفحه
+    document.getElementById("session-value").innerText = sessionName;
+    document.getElementById("tehran-value").innerText = tehranTime;
+    document.getElementById("newyork-value").innerText = newYorkTime;
+    document.getElementById("date-value").innerText = today;
+}
+
+setInterval(updateClocks, 1000);
+updateClocks();
+</script>
+
 </body>
 </html>
+                
