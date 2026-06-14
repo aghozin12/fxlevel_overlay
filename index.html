@@ -57,7 +57,7 @@ body::before {
         inset 0 0 25px #00ff88;
 }
 
-/* نوار بالا زاویه‌دار */
+/* نوار بالا */
 .top-bar {
     position: absolute;
     top: 55px;
@@ -101,14 +101,15 @@ body::before {
     gap: 14px;
 }
 
-/* آیکون‌ها (بزرگ‌تر) */
+/* آیکون‌های SVG */
 .icon {
-    width: 36px;
-    height: 36px;
+    width: 40px;
+    height: 40px;
+    fill: #00ff88;
     filter: drop-shadow(0 0 6px #00ff88);
 }
 
-/* متن‌ها – بدون تغییر رنگ */
+/* متن‌ها */
 .text-box {
     display: flex;
     flex-direction: column;
@@ -128,83 +129,11 @@ body::before {
     text-shadow: 0 0 8px #00ff88;
 }
 
-/* جداکننده سفید کم‌رنگ */
+/* جداکننده سفید */
 .divider {
     width: 1px;
     height: 60%;
     background: rgba(255,255,255,0.35);
-}
-
-/* نوار پایین */
-.bottom-bar {
-    position: absolute;
-    bottom: 55px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 86%;
-    height: 80px;
-
-    clip-path: polygon(
-        0 0,
-        100% 0,
-        100% calc(100% - 18px),
-        calc(100% - 18px) 100%,
-        18px 100%,
-        0 calc(100% - 18px)
-    );
-
-    background: rgba(0, 0, 0, 0.35);
-    border: 2px solid #00ff88;
-    box-shadow:
-        0 0 14px #00ff88,
-        inset 0 0 14px #00ff88;
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 40px;
-    box-sizing: border-box;
-}
-
-.bottom-left {
-    font-size: 28px;
-    font-weight: bold;
-    color: #00ff88;
-    text-shadow: 0 0 10px #00ff88;
-}
-
-.bottom-right {
-    display: flex;
-    gap: 40px;
-    font-size: 20px;
-    color: #00ff88;
-    text-shadow: 0 0 8px #00ff88;
-}
-
-/* قاب وبکم */
-.webcam-frame {
-    position: absolute;
-    bottom: 170px;
-    left: 80px;
-    width: 430px;
-    height: 250px;
-
-    clip-path: polygon(
-        20px 0,
-        calc(100% - 20px) 0,
-        100% 20px,
-        100% calc(100% - 20px),
-        calc(100% - 20px) 100%,
-        20px 100%,
-        0 calc(100% - 20px),
-        0 20px
-    );
-
-    background: rgba(0, 0, 0, 0.25);
-    border: 3px solid #00ff88;
-    box-shadow:
-        0 0 18px #00ff88,
-        inset 0 0 18px #00ff88;
 }
 
 </style>
@@ -214,14 +143,17 @@ body::before {
 
 <div class="main-frame"></div>
 
-<!-- نوار بالا با آیکون بزرگ و سمت چپ -->
+<!-- نوار بالا با SVG داخلی -->
 <div class="top-bar">
 
+    <!-- SESSION -->
     <div class="top-item">
         <div class="item-row">
-            <img src="https://cdn-icons-png.flaticon.com/512/992/992700.png" class="icon">
-
-<div class="text-box">
+            <svg class="icon" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10" stroke="#00ff88" stroke-width="2" fill="none"/>
+                <path d="M12 6v6l4 2" stroke="#00ff88" stroke-width="2" fill="none"/>
+            </svg>
+            <div class="text-box">
                 <span>SESSION</span>
                 <span>London</span>
             </div>
@@ -230,9 +162,12 @@ body::before {
 
     <div class="divider"></div>
 
+    <!-- NEW YORK -->
     <div class="top-item">
         <div class="item-row">
-            <img src="https://cdn-icons-png.flaticon.com/512/1827/1827504.png" class="icon">
+            <svg class="icon" viewBox="0 0 24 24">
+                <path d="M12 1v22M1 12h22" stroke="#00ff88" stroke-width="2"/>
+            </svg>
             <div class="text-box">
                 <span>NEW YORK</span>
                 <span>--:--</span>
@@ -242,9 +177,13 @@ body::before {
 
     <div class="divider"></div>
 
+    <!-- TEHRAN -->
     <div class="top-item">
         <div class="item-row">
-            <img src="https://cdn-icons-png.flaticon.com/512/1827/1827504.png" class="icon">
+            <svg class="icon" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10" stroke="#00ff88" stroke-width="2" fill="none"/>
+                <path d="M12 12l4 2" stroke="#00ff88" stroke-width="2"/>
+            </svg>
             <div class="text-box">
                 <span>TEHRAN</span>
                 <span>--:--</span>
@@ -254,9 +193,14 @@ body::before {
 
     <div class="divider"></div>
 
+    <!-- DATE -->
     <div class="top-item">
         <div class="item-row">
-            <img src="https://cdn-icons-png.flaticon.com/512/747/747310.png" class="icon">
+
+            <svg class="icon" viewBox="0 0 24 24">
+                <rect x="3" y="5" width="18" height="16" stroke="#00ff88" stroke-width="2" fill="none"/>
+                <line x1="3" y1="10" x2="21" y2="10" stroke="#00ff88" stroke-width="2"/>
+            </svg>
             <div class="text-box">
                 <span>DATE</span>
                 <span>-- --- ----</span>
@@ -266,9 +210,14 @@ body::before {
 
     <div class="divider"></div>
 
+    <!-- NEWS -->
     <div class="top-item">
         <div class="item-row">
-            <img src="https://cdn-icons-png.flaticon.com/512/1828/1828859.png" class="icon">
+            <svg class="icon" viewBox="0 0 24 24">
+                <rect x="3" y="4" width="18" height="16" stroke="#00ff88" stroke-width="2" fill="none"/>
+                <line x1="7" y1="8" x2="17" y2="8" stroke="#00ff88" stroke-width="2"/>
+                <line x1="7" y1="12" x2="17" y2="12" stroke="#00ff88" stroke-width="2"/>
+            </svg>
             <div class="text-box">
                 <span>NEWS</span>
                 <span>Waiting...</span>
@@ -278,18 +227,5 @@ body::before {
 
 </div>
 
-<div class="webcam-frame"></div>
-
-<div class="bottom-bar">
-    <div class="bottom-left">FX LEVEL</div>
-    <div class="bottom-right">
-        <span>Instagram</span>
-        <span>Telegram</span>
-        <span>VIP SIGNAL</span>
-    </div>
-</div>
-
 </body>
 </html>
-
-            
