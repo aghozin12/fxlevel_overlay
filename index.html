@@ -1,172 +1,232 @@
+index.html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FX LEVEL Overlay</title>
-
-  <style>
-    body {
-      margin: 0;
-      background: radial-gradient(circle at center, #0a0a0a 0%, #000 100%);
-      color: #00ff88;
-      font-family: 'Orbitron', sans-serif;
-      overflow: hidden;
-    }
-
-    /* کانتینر اصلی با سایز واقعی 1080p */
-    .overlay {
-      width: 1920px;
-      height: 1080px;
-      position: relative;
-      margin: 0 auto;
-    }
-
-    /* وبکم – نسخه فوق‌العاده نرم */
-    .webcam {
-      position: absolute;
-      left: 40px;
-      bottom: 160px;
-      width: 280px;
-      height: 380px;
-      border: 2px solid #00ff88;
-      border-radius: 12px;
-      box-shadow: 0 0 9px #00ff88;
-      animation: ultraUltraSoft 10s ease-in-out infinite alternate;
-    }
-
-    @keyframes ultraUltraSoft {
-      0% {
-        box-shadow: 0 0 9px #00ff88;
-        border-color: #00ff88;
-      }
-      50% {
-        box-shadow: 0 0 11px #33ff99;
-        border-color: #33ff99;
-      }
-      100% {
-        box-shadow: 0 0 9px #00ff88;
-        border-color: #00ff88;
-      }
-    }
-
-    /* متن VIP */
-    .vip {
-      position: absolute;
-      left: 40px;
-      bottom: 100px;
-      font-size: 32px;
-      color: #00ff88;
-    }
-
-    /* متن Support */
-    .support {
-      position: absolute;
-      left: 200px;
-      bottom: 100px;
-      font-size: 32px;
-      color: #fff;
-    }
-
-    /* سشن */
-    .session {
-      position: absolute;
-      top: 40px;
-      left: 40px;
-      font-size: 42px;
-      color: #00ff88;
-    }
-
-    /* خبر */
-    .news {
-      position: absolute;
-      top: 40px;
-      left: 700px;
-      font-size: 32px;
-      color: #fff;
-    }
-
-    /* باکس‌های ساعت */
-    .clocks {
-      position: absolute;
-      top: 40px;
-      right: 40px;
-      display: flex;
-      gap: 20px;
-    }
-
-    .clock-box {
-      padding: 12px 18px;
-      border: 2px solid #00ff88;
-      border-radius: 8px;
-      box-shadow: 0 0 10px #00ff88;
-      font-size: 22px;
-      text-align: center;
-      width: 150px;
-      font-family: monospace;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FX LEVEL Overlay</title>
+<link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-  <div class="overlay">
+<div class="overlay">
+<!-- TOP BAR -->
 
-    <div class="session">LONDON SESSION</div>
+<div class="top-bar">
 
-    <div class="news" id="news">Loading next news...</div>
-
-    <div class="clocks">
-      <div class="clock-box" id="london"></div>
-      <div class="clock-box" id="newyork"></div>
-      <div class="clock-box" id="tehran"></div>
+    <div class="top-box">
+        <span class="label">SESSION</span>
+        <span class="value">NEW YORK</span>
     </div>
 
-    <div class="webcam"></div>
-    <div class="vip">LEVEL VIP</div>
-    <div class="support">Support Contact</div>
+    <div class="top-box">
+        <span class="label">NY TIME</span>
+        <span class="value">10:24 PM</span>
+    </div>
 
-  </div>
+    <div class="top-box">
+        <span class="label">TEHRAN</span>
+        <span class="value">07:54 AM</span>
+    </div>
 
-  <!-- ساعت‌ها -->
-  <script>
-    function formatTime(timeZone) {
-      var now = new Date();
+    <div class="top-box">
+        <span class="label">DATE</span>
+        <span class="value">14 JUN 2026</span>
+    </div>
 
-      var options = {
-        timeZone: timeZone,
-        hour12: true,
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit'
-      };
+    <div class="top-box news">
+        <span class="label">NEWS</span>
+        <span class="value">NO HIGH IMPACT NEWS</span>
+    </div>
 
-      var parts = now.toLocaleTimeString('en-US', options).split(" ");
-      var time = parts[0];
-      var ampm = parts[1];
+</div>
 
-      return ampm + " " + time;
-    }
+<!-- CHART AREA -->
 
-    function updateClock() {
-      document.getElementById('london').innerHTML =
-        "London<br>" + formatTime("Europe/London");
+<div class="chart-area"></div>
 
-      document.getElementById('newyork').innerHTML =
-        "New York<br>" + formatTime("America/New_York");
+<!-- WEBCAM -->
 
-      document.getElementById('tehran').innerHTML =
-        "Tehran<br>" + formatTime("Asia/Tehran");
-    }
+<div class="webcam">
 
-    setInterval(updateClock, 1000);
-    updateClock();
-  </script>
+    <div class="chair">
+        CHAIR IMAGE
+    </div>
 
-  <!-- خبر تستی -->
-  <script>
-    document.getElementById('news').innerText =
-      "GDP m/m (USD) in 15 mins – High Impact";
-  </script>
+    <div class="webcam-brand">
+        FX LEVEL
+    </div>
 
+</div>
+
+<!-- BOTTOM BAR -->
+
+<div class="bottom-bar">
+
+    <div class="socials">
+        STAY CONNECTED
+    </div>
+
+    <div class="vip">
+        VIP SIGNAL
+    </div>
+
+</div>
+</div>
 </body>
 </html>
+style.css
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Segoe UI,sans-serif;
+}
+
+body{
+width:1920px;
+height:1080px;
+overflow:hidden;
+background:transparent;
+}
+
+.overlay{
+position:relative;
+width:100%;
+height:100%;
+}
+
+/* TOP */
+
+.top-bar{
+position:absolute;
+top:15px;
+left:50%;
+transform:translateX(-50%);
+width:88%;
+height:70px;
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+border:1px solid #18ff8c;
+background:rgba(0,0,0,.65);
+}
+
+.top-box{
+padding:10px 25px;
+display:flex;
+flex-direction:column;
+}
+
+.label{
+font-size:12px;
+color:#888;
+}
+
+.value{
+font-size:22px;
+font-weight:700;
+color:#18ff8c;
+}
+
+/* CHART */
+
+.chart-area{
+position:absolute;
+top:95px;
+left:30px;
+
+width:1860px;
+height:860px;
+
+border:1px solid rgba(24,255,140,.3);
+}
+
+/* WEBCAM */
+
+.webcam{
+
+position:absolute;
+
+bottom:120px;
+left:40px;
+
+width:320px;
+height:260px;
+
+border:2px solid #18ff8c;
+background:rgba(0,0,0,.55);
+}
+
+.chair{
+
+height:210px;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+color:#999;
+}
+
+.webcam-brand{
+
+height:50px;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+font-size:26px;
+font-weight:bold;
+
+color:#18ff8c;
+}
+
+/* BOTTOM */
+
+.bottom-bar{
+
+position:absolute;
+
+bottom:20px;
+left:50%;
+
+transform:translateX(-50%);
+
+width:58%;
+height:70px;
+
+display:flex;
+
+border:1px solid #18ff8c;
+
+background:rgba(0,0,0,.65);
+}
+
+.socials{
+
+width:50%;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+color:white;
+}
+
+.vip{
+
+width:50%;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+font-size:30px;
+font-weight:bold;
+
+color:#ffb52e;
+}
