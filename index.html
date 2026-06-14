@@ -18,7 +18,19 @@ html, body {
     color: white;
 }
 
-/* فریم زاویه‌دار اصلی */
+/* افکت شبکه‌ای پس‌زمینه */
+body::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(0,255,136,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,255,136,0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+}
+
+/* فریم زاویه‌دار اصلی با استروک دو‌لایه */
 .main-frame {
     position: absolute;
     top: 40px;
@@ -37,21 +49,24 @@ html, body {
         0 25px
     );
 
+    background: rgba(0, 0, 0, 0.18);
+
     border: 3px solid #00ff88;
     box-shadow:
         0 0 25px #00ff88,
-        inset 0 0 25px #00ff88;
-    background: rgba(0, 0, 0, 0.18);
+        inset 0 0 25px #00ff88,
+        0 0 10px #ffae4a,
+        inset 0 0 10px #ffae4a;
 }
 
 /* نوار بالا زاویه‌دار */
 .top-bar {
     position: absolute;
-    top: 55px; /* نزدیک‌تر به لبه */
+    top: 55px;
     left: 50%;
     transform: translateX(-50%);
 
-    width: 86%; /* کمی باریک‌تر برای شبیه‌سازی عکس */
+    width: 86%;
     height: 80px;
 
     clip-path: polygon(
@@ -63,14 +78,21 @@ html, body {
         0 18px
     );
 
-    background: rgba(0, 0, 0, 0.35);
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.45),
+        rgba(0, 0, 0, 0.25)
+    );
+
     border: 2px solid #00ff88;
     box-shadow:
         0 0 14px #00ff88,
-        inset 0 0 14px #00ff88;
+        inset 0 0 14px #00ff88,
+        0 0 8px #ffae4a,
+        inset 0 0 8px #ffae4a;
 
     display: flex;
-    justify-content: space-between; /* تقسیم مساوی */
+    justify-content: space-between;
     align-items: center;
     padding: 0 40px;
     box-sizing: border-box;
@@ -78,7 +100,7 @@ html, body {
 
 /* آیتم‌های نوار بالا */
 .top-item {
-    flex: 1; /* تقسیم مساوی */
+    flex: 1;
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -118,11 +140,18 @@ html, body {
         0 calc(100% - 18px)
     );
 
-    background: rgba(0, 0, 0, 0.35);
+    background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.45),
+        rgba(0, 0, 0, 0.25)
+    );
+
     border: 2px solid #00ff88;
     box-shadow:
         0 0 14px #00ff88,
-        inset 0 0 14px #00ff88;
+        inset 0 0 14px #00ff88,
+        0 0 8px #ffae4a,
+        inset 0 0 8px #ffae4a;
 
     display: flex;
     justify-content: space-between;
@@ -166,62 +195,14 @@ html, body {
         0 20px
     );
 
-    border: 3px solid #00ff88;
-    box-shadow:
-        0 0 18px #00ff88,
-        inset 0 0 18px #00ff88;
-}
-
-</style>
-</head>
-
-<body>
-
-<div class="main-frame"></div>
-
-<div class="top-bar">
-    <div class="top-item"><span>SESSION</span><span>London</span></div>
-    <div class="top-item"><span>NEW YORK</span><span>--:--</span></div>
-    <div class="top-item"><span>TEHRAN</span><span>--:--</span></div>
-    <div class="top-item"><span>DATE</span><span>-- --- ----</span></div>
-    <div class="top-item"><span>NEWS</span><span>Waiting...</span></div>
-</div>
-
-<div class="webcam-frame"></div>
-
-<div class="bottom-bar">
-    <div class="bottom-left">FX LEVEL</div>
-    <div class="bottom-right">
-        <span>Instagram</span>
-        <span>Telegram</span>
-        <span>VIP SIGNAL</span>
-    </div>
-</div>
-
-</body>
-</html>
-20px 100%,
-        0 calc(100% - 20px),
-        0 20px
-    );
-
     background: rgba(0, 0, 0, 0.25);
 
     border: 3px solid #00ff88;
     box-shadow:
         0 0 18px #00ff88,
-        inset 0 0 18px #00ff88;
-}
-
-/* خطوط نارنجی واقعی روی قاب وبکم */
-.webcam-frame::before {
-    content: "";
-    position: absolute;
-    inset: 5px;
-    clip-path: inherit;
-    border: 1px solid #ffae4a;
-    opacity: 0.8;
-    pointer-events: none;
+        inset 0 0 18px #00ff88,
+        0 0 10px #ffae4a,
+        inset 0 0 10px #ffae4a;
 }
 
 </style>
