@@ -75,15 +75,19 @@ body::-webkit-scrollbar {
 
 /* قاب وبکم */
 .webcam-frame {
-    width: 520px;
-    height: 300px;
+    width: 380px;      /* کوچیک‌تر از قبل */
+    height: 220px;     /* تناسب بهتر */
 
     position: absolute;
-    top: 140px;
-    left: 40px;
+    bottom: 130px;     /* فاصله از نوار پایین */
+    left: 40px;        /* فاصله از لبه چپ */
 
-    border: 3px solid #333;
+    border: 3px solid #00ff88;
     border-radius: 12px;
+
+    box-shadow:
+        0 0 12px #00ff88,
+        inset 0 0 12px #00ff88;
 }
 
 /* نوار پایین */
