@@ -12,27 +12,34 @@ html, body {
     height: 1080px;
     margin: 0;
     padding: 0;
-    overflow: hidden; /* جلوگیری از اسکرول */
+    overflow: hidden;
     background: #000;
     font-family: Arial, sans-serif;
     color: white;
 }
 
-/* حذف کامل اسکرول در مرورگرهای کروم و اج */
+/* حذف اسکرول */
 body::-webkit-scrollbar {
     display: none;
 }
 
-/* نوار بالا */
+/* نوار بالا — دقیقاً مثل نوار پایین */
 .top-bar {
     width: 94%;
     height: 85px;
-    margin: 20px auto 0;
+
+    position: absolute;
+    top: 20px;                 /* فقط این فرق دارد */
+    left: 50%;
+    transform: translateX(-50%);
 
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 70px;
+
+    padding: 0 40px;
+    box-sizing: border-box;
 
     background: rgba(0, 0, 0, 0.35);
     border: 2px solid #00ff88;
@@ -41,8 +48,6 @@ body::-webkit-scrollbar {
     box-shadow:
         0 0 12px #00ff88,
         inset 0 0 12px #00ff88;
-
-    box-sizing: border-box;
 }
 
 /* آیتم‌های نوار بالا */
@@ -72,9 +77,11 @@ body::-webkit-scrollbar {
 .webcam-frame {
     width: 520px;
     height: 300px;
+
     position: absolute;
     top: 140px;
     left: 40px;
+
     border: 3px solid #333;
     border-radius: 12px;
 }
@@ -83,6 +90,7 @@ body::-webkit-scrollbar {
 .bottom-bar {
     width: 94%;
     height: 85px;
+
     position: absolute;
     bottom: 20px;
     left: 50%;
@@ -124,26 +132,32 @@ body::-webkit-scrollbar {
 
 <!-- نوار بالا -->
 <div class="top-bar">
+
     <div class="top-item">
         <span>SESSION</span>
         <span id="session">London</span>
     </div>
+
     <div class="top-item">
         <span>NEW YORK</span>
         <span id="nytime">--:--</span>
     </div>
+
     <div class="top-item">
         <span>TEHRAN</span>
         <span id="tehrantime">--:--</span>
     </div>
+
     <div class="top-item">
         <span>DATE</span>
         <span id="date">-- --- ----</span>
     </div>
+
     <div class="top-item">
         <span>NEWS</span>
         <span id="news">Waiting...</span>
     </div>
+
 </div>
 
 <!-- قاب وبکم -->
@@ -151,12 +165,15 @@ body::-webkit-scrollbar {
 
 <!-- نوار پایین -->
 <div class="bottom-bar">
+
     <div class="bottom-left">FX LEVEL</div>
+
     <div class="bottom-right">
         <span>Instagram</span>
         <span>Telegram</span>
         <span>VIP SIGNAL</span>
     </div>
+
 </div>
 
 </body>
