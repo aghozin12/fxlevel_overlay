@@ -136,7 +136,48 @@ body::before {
     height: 60%;
     background: rgba(255,255,255,0.35);
 }
+/* 1) انیمیشن نئونی */
+@keyframes neonPulse {
+    0% {
+        box-shadow:
+            0 0 18px rgba(0, 255, 102, 0.9),
+            0 0 45px rgba(0, 255, 102, 0.7),
+            0 0 90px rgba(0, 255, 102, 0.45),
+            0 0 140px rgba(0, 255, 102, 0.25);
+    }
+    100% {
+        box-shadow:
+            0 0 28px rgba(0, 255, 102, 1),
+            0 0 70px rgba(0, 255, 102, 0.9),
+            0 0 140px rgba(0, 255, 102, 0.65),
+            0 0 200px rgba(0, 255, 102, 0.45);
+    }
+}
 
+/* 2) استایل باکس وبکم */
+.webcam-frame {
+    position: absolute;
+    bottom: 170px;
+    left: 80px;
+
+    width: 430px;
+    height: 250px;
+
+    border: 4px solid #00ff66;
+    border-radius: 0;
+
+    background: rgba(0, 0, 0, 0.18);
+
+    /* هاله اولیه */
+    box-shadow:
+        0 0 22px rgba(0, 255, 102, 1),
+        0 0 55px rgba(0, 255, 102, 0.85),
+        0 0 110px rgba(0, 255, 102, 0.65),
+        0 0 160px rgba(0, 255, 102, 0.45);
+
+    /* فعال‌سازی انیمیشن */
+    animation: neonPulse 2.4s ease-in-out infinite alternate;
+}
 /* قاب وبکم */
 /* قاب وبکم – نسخه نهایی نئونی */
 /* قاب وبکم – خط ملایم + هاله نئونی عمیق */
