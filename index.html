@@ -1,22 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>FX Overlay Base</title>
-
-<style>
-
-body {
-    margin: 0;
-    background: #000;
-    width: 1920px;
-    height: 1080px;
-    overflow: hidden;
-    font-family: Arial, sans-serif;
-    color: white;
-}
-
-/* نوار بالا */
+/* نوار بالا نئونی */
 .top-bar {
     width: 100%;
     height: 85px;
@@ -25,6 +7,14 @@ body {
     align-items: center;
     padding: 0 60px;
     box-sizing: border-box;
+
+    background: rgba(0, 0, 0, 0.35);
+    border: 2px solid #00ff88;
+    border-radius: 10px;
+
+    box-shadow:
+        0 0 12px #00ff88,
+        inset 0 0 12px #00ff88;
 }
 
 /* آیتم‌های نوار بالا */
@@ -32,97 +22,20 @@ body {
     display: flex;
     flex-direction: column;
     text-align: center;
-    font-size: 15px;
+    font-size: 14px;
     letter-spacing: 1px;
+    color: #d0ffd0;
 }
 
-/* قاب وبکم */
-.webcam-frame {
-    width: 520px;
-    height: 300px;
-    margin-top: 120px;
-    margin-left: 120px;
-    border: 3px solid #333;
-    border-radius: 12px;
+.top-item span:first-child {
+    font-size: 12px;
+    color: #ffae4a;
+    text-shadow: 0 0 6px #ffae4a;
 }
 
-/* نوار پایین */
-.bottom-bar {
-    width: 100%;
-    height: 110px;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 60px;
-    box-sizing: border-box;
-}
-
-/* چپ پایین */
-.bottom-left {
-    font-size: 28px;
+.top-item span:last-child {
+    font-size: 18px;
     font-weight: bold;
+    color: #00ff88;
+    text-shadow: 0 0 8px #00ff88;
 }
-
-/* راست پایین */
-.bottom-right {
-    display: flex;
-    gap: 40px;
-    font-size: 20px;
-}
-
-</style>
-</head>
-
-<body>
-
-<!-- نوار بالا -->
-<div class="top-bar">
-
-    <div class="top-item">
-        <span>SESSION</span>
-        <span id="session">London</span>
-    </div>
-
-    <div class="top-item">
-        <span>NEW YORK</span>
-        <span id="nytime">--:--</span>
-    </div>
-
-    <div class="top-item">
-        <span>TEHRAN</span>
-        <span id="tehrantime">--:--</span>
-    </div>
-
-    <div class="top-item">
-        <span>DATE</span>
-        <span id="date">-- --- ----</span>
-    </div>
-
-    <div class="top-item">
-        <span>NEWS</span>
-        <span id="news">Waiting...</span>
-    </div>
-
-</div>
-
-<!-- قاب وبکم -->
-<div class="webcam-frame"></div>
-
-<!-- نوار پایین -->
-<div class="bottom-bar">
-
-    <div class="bottom-left">FX LEVEL</div>
-
-    <div class="bottom-right">
-        <span>Instagram</span>
-        <span>Telegram</span>
-        <span>VIP SIGNAL</span>
-    </div>
-
-</div>
-
-</body>
-</html>
