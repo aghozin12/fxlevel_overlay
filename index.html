@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>FX Overlay – Accent Test</title>
+<title>FX Overlay Final</title>
 
 <style>
 html, body {
@@ -12,6 +12,20 @@ html, body {
     padding: 0;
     overflow: hidden;
     background: #000;
+    font-family: Arial, sans-serif;
+    color: white;
+}
+
+/* گرید پس‌زمینه */
+body::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(0,255,136,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,255,136,0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
 }
 
 /* فریم سبز زاویه‌دار اصلی */
@@ -40,50 +54,260 @@ html, body {
         inset 0 0 25px #00ff88;
 }
 
-/* قطعه نارنجی – گوشه بالا راست */
-.accent-top-right {
+/* نوار بالا زاویه‌دار */
+.top-bar {
     position: absolute;
+    top: 55px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: 86%;
+    height: 80px;
+
+    clip-path: polygon(
+        18px 0,
+        calc(100% - 18px) 0,
+        100% 18px,
+        100% 100%,
+        0 100%,
+        0 18px
+    );
+
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.45),
+        rgba(0, 0, 0, 0.25)
+    );
+
+    border: 2px solid #00ff88;
+    box-shadow:
+        0 0 14px #00ff88,
+        inset 0 0 14px #00ff88;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+    box-sizing: border-box;
+}
+
+/* آیتم‌های نوار بالا */
+.top-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font-size: 14px;
+    color: #d0ffd0;
+}
+
+.top-item span:first-child {
+    font-size: 12px;
+    color: #ffae4a;
+    text-shadow: 0 0 6px #ffae4a;
+}
+
+.top-item span:last-child {
+    font-size: 18px;
+    font-weight: bold;
+    color: #00ff88;
+    text-shadow: 0 0 8px #00ff88;
+}
+
+/* نوار پایین زاویه‌دار */
+.bottom-bar {
+    position: absolute;
+    bottom: 55px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: 86%;
+    height: 80px;
+
+    clip-path: polygon(
+        0 0,
+        100% 0,
+        100% calc(100% - 18px),
+        calc(100% - 18px) 100%,
+        18px 100%,
+        0 calc(100% - 18px)
+    );
+
+    background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.45),
+        rgba(0, 0, 0, 0.25)
+    );
+
+    border: 2px solid #00ff88;
+    box-shadow:
+        0 0 14px #00ff88,
+        inset 0 0 14px #00ff88;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+    box-sizing: border-box;
+}
+
+.bottom-left {
+    font-size: 28px;
+    font-weight: bold;
+    color: #00ff88;
+    text-shadow: 0 0 10px #00ff88;
+}
+
+.bottom-right {
+    display: flex;
+    gap: 40px;
+    font-size: 20px;
+    color: #ffae4a;
+    text-shadow: 0 0 8px #ffae4a;
+}
+
+/* قاب وبکم زاویه‌دار */
+.webcam-frame {
+    position: absolute;
+    bottom: 170px;
+    left: 80px;
+
+    width: 430px;
+    height: 250px;
+
+    clip-path: polygon(
+        20px 0,
+        calc(100% - 20px) 0,
+        100% 20px,
+        100% calc(100% - 20px),
+        calc(100% - 20px) 100%,
+        20px 100%,
+        0 calc(100% - 20px),
+        0 20px
+    );
+
+    background: rgba(0, 0, 0, 0.25);
+    border: 3px solid #00ff88;
+    box-shadow:
+        0 0 18px #00ff88,
+        inset 0 0 18px #00ff88;
+}
+
+/* لایهٔ Accent – خطوط نارنجی و مشکی */
+.accent-layer {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+/* خطوط نارنجی */
+.accent.orange {
+    background: #ffae4a;
+    box-shadow: 0 0 10px #ffae4a;
+    height: 4px;
+    position: absolute;
+}
+
+/* نارنجی – گوشه بالا راست فریم */
+.accent.top-right {
     top: 40px;
     right: 40px;
     width: 120px;
-    height: 4px;
-    background: #ffae4a;
-    box-shadow: 0 0 10px #ffae4a;
 }
 
-/* قطعه نارنجی – لبه پایین وسط */
-.accent-bottom-center {
-    position: absolute;
+/* نارنجی – پایین وسط فریم */
+.accent.bottom-center {
     bottom: 40px;
     left: 50%;
-    transform: translateX(-50%);
+transform: translateX(-50%);
     width: 180px;
-    height: 4px;
-    background: #ffae4a;
-    box-shadow: 0 0 10px #ffae4a;
 }
 
-/* قطعه نارنجی مورب – کنار چپ پایین (نزدیک وبکم) */
-.accent-diagonal-left {
-    position: absolute;
+/* نارنجی مورب – کنار وبکم */
+.accent.diagonal-left {
     bottom: 140px;
     left: 80px;
     width: 90px;
-    height: 3px;
-    background: #ffae4a;
-    box-shadow: 0 0 10px #ffae4a;
     transform: rotate(-18deg);
     transform-origin: left center;
 }
+
+/* خطوط مشکی بریده‌بریده */
+.accent.black {
+    background: repeating-linear-gradient(
+        to right,
+        #000 0px,
+        #000 10px,
+        transparent 10px,
+        transparent 20px
+    );
+    height: 3px;
+    opacity: 0.6;
+    position: absolute;
+}
+
+/* مشکی – بالا سمت چپ داخل فریم */
+.accent.dash-top {
+    top: 70px;
+    left: 120px;
+    width: 260px;
+}
+
+/* مشکی – پایین سمت راست داخل فریم */
+.accent.dash-bottom {
+    bottom: 70px;
+    right: 120px;
+    width: 260px;
+}
+
+/* مشکی – عمودی چرخیده کنار چپ فریم */
+.accent.dash-left {
+    top: 50%;
+    left: 40px;
+    width: 180px;
+    transform: rotate(90deg);
+}
+
 </style>
 </head>
 <body>
 
+<!-- فریم اصلی -->
 <div class="main-frame"></div>
 
-<div class="accent-top-right"></div>
-<div class="accent-bottom-center"></div>
-<div class="accent-diagonal-left"></div>
+<!-- لایهٔ Accent (نارنجی + مشکی) -->
+<div class="accent-layer">
+    <div class="accent orange top-right"></div>
+    <div class="accent orange bottom-center"></div>
+    <div class="accent orange diagonal-left"></div>
+
+    <div class="accent black dash-top"></div>
+    <div class="accent black dash-bottom"></div>
+    <div class="accent black dash-left"></div>
+</div>
+
+<!-- نوار بالا -->
+<div class="top-bar">
+    <div class="top-item"><span>SESSION</span><span>London</span></div>
+    <div class="top-item"><span>NEW YORK</span><span>--:--</span></div>
+    <div class="top-item"><span>TEHRAN</span><span>--:--</span></div>
+    <div class="top-item"><span>DATE</span><span>-- --- ----</span></div>
+    <div class="top-item"><span>NEWS</span><span>Waiting...</span></div>
+</div>
+
+<!-- قاب وبکم (وبکم واقعی رو در OBS پشت این قرار می‌دی) -->
+<div class="webcam-frame"></div>
+
+<!-- نوار پایین -->
+<div class="bottom-bar">
+    <div class="bottom-left">FX LEVEL</div>
+    <div class="bottom-right">
+        <span>Instagram</span>
+        <span>Telegram</span>
+        <span>VIP SIGNAL</span>
+    </div>
+</div>
 
 </body>
 </html>
+    
