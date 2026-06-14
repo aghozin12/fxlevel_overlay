@@ -5,7 +5,36 @@
 <title>FX LEVEL Overlay</title>
 
 <style>
+<div class="overlay">
+  <!-- اورلی اصلی -->
+  <div class="webcam-frame"></div>
+  <div class="chart-frame"></div>
 
+  <!-- صفحه‌ی شروع -->
+  <div class="starting-soon">
+    <h2 class="title">Live Trade</h2>
+    <h1 class="main-text">
+      <span class="cyan">STARTING</span>
+      <span class="purple">SOON</span>
+    </h1>
+    <div id="countdown">10:00</div>
+  </div>
+</div>
+    <body>
+    <div class="overlay">
+        <!-- فریم‌ها، وبکم، چارت، ساعت‌ها و... -->
+
+        <!-- بخش Starting Soon -->
+        <div class="starting-soon">
+            <h2 class="title">Live Trade</h2>
+            <h1 class="main-text">
+                <span class="cyan">STARTING</span>
+                <span class="purple">SOON</span>
+            </h1>
+            <div id="countdown">10:00</div>
+        </div>
+    </div>
+</body>
 /* صفحه اصلی */
 html, body {
     width: 1920px;
@@ -17,7 +46,11 @@ html, body {
     font-family: Arial, sans-serif;
     color: white;
 }
-
+<body>
+    <div class="overlay">
+        <!-- فریم‌ها، وبکم، چارت، ساعت‌ها و... -->
+    </div>
+</body>
 /* افکت شبکه‌ای پس‌زمینه */
 body::before {
     content: "";
