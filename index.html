@@ -12,18 +12,22 @@ html, body {
     height: 1080px;
     margin: 0;
     padding: 0;
-    overflow: hidden;
+    overflow: hidden; /* جلوگیری از اسکرول */
     background: #000;
     font-family: Arial, sans-serif;
     color: white;
+}
+
+/* حذف کامل اسکرول در مرورگرهای کروم و اج */
+body::-webkit-scrollbar {
+    display: none;
 }
 
 /* نوار بالا */
 .top-bar {
     width: 94%;
     height: 85px;
-
-    margin: 20px auto 0; /* فاصله مساوی از چپ و راست */
+    margin: 20px auto 0;
 
     display: flex;
     justify-content: center;
@@ -68,11 +72,9 @@ html, body {
 .webcam-frame {
     width: 520px;
     height: 300px;
-
     position: absolute;
     top: 140px;
     left: 40px;
-
     border: 3px solid #333;
     border-radius: 12px;
 }
@@ -80,8 +82,7 @@ html, body {
 /* نوار پایین */
 .bottom-bar {
     width: 94%;
-    height: 85px; /* هماهنگ با نوار بالا */
-
+    height: 85px;
     position: absolute;
     bottom: 20px;
     left: 50%;
@@ -123,32 +124,26 @@ html, body {
 
 <!-- نوار بالا -->
 <div class="top-bar">
-
     <div class="top-item">
         <span>SESSION</span>
         <span id="session">London</span>
     </div>
-
     <div class="top-item">
         <span>NEW YORK</span>
         <span id="nytime">--:--</span>
     </div>
-
     <div class="top-item">
         <span>TEHRAN</span>
         <span id="tehrantime">--:--</span>
     </div>
-
     <div class="top-item">
         <span>DATE</span>
         <span id="date">-- --- ----</span>
     </div>
-
     <div class="top-item">
         <span>NEWS</span>
         <span id="news">Waiting...</span>
     </div>
-
 </div>
 
 <!-- قاب وبکم -->
@@ -156,15 +151,12 @@ html, body {
 
 <!-- نوار پایین -->
 <div class="bottom-bar">
-
     <div class="bottom-left">FX LEVEL</div>
-
     <div class="bottom-right">
         <span>Instagram</span>
         <span>Telegram</span>
         <span>VIP SIGNAL</span>
     </div>
-
 </div>
 
 </body>
