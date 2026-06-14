@@ -98,17 +98,17 @@ body::before {
 .item-row {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 14px;
 }
 
-/* آیکون‌ها */
+/* آیکون‌ها (بزرگ‌تر) */
 .icon {
-    width: 26px;
-    height: 26px;
+    width: 36px;
+    height: 36px;
     filter: drop-shadow(0 0 6px #00ff88);
 }
 
-/* متن‌ها */
+/* متن‌ها – بدون تغییر رنگ */
 .text-box {
     display: flex;
     flex-direction: column;
@@ -117,22 +117,22 @@ body::before {
 
 .text-box span:first-child {
     font-size: 12px;
-    color: #00ff88;
-    text-shadow: 0 0 6px #00ff88;
+    color: #ffae4a;
+    text-shadow: 0 0 6px #ffae4a;
 }
 
 .text-box span:last-child {
     font-size: 18px;
     font-weight: bold;
-    color: #ffffff;
+    color: #00ff88;
     text-shadow: 0 0 8px #00ff88;
 }
 
-/* جداکننده سفید */
+/* جداکننده سفید کم‌رنگ */
 .divider {
     width: 1px;
     height: 60%;
-    background: rgba(255,255,255,0.5);
+    background: rgba(255,255,255,0.35);
 }
 
 /* نوار پایین */
@@ -214,13 +214,14 @@ body::before {
 
 <div class="main-frame"></div>
 
-<!-- نوار بالا با آیکون سمت چپ -->
+<!-- نوار بالا با آیکون بزرگ و سمت چپ -->
 <div class="top-bar">
 
     <div class="top-item">
         <div class="item-row">
             <img src="https://cdn-icons-png.flaticon.com/512/992/992700.png" class="icon">
-            <div class="text-box">
+
+<div class="text-box">
                 <span>SESSION</span>
                 <span>London</span>
             </div>
@@ -290,3 +291,5 @@ body::before {
 
 </body>
 </html>
+
+            
