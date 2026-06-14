@@ -2,67 +2,25 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>FX Overlay Final</title>
+<title>Top Bar Overlay</title>
 
 <style>
-html, body {
-    width: 1920px;
-    height: 1080px;
+
+body {
     margin: 0;
     padding: 0;
-    overflow: hidden;
     background: #000;
     font-family: Arial, sans-serif;
-    color: white;
 }
 
-/* گرید پس‌زمینه */
-body::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-image:
-        linear-gradient(rgba(0,255,136,0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,255,136,0.05) 1px, transparent 1px);
-    background-size: 40px 40px;
-    pointer-events: none;
-}
-
-/* فریم سبز زاویه‌دار اصلی */
-.main-frame {
-    position: absolute;
-    top: 40px;
-    left: 40px;
-    width: calc(100% - 80px);
-    height: calc(100% - 80px);
-
-    clip-path: polygon(
-        25px 0,
-        calc(100% - 25px) 0,
-        100% 25px,
-        100% calc(100% - 25px),
-        calc(100% - 25px) 100%,
-        25px 100%,
-        0 calc(100% - 25px),
-        0 25px
-    );
-
-    background: rgba(0, 0, 0, 0.18);
-    border: 3px solid #00ff88;
-    box-shadow:
-        0 0 25px #00ff88,
-        inset 0 0 25px #00ff88;
-}
-
-/* نوار بالا زاویه‌دار */
+/* نوار بالا */
 .top-bar {
     position: absolute;
     top: 55px;
     left: 50%;
     transform: translateX(-50%);
-
     width: 86%;
-    height: 80px;
+    height: 90px;
 
     clip-path: polygon(
         18px 0,
@@ -73,12 +31,7 @@ body::before {
         0 18px
     );
 
-    background: linear-gradient(
-        to bottom,
-        rgba(0, 0, 0, 0.45),
-        rgba(0, 0, 0, 0.25)
-    );
-
+    background: rgba(0, 0, 0, 0.35);
     border: 2px solid #00ff88;
     box-shadow:
         0 0 14px #00ff88,
@@ -87,58 +40,134 @@ body::before {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 40px;
+    padding: 0 35px;
     box-sizing: border-box;
 }
 
-/* آیتم‌های نوار بالا */
+/* آیتم‌ها */
 .top-item {
     flex: 1;
     display: flex;
     flex-direction: column;
     text-align: center;
-    font-size: 14px;
-    color: #d0ffd0;
+    color: #ffffff;
+    gap: 3px;
 }
 
-.top-item span:first-child {
+/* آیکون‌ها */
+.icon {
+    width: 22px;
+    height: 22px;
+    margin: 0 auto 2px auto;
+    filter: drop-shadow(0 0 6px #00ff88);
+}
+
+/* عنوان کوچک */
+.top-item span:first-of-type {
     font-size: 12px;
-    color: #ffae4a;
-    text-shadow: 0 0 6px #ffae4a;
+    color: #00ff88;
+    text-shadow: 0 0 6px #00ff88;
 }
 
-.top-item span:last-child {
+/* مقدار اصلی */
+.top-item span:last-of-type {
     font-size: 18px;
     font-weight: bold;
-    color: #00ff88;
+    color: #ffffff;
     text-shadow: 0 0 8px #00ff88;
 }
 
-/* نوار پایین زاویه‌دار */
-.bottom-bar {
+/* جداکننده سفید */
+.divider {
+    width: 1px;
+    height: 60%;
+    background: #ffffff;
+    opacity: 0.6;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="top-bar">
+
+    <div class="top-item">
+        <img src="https://cdn-icons-png.flaticon.com/512/992/992700.png" class="icon">
+        <span>SESSION</span>
+        <span>New York</span>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="top-item">
+        <img src="https://cdn-icons-png.flaticon.com/512/1827/1827504.png" class="icon">
+        <span>NY TIME</span>
+        <span>10:24:35 PM</span>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="top-item">
+        <img src="https://cdn-icons-png.flaticon.com/512/1827/1827504.png" class="icon">
+        <span>TEHRAN</span>
+        <span>07:54:35 AM</span>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="top-item">
+        <img src="https://cdn-icons-png.flaticon.com/512/747/747310.png" class="icon">
+        <span>DATE</span>
+        <span>14 JUN 2026</span>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="top-item">
+        <img src="https://cdn-icons-png.flaticon.com/512/1828/1828859.png" class="icon">
+        <span>NEWS</span>
+        <span>CPI at 8:30 PM</span>
+    </div>
+
+</div>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Top Bar Overlay</title>
+
+<style>
+
+body {
+    margin: 0;
+    padding: 0;
+    background: #000;
+    font-family: Arial, sans-serif;
+}
+
+/* نوار بالا */
+.top-bar {
     position: absolute;
-    bottom: 55px;
+    top: 55px;
     left: 50%;
     transform: translateX(-50%);
-
     width: 86%;
-    height: 80px;
+    height: 90px;
 
     clip-path: polygon(
-        0 0,
-        100% 0,
-        100% calc(100% - 18px),
-        calc(100% - 18px) 100%,
-        18px 100%,
-        0 calc(100% - 18px)
+        18px 0,
+        calc(100% - 18px) 0,
+        100% 18px,
+        100% 100%,
+        0 100%,
+        0 18px
     );
 
-    background: linear-gradient(
-        to top,
-        rgba(0, 0, 0, 0.45),
-        rgba(0, 0, 0, 0.25)
-    );
-
+    background: rgba(0, 0, 0, 0.35);
     border: 2px solid #00ff88;
     box-shadow:
         0 0 14px #00ff88,
@@ -147,167 +176,97 @@ body::before {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 40px;
+    padding: 0 35px;
     box-sizing: border-box;
 }
 
-.bottom-left {
-    font-size: 28px;
-    font-weight: bold;
-    color: #00ff88;
-    text-shadow: 0 0 10px #00ff88;
-}
-
-.bottom-right {
+/* آیتم‌ها */
+.top-item {
+    flex: 1;
     display: flex;
-    gap: 40px;
-    font-size: 20px;
-    color: #ffae4a;
-    text-shadow: 0 0 8px #ffae4a;
+    flex-direction: column;
+    text-align: center;
+    color: #ffffff;
+    gap: 3px;
 }
 
-/* قاب وبکم زاویه‌دار */
-.webcam-frame {
-    position: absolute;
-    bottom: 170px;
-    left: 80px;
-
-    width: 430px;
-    height: 250px;
-
-    clip-path: polygon(
-        20px 0,
-        calc(100% - 20px) 0,
-        100% 20px,
-        100% calc(100% - 20px),
-        calc(100% - 20px) 100%,
-        20px 100%,
-        0 calc(100% - 20px),
-        0 20px
-    );
-
-    background: rgba(0, 0, 0, 0.25);
-    border: 3px solid #00ff88;
-    box-shadow:
-        0 0 18px #00ff88,
-        inset 0 0 18px #00ff88;
+/* آیکون‌ها */
+.icon {
+    width: 22px;
+    height: 22px;
+    margin: 0 auto 2px auto;
+    filter: drop-shadow(0 0 6px #00ff88);
 }
 
-/* لایهٔ Accent – خطوط نارنجی و مشکی */
-.accent-layer {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
+/* عنوان کوچک */
+.top-item span:first-of-type {
+    font-size: 12px;
+    color: #00ff88;
+    text-shadow: 0 0 6px #00ff88;
 }
 
-/* خطوط نارنجی */
-.accent.orange {
-    background: #ffae4a;
-    box-shadow: 0 0 10px #ffae4a;
-    height: 4px;
-    position: absolute;
+/* مقدار اصلی */
+.top-item span:last-of-type {
+    font-size: 18px;
+    font-weight: bold;
+    color: #ffffff;
+    text-shadow: 0 0 8px #00ff88;
 }
 
-/* نارنجی – گوشه بالا راست فریم */
-.accent.top-right {
-    top: 40px;
-    right: 40px;
-    width: 120px;
-}
-
-/* نارنجی – پایین وسط فریم */
-.accent.bottom-center {
-    bottom: 40px;
-    left: 50%;
-transform: translateX(-50%);
-    width: 180px;
-}
-
-/* نارنجی مورب – کنار وبکم */
-.accent.diagonal-left {
-    bottom: 140px;
-    left: 80px;
-    width: 90px;
-    transform: rotate(-18deg);
-    transform-origin: left center;
-}
-
-/* خطوط مشکی بریده‌بریده */
-.accent.black {
-    background: repeating-linear-gradient(
-        to right,
-        #000 0px,
-        #000 10px,
-        transparent 10px,
-        transparent 20px
-    );
-    height: 3px;
+/* جداکننده سفید */
+.divider {
+    width: 1px;
+    height: 60%;
+    background: #ffffff;
     opacity: 0.6;
-    position: absolute;
-}
-
-/* مشکی – بالا سمت چپ داخل فریم */
-.accent.dash-top {
-    top: 70px;
-    left: 120px;
-    width: 260px;
-}
-
-/* مشکی – پایین سمت راست داخل فریم */
-.accent.dash-bottom {
-    bottom: 70px;
-    right: 120px;
-    width: 260px;
-}
-
-/* مشکی – عمودی چرخیده کنار چپ فریم */
-.accent.dash-left {
-    top: 50%;
-    left: 40px;
-    width: 180px;
-    transform: rotate(90deg);
 }
 
 </style>
 </head>
+
 <body>
 
-<!-- فریم اصلی -->
-<div class="main-frame"></div>
-
-<!-- لایهٔ Accent (نارنجی + مشکی) -->
-<div class="accent-layer">
-    <div class="accent orange top-right"></div>
-    <div class="accent orange bottom-center"></div>
-    <div class="accent orange diagonal-left"></div>
-
-    <div class="accent black dash-top"></div>
-    <div class="accent black dash-bottom"></div>
-    <div class="accent black dash-left"></div>
-</div>
-
-<!-- نوار بالا -->
 <div class="top-bar">
-    <div class="top-item"><span>SESSION</span><span>London</span></div>
-    <div class="top-item"><span>NEW YORK</span><span>--:--</span></div>
-    <div class="top-item"><span>TEHRAN</span><span>--:--</span></div>
-    <div class="top-item"><span>DATE</span><span>-- --- ----</span></div>
-    <div class="top-item"><span>NEWS</span><span>Waiting...</span></div>
-</div>
 
-<!-- قاب وبکم (وبکم واقعی رو در OBS پشت این قرار می‌دی) -->
-<div class="webcam-frame"></div>
-
-<!-- نوار پایین -->
-<div class="bottom-bar">
-    <div class="bottom-left">FX LEVEL</div>
-    <div class="bottom-right">
-        <span>Instagram</span>
-        <span>Telegram</span>
-        <span>VIP SIGNAL</span>
+    <div class="top-item">
+        <img src="https://cdn-icons-png.flaticon.com/512/992/992700.png" class="icon">
+        <span>SESSION</span>
+        <span>New York</span>
     </div>
+
+    <div class="divider"></div>
+
+    <div class="top-item">
+        <img src="https://cdn-icons-png.flaticon.com/512/1827/1827504.png" class="icon">
+        <span>NY TIME</span>
+        <span>10:24:35 PM</span>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="top-item">
+        <img src="https://cdn-icons-png.flaticon.com/512/1827/1827504.png" class="icon">
+        <span>TEHRAN</span>
+        <span>07:54:35 AM</span>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="top-item">
+        <img src="https://cdn-icons-png.flaticon.com/512/747/747310.png" class="icon">
+        <span>DATE</span>
+        <span>14 JUN 2026</span>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="top-item">
+        <img src="https://cdn-icons-png.flaticon.com/512/1828/1828859.png" class="icon">
+        <span>NEWS</span>
+        <span>CPI at 8:30 PM</span>
+    </div>
+
 </div>
 
 </body>
 </html>
-    
