@@ -14,112 +14,96 @@
       overflow: hidden;
     }
 
+    /* کانتینر اصلی با سایز واقعی 1080p */
     .overlay {
+      width: 1920px;
+      height: 1080px;
       position: relative;
-      width: 100vw;
-      height: 100vh;
+      margin: 0 auto;
     }
 
-    /* وبکم */
-.webcam {
-  position: absolute;
-  left: 2%;
-  bottom: 14%;
-  width: 15%;
-  height: 24%;
-  border: 2px solid #00ff88;
-  border-radius: 12px;
-  box-shadow: 0 0 10px #00ff88;
-  animation: ultraSoftGlow 8s ease-in-out infinite alternate;
-}
+    /* وبکم – نسخه فوق‌العاده نرم */
+    .webcam {
+      position: absolute;
+      left: 40px;
+      bottom: 160px;
+      width: 280px;
+      height: 380px;
+      border: 2px solid #00ff88;
+      border-radius: 12px;
+      box-shadow: 0 0 9px #00ff88;
+      animation: ultraUltraSoft 10s ease-in-out infinite alternate;
+    }
 
-@keyframes ultraSoftGlow {
-  0% {
-    box-shadow: 0 0 10px #00ff88;
-    border-color: #00ff88;
-  }
-  50% {
-    box-shadow: 0 0 13px #33ff99;
-    border-color: #33ff99;
-  }
-  100% {
-    box-shadow: 0 0 10px #00ff88;
-    border-color: #00ff88;
-  }
-}
+    @keyframes ultraUltraSoft {
+      0% {
+        box-shadow: 0 0 9px #00ff88;
+        border-color: #00ff88;
+      }
+      50% {
+        box-shadow: 0 0 11px #33ff99;
+        border-color: #33ff99;
+      }
+      100% {
+        box-shadow: 0 0 9px #00ff88;
+        border-color: #00ff88;
+      }
+    }
 
-@keyframes softGlow {
-  0% {
-    box-shadow: 0 0 12px #00ff88;
-    border-color: #00ff88;
-  }
-  100% {
-    box-shadow: 0 0 16px #33ff99;
-    border-color: #33ff99;
-  }
-}
-
-@keyframes softGlow {
-  0% {
-    box-shadow: 0 0 10px #00ff88;
-    border-color: #00ff88;
-  }
-  100% {
-    box-shadow: 0 0 22px #00ff88;
-    border-color: #33ff99;
-  }
-}
-
+    /* متن VIP */
     .vip {
       position: absolute;
-      left: 2%;
-      bottom: 5%;
-      font-size: 1.2em;
+      left: 40px;
+      bottom: 100px;
+      font-size: 32px;
       color: #00ff88;
     }
 
+    /* متن Support */
     .support {
       position: absolute;
-      left: 15%;
-      bottom: 5%;
-      font-size: 1.2em;
+      left: 200px;
+      bottom: 100px;
+      font-size: 32px;
       color: #fff;
     }
 
+    /* سشن */
     .session {
       position: absolute;
-      top: 2%;
-      left: 2%;
-      font-size: 1.5em;
+      top: 40px;
+      left: 40px;
+      font-size: 42px;
       color: #00ff88;
     }
 
+    /* خبر */
     .news {
       position: absolute;
-      top: 2%;
-      left: 40%;
-      font-size: 1.2em;
+      top: 40px;
+      left: 700px;
+      font-size: 32px;
       color: #fff;
     }
 
-    /* سه باکس ساعت */
+    /* باکس‌های ساعت */
     .clocks {
       position: absolute;
-      top: 2%;
-      right: 2%;
+      top: 40px;
+      right: 40px;
       display: flex;
       gap: 20px;
     }
 
     .clock-box {
-      padding: 8px 14px;
+      padding: 12px 18px;
       border: 2px solid #00ff88;
       border-radius: 8px;
       box-shadow: 0 0 10px #00ff88;
-      font-size: 0.9em;
+      font-size: 22px;
       text-align: center;
-      min-width: 130px;
-      font-family: monospace; /* جلوگیری از لرزش */
+      width: 150px;
+      font-family: monospace;
     }
   </style>
 </head>
@@ -157,8 +141,8 @@
       };
 
       var parts = now.toLocaleTimeString('en-US', options).split(" ");
-      var time = parts[0];   // 01:20:30
-      var ampm = parts[1];   // AM یا PM
+      var time = parts[0];
+      var ampm = parts[1];
 
       return ampm + " " + time;
     }
