@@ -1,19 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>Top Bar Overlay</title>
+<div class="top-bar">
 
-<style>
+    <div class="top-item">
+        <img src="https://cdn-icons-png.flaticon.com/512/992/992700.png" class="icon">
+        <span>SESSION</span>
+        <span>New York</span>
+    </div>
 
-body {
-    margin: 0;
-    padding: 0;
-    background: #000;
-    font-family: Arial, sans-serif;
-}
+    <div class="divider"></div>
 
-/* نوار بالا */
+    <div class="top-item">
+        <img src="https://cdn-icons-png.flaticon.com/512/1827/1827504.png" class="icon">
+        <span>NY TIME</span>
+        <span>10:24:35 PM</span>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="top-item">
+        <img src="https://cdn-icons-png.flaticon.com/512/1827/1827504.png" class="icon">
+        <span>TEHRAN</span>
+        <span>07:54:35 AM</span>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="top-item">
+        <img src="https://cdn-icons-png.flaticon.com/512/747/747310.png" class="icon">
+        <span>DATE</span>
+        <span>14 JUN 2026</span>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="top-item">
+        <img src="https://cdn-icons-png.flaticon.com/512/1828/1828859.png" class="icon">
+        <span>NEWS</span>
+        <span>CPI at 8:30 PM</span>
+    </div>
 .top-bar {
     position: absolute;
     top: 55px;
@@ -84,189 +107,5 @@ body {
     background: #ffffff;
     opacity: 0.6;
 }
-
-</style>
-</head>
-
-<body>
-
-<div class="top-bar">
-
-    <div class="top-item">
-        <img src="https://cdn-icons-png.flaticon.com/512/992/992700.png" class="icon">
-        <span>SESSION</span>
-        <span>New York</span>
-    </div>
-
-    <div class="divider"></div>
-
-    <div class="top-item">
-        <img src="https://cdn-icons-png.flaticon.com/512/1827/1827504.png" class="icon">
-        <span>NY TIME</span>
-        <span>10:24:35 PM</span>
-    </div>
-
-    <div class="divider"></div>
-
-    <div class="top-item">
-        <img src="https://cdn-icons-png.flaticon.com/512/1827/1827504.png" class="icon">
-        <span>TEHRAN</span>
-        <span>07:54:35 AM</span>
-    </div>
-
-    <div class="divider"></div>
-
-    <div class="top-item">
-        <img src="https://cdn-icons-png.flaticon.com/512/747/747310.png" class="icon">
-        <span>DATE</span>
-        <span>14 JUN 2026</span>
-    </div>
-
-    <div class="divider"></div>
-
-    <div class="top-item">
-        <img src="https://cdn-icons-png.flaticon.com/512/1828/1828859.png" class="icon">
-        <span>NEWS</span>
-        <span>CPI at 8:30 PM</span>
-    </div>
-
 </div>
 
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>Top Bar Overlay</title>
-
-<style>
-
-body {
-    margin: 0;
-    padding: 0;
-    background: #000;
-    font-family: Arial, sans-serif;
-}
-
-/* نوار بالا */
-.top-bar {
-    position: absolute;
-    top: 55px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 86%;
-    height: 90px;
-
-    clip-path: polygon(
-        18px 0,
-        calc(100% - 18px) 0,
-        100% 18px,
-        100% 100%,
-        0 100%,
-        0 18px
-    );
-
-    background: rgba(0, 0, 0, 0.35);
-    border: 2px solid #00ff88;
-    box-shadow:
-        0 0 14px #00ff88,
-        inset 0 0 14px #00ff88;
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 35px;
-    box-sizing: border-box;
-}
-
-/* آیتم‌ها */
-.top-item {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    color: #ffffff;
-    gap: 3px;
-}
-
-/* آیکون‌ها */
-.icon {
-    width: 22px;
-    height: 22px;
-    margin: 0 auto 2px auto;
-    filter: drop-shadow(0 0 6px #00ff88);
-}
-
-/* عنوان کوچک */
-.top-item span:first-of-type {
-    font-size: 12px;
-    color: #00ff88;
-    text-shadow: 0 0 6px #00ff88;
-}
-
-/* مقدار اصلی */
-.top-item span:last-of-type {
-    font-size: 18px;
-    font-weight: bold;
-    color: #ffffff;
-    text-shadow: 0 0 8px #00ff88;
-}
-
-/* جداکننده سفید */
-.divider {
-    width: 1px;
-    height: 60%;
-    background: #ffffff;
-    opacity: 0.6;
-}
-
-</style>
-</head>
-
-<body>
-
-<div class="top-bar">
-
-    <div class="top-item">
-        <img src="https://cdn-icons-png.flaticon.com/512/992/992700.png" class="icon">
-        <span>SESSION</span>
-        <span>New York</span>
-    </div>
-
-    <div class="divider"></div>
-
-    <div class="top-item">
-        <img src="https://cdn-icons-png.flaticon.com/512/1827/1827504.png" class="icon">
-        <span>NY TIME</span>
-        <span>10:24:35 PM</span>
-    </div>
-
-    <div class="divider"></div>
-
-    <div class="top-item">
-        <img src="https://cdn-icons-png.flaticon.com/512/1827/1827504.png" class="icon">
-        <span>TEHRAN</span>
-        <span>07:54:35 AM</span>
-    </div>
-
-    <div class="divider"></div>
-
-    <div class="top-item">
-        <img src="https://cdn-icons-png.flaticon.com/512/747/747310.png" class="icon">
-        <span>DATE</span>
-        <span>14 JUN 2026</span>
-    </div>
-
-    <div class="divider"></div>
-
-    <div class="top-item">
-        <img src="https://cdn-icons-png.flaticon.com/512/1828/1828859.png" class="icon">
-        <span>NEWS</span>
-        <span>CPI at 8:30 PM</span>
-    </div>
-
-</div>
-
-</body>
-</html>
