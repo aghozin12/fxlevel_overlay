@@ -544,17 +544,25 @@ updateClocks();
 
 async function updateNews() {
     try {
-        const rssUrl = "https://www.marketwatch.com/rss/topstories";
+        const rssUrl = "https://cdn-nfs.faireconomy.media/ff_calendar_thisweek.xml";
 
-        const response = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(rssUrl)}`);
+        const response = await fetch(
+            https://api.allorigins.hexlet.app/get?url=${encodeURIComponent(rssUrl)}
+        );
+
         const data = await response.json();
 
         const parser = new DOMParser();
         const xml = parser.parseFromString(data.contents, "text/xml");
 
-        const firstItem = xml.querySelector("item > title").textContent;
+        // اولین خبر مهم (Impact بالا)
+        const firstItem = xml.querySelector("event[impact='High'] title") 
+                        || xml.querySelector("event title");
 
-        const shortTitle = firstItem.length > 55 ? firstItem.slice(0, 55) + "..." : firstItem;
+        const title = firstItem ? firstItem.textContent : "No News";
+
+        const shortTitle =
+            title.length > 55 ? title.slice(0, 55) + "..." : title;
 
         document.getElementById("news-value").innerText = shortTitle;
 
@@ -562,7 +570,6 @@ async function updateNews() {
         document.getElementById("news-value").innerText = "Loading...";
     }
 }
-
 updateNews();
 setInterval(updateNews, 30000);
 
