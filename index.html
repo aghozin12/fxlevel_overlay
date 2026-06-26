@@ -34,13 +34,19 @@ body::before{
   opacity:0.9;
 }
 
-/* فریم اصلی */
+/* فریم اصلی - قاب کلی نئونی شبیه کد اول */
 .main-frame{
   position:absolute;
   inset:40px;
   background:rgba(0,0,0,var(--frame-opacity));
   border:3px solid var(--neon);
-  box-shadow:0 0 18px var(--neon);
+  /* هاله‌های نئونی چندلایه مشابه نسخهٔ اول */
+  box-shadow:
+    0 0 25px var(--neon),
+    0 0 55px rgba(0,255,102,0.85),
+    0 0 110px rgba(0,255,102,0.65),
+    0 0 160px rgba(0,255,102,0.45),
+    inset 0 0 25px rgba(0,255,102,0.18);
   clip-path:polygon(
     25px 0,
     calc(100% - 25px) 0,
@@ -63,7 +69,7 @@ body::before{
   height:90px;
   background:rgba(0,0,0,0.35);
   border:2px solid var(--neon);
-  box-shadow:0 0 14px var(--neon);
+  box-shadow:0 0 14px var(--neon), inset 0 0 14px rgba(0,255,136,0.12);
   display:flex;
   align-items:center;
   justify-content:space-between;
@@ -88,7 +94,7 @@ body::before{
   to{box-shadow:0 0 28px var(--neon-strong)}
 }
 
-/* وبکم */
+/* وبکم (بدون آیکون) */
 .webcam-frame{
   position:absolute;
   left:80px;
@@ -105,6 +111,7 @@ body::before{
   align-items:center;
   justify-content:center;
   overflow:hidden;
+  /* حذف هرگونه آیکون داخلی؛ فقط متن یا ویدئو قرار می‌گیرد */
 }
 .webcam-content{width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.85);font-weight:600;font-size:14px}
 
@@ -118,7 +125,7 @@ body::before{
   height:80px;
   background:rgba(0,0,0,0.35);
   border:2px solid var(--neon);
-  box-shadow:0 0 14px var(--neon);
+  box-shadow:0 0 14px var(--neon), inset 0 0 14px rgba(0,255,136,0.12);
   display:flex;
   justify-content:space-between;
   align-items:center;
@@ -168,6 +175,7 @@ body::before{
 </style>
 </head>
 <body>
+  <!-- قاب کلی -->
   <div class="main-frame" role="region" aria-label="FX LEVEL main frame"></div>
 
   <!-- نوار بالا -->
@@ -217,7 +225,7 @@ body::before{
     </div>
   </div>
 
-  <!-- وبکم -->
+  <!-- وبکم (بدون آیکون) -->
   <div class="webcam-frame" role="region" aria-label="Webcam frame">
     <div class="webcam-content">Webcam</div>
   </div>
@@ -250,10 +258,8 @@ function updateClocks(){
     const newYorkTime = new Date().toLocaleTimeString("en-US",{timeZone:"America/New_York",hour:"2-digit",minute:"2-digit",hour12:true});
     const today = new Date().toLocaleDateString("en-US",{timeZone:"Asia/Tehran",day:"2-digit",month:"short",year:"numeric"});
 
-    // ساعت تهران به صورت عددی برای مقایسه
     const tehranHourStr = new Date().toLocaleString("en-US",{timeZone:"Asia/Tehran",hour:"numeric",hour12:false});
     const tehranHour = parseInt(tehranHourStr,10);
-    // منطق سشن: قبل از 17 تهران => London، بعد از آن => New York
     const sessionName = (Number.isFinite(tehranHour) && tehranHour < 17) ? "London" : "New York";
 
     document.getElementById("session-value").innerText = sessionName;
@@ -267,28 +273,38 @@ function updateClocks(){
 setInterval(updateClocks,1000);
 updateClocks();
 
-/* دریافت خبر از RSS با fallback ساده */
+/* دریافت خبر از RSS با فیلتر دلاری (نمونه: Forexlive) */
+/* اگر می‌خواهی فید دیگری استفاده شود، مقدار rssUrl را تغییر بده */
 async function updateNews(){
   const targetEl = document.getElementById("news-value");
   try{
-    const rssUrl = "https://www.marketwatch.com/rss/topstories";
-    // استفاده از سرویس allorigins برای عبور از CORS؛ در صورت نیاز می‌توان سرویس دیگری جایگزین کرد
+    // نمونه فید فارکس (متمرکز بر ارزها)
+    const rssUrl = "https://www.forexlive.com/feed";
     const proxy = "https://api.allorigins.win/get?url=" + encodeURIComponent(rssUrl);
     const res = await fetch(proxy, {cache: "no-store"});
+    console.log("news fetch status:", res.status, res.headers.get("content-type"));
     if(!res.ok) throw new Error("Network response not ok");
     const json = await res.json();
-    const parser = new DOMParser();
-    const xml = parser.parseFromString(json.contents, "text/xml");
-    const first = xml.querySelector("item > title");
-    if(first && first.textContent){
-      const txt = first.textContent.trim();
-      targetEl.innerText = txt.length > 55 ? txt.slice(0,55) + "..." : txt;
-    } else {
+    const xml = new DOMParser().parseFromString(json.contents, "text/xml");
+    const items = xml.querySelectorAll("item > title");
+    if(!items || items.length === 0){
       targetEl.innerText = "No news available";
+      return;
     }
+    // پیدا کردن اولین تیتر مرتبط با دلار (USD, Dollar, DXY, USD/)
+    let found = null;
+    for(const t of items){
+      const txt = t.textContent.trim();
+      if(/USD|Dollar|DXY|USD\//i.test(txt)){
+        found = txt;
+        break;
+      }
+    }
+    // اگر تیتر مرتبط پیدا نشد، اولین تیتر را نمایش بده
+    const display = found || items[0].textContent.trim();
+    targetEl.innerText = display.length > 70 ? display.slice(0,70) + "..." : display;
   }catch(err){
     console.warn("News fetch failed", err);
-    // متن جایگزین در صورت خطا
     targetEl.innerText = "News unavailable";
   }
 }
