@@ -34,14 +34,13 @@ body::before{
   opacity:0.9;
 }
 
-/* قاب کلی نئونی دور صفحه (مشابه کد اول) */
+/* قاب نئونی دور صفحه */
 .page-frame {
   position:fixed;
   inset:20px;
   pointer-events:none;
   z-index:5;
   border:3px solid var(--neon);
-  border-radius:0;
   box-shadow:
     0 0 25px var(--neon),
     0 0 55px rgba(0,255,102,0.85),
@@ -82,20 +81,35 @@ body::before{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  padding:0 35px;
-  gap:20px;
+  padding:0 20px;
+  gap:12px;
   z-index:2;
   border-radius:8px;
 }
 
 /* آیتم‌ها */
-.top-item{flex:1;display:flex;justify-content:center}
-.item-row{display:flex;align-items:center;gap:14px}
-.icon{width:40px;height:40px;stroke:#fff;fill:none;filter:drop-shadow(0 0 6px var(--neon))}
-.text-box{display:flex;flex-direction:column;line-height:1.1}
-.text-box span:first-child{font-size:14px;color:var(--accent);text-shadow:0 0 6px var(--accent)}
-.text-box span:last-child{font-size:22px;font-weight:700;color:var(--neon);text-shadow:0 0 8px var(--neon)}
-.divider{width:1px;height:60%;background:rgba(255,255,255,0.35)}
+.top-item{display:flex;align-items:center;gap:12px;padding:0 8px;min-width:0}
+.item-row{display:flex;align-items:center;gap:12px}
+.icon{width:36px;height:36px;stroke:#fff;fill:none;filter:drop-shadow(0 0 6px var(--neon))}
+.text-box{display:flex;flex-direction:column;line-height:1.05;min-width:0}
+.text-box span:first-child{font-size:12px;color:var(--accent);text-shadow:0 0 6px var(--accent);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.text-box span:last-child{font-size:18px;font-weight:700;color:var(--neon);text-shadow:0 0 8px var(--neon);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.divider{width:1px;height:60%;background:rgba(255,255,255,0.18);margin:0 6px}
+
+/* کادر XAUUSD مخصوص */
+.xau-box{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:4px;
+  padding:6px 10px;
+  background:rgba(0,0,0,0.18);
+  border:1px solid rgba(255,255,255,0.04);
+  border-radius:6px;
+  min-width:120px;
+}
+.xau-box .label{font-size:12px;color:var(--accent);text-shadow:0 0 6px var(--accent)}
+.xau-box .price{font-size:18px;font-weight:800;color:#ffd966;text-shadow:0 0 8px #ffd966}
 
 /* انیمیشن نئونی بهینه */
 @keyframes neonPulse{
@@ -103,7 +117,7 @@ body::before{
   to{box-shadow:0 0 28px var(--neon-strong)}
 }
 
-/* قاب وبکم نئونی (بدون متن یا آیکون داخل) */
+/* قاب وبکم نئونی */
 .webcam-frame{
   position:absolute;
   left:80px;
@@ -122,17 +136,10 @@ body::before{
   will-change:box-shadow;
   display:block;
   overflow:hidden;
-  pointer-events:auto; /* اگر می‌خواهی ویدئو یا iframe داخل قرار بگیرد */
+  pointer-events:auto;
   box-sizing:border-box;
 }
-
-/* اگر می‌خواهی داخل وبکم ویدئو یا iframe قرار بدی، از این کلاس استفاده کن */
-.webcam-inner{
-  width:100%;
-  height:100%;
-  display:block;
-  background:transparent;
-}
+.webcam-inner{width:100%;height:100%;display:block;background:transparent}
 
 /* نوار پایین */
 .bottom-bar{
@@ -187,9 +194,10 @@ body::before{
 /* موبایل */
 @media (max-width:800px){
   .top-bar{height:72px;padding:0 12px}
-  .text-box span:last-child{font-size:18px}
+  .text-box span:last-child{font-size:16px}
   .webcam-frame{left:16px;bottom:110px;width:40vw;height:24vh}
   .bottom-bar{padding:0 12px}
+  .xau-box{min-width:100px}
 }
 </style>
 </head>
@@ -203,12 +211,23 @@ body::before{
   <!-- نوار بالا -->
   <div class="top-bar" role="banner" aria-label="Top status bar">
     <!-- SESSION -->
-    <div class="top-item">
+    <div class="top-item" aria-hidden="false">
       <div class="item-row">
         <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" stroke-width="2"/><path d="M12 6v6l4 2" stroke-width="2"/></svg>
         <div class="text-box"><span>SESSION</span><span id="session-value">London</span></div>
       </div>
     </div>
+
+    <div class="divider" aria-hidden="true"></div>
+
+    <!-- XAUUSD box (بعد از SESSION) -->
+    <div class="top-item" aria-hidden="false">
+      <div class="xau-box" role="status" aria-label="XAUUSD price">
+        <div class="label">XAUUSD</div>
+        <div id="xauusd-value" class="price">--</div>
+      </div>
+    </div>
+
     <div class="divider" aria-hidden="true"></div>
 
     <!-- NEW YORK -->
@@ -247,9 +266,8 @@ body::before{
     </div>
   </div>
 
-  <!-- قاب وبکم نئونی (بدون متن یا آیکون داخل) -->
+  <!-- قاب وبکم نئونی -->
   <div class="webcam-frame" role="region" aria-label="Webcam frame">
-    <!-- اگر خواستی ویدئو یا iframe بذاری، داخل این div با کلاس webcam-inner قرار بده -->
     <div class="webcam-inner" aria-hidden="true"></div>
   </div>
 
@@ -300,11 +318,9 @@ updateClocks();
 async function updateNews(){
   const targetEl = document.getElementById("news-value");
   try{
-    // اگر می‌خواهی فید دیگری استفاده شود، مقدار rssUrl را تغییر بده
     const rssUrl = "https://www.forexlive.com/feed";
     const proxy = "https://api.allorigins.win/get?url=" + encodeURIComponent(rssUrl);
     const res = await fetch(proxy, {cache: "no-store"});
-    console.log("news fetch status:", res.status, res.headers.get("content-type"));
     if(!res.ok) throw new Error("Network response not ok");
     const json = await res.json();
     const xml = new DOMParser().parseFromString(json.contents, "text/xml");
@@ -313,7 +329,6 @@ async function updateNews(){
       targetEl.innerText = "No news available";
       return;
     }
-    // پیدا کردن اولین تیتر مرتبط با دلار (USD, Dollar, DXY, USD/)
     let found = null;
     for(const t of items){
       const txt = t.textContent.trim();
@@ -322,7 +337,6 @@ async function updateNews(){
         break;
       }
     }
-    // اگر تیتر مرتبط پیدا نشد، اولین تیتر را نمایش بده
     const display = found || items[0].textContent.trim();
     targetEl.innerText = display.length > 70 ? display.slice(0,70) + "..." : display;
   }catch(err){
@@ -332,6 +346,77 @@ async function updateNews(){
 }
 updateNews();
 setInterval(updateNews,30000);
+
+/* ---------- XAUUSD live price ---------- */
+/*
+  توضیح:
+  - این تابع تلاش می‌کند قیمت XAUUSD را از یک API بیرونی بگیرد.
+  - آدرس API را می‌توانی با سرویس مورد نظر خودت جایگزین کنی.
+  - اگر fetch با خطا مواجه شود، مقدار fallback (شبیه‌سازی) نمایش داده می‌شود و به‌روزرسانی ادامه می‌یابد.
+*/
+let lastXauPrice = null;
+const xauEl = document.getElementById("xauusd-value");
+
+// نمونه آدرس API عمومی (ممکن است نیاز به پروکسی یا کلید داشته باشد)
+// اگر API دلخواه داری، مقدار priceApiUrl را جایگزین کن.
+const priceApiUrl = "https://api.allorigins.win/get?url=" + encodeURIComponent("https://api.metals.live/v1/spot"); // مثال: metals.live (بدون کلید در برخی موارد پاسخ می‌دهد)
+
+async function fetchXauFromApi(){
+  try{
+    const res = await fetch(priceApiUrl, {cache: "no-store"});
+    if(!res.ok) throw new Error("Network response not ok");
+    const json = await res.json();
+    // اگر از allorigins استفاده می‌شود، محتوای واقعی در json.contents است
+    const contents = json.contents || json;
+    // تلاش برای parse کردن JSON یا متن
+    let parsed = null;
+    try { parsed = typeof contents === "string" ? JSON.parse(contents) : contents; } catch(e) { parsed = contents; }
+    // ساختارهای مختلف API را هندل می‌کنیم:
+    // metals.live نمونه خروجی: [{ "symbol":"XAU", "price": 1960.12 }, ...]
+    if(Array.isArray(parsed)){
+      const x = parsed.find(it => (it.symbol && /XAU/i.test(it.symbol)) || (it.code && /XAU/i.test(it.code)));
+      if(x && x.price) return Number(x.price);
+    }
+    // اگر API ساختار دیگری داشت، تلاش برای پیدا کردن اولین عدد بزرگ
+    const text = JSON.stringify(parsed);
+    const m = text.match(/"price"\s*:\s*([0-9]+(?:\.[0-9]+)?)/i);
+    if(m) return Number(m[1]);
+    // اگر نتوانستیم، پرتاب خطا تا fallback اجرا شود
+    throw new Error("Unable to parse price from API response");
+  }catch(err){
+    console.warn("fetchXauFromApi error:", err);
+    throw err;
+  }
+}
+
+function formatPrice(p){
+  // قالب‌بندی با دو رقم اعشار؛ اگر قیمت بسیار بزرگ بود، می‌توانی تغییر دهی
+  return Number(p).toLocaleString(undefined, {minimumFractionDigits:2, maximumFractionDigits:2});
+}
+
+async function updateXau(){
+  try{
+    // تلاش برای گرفتن قیمت از API
+    const price = await fetchXauFromApi();
+    lastXauPrice = price;
+    xauEl.innerText = formatPrice(price);
+  }catch(e){
+    // fallback: اگر قیمت قبلی داریم، کمی شبیه‌سازی تغییر بده، در غیر این صورت مقدار اولیه فرضی
+    if(lastXauPrice === null){
+      lastXauPrice = 1960.00; // مقدار اولیه فرضی؛ می‌توانی آن را تغییر دهی
+    } else {
+      // شبیه‌سازی نوسان کوچک ±0.2%
+      const change = (Math.random() - 0.5) * 0.004 * lastXauPrice;
+      lastXauPrice = Math.max(0, lastXauPrice + change);
+    }
+    xauEl.innerText = formatPrice(lastXauPrice) + " *";
+    // علامت * نشان می‌دهد که مقدار شبیه‌سازی شده است (fallback)
+  }
+}
+
+// اجرا و زمان‌بندی
+updateXau();
+setInterval(updateXau, 5000); // هر 5 ثانیه به‌روزرسانی می‌شود
 </script>
 </body>
 </html>
