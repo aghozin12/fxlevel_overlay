@@ -34,19 +34,20 @@ body::before{
   opacity:0.9;
 }
 
-/* فریم اصلی - قاب کلی نئونی شبیه کد اول */
-.main-frame{
-  position:absolute;
-  inset:40px;
-  background:rgba(0,0,0,var(--frame-opacity));
+/* قاب کلی نئونی دور صفحه (مشابه کد اول) */
+.page-frame {
+  position:fixed;
+  inset:20px;
+  pointer-events:none;
+  z-index:5;
   border:3px solid var(--neon);
-  /* هاله‌های نئونی چندلایه مشابه نسخهٔ اول */
+  border-radius:0;
   box-shadow:
     0 0 25px var(--neon),
     0 0 55px rgba(0,255,102,0.85),
     0 0 110px rgba(0,255,102,0.65),
     0 0 160px rgba(0,255,102,0.45),
-    inset 0 0 25px rgba(0,255,102,0.18);
+    inset 0 0 25px rgba(0,255,102,0.12);
   clip-path:polygon(
     25px 0,
     calc(100% - 25px) 0,
@@ -57,6 +58,14 @@ body::before{
     0 calc(100% - 25px),
     0 25px
   );
+}
+
+/* فریم اصلی داخلی */
+.main-frame{
+  position:absolute;
+  inset:40px;
+  background:rgba(0,0,0,var(--frame-opacity));
+  border:3px solid rgba(0,0,0,0.0);
   z-index:1;
   display:flex;
   flex-direction:column;
@@ -94,7 +103,7 @@ body::before{
   to{box-shadow:0 0 28px var(--neon-strong)}
 }
 
-/* وبکم (بدون آیکون) */
+/* قاب وبکم نئونی (بدون متن یا آیکون داخل) */
 .webcam-frame{
   position:absolute;
   left:80px;
@@ -102,18 +111,28 @@ body::before{
   width:clamp(280px,25vw,430px);
   height:clamp(160px,18vh,250px);
   border:4px solid #00ff66;
-  background:rgba(0,0,0,0.18);
-  box-shadow:0 0 22px rgba(0,255,102,0.9);
+  background:rgba(0,0,0,0.12);
+  box-shadow:
+    0 0 25px rgba(0, 255, 102, 1),
+    0 0 55px rgba(0, 255, 102, 0.85),
+    0 0 110px rgba(0, 255, 102, 0.65),
+    0 0 160px rgba(0, 255, 102, 0.45);
   z-index:3;
   animation:neonPulse 2.4s ease-in-out infinite alternate;
   will-change:box-shadow;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  display:block;
   overflow:hidden;
-  /* حذف هرگونه آیکون داخلی؛ فقط متن یا ویدئو قرار می‌گیرد */
+  pointer-events:auto; /* اگر می‌خواهی ویدئو یا iframe داخل قرار بگیرد */
+  box-sizing:border-box;
 }
-.webcam-content{width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.85);font-weight:600;font-size:14px}
+
+/* اگر می‌خواهی داخل وبکم ویدئو یا iframe قرار بدی، از این کلاس استفاده کن */
+.webcam-inner{
+  width:100%;
+  height:100%;
+  display:block;
+  background:transparent;
+}
 
 /* نوار پایین */
 .bottom-bar{
@@ -175,7 +194,10 @@ body::before{
 </style>
 </head>
 <body>
-  <!-- قاب کلی -->
+  <!-- قاب نئونی دور کل صفحه -->
+  <div class="page-frame" aria-hidden="true"></div>
+
+  <!-- قاب داخلی -->
   <div class="main-frame" role="region" aria-label="FX LEVEL main frame"></div>
 
   <!-- نوار بالا -->
@@ -225,9 +247,10 @@ body::before{
     </div>
   </div>
 
-  <!-- وبکم (بدون آیکون) -->
+  <!-- قاب وبکم نئونی (بدون متن یا آیکون داخل) -->
   <div class="webcam-frame" role="region" aria-label="Webcam frame">
-    <div class="webcam-content">Webcam</div>
+    <!-- اگر خواستی ویدئو یا iframe بذاری، داخل این div با کلاس webcam-inner قرار بده -->
+    <div class="webcam-inner" aria-hidden="true"></div>
   </div>
 
   <!-- نوار پایین -->
@@ -274,11 +297,10 @@ setInterval(updateClocks,1000);
 updateClocks();
 
 /* دریافت خبر از RSS با فیلتر دلاری (نمونه: Forexlive) */
-/* اگر می‌خواهی فید دیگری استفاده شود، مقدار rssUrl را تغییر بده */
 async function updateNews(){
   const targetEl = document.getElementById("news-value");
   try{
-    // نمونه فید فارکس (متمرکز بر ارزها)
+    // اگر می‌خواهی فید دیگری استفاده شود، مقدار rssUrl را تغییر بده
     const rssUrl = "https://www.forexlive.com/feed";
     const proxy = "https://api.allorigins.win/get?url=" + encodeURIComponent(rssUrl);
     const res = await fetch(proxy, {cache: "no-store"});
