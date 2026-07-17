@@ -509,29 +509,41 @@ body::before {
 function updateClocks() {
 
     const tehranTime = new Date().toLocaleTimeString("en-US", {
-        timeZone: "Asia/Tehran",
-        hour12: true
-    });
+    timeZone: "Asia/Tehran",
+    hour12: true
+});
 
-    const newYorkTime = new Date().toLocaleTimeString("en-US", {
-        timeZone: "America/New_York",
-        hour12: true
-    });
+const newYorkTime = new Date().toLocaleTimeString("en-US", {
+    timeZone: "America/New_York",
+    hour12: true
+});
 
-    const today = new Date().toLocaleDateString("en-US", {
-        timeZone: "Asia/Tehran",
-        day: "2-digit",
-        month: "short",
-        year: "numeric"
-    });
+const today = new Date().toLocaleDateString("en-US", {
+    timeZone: "Asia/Tehran",
+    day: "2-digit",
+    month: "short",
+    year: "numeric"
+});
 
-    const tehranHour = new Date().toLocaleString("en-US", {
-        timeZone: "Asia/Tehran",
-        hour: "numeric",
-        hour12: false
-    });
+const tehranHour = parseInt(new Date().toLocaleString("en-US", {
+    timeZone: "Asia/Tehran",
+    hour: "numeric",
+    hour12: false
+}));
 
-    let sessionName = (tehranHour < 16:30) ? "London" : "New York";
+const tehranMinute = parseInt(new Date().toLocaleString("en-US", {
+    timeZone: "Asia/Tehran",
+    minute: "numeric"
+}));
+
+let sessionName = (tehranHour < 16 || (tehranHour === 16 && tehranMinute < 30))
+    ? "London"
+    : "New York";
+
+document.getElementById("session-value").innerText = sessionName;
+document.getElementById("tehran-value").innerText = tehranTime;
+document.getElementById("newyork-value").innerText = newYorkTime;
+document.getElementById("date-value").innerText = today;
 
     document.getElementById("session-value").innerText = sessionName;
     document.getElementById("tehran-value").innerText = tehranTime;
