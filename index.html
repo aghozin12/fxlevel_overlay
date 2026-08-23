@@ -24,7 +24,7 @@ html, body {
 
 
 /* =========================
-   افکت شبکه‌ای پس‌زمینه
+   شبکه پس‌زمینه
 ========================= */
 
 body::before {
@@ -157,8 +157,7 @@ body::before {
     font-size: 14px;
     color: #ffae4a;
 
-    text-shadow:
-        0 0 6px #ffae4a;
+    text-shadow: 0 0 6px #ffae4a;
 }
 
 .text-box span:last-child {
@@ -167,8 +166,7 @@ body::before {
 
     color: #00ff88;
 
-    text-shadow:
-        0 0 8px #00ff88;
+    text-shadow: 0 0 8px #00ff88;
 }
 
 
@@ -183,31 +181,7 @@ body::before {
 
 
 /* =========================
-   انیمیشن نئونی وبکم
-========================= */
-
-@keyframes neonPulse {
-
-    0% {
-        box-shadow:
-            0 0 18px rgba(0, 255, 102, 0.9),
-            0 0 45px rgba(0, 255, 102, 0.7),
-            0 0 90px rgba(0, 255, 102, 0.45),
-            0 0 140px rgba(0, 255, 102, 0.25);
-    }
-
-    100% {
-        box-shadow:
-            0 0 28px rgba(0, 255, 102, 1),
-            0 0 70px rgba(0, 255, 102, 0.9),
-            0 0 140px rgba(0, 255, 102, 0.65),
-            0 0 200px rgba(0, 255, 102, 0.45);
-    }
-}
-
-
-/* =========================
-   قاب وبکم
+   وبکم
 ========================= */
 
 .webcam-frame {
@@ -299,6 +273,8 @@ body::before {
 
     display: flex;
     align-items: center;
+
+    white-space: nowrap;
 }
 
 
@@ -314,8 +290,7 @@ body::before {
     display: flex;
     align-items: center;
 
-    filter:
-        drop-shadow(0 0 4px #ffb347);
+    filter: drop-shadow(0 0 4px #ffb347);
 }
 
 
@@ -326,6 +301,8 @@ body::before {
     height: 45%;
 
     background: rgba(255,255,255,0.35);
+
+    flex-shrink: 0;
 }
 
 
@@ -333,17 +310,36 @@ body::before {
    SUBSCRIBE / LIKE
 ========================= */
 
+/* عرض ثابت برای جلوگیری از جابه‌جایی بقیه آیتم‌ها */
+
 .subscribe {
     position: relative;
+
+    width: 145px;
+    min-width: 145px;
+
+    height: 40px;
+
+    flex-shrink: 0;
 }
 
 
-/* حالت‌ها */
+/* حالت‌های Subscribe و Like */
 
 .promo-state {
+    position: absolute;
+
+    left: 0;
+    top: 50%;
+
+    transform: translateY(-50%);
+
     display: flex;
     align-items: center;
+
     gap: 10px;
+
+    white-space: nowrap;
 }
 
 
@@ -437,39 +433,7 @@ body::before {
 
 
 /* =========================
-   سایر افکت‌ها
-========================= */
-
-.soft-pulse {
-    animation:
-        softPulse 4s ease-in-out infinite;
-}
-
-
-@keyframes softPulse {
-
-    0% {
-        opacity: 0.85;
-        text-shadow:
-            0 0 4px currentColor;
-    }
-
-    50% {
-        opacity: 1;
-        text-shadow:
-            0 0 10px currentColor;
-    }
-
-    100% {
-        opacity: 0.85;
-        text-shadow:
-            0 0 4px currentColor;
-    }
-}
-
-
-/* =========================
-   VIP SIGNAL
+   VIP
 ========================= */
 
 .vip {
@@ -503,7 +467,7 @@ body::before {
 }
 
 
-/* Shine Sweep */
+/* Shine */
 
 .vip .shine {
     position: absolute;
@@ -792,9 +756,14 @@ body::before {
 <div class="bottom-bar">
 
 
-    <!-- SUBSCRIBE / LIKE -->
+    <!-- =====================
+         SUBSCRIBE / LIKE
+    ====================== -->
 
-    <div class="bottom-item subscribe" id="subscribe-like">
+    <div
+        class="bottom-item subscribe"
+        id="subscribe-like"
+    >
 
 
         <!-- SUBSCRIBE -->
@@ -1012,7 +981,7 @@ body::before {
     <div class="bottom-divider"></div>
 
 
-    <!-- Meysam Ghasemi -->
+    <!-- MEYSAM GHASEMI -->
 
     <div class="bottom-item vip">
 
@@ -1042,54 +1011,72 @@ body::before {
 
 
 <!-- =========================
-     اسکریپت ساعت
-     تاریخ
-     سشن
+     JAVASCRIPT
 ========================= -->
 
 <script>
 
+
+/* =========================
+   ساعت‌ها
+========================= */
+
 function updateClocks() {
 
     const tehranTime =
-        new Date().toLocaleTimeString("en-US", {
-            timeZone: "Asia/Tehran",
-            hour12: true
-        });
+        new Date().toLocaleTimeString(
+            "en-US",
+            {
+                timeZone: "Asia/Tehran",
+                hour12: true
+            }
+        );
 
 
     const newYorkTime =
-        new Date().toLocaleTimeString("en-US", {
-            timeZone: "America/New_York",
-            hour12: true
-        });
+        new Date().toLocaleTimeString(
+            "en-US",
+            {
+                timeZone: "America/New_York",
+                hour12: true
+            }
+        );
 
 
     const today =
-        new Date().toLocaleDateString("en-US", {
-            timeZone: "Asia/Tehran",
-            day: "2-digit",
-            month: "short",
-            year: "numeric"
-        });
+        new Date().toLocaleDateString(
+            "en-US",
+            {
+                timeZone: "Asia/Tehran",
+                day: "2-digit",
+                month: "short",
+                year: "numeric"
+            }
+        );
 
 
     const tehranHour =
         parseInt(
-            new Date().toLocaleString("en-US", {
-                timeZone: "Asia/Tehran",
-                hour: "numeric",
-                hour12: false
-            })
+            new Date().toLocaleString(
+                "en-US",
+                {
+                    timeZone: "Asia/Tehran",
+                    hour: "numeric",
+                    hour12: false
+                }
+            )
         );
 
 
     const tehranMinute =
         parseInt(
-            new Date().toLocaleString("en-US", {
-                timeZone: "Asia/Tehran",
-                minute: "numeric"
-            })
+            new Date().toLocaleString(
+                "en-US",
+                {
+                    timeZone: "Asia/Tehran",
+                    minute: "numeric"
+                }
+            )
         );
 
 
@@ -1105,27 +1092,37 @@ function updateClocks() {
         : "New York";
 
 
-    document.getElementById("session-value").innerText =
-        sessionName;
+    document.getElementById(
+        "session-value"
+    ).innerText = sessionName;
 
-    document.getElementById("tehran-value").innerText =
-        tehranTime;
 
-    document.getElementById("newyork-value").innerText =
-        newYorkTime;
+    document.getElementById(
+        "tehran-value"
+    ).innerText = tehranTime;
 
-    document.getElementById("date-value").innerText =
-        today;
+
+    document.getElementById(
+        "newyork-value"
+    ).innerText = newYorkTime;
+
+
+    document.getElementById(
+        "date-value"
+    ).innerText = today;
 }
 
 
-setInterval(updateClocks, 1000);
+setInterval(
+    updateClocks,
+    1000
+);
 
 updateClocks();
 
 
 /* =========================
-   خبر MarketWatch
+   خبر
 ========================= */
 
 async function updateNews() {
@@ -1158,7 +1155,9 @@ async function updateNews() {
 
 
         const firstItem =
-            xml.querySelector("item > title").textContent;
+            xml.querySelector(
+                "item > title"
+            ).textContent;
 
 
         const shortTitle =
@@ -1167,15 +1166,17 @@ async function updateNews() {
                 : firstItem;
 
 
-        document.getElementById("news-value").innerText =
-            shortTitle;
+        document.getElementById(
+            "news-value"
+        ).innerText = shortTitle;
 
     }
 
     catch (e) {
 
-        document.getElementById("news-value").innerText =
-            "Loading...";
+        document.getElementById(
+            "news-value"
+        ).innerText = "Loading...";
 
     }
 }
@@ -1183,7 +1184,10 @@ async function updateNews() {
 
 updateNews();
 
-setInterval(updateNews, 30000);
+setInterval(
+    updateNews,
+    30000
+);
 
 
 /* =========================
@@ -1191,69 +1195,93 @@ setInterval(updateNews, 30000);
 ========================= */
 
 const subscribeState =
-    document.querySelector(".subscribe-state");
+    document.querySelector(
+        ".subscribe-state"
+    );
+
 
 const likeState =
-    document.querySelector(".like-state");
+    document.querySelector(
+        ".like-state"
+    );
 
 
 let showSubscribe = true;
 
 
-setInterval(() => {
+/*
+   هر ۱۰ ثانیه تغییر می‌کند
+*/
 
-    if (showSubscribe) {
+setInterval(
+    () => {
 
-        /* نمایش LIKE */
+        if (showSubscribe) {
 
-        subscribeState.style.display = "none";
+            /* SUBSCRIBE → LIKE */
 
-        likeState.style.display = "flex";
+            subscribeState.style.display =
+                "none";
 
-
-        /* بزرگ شدن بسیار کوتاه آیکون Like */
-
-        const likeIcon =
-            likeState.querySelector(".like-icon");
+            likeState.style.display =
+                "flex";
 
 
-        likeIcon.animate(
-            [
+            /*
+               بزرگ شدن بسیار ظریف
+               آیکون Like
+            */
+
+            const likeIcon =
+                likeState.querySelector(
+                    ".like-icon"
+                );
+
+
+            likeIcon.animate(
+                [
+                    {
+                        transform:
+                            "scale(1)"
+                    },
+
+                    {
+                        transform:
+                            "scale(1.10)"
+                    },
+
+                    {
+                        transform:
+                            "scale(1)"
+                    }
+                ],
                 {
-                    transform: "scale(1)"
-                },
-
-                {
-                    transform: "scale(1.10)"
-                },
-
-                {
-                    transform: "scale(1)"
+                    duration: 450,
+                    easing: "ease-out"
                 }
-            ],
-            {
-                duration: 450,
-                easing: "ease-out"
-            }
-        );
+            );
 
-    }
+        }
 
-    else {
+        else {
 
-        /* نمایش SUBSCRIBE */
+            /* LIKE → SUBSCRIBE */
 
-        likeState.style.display = "none";
+            likeState.style.display =
+                "none";
 
-        subscribeState.style.display = "flex";
+            subscribeState.style.display =
+                "flex";
 
-    }
+        }
 
 
-    showSubscribe = !showSubscribe;
+        showSubscribe =
+            !showSubscribe;
 
-
-}, 10000);
+    },
+    10000
+);
 
 </script>
 
