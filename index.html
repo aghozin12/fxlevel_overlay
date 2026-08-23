@@ -225,6 +225,7 @@ body::before {
 
     background: rgba(0, 0, 0, 0.35);
     border: 2px solid #00ff88;
+
     box-shadow:
         0 0 14px #00ff88,
         inset 0 0 14px #00ff88;
@@ -232,14 +233,77 @@ body::before {
     display: flex;
     justify-content: space-between;
     align-items: center;
+
     padding: 0 40px;
     box-sizing: border-box;
 }
 
+
 /* آیتم‌های نوار پایین */
+.bottom-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
+/* متن‌های نوار پایین */
 .bottom-item span {
     color: #4da6ff;
-    text-shadow: 0 0 60px #4da6ff;
+    text-shadow: 0 0 6px #4da6ff;
+    font-size: 24px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+}
+
+
+/* آیکون‌های نوار پایین */
+.bottom-icon {
+    width: 40px;
+    height: 40px;
+
+    stroke: #ffffff;
+    fill: none;
+
+    display: flex;
+    align-items: center;
+
+    filter: drop-shadow(0 0 4px #ffb347);
+}
+
+
+/* جداکننده پایین */
+.bottom-divider {
+    width: 1px;
+    height: 45%;
+    background: rgba(255,255,255,0.35);
+}
+
+
+/* SUBSCRIBE افکت ملایم */
+.subscribe span {
+    font-size: 24px;
+    animation: softGlow 2.5s infinite ease-in-out;
+}
+
+
+/* انیمیشن SUBSCRIBE */
+@keyframes softGlow {
+    0% {
+        text-shadow: 0 0 4px #00ff88;
+        opacity: 0.8;
+    }
+
+    50% {
+        text-shadow: 0 0 12px #00ff88;
+        opacity: 1;
+    }
+
+    100% {
+        text-shadow: 0 0 4px #00ff88;
+        opacity: 0.8;
+    }
 }
 
 /* آیکون‌های پایین */
