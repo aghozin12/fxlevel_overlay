@@ -16,9 +16,7 @@ html, body {
     margin: 0;
     padding: 0;
     overflow: hidden;
-
     background: #808080;
-
     font-family: Arial, sans-serif;
     color: white;
 }
@@ -45,7 +43,6 @@ body::before {
         );
 
     background-size: 40px 40px;
-
     pointer-events: none;
 }
 
@@ -155,7 +152,6 @@ body::before {
     height: 40px;
 
     stroke: #ffffff;
-
     fill: none;
 
     filter:
@@ -281,6 +277,27 @@ body::before {
 
 
 /* =====================================================
+   فونت یکسان تمام نوشته‌های نوار پایین
+===================================================== */
+
+.bottom-item span {
+    font-family: Arial, sans-serif;
+
+    font-size: 18px;
+
+    font-weight: bold;
+
+    line-height: 1;
+
+    display: flex;
+
+    align-items: center;
+
+    white-space: nowrap;
+}
+
+
+/* =====================================================
    آیتم‌های نوار پایین
 ===================================================== */
 
@@ -293,19 +310,11 @@ body::before {
 }
 
 
-/* متن‌های نوار پایین */
+/* =====================================================
+   رنگ متن‌های معمولی نوار پایین
+===================================================== */
 
-.bottom-item span {
-    font-size: 18px;
-
-    line-height: 1;
-
-    display: flex;
-
-    align-items: center;
-
-    white-space: nowrap;
-
+.bottom-item:not(.subscribe) span {
     color: #4da6ff;
 
     text-shadow:
@@ -337,30 +346,8 @@ body::before {
 
 
 /* =====================================================
-   جداکننده‌های نوار پایین
+   بخش ثابت SUBSCRIBE / LIKE
 ===================================================== */
-
-.bottom-divider {
-    width: 1px;
-
-    height: 45%;
-
-    background:
-        rgba(255,255,255,0.35);
-
-    flex-shrink: 0;
-}
-
-
-/* =====================================================
-   قسمت ثابت SUBSCRIBE / LIKE
-===================================================== */
-
-/*
-   این قسمت عرض ثابتی دارد.
-   بنابراین وقتی SUBSCRIBE و LIKE
-   عوض می‌شوند، بقیه آیتم‌ها جابه‌جا نمی‌شوند.
-*/
 
 .subscribe {
     position: relative;
@@ -375,7 +362,10 @@ body::before {
 }
 
 
-/* هر دو حالت در یک موقعیت قرار دارند */
+/*
+   هر دو حالت در یک نقطه قرار می‌گیرند
+   تا نوار جابه‌جا نشود.
+*/
 
 .promo-state {
     position: absolute;
@@ -400,6 +390,8 @@ body::before {
 ===================================================== */
 
 .subscribe-state span {
+    font-family: Arial, sans-serif;
+
     font-size: 18px;
 
     font-weight: bold;
@@ -411,7 +403,9 @@ body::before {
 }
 
 
-/* زنگوله */
+/* =====================================================
+   زنگوله
+===================================================== */
 
 .bell-icon {
     stroke: #ff3333;
@@ -424,11 +418,10 @@ body::before {
 
 
 /*
-   زنگوله در وسط تایم ۱۰ ثانیه‌ای
-   حرکت می‌کند.
+   در هر ۱۰ ثانیه،
+   زنگوله دو بار لرزش دارد.
 
-   حدود ثانیه ۵:
-   چپ → راست → حالت عادی
+   حرکت اصلی در نیمه چرخه اتفاق می‌افتد.
 */
 
 .subscribe-state .bell-icon {
@@ -445,35 +438,56 @@ body::before {
         transform: rotate(0deg);
     }
 
-    /* تا نزدیک نیمه ثابت */
+
+    /* تا نیمه تقریباً ثابت */
 
     45% {
         transform: rotate(0deg);
     }
 
-    /* شروع حرکت */
+
+    /* لرزش اول */
 
     47% {
-        transform: rotate(-5deg);
+        transform: rotate(-6deg);
     }
 
-    49% {
-        transform: rotate(5deg);
+    48.5% {
+        transform: rotate(6deg);
     }
 
-    51% {
-        transform: rotate(-3deg);
+    50% {
+        transform: rotate(-4deg);
     }
+
+    51.5% {
+        transform: rotate(0deg);
+    }
+
+
+    /* مکث کوتاه */
+
+
+    /* لرزش دوم */
 
     53% {
+        transform: rotate(-6deg);
+    }
+
+    54.5% {
+        transform: rotate(6deg);
+    }
+
+    56% {
+        transform: rotate(-4deg);
+    }
+
+    57.5% {
         transform: rotate(0deg);
     }
 
-    /* ادامه آرام */
 
-    55% {
-        transform: rotate(0deg);
-    }
+    /* پایان */
 
     100% {
         transform: rotate(0deg);
@@ -491,6 +505,8 @@ body::before {
 
 
 .like-state span {
+    font-family: Arial, sans-serif;
+
     font-size: 18px;
 
     font-weight: bold;
@@ -511,6 +527,67 @@ body::before {
         drop-shadow(0 0 4px #4da6ff);
 
     transform-origin: center;
+}
+
+
+/* =====================================================
+   انیمیشن لایک
+===================================================== */
+
+/*
+   وقتی LIKE نمایش داده می‌شود،
+   دو بار کوچک و بزرگ می‌شود.
+*/
+
+.like-pulse {
+    animation:
+        likePulse 10s ease-in-out infinite;
+}
+
+
+@keyframes likePulse {
+
+    /* شروع */
+
+    0% {
+        transform: scale(0.82);
+    }
+
+
+    /* حرکت اول */
+
+    8% {
+        transform: scale(1.10);
+    }
+
+    15% {
+        transform: scale(0.88);
+    }
+
+
+    /* حرکت دوم */
+
+    22% {
+        transform: scale(1.12);
+    }
+
+    29% {
+        transform: scale(0.88);
+    }
+
+
+    /* برگشت آرام */
+
+    38% {
+        transform: scale(1);
+    }
+
+
+    /* بقیه زمان ثابت */
+
+    100% {
+        transform: scale(1);
+    }
 }
 
 
@@ -1301,16 +1378,15 @@ const likeIcon =
 
 
 /*
-   هر ۱۰ ثانیه تغییر می‌کند
+   هر ۱۰ ثانیه تغییر می‌کند.
 */
 
 setInterval(
     function () {
 
-        /*
-           اگر الان SUBSCRIBE است،
-           آن را به LIKE تبدیل کن.
-        */
+        /* =============================================
+           SUBSCRIBE → LIKE
+        ============================================= */
 
         if (
             subscribeState.style.display !== "none"
@@ -1324,41 +1400,28 @@ setInterval(
 
 
             /*
-               شروع انیمیشن لایک
-               از کوچک → بزرگ → اندازه عادی
+               انیمیشن لایک از کوچک به بزرگ
+               دو بار در چرخه ۱۰ ثانیه‌ای
             */
 
-            likeIcon.animate(
-                [
-                    {
-                        transform:
-                            "scale(0.78)"
-                    },
+            likeIcon.classList.remove(
+                "like-pulse"
+            );
 
-                    {
-                        transform:
-                            "scale(1.12)"
-                    },
 
-                    {
-                        transform:
-                            "scale(1)"
-                    }
-                ],
-                {
-                    duration: 700,
+            void likeIcon.offsetWidth;
 
-                    easing:
-                        "cubic-bezier(0.22, 1, 0.36, 1)"
-                }
+
+            likeIcon.classList.add(
+                "like-pulse"
             );
 
         }
 
-        /*
-           اگر الان LIKE است،
-           آن را به SUBSCRIBE تبدیل کن.
-        */
+
+        /* =============================================
+           LIKE → SUBSCRIBE
+        ============================================= */
 
         else {
 
