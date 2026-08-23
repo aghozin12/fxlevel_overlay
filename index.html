@@ -1,54 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
-
 <title>FX LEVEL Overlay</title>
 
 <style>
 
 /* =====================================================
-   PAGE
+   صفحه اصلی
 ===================================================== */
 
 html, body {
-
     width: 1920px;
     height: 1080px;
-
     margin: 0;
     padding: 0;
-
     overflow: hidden;
-
     background: #808080;
-
     font-family: Arial, sans-serif;
-
     color: white;
 }
 
 
 /* =====================================================
-   BACKGROUND GRID
+   شبکه پس‌زمینه
 ===================================================== */
 
 body::before {
-
     content: "";
-
     position: absolute;
-
     inset: 0;
 
     background-image:
-
         linear-gradient(
             rgba(0,255,136,0.40) 1px,
             transparent 1px
         ),
-
         linear-gradient(
             90deg,
             rgba(0,255,136,0.40) 1px,
@@ -56,17 +43,15 @@ body::before {
         );
 
     background-size: 40px 40px;
-
     pointer-events: none;
 }
 
 
 /* =====================================================
-   MAIN FRAME
+   فریم اصلی
 ===================================================== */
 
 .main-frame {
-
     position: absolute;
 
     top: 40px;
@@ -76,37 +61,31 @@ body::before {
     height: calc(100% - 80px);
 
     clip-path: polygon(
-
         25px 0,
         calc(100% - 25px) 0,
-
         100% 25px,
         100% calc(100% - 25px),
-
         calc(100% - 25px) 100%,
         25px 100%,
-
         0 calc(100% - 25px),
         0 25px
     );
 
-    background: rgba(0,0,0,0.18);
+    background: rgba(0, 0, 0, 0.18);
 
     border: 3px solid #00ff88;
 
     box-shadow:
-
         0 0 25px #00ff88,
         inset 0 0 25px #00ff88;
 }
 
 
 /* =====================================================
-   TOP BAR
+   نوار بالا
 ===================================================== */
 
 .top-bar {
-
     position: absolute;
 
     top: 55px;
@@ -118,30 +97,25 @@ body::before {
     height: 90px;
 
     clip-path: polygon(
-
         18px 0,
         calc(100% - 18px) 0,
-
         100% 18px,
         100% 100%,
-
         0 100%,
         0 18px
     );
 
-    background: rgba(0,0,0,0.35);
+    background: rgba(0, 0, 0, 0.35);
 
     border: 2px solid #00ff88;
 
     box-shadow:
-
         0 0 14px #00ff88,
         inset 0 0 14px #00ff88;
 
     display: flex;
 
     justify-content: space-between;
-
     align-items: center;
 
     padding: 0 35px;
@@ -151,11 +125,10 @@ body::before {
 
 
 /* =====================================================
-   TOP ITEMS
+   آیتم‌های نوار بالا
 ===================================================== */
 
 .top-item {
-
     flex: 1;
 
     display: flex;
@@ -163,9 +136,7 @@ body::before {
     justify-content: center;
 }
 
-
 .item-row {
-
     display: flex;
 
     align-items: center;
@@ -174,17 +145,13 @@ body::before {
 }
 
 
-/* =====================================================
-   TOP ICONS
-===================================================== */
+/* آیکون‌های بالا */
 
 .icon {
-
     width: 40px;
     height: 40px;
 
     stroke: #ffffff;
-
     fill: none;
 
     filter:
@@ -192,12 +159,9 @@ body::before {
 }
 
 
-/* =====================================================
-   TOP TEXT
-===================================================== */
+/* متن‌های بالا */
 
 .text-box {
-
     display: flex;
 
     flex-direction: column;
@@ -207,7 +171,6 @@ body::before {
 
 
 .text-box span:first-child {
-
     font-size: 14px;
 
     color: #ffae4a;
@@ -218,7 +181,6 @@ body::before {
 
 
 .text-box span:last-child {
-
     font-size: 22px;
 
     font-weight: bold;
@@ -230,12 +192,9 @@ body::before {
 }
 
 
-/* =====================================================
-   TOP DIVIDER
-===================================================== */
+/* جداکننده بالا */
 
 .divider {
-
     width: 1px;
 
     height: 60%;
@@ -246,11 +205,10 @@ body::before {
 
 
 /* =====================================================
-   WEBCAM
+   وبکم
 ===================================================== */
 
 .webcam-frame {
-
     position: absolute;
 
     bottom: 170px;
@@ -264,23 +222,21 @@ body::before {
     border-radius: 0;
 
     background:
-        rgba(0,0,0,0.18);
+        rgba(0, 0, 0, 0.18);
 
     box-shadow:
-
-        0 0 25px rgba(0,255,102,1),
-        0 0 55px rgba(0,255,102,0.85),
-        0 0 110px rgba(0,255,102,0.65),
-        0 0 160px rgba(0,255,102,0.45);
+        0 0 25px rgba(0, 255, 102, 1),
+        0 0 55px rgba(0, 255, 102, 0.85),
+        0 0 110px rgba(0, 255, 102, 0.65),
+        0 0 160px rgba(0, 255, 102, 0.45);
 }
 
 
 /* =====================================================
-   BOTTOM BAR
+   نوار پایین
 ===================================================== */
 
 .bottom-bar {
-
     position: absolute;
 
     bottom: 55px;
@@ -292,33 +248,26 @@ body::before {
     height: 80px;
 
     clip-path: polygon(
-
         0 0,
         100% 0,
-
         100% calc(100% - 18px),
-
         calc(100% - 18px) 100%,
-
         18px 100%,
-
         0 calc(100% - 18px)
     );
 
     background:
-        rgba(0,0,0,0.35);
+        rgba(0, 0, 0, 0.35);
 
     border: 2px solid #00ff88;
 
     box-shadow:
-
         0 0 14px #00ff88,
         inset 0 0 14px #00ff88;
 
     display: flex;
 
     justify-content: space-between;
-
     align-items: center;
 
     padding: 0 40px;
@@ -328,25 +277,10 @@ body::before {
 
 
 /* =====================================================
-   BOTTOM ITEMS
-===================================================== */
-
-.bottom-item {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 10px;
-}
-
-
-/* =====================================================
-   BOTTOM FONT
+   فونت یکسان تمام نوشته‌های نوار پایین
 ===================================================== */
 
 .bottom-item span {
-
     font-family: Arial, sans-serif;
 
     font-size: 18px;
@@ -360,7 +294,27 @@ body::before {
     align-items: center;
 
     white-space: nowrap;
+}
 
+
+/* =====================================================
+   آیتم‌های نوار پایین
+===================================================== */
+
+.bottom-item {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+
+/* =====================================================
+   رنگ متن‌های معمولی نوار پایین
+===================================================== */
+
+.bottom-item:not(.subscribe) span {
     color: #4da6ff;
 
     text-shadow:
@@ -369,17 +323,20 @@ body::before {
 
 
 /* =====================================================
-   BOTTOM ICON
+   آیکون‌های نوار پایین
 ===================================================== */
 
 .bottom-icon {
-
     width: 40px;
     height: 40px;
 
     stroke: #ffffff;
 
     fill: none;
+
+    display: flex;
+
+    align-items: center;
 
     flex-shrink: 0;
 
@@ -389,11 +346,10 @@ body::before {
 
 
 /* =====================================================
-   SUBSCRIBE / LIKE FIXED AREA
+   بخش ثابت SUBSCRIBE / LIKE
 ===================================================== */
 
 .subscribe {
-
     position: relative;
 
     width: 145px;
@@ -406,8 +362,12 @@ body::before {
 }
 
 
-.promo-state {
+/*
+   هر دو حالت در یک نقطه قرار می‌گیرند
+   تا نوار جابه‌جا نشود.
+*/
 
+.promo-state {
     position: absolute;
 
     left: 0;
@@ -430,6 +390,11 @@ body::before {
 ===================================================== */
 
 .subscribe-state span {
+    font-family: Arial, sans-serif;
+
+    font-size: 18px;
+
+    font-weight: bold;
 
     color: #ff3333;
 
@@ -439,11 +404,10 @@ body::before {
 
 
 /* =====================================================
-   BELL
+   زنگوله
 ===================================================== */
 
 .bell-icon {
-
     stroke: #ff3333;
 
     filter:
@@ -453,8 +417,14 @@ body::before {
 }
 
 
-.subscribe-state .bell-icon {
+/*
+   در هر ۱۰ ثانیه،
+   زنگوله دو بار لرزش دارد.
 
+   حرکت اصلی در نیمه چرخه اتفاق می‌افتد.
+*/
+
+.subscribe-state .bell-icon {
     animation:
         bellMiddle 10s ease-in-out infinite;
 }
@@ -462,49 +432,62 @@ body::before {
 
 @keyframes bellMiddle {
 
+    /* شروع */
+
     0% {
         transform: rotate(0deg);
     }
 
-    44% {
+
+    /* تا نیمه تقریباً ثابت */
+
+    45% {
         transform: rotate(0deg);
     }
+
 
     /* لرزش اول */
 
-    46% {
+    47% {
         transform: rotate(-6deg);
     }
 
-    47.5% {
+    48.5% {
         transform: rotate(6deg);
     }
 
-    49% {
+    50% {
         transform: rotate(-4deg);
     }
 
-    50.5% {
+    51.5% {
         transform: rotate(0deg);
     }
+
+
+    /* مکث کوتاه */
+
 
     /* لرزش دوم */
 
-    52% {
+    53% {
         transform: rotate(-6deg);
     }
 
-    53.5% {
+    54.5% {
         transform: rotate(6deg);
     }
 
-    55% {
+    56% {
         transform: rotate(-4deg);
     }
 
-    56.5% {
+    57.5% {
         transform: rotate(0deg);
     }
+
+
+    /* پایان */
 
     100% {
         transform: rotate(0deg);
@@ -517,12 +500,16 @@ body::before {
 ===================================================== */
 
 .like-state {
-
     display: none;
 }
 
 
 .like-state span {
+    font-family: Arial, sans-serif;
+
+    font-size: 18px;
+
+    font-weight: bold;
 
     color: #4da6ff;
 
@@ -531,8 +518,9 @@ body::before {
 }
 
 
-.like-icon {
+/* آیکون لایک */
 
+.like-icon {
     stroke: #4da6ff;
 
     filter:
@@ -543,11 +531,15 @@ body::before {
 
 
 /* =====================================================
-   LIKE ANIMATION
+   انیمیشن لایک
 ===================================================== */
 
-.like-pulse {
+/*
+   وقتی LIKE نمایش داده می‌شود،
+   دو بار کوچک و بزرگ می‌شود.
+*/
 
+.like-pulse {
     animation:
         likePulse 10s ease-in-out infinite;
 }
@@ -555,33 +547,43 @@ body::before {
 
 @keyframes likePulse {
 
+    /* شروع */
+
     0% {
-        transform: scale(0.78);
+        transform: scale(0.82);
     }
 
-    /* بزرگ شدن اول */
+
+    /* حرکت اول */
 
     8% {
-        transform: scale(1.12);
+        transform: scale(1.10);
     }
 
     15% {
-        transform: scale(0.84);
+        transform: scale(0.88);
     }
 
-    /* بزرگ شدن دوم */
 
-    23% {
-        transform: scale(1.14);
+    /* حرکت دوم */
+
+    22% {
+        transform: scale(1.12);
     }
 
-    30% {
-        transform: scale(0.84);
+    29% {
+        transform: scale(0.88);
     }
+
+
+    /* برگشت آرام */
 
     38% {
         transform: scale(1);
     }
+
+
+    /* بقیه زمان ثابت */
 
     100% {
         transform: scale(1);
@@ -594,7 +596,6 @@ body::before {
 ===================================================== */
 
 .vip {
-
     position: relative;
 
     overflow: hidden;
@@ -602,7 +603,6 @@ body::before {
 
 
 .vip span {
-
     animation:
         vipPulse 1.8s infinite ease-in-out;
 }
@@ -627,8 +627,9 @@ body::before {
 }
 
 
-.vip .shine {
+/* Shine */
 
+.vip .shine {
     position: absolute;
 
     top: 0;
@@ -638,7 +639,6 @@ body::before {
     height: 100%;
 
     background:
-
         linear-gradient(
             120deg,
             transparent,
@@ -674,14 +674,14 @@ body::before {
 
 
 <!-- =====================================================
-     MAIN FRAME
+     فریم اصلی
 ===================================================== -->
 
 <div class="main-frame"></div>
 
 
 <!-- =====================================================
-     TOP BAR
+     نوار بالا
 ===================================================== -->
 
 <div class="top-bar">
@@ -693,10 +693,7 @@ body::before {
 
         <div class="item-row">
 
-            <svg
-                class="icon"
-                viewBox="0 0 24 24"
-            >
+            <svg class="icon" viewBox="0 0 24 24">
 
                 <circle
                     cx="12"
@@ -737,10 +734,7 @@ body::before {
 
         <div class="item-row">
 
-            <svg
-                class="icon"
-                viewBox="0 0 24 24"
-            >
+            <svg class="icon" viewBox="0 0 24 24">
 
                 <path
                     d="M12 1v22M1 12h22"
@@ -774,10 +768,7 @@ body::before {
 
         <div class="item-row">
 
-            <svg
-                class="icon"
-                viewBox="0 0 24 24"
-            >
+            <svg class="icon" viewBox="0 0 24 24">
 
                 <circle
                     cx="12"
@@ -818,10 +809,7 @@ body::before {
 
         <div class="item-row">
 
-            <svg
-                class="icon"
-                viewBox="0 0 24 24"
-            >
+            <svg class="icon" viewBox="0 0 24 24">
 
                 <rect
                     x="3"
@@ -867,10 +855,7 @@ body::before {
 
         <div class="item-row">
 
-            <svg
-                class="icon"
-                viewBox="0 0 24 24"
-            >
+            <svg class="icon" viewBox="0 0 24 24">
 
                 <rect
                     x="3"
@@ -918,14 +903,14 @@ body::before {
 
 
 <!-- =====================================================
-     WEBCAM
+     وبکم
 ===================================================== -->
 
 <div class="webcam-frame"></div>
 
 
 <!-- =====================================================
-     BOTTOM BAR
+     نوار پایین
 ===================================================== -->
 
 <div class="bottom-bar">
@@ -1197,11 +1182,10 @@ body::before {
 
 
 /* =====================================================
-   CLOCKS / DATE / SESSION
+   ساعت و تاریخ
 ===================================================== */
 
 function updateClocks() {
-
 
     const tehranTime =
         new Date().toLocaleTimeString(
@@ -1261,17 +1245,13 @@ function updateClocks() {
 
 
     const sessionName =
-
         (
             tehranHour < 16 ||
-
             (
                 tehranHour === 16 &&
                 tehranMinute < 30
             )
-
         )
-
         ? "London"
         : "New York";
 
@@ -1302,72 +1282,29 @@ setInterval(
     1000
 );
 
-
 updateClocks();
 
 
 /* =====================================================
-   NEWS - MARKETWATCH
-===================================================== */
-
-let newsTitles = [];
-
-let newsIndex = 0;
-
-
-/* =====================================================
-   دریافت اخبار
+   خبر
 ===================================================== */
 
 async function updateNews() {
 
-
-    const newsElement =
-        document.getElementById(
-            "news-value"
-        );
-
-
     try {
-
-
-        newsElement.innerText =
-            "Loading...";
-
 
         const rssUrl =
             "https://www.marketwatch.com/rss/topstories";
 
 
-        const proxyUrl =
-
-            "https://api.allorigins.win/raw?url=" +
-
-            encodeURIComponent(
-                rssUrl
-            );
-
-
         const response =
             await fetch(
-                proxyUrl,
-                {
-                    method: "GET",
-                    cache: "no-store"
-                }
+                `https://api.allorigins.win/get?url=${encodeURIComponent(rssUrl)}`
             );
 
 
-        if (!response.ok) {
-
-            throw new Error(
-                "MarketWatch request failed"
-            );
-        }
-
-
-        const xmlText =
-            await response.text();
+        const data =
+            await response.json();
 
 
         const parser =
@@ -1376,178 +1313,45 @@ async function updateNews() {
 
         const xml =
             parser.parseFromString(
-                xmlText,
+                data.contents,
                 "text/xml"
             );
 
 
-        const items =
-            xml.querySelectorAll(
-                "item"
-            );
+        const firstItem =
+            xml.querySelector(
+                "item > title"
+            ).textContent;
 
 
-        if (!items.length) {
-
-            throw new Error(
-                "No news items found"
-            );
-        }
+        const shortTitle =
+            firstItem.length > 55
+                ? firstItem.slice(0, 55) + "..."
+                : firstItem;
 
 
-        newsTitles = [];
-
-
-        items.forEach(
-            item => {
-
-
-                const title =
-                    item.querySelector(
-                        "title"
-                    );
-
-
-                if (title) {
-
-
-                    const text =
-                        title.textContent
-                        .trim();
-
-
-                    if (
-                        text.length > 0
-                    ) {
-
-                        newsTitles.push(
-                            text
-                        );
-
-                    }
-
-                }
-
-            }
-        );
-
-
-        if (
-            !newsTitles.length
-        ) {
-
-            throw new Error(
-                "No news titles found"
-            );
-        }
-
-
-        newsIndex = 0;
-
-
-        showNews();
-
-
-    }
-
-    catch (error) {
-
-
-        console.log(
-            "MarketWatch NEWS Error:",
-            error
-        );
-
-
-        newsElement.innerText =
-            "NEWS UNAVAILABLE";
-    }
-}
-
-
-/* =====================================================
-   نمایش خبر
-===================================================== */
-
-function showNews() {
-
-
-    const newsElement =
         document.getElementById(
             "news-value"
-        );
+        ).innerText = shortTitle;
 
-
-    if (
-        !newsTitles ||
-        newsTitles.length === 0
-    ) {
-
-        return;
     }
 
+    catch (e) {
 
-    let title =
-        newsTitles[
-            newsIndex
-        ];
+        document.getElementById(
+            "news-value"
+        ).innerText = "Loading...";
 
-
-    if (
-        title.length > 55
-    ) {
-
-        title =
-            title.substring(
-                0,
-                55
-            ) + "...";
-    }
-
-
-    newsElement.innerText =
-        title;
-
-
-    newsIndex++;
-
-
-    if (
-        newsIndex >=
-        newsTitles.length
-    ) {
-
-        newsIndex = 0;
     }
 }
 
-
-/* =====================================================
-   NEWS START
-===================================================== */
 
 updateNews();
 
 
-/*
-   دریافت دوباره اخبار
-   هر ۳۰ ثانیه
-*/
-
 setInterval(
     updateNews,
     30000
-);
-
-
-/*
-   تغییر عنوان خبر
-   هر ۶ ثانیه
-*/
-
-setInterval(
-    showNews,
-    6000
 );
 
 
@@ -1574,31 +1378,31 @@ const likeIcon =
 
 
 /*
-   هر ۱۰ ثانیه
-   Subscribe و Like عوض می‌شوند.
+   هر ۱۰ ثانیه تغییر می‌کند.
 */
 
 setInterval(
-    function() {
+    function () {
 
-
-        /*
+        /* =============================================
            SUBSCRIBE → LIKE
-        */
+        ============================================= */
 
         if (
-            subscribeState.style.display
-            !== "none"
+            subscribeState.style.display !== "none"
         ) {
-
 
             subscribeState.style.display =
                 "none";
 
-
             likeState.style.display =
                 "flex";
 
+
+            /*
+               انیمیشن لایک از کوچک به بزرگ
+               دو بار در چرخه ۱۰ ثانیه‌ای
+            */
 
             likeIcon.classList.remove(
                 "like-pulse"
@@ -1612,20 +1416,17 @@ setInterval(
                 "like-pulse"
             );
 
-
         }
 
 
-        /*
+        /* =============================================
            LIKE → SUBSCRIBE
-        */
+        ============================================= */
 
         else {
 
-
             likeState.style.display =
                 "none";
-
 
             subscribeState.style.display =
                 "flex";
@@ -1633,7 +1434,6 @@ setInterval(
         }
 
     },
-
     10000
 );
 
