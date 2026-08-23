@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,9 +6,9 @@
 
 <style>
 
-/* =========================
+/* =====================================================
    صفحه اصلی
-========================= */
+===================================================== */
 
 html, body {
     width: 1920px;
@@ -17,15 +16,17 @@ html, body {
     margin: 0;
     padding: 0;
     overflow: hidden;
+
     background: #808080;
+
     font-family: Arial, sans-serif;
     color: white;
 }
 
 
-/* =========================
+/* =====================================================
    شبکه پس‌زمینه
-========================= */
+===================================================== */
 
 body::before {
     content: "";
@@ -33,20 +34,29 @@ body::before {
     inset: 0;
 
     background-image:
-        linear-gradient(rgba(0,255,136,0.40) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,255,136,0.40) 1px, transparent 1px);
+        linear-gradient(
+            rgba(0,255,136,0.40) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(0,255,136,0.40) 1px,
+            transparent 1px
+        );
 
     background-size: 40px 40px;
+
     pointer-events: none;
 }
 
 
-/* =========================
+/* =====================================================
    فریم اصلی
-========================= */
+===================================================== */
 
 .main-frame {
     position: absolute;
+
     top: 40px;
     left: 40px;
 
@@ -74,12 +84,13 @@ body::before {
 }
 
 
-/* =========================
+/* =====================================================
    نوار بالا
-========================= */
+===================================================== */
 
 .top-bar {
     position: absolute;
+
     top: 55px;
     left: 50%;
 
@@ -106,28 +117,33 @@ body::before {
         inset 0 0 14px #00ff88;
 
     display: flex;
+
     justify-content: space-between;
     align-items: center;
 
     padding: 0 35px;
+
     box-sizing: border-box;
 }
 
 
-/* =========================
+/* =====================================================
    آیتم‌های نوار بالا
-========================= */
+===================================================== */
 
 .top-item {
     flex: 1;
 
     display: flex;
+
     justify-content: center;
 }
 
 .item-row {
     display: flex;
+
     align-items: center;
+
     gap: 14px;
 }
 
@@ -139,9 +155,11 @@ body::before {
     height: 40px;
 
     stroke: #ffffff;
+
     fill: none;
 
-    filter: drop-shadow(0 0 6px #00ff88);
+    filter:
+        drop-shadow(0 0 6px #00ff88);
 }
 
 
@@ -149,24 +167,32 @@ body::before {
 
 .text-box {
     display: flex;
+
     flex-direction: column;
+
     line-height: 1.1;
 }
 
+
 .text-box span:first-child {
     font-size: 14px;
+
     color: #ffae4a;
 
-    text-shadow: 0 0 6px #ffae4a;
+    text-shadow:
+        0 0 6px #ffae4a;
 }
+
 
 .text-box span:last-child {
     font-size: 22px;
+
     font-weight: bold;
 
     color: #00ff88;
 
-    text-shadow: 0 0 8px #00ff88;
+    text-shadow:
+        0 0 8px #00ff88;
 }
 
 
@@ -174,15 +200,17 @@ body::before {
 
 .divider {
     width: 1px;
+
     height: 60%;
 
-    background: rgba(255,255,255,0.35);
+    background:
+        rgba(255,255,255,0.35);
 }
 
 
-/* =========================
+/* =====================================================
    وبکم
-========================= */
+===================================================== */
 
 .webcam-frame {
     position: absolute;
@@ -194,9 +222,11 @@ body::before {
     height: 250px;
 
     border: 4px solid #00ff66;
+
     border-radius: 0;
 
-    background: rgba(0, 0, 0, 0.18);
+    background:
+        rgba(0, 0, 0, 0.18);
 
     box-shadow:
         0 0 25px rgba(0, 255, 102, 1),
@@ -206,9 +236,9 @@ body::before {
 }
 
 
-/* =========================
+/* =====================================================
    نوار پایین
-========================= */
+===================================================== */
 
 .bottom-bar {
     position: absolute;
@@ -230,7 +260,8 @@ body::before {
         0 calc(100% - 18px)
     );
 
-    background: rgba(0, 0, 0, 0.35);
+    background:
+        rgba(0, 0, 0, 0.35);
 
     border: 2px solid #00ff88;
 
@@ -239,6 +270,7 @@ body::before {
         inset 0 0 14px #00ff88;
 
     display: flex;
+
     justify-content: space-between;
     align-items: center;
 
@@ -248,13 +280,15 @@ body::before {
 }
 
 
-/* =========================
+/* =====================================================
    آیتم‌های نوار پایین
-========================= */
+===================================================== */
 
 .bottom-item {
     display: flex;
+
     align-items: center;
+
     gap: 10px;
 }
 
@@ -262,61 +296,78 @@ body::before {
 /* متن‌های نوار پایین */
 
 .bottom-item span {
-    color: #4da6ff;
-
-    text-shadow:
-        0 0 6px #4da6ff;
-
     font-size: 18px;
 
     line-height: 1;
 
     display: flex;
+
     align-items: center;
 
     white-space: nowrap;
+
+    color: #4da6ff;
+
+    text-shadow:
+        0 0 6px #4da6ff;
 }
 
 
-/* آیکون‌های پایین */
+/* =====================================================
+   آیکون‌های نوار پایین
+===================================================== */
 
 .bottom-icon {
     width: 40px;
     height: 40px;
 
     stroke: #ffffff;
+
     fill: none;
 
     display: flex;
+
     align-items: center;
 
-    filter: drop-shadow(0 0 4px #ffb347);
+    flex-shrink: 0;
+
+    filter:
+        drop-shadow(0 0 4px #ffb347);
 }
 
 
-/* جداکننده پایین */
+/* =====================================================
+   جداکننده‌های نوار پایین
+===================================================== */
 
 .bottom-divider {
     width: 1px;
+
     height: 45%;
 
-    background: rgba(255,255,255,0.35);
+    background:
+        rgba(255,255,255,0.35);
 
     flex-shrink: 0;
 }
 
 
-/* =========================
-   SUBSCRIBE / LIKE
-========================= */
+/* =====================================================
+   قسمت ثابت SUBSCRIBE / LIKE
+===================================================== */
 
-/* عرض ثابت برای جلوگیری از جابه‌جایی بقیه آیتم‌ها */
+/*
+   این قسمت عرض ثابتی دارد.
+   بنابراین وقتی SUBSCRIBE و LIKE
+   عوض می‌شوند، بقیه آیتم‌ها جابه‌جا نمی‌شوند.
+*/
 
 .subscribe {
     position: relative;
 
     width: 145px;
     min-width: 145px;
+    max-width: 145px;
 
     height: 40px;
 
@@ -324,7 +375,7 @@ body::before {
 }
 
 
-/* حالت‌های Subscribe و Like */
+/* هر دو حالت در یک موقعیت قرار دارند */
 
 .promo-state {
     position: absolute;
@@ -335,6 +386,7 @@ body::before {
     transform: translateY(-50%);
 
     display: flex;
+
     align-items: center;
 
     gap: 10px;
@@ -343,24 +395,19 @@ body::before {
 }
 
 
-/* LIKE در ابتدا مخفی است */
-
-.like-state {
-    display: none;
-}
-
-
-/* =========================
+/* =====================================================
    SUBSCRIBE
-========================= */
+===================================================== */
 
 .subscribe-state span {
-    color: #ff3333;
-
     font-size: 18px;
 
+    font-weight: bold;
+
+    color: #ff3333;
+
     text-shadow:
-        0 0 5px rgba(255, 51, 51, 0.5);
+        0 0 5px rgba(255,51,51,0.55);
 }
 
 
@@ -376,51 +423,86 @@ body::before {
 }
 
 
-/* حرکت بسیار ظریف زنگوله */
+/*
+   زنگوله در وسط تایم ۱۰ ثانیه‌ای
+   حرکت می‌کند.
+
+   حدود ثانیه ۵:
+   چپ → راست → حالت عادی
+*/
 
 .subscribe-state .bell-icon {
     animation:
-        subtleBell 10s ease-in-out infinite;
+        bellMiddle 10s ease-in-out infinite;
 }
 
 
-@keyframes subtleBell {
+@keyframes bellMiddle {
 
-    0%,
-    96%,
-    100% {
+    /* شروع */
+
+    0% {
         transform: rotate(0deg);
     }
 
-    97% {
+    /* تا نزدیک نیمه ثابت */
+
+    45% {
+        transform: rotate(0deg);
+    }
+
+    /* شروع حرکت */
+
+    47% {
         transform: rotate(-5deg);
     }
 
-    98% {
+    49% {
         transform: rotate(5deg);
     }
 
-    99% {
-        transform: rotate(-2deg);
+    51% {
+        transform: rotate(-3deg);
+    }
+
+    53% {
+        transform: rotate(0deg);
+    }
+
+    /* ادامه آرام */
+
+    55% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
     }
 }
 
 
-/* =========================
+/* =====================================================
    LIKE
-========================= */
+===================================================== */
 
-.like-state span {
-    color: #4da6ff;
-
-    font-size: 18px;
-
-    text-shadow:
-        0 0 5px rgba(77, 166, 255, 0.5);
+.like-state {
+    display: none;
 }
 
 
-/* آیکون Like */
+.like-state span {
+    font-size: 18px;
+
+    font-weight: bold;
+
+    color: #4da6ff;
+
+    text-shadow:
+        0 0 5px rgba(77,166,255,0.55);
+}
+
+
+/* آیکون لایک */
 
 .like-icon {
     stroke: #4da6ff;
@@ -432,12 +514,13 @@ body::before {
 }
 
 
-/* =========================
+/* =====================================================
    VIP
-========================= */
+===================================================== */
 
 .vip {
     position: relative;
+
     overflow: hidden;
 }
 
@@ -513,16 +596,16 @@ body::before {
 <body>
 
 
-<!-- =========================
+<!-- =====================================================
      فریم اصلی
-========================= -->
+===================================================== -->
 
 <div class="main-frame"></div>
 
 
-<!-- =========================
+<!-- =====================================================
      نوار بالا
-========================= -->
+===================================================== -->
 
 <div class="top-bar">
 
@@ -742,23 +825,23 @@ body::before {
 </div>
 
 
-<!-- =========================
+<!-- =====================================================
      وبکم
-========================= -->
+===================================================== -->
 
 <div class="webcam-frame"></div>
 
 
-<!-- =========================
+<!-- =====================================================
      نوار پایین
-========================= -->
+===================================================== -->
 
 <div class="bottom-bar">
 
 
-    <!-- =====================
+    <!-- =================================================
          SUBSCRIBE / LIKE
-    ====================== -->
+    ================================================== -->
 
     <div
         class="bottom-item subscribe"
@@ -768,7 +851,9 @@ body::before {
 
         <!-- SUBSCRIBE -->
 
-        <div class="promo-state subscribe-state">
+        <div
+            class="promo-state subscribe-state"
+        >
 
             <svg
                 class="bottom-icon bell-icon"
@@ -800,7 +885,9 @@ body::before {
 
         <!-- LIKE -->
 
-        <div class="promo-state like-state">
+        <div
+            class="promo-state like-state"
+        >
 
             <svg
                 class="bottom-icon like-icon"
@@ -1010,16 +1097,16 @@ body::before {
 </div>
 
 
-<!-- =========================
+<!-- =====================================================
      JAVASCRIPT
-========================= -->
+===================================================== -->
 
 <script>
 
 
-/* =========================
-   ساعت‌ها
-========================= */
+/* =====================================================
+   ساعت و تاریخ
+===================================================== */
 
 function updateClocks() {
 
@@ -1080,7 +1167,7 @@ function updateClocks() {
         );
 
 
-    let sessionName =
+    const sessionName =
         (
             tehranHour < 16 ||
             (
@@ -1121,9 +1208,9 @@ setInterval(
 updateClocks();
 
 
-/* =========================
+/* =====================================================
    خبر
-========================= */
+===================================================== */
 
 async function updateNews() {
 
@@ -1184,15 +1271,16 @@ async function updateNews() {
 
 updateNews();
 
+
 setInterval(
     updateNews,
     30000
 );
 
 
-/* =========================
+/* =====================================================
    SUBSCRIBE / LIKE
-========================= */
+===================================================== */
 
 const subscribeState =
     document.querySelector(
@@ -1206,7 +1294,10 @@ const likeState =
     );
 
 
-let showSubscribe = true;
+const likeIcon =
+    document.querySelector(
+        ".like-icon"
+    );
 
 
 /*
@@ -1214,11 +1305,16 @@ let showSubscribe = true;
 */
 
 setInterval(
-    () => {
+    function () {
 
-        if (showSubscribe) {
+        /*
+           اگر الان SUBSCRIBE است،
+           آن را به LIKE تبدیل کن.
+        */
 
-            /* SUBSCRIBE → LIKE */
+        if (
+            subscribeState.style.display !== "none"
+        ) {
 
             subscribeState.style.display =
                 "none";
@@ -1228,26 +1324,20 @@ setInterval(
 
 
             /*
-               بزرگ شدن بسیار ظریف
-               آیکون Like
+               شروع انیمیشن لایک
+               از کوچک → بزرگ → اندازه عادی
             */
-
-            const likeIcon =
-                likeState.querySelector(
-                    ".like-icon"
-                );
-
 
             likeIcon.animate(
                 [
                     {
                         transform:
-                            "scale(1)"
+                            "scale(0.78)"
                     },
 
                     {
                         transform:
-                            "scale(1.10)"
+                            "scale(1.12)"
                     },
 
                     {
@@ -1256,16 +1346,21 @@ setInterval(
                     }
                 ],
                 {
-                    duration: 450,
-                    easing: "ease-out"
+                    duration: 700,
+
+                    easing:
+                        "cubic-bezier(0.22, 1, 0.36, 1)"
                 }
             );
 
         }
 
-        else {
+        /*
+           اگر الان LIKE است،
+           آن را به SUBSCRIBE تبدیل کن.
+        */
 
-            /* LIKE → SUBSCRIBE */
+        else {
 
             likeState.style.display =
                 "none";
@@ -1275,10 +1370,6 @@ setInterval(
 
         }
 
-
-        showSubscribe =
-            !showSubscribe;
-
     },
     10000
 );
@@ -1287,4 +1378,3 @@ setInterval(
 
 </body>
 </html>
-```
