@@ -10,7 +10,7 @@
 <style>
 
 /* =====================================================
-   PAGE
+   صفحه اصلی
 ===================================================== */
 
 html,
@@ -33,7 +33,7 @@ body {
 
 
 /* =====================================================
-   BACKGROUND GRID
+   شبکه پس‌زمینه
 ===================================================== */
 
 body::before {
@@ -64,7 +64,7 @@ body::before {
 
 
 /* =====================================================
-   MAIN FRAME
+   فریم اصلی
 ===================================================== */
 
 .main-frame {
@@ -90,7 +90,7 @@ body::before {
 
     );
 
-    background: rgba(0,0,0,0.18);
+    background: rgba(0, 0, 0, 0.18);
 
     border: 3px solid #00ff88;
 
@@ -102,7 +102,7 @@ body::before {
 
 
 /* =====================================================
-   TOP BAR
+   نوار بالا
 ===================================================== */
 
 .top-bar {
@@ -128,7 +128,7 @@ body::before {
 
     );
 
-    background: rgba(0,0,0,0.35);
+    background: rgba(0, 0, 0, 0.35);
 
     border: 2px solid #00ff88;
 
@@ -150,7 +150,7 @@ body::before {
 
 
 /* =====================================================
-   TOP ITEMS
+   آیتم‌های نوار بالا
 ===================================================== */
 
 .top-item {
@@ -174,7 +174,7 @@ body::before {
 
 
 /* =====================================================
-   ICONS
+   آیکون‌های بالا
 ===================================================== */
 
 .icon {
@@ -192,7 +192,7 @@ body::before {
 
 
 /* =====================================================
-   TEXT
+   متن‌های بالا
 ===================================================== */
 
 .text-box {
@@ -230,29 +230,7 @@ body::before {
 
 
 /* =====================================================
-   MARKET STATUS
-===================================================== */
-
-#market-value.market-open {
-
-    color: #00ff88;
-
-    text-shadow:
-        0 0 8px #00ff88;
-}
-
-
-#market-value.market-closed {
-
-    color: #ff3333;
-
-    text-shadow:
-        0 0 8px #ff3333;
-}
-
-
-/* =====================================================
-   DIVIDER
+   جداکننده بالا
 ===================================================== */
 
 .divider {
@@ -263,8 +241,6 @@ body::before {
 
     background:
         rgba(255,255,255,0.35);
-
-    flex-shrink: 0;
 }
 
 
@@ -282,7 +258,7 @@ body::before {
 
     align-items: center;
 
-    min-width: 360px;
+    min-width: 430px;
 
     position: relative;
 }
@@ -305,7 +281,7 @@ body::before {
 
 
 /* =====================================================
-   SESSION TITLE
+   عنوان SESSION
 ===================================================== */
 
 .session-map-title {
@@ -324,11 +300,13 @@ body::before {
         0 0 14px rgba(255,174,74,0.35);
 
     margin-bottom: 8px;
+
+    position: relative;
 }
 
 
 /* =====================================================
-   SESSION TRACK
+   مپ اصلی
 ===================================================== */
 
 .session-track {
@@ -348,7 +326,7 @@ body::before {
 
 
 /* =====================================================
-   SESSION NODE
+   Session Node
 ===================================================== */
 
 .session-node {
@@ -379,10 +357,6 @@ body::before {
 }
 
 
-/* =====================================================
-   SESSION NAME
-===================================================== */
-
 .session-name {
 
     position: relative;
@@ -398,7 +372,7 @@ body::before {
 
 
 /* =====================================================
-   DOT
+   Dot
 ===================================================== */
 
 .session-dot {
@@ -429,7 +403,7 @@ body::before {
 
 
 /* =====================================================
-   DOT HALO
+   Halo
 ===================================================== */
 
 .session-dot::before {
@@ -445,7 +419,7 @@ body::before {
     top: 50%;
 
     transform:
-        translate(-50%,-50%)
+        translate(-50%, -50%)
         scale(0.65);
 
     border-radius: 50%;
@@ -466,7 +440,7 @@ body::before {
 
 
 /* =====================================================
-   ACTIVE SESSION
+   Session Active
 ===================================================== */
 
 .session-node.active {
@@ -500,7 +474,7 @@ body::before {
     opacity: 0.65;
 
     transform:
-        translate(-50%,-50%)
+        translate(-50%, -50%)
         scale(1);
 
     border-color:
@@ -536,7 +510,7 @@ body::before {
     100% {
 
         transform:
-            translate(-50%,-50%)
+            translate(-50%, -50%)
             scale(0.75);
 
         opacity: 0.20;
@@ -545,7 +519,7 @@ body::before {
     50% {
 
         transform:
-            translate(-50%,-50%)
+            translate(-50%, -50%)
             scale(1.35);
 
         opacity: 0.75;
@@ -554,7 +528,7 @@ body::before {
 
 
 /* =====================================================
-   CONNECTOR
+   خط اتصال
 ===================================================== */
 
 .session-connector {
@@ -575,6 +549,7 @@ body::before {
 }
 
 
+.session-map.has-active
 .session-connector::after {
 
     content: "";
@@ -598,13 +573,6 @@ body::before {
             transparent
         );
 
-    opacity: 0;
-}
-
-
-.session-map.has-active
-.session-connector::after {
-
     animation:
         connectorSweep 3.2s ease-in-out infinite;
 
@@ -615,24 +583,21 @@ body::before {
 @keyframes connectorSweep {
 
     0% {
-
         left: -100%;
     }
 
     55% {
-
         left: 130%;
     }
 
     100% {
-
         left: 130%;
     }
 }
 
 
 /* =====================================================
-   OPEN WARNING
+   هشدار OPEN
 ===================================================== */
 
 .session-node.open-warning {
@@ -719,7 +684,7 @@ body::before {
     100% {
 
         transform:
-            translate(-50%,-50%)
+            translate(-50%, -50%)
             scale(0.65);
 
         opacity: 0.20;
@@ -728,7 +693,7 @@ body::before {
     50% {
 
         transform:
-            translate(-50%,-50%)
+            translate(-50%, -50%)
             scale(1.55);
 
         opacity: 0.85;
@@ -737,7 +702,7 @@ body::before {
 
 
 /* =====================================================
-   CLOSE WARNING
+   هشدار CLOSE
 ===================================================== */
 
 .session-node.close-warning {
@@ -824,7 +789,7 @@ body::before {
     100% {
 
         transform:
-            translate(-50%,-50%)
+            translate(-50%, -50%)
             scale(0.65);
 
         opacity: 0.20;
@@ -833,7 +798,7 @@ body::before {
     50% {
 
         transform:
-            translate(-50%,-50%)
+            translate(-50%, -50%)
             scale(1.55);
 
         opacity: 0.85;
@@ -842,25 +807,18 @@ body::before {
 
 
 /* =====================================================
-   WEEKEND / MARKET CLOSED
+   WEEKEND
 ===================================================== */
 
-.session-map.weekend .session-map-title {
-
-    color: #ffae4a;
-
-    text-shadow:
-        0 0 6px #ffae4a;
-}
-
-
-.session-map.weekend .session-node {
+.session-map.weekend
+.session-node {
 
     color: rgba(255,51,51,0.55);
 }
 
 
-.session-map.weekend .session-dot {
+.session-map.weekend
+.session-dot {
 
     background: #ff3333;
 
@@ -874,7 +832,8 @@ body::before {
 }
 
 
-.session-map.weekend .session-dot::before {
+.session-map.weekend
+.session-dot::before {
 
     border-color:
         rgba(255,51,51,0.45);
@@ -882,12 +841,13 @@ body::before {
     opacity: 0.55;
 
     transform:
-        translate(-50%,-50%)
+        translate(-50%, -50%)
         scale(0.9);
 }
 
 
-.session-map.weekend .session-active-label {
+.session-map.weekend
+.session-active-label {
 
     color: #ff3333;
 
@@ -918,7 +878,82 @@ body::before {
 
 
 /* =====================================================
-   ACTIVE LABEL
+   Session Timer
+===================================================== */
+
+.session-timer {
+
+    height: 17px;
+
+    margin-top: 3px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 6px;
+
+    font-size: 10px;
+
+    font-weight: bold;
+
+    letter-spacing: 1.3px;
+
+    white-space: nowrap;
+
+    color: #00ff88;
+
+    text-shadow:
+
+        0 0 5px #00ff88,
+        0 0 10px rgba(0,255,136,0.45);
+
+    opacity: 0;
+
+    transition:
+        opacity 0.3s ease;
+}
+
+
+.session-timer.visible {
+
+    opacity: 1;
+}
+
+
+.session-timer.closed {
+
+    color: #ff3333;
+
+    text-shadow:
+
+        0 0 5px #ff3333,
+        0 0 10px rgba(255,51,51,0.45);
+}
+
+
+.timer-name {
+
+    color: #ffae4a;
+
+    text-shadow:
+        0 0 5px #ffae4a;
+}
+
+
+.timer-count {
+
+    font-variant-numeric:
+        tabular-nums;
+
+    letter-spacing: 1.5px;
+}
+
+
+/* =====================================================
+   Active Label
 ===================================================== */
 
 .session-active-label {
@@ -978,13 +1013,11 @@ body::before {
 
     0%,
     100% {
-
         transform:
             translateY(2px);
     }
 
     50% {
-
         transform:
             translateY(-1px);
     }
@@ -992,131 +1025,7 @@ body::before {
 
 
 /* =====================================================
-   SESSION TIMER
-===================================================== */
-
-.session-timer {
-
-    min-width: 160px;
-
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-}
-
-
-.session-timer-box {
-
-    display: flex;
-
-    flex-direction: column;
-
-    align-items: center;
-
-    justify-content: center;
-
-    line-height: 1;
-
-    min-width: 150px;
-}
-
-
-.session-timer-label {
-
-    font-size: 11px;
-
-    font-weight: bold;
-
-    letter-spacing: 2px;
-
-    color: #ffae4a;
-
-    margin-bottom: 5px;
-
-    text-shadow:
-        0 0 6px #ffae4a;
-}
-
-
-.session-timer-value {
-
-    font-size: 20px;
-
-    font-weight: bold;
-
-    letter-spacing: 1px;
-
-    color: #00ff88;
-
-    text-shadow:
-
-        0 0 7px #00ff88,
-        0 0 14px rgba(0,255,136,0.55);
-
-    font-variant-numeric:
-        tabular-nums;
-}
-
-
-.session-timer-box.warning-close
-.session-timer-value {
-
-    color: #ff3333;
-
-    text-shadow:
-
-        0 0 7px #ff3333,
-        0 0 16px rgba(255,51,51,0.65);
-
-    animation:
-        timerWarningBlink 0.65s ease-in-out infinite;
-}
-
-
-.session-timer-box.warning-open
-.session-timer-value {
-
-    color: #00ff88;
-
-    text-shadow:
-
-        0 0 7px #00ff88,
-        0 0 16px rgba(0,255,136,0.65);
-
-    animation:
-        timerWarningBlink 0.72s ease-in-out infinite;
-}
-
-
-.session-timer-box.closed
-.session-timer-value {
-
-    color: #ff3333;
-
-    text-shadow:
-        0 0 7px #ff3333;
-}
-
-
-@keyframes timerWarningBlink {
-
-    0%,
-    100% {
-
-        opacity: 1;
-    }
-
-    50% {
-
-        opacity: 0.28;
-    }
-}
-
-
-/* =====================================================
-   WEBCAM
+   وبکم
 ===================================================== */
 
 .webcam-frame {
@@ -1134,19 +1043,19 @@ body::before {
     border-radius: 0;
 
     background:
-        rgba(0,0,0,0.18);
+        rgba(0, 0, 0, 0.18);
 
     box-shadow:
 
-        0 0 25px rgba(0,255,102,1),
-        0 0 55px rgba(0,255,102,0.85),
-        0 0 110px rgba(0,255,102,0.65),
-        0 0 160px rgba(0,255,102,0.45);
+        0 0 25px rgba(0, 255, 102, 1),
+        0 0 55px rgba(0, 255, 102, 0.85),
+        0 0 110px rgba(0, 255, 102, 0.65),
+        0 0 160px rgba(0, 255, 102, 0.45);
 }
 
 
 /* =====================================================
-   BOTTOM BAR
+   نوار پایین
 ===================================================== */
 
 .bottom-bar {
@@ -1173,7 +1082,7 @@ body::before {
     );
 
     background:
-        rgba(0,0,0,0.35);
+        rgba(0, 0, 0, 0.35);
 
     border: 2px solid #00ff88;
 
@@ -1195,7 +1104,7 @@ body::before {
 
 
 /* =====================================================
-   BOTTOM FONT
+   فونت نوار پایین
 ===================================================== */
 
 .bottom-item span {
@@ -1216,10 +1125,6 @@ body::before {
 }
 
 
-/* =====================================================
-   BOTTOM ITEMS
-===================================================== */
-
 .bottom-item {
 
     display: flex;
@@ -1230,10 +1135,6 @@ body::before {
 }
 
 
-/* =====================================================
-   BOTTOM NORMAL COLORS
-===================================================== */
-
 .bottom-item:not(.subscribe) span {
 
     color: #4da6ff;
@@ -1242,10 +1143,6 @@ body::before {
         0 0 6px #4da6ff;
 }
 
-
-/* =====================================================
-   BOTTOM DIVIDER
-===================================================== */
 
 .bottom-divider {
 
@@ -1259,10 +1156,6 @@ body::before {
     flex-shrink: 0;
 }
 
-
-/* =====================================================
-   BOTTOM ICONS
-===================================================== */
 
 .bottom-icon {
 
@@ -1335,10 +1228,6 @@ body::before {
         0 0 5px rgba(255,51,51,0.55);
 }
 
-
-/* =====================================================
-   BELL
-===================================================== */
 
 .bell-icon {
 
@@ -1522,10 +1411,6 @@ body::before {
 }
 
 
-/* =====================================================
-   SHINE
-===================================================== */
-
 .vip .shine {
 
     position: absolute;
@@ -1612,11 +1497,8 @@ body::before {
 
             <span>MARKET</span>
 
-            <span
-                id="market-value"
-                class="market-closed"
-            >
-                CLOSED
+            <span id="market-value">
+                OPEN
             </span>
 
         </div>
@@ -1633,10 +1515,7 @@ body::before {
      SESSION MAP
 ===================================================== -->
 
-<div
-    class="top-item session-map"
-    id="session-map"
->
+<div class="top-item session-map" id="session-map">
 
     <div class="session-map-inner">
 
@@ -1731,37 +1610,34 @@ body::before {
 
         </div>
 
-    </div>
 
-</div>
-
-
-<div class="divider"></div>
-
-
-<!-- =====================================================
-     SESSION TIMER
-===================================================== -->
-
-<div class="top-item session-timer">
-
-    <div
-        class="session-timer-box"
-        id="session-timer-box"
-    >
+        <!-- SESSION TIMER -->
 
         <div
-            class="session-timer-label"
-            id="session-timer-label"
+            class="session-timer"
+            id="session-timer"
         >
-            MARKET
-        </div>
 
-        <div
-            class="session-timer-value"
-            id="session-timer-value"
-        >
-            --:--:--
+            <span
+                class="timer-name"
+                id="timer-session-name"
+            >
+                SYD
+            </span>
+
+            <span
+                id="timer-action"
+            >
+                OPEN IN
+            </span>
+
+            <span
+                class="timer-count"
+                id="timer-count"
+            >
+                00:00:00
+            </span>
+
         </div>
 
     </div>
@@ -1773,8 +1649,44 @@ body::before {
 
 
 <!-- =====================================================
-     TEHRAN
+     SESSION CLOCK
 ===================================================== -->
+
+<div class="top-item">
+
+    <div class="item-row">
+
+        <svg class="icon" viewBox="0 0 24 24">
+
+            <path
+                d="M12 1v22M1 12h22"
+                stroke-width="2"
+            />
+
+        </svg>
+
+
+        <div class="text-box">
+
+            <span id="session-clock-label">
+                MARKET
+            </span>
+
+            <span id="newyork-value">
+                --:--:--
+            </span>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<div class="divider"></div>
+
+
+<!-- TEHRAN -->
 
 <div class="top-item">
 
@@ -1815,9 +1727,7 @@ body::before {
 <div class="divider"></div>
 
 
-<!-- =====================================================
-     DATE
-===================================================== -->
+<!-- DATE -->
 
 <div class="top-item">
 
@@ -2121,22 +2031,16 @@ body::before {
 <script>
 
 /* =====================================================
-   SESSION CONFIGURATION
+   SESSION CONFIG
    =====================================================
 
-   تمام ساعت‌ها دقیقاً بر اساس ساعت تهران هستند.
+   تمام ساعت‌ها:
+   تهران / Asia-Tehran
 
-   Sydney:
-   01:30 → 09:30
-
-   Tokyo:
-   03:30 → 12:30
-
-   London:
-   10:30 → 19:30
-
-   New York:
-   16:30 → 00:30
+   Sydney  00:30 → 09:30
+   Tokyo   03:30 → 12:30
+   London  10:30 → 19:30
+   NewYork 16:30 → 00:30
 
 ===================================================== */
 
@@ -2148,12 +2052,11 @@ const SESSION_CONFIG = {
 
         shortName: "SYD",
 
-        open: "01:30",
+        open: "00:30",
 
         close: "09:30"
 
     },
-
 
     tokyo: {
 
@@ -2167,7 +2070,6 @@ const SESSION_CONFIG = {
 
     },
 
-
     london: {
 
         name: "London",
@@ -2179,7 +2081,6 @@ const SESSION_CONFIG = {
         close: "19:30"
 
     },
-
 
     newyork: {
 
@@ -2196,10 +2097,6 @@ const SESSION_CONFIG = {
 };
 
 
-/* =====================================================
-   WARNING SETTINGS
-===================================================== */
-
 const OPEN_WARNING_MINUTES = 5;
 
 const CLOSE_WARNING_MINUTES = 5;
@@ -2215,15 +2112,21 @@ const marketValue =
     );
 
 
-const tehranClockValue =
+const sessionClockLabel =
     document.getElementById(
-        "tehran-value"
+        "session-clock-label"
     );
 
 
-const dateValue =
+const sessionClockValue =
     document.getElementById(
-        "date-value"
+        "newyork-value"
+    );
+
+
+const tehranClockValue =
+    document.getElementById(
+        "tehran-value"
     );
 
 
@@ -2245,27 +2148,29 @@ const activeSessionText =
     );
 
 
-const sessionTimerBox =
+const sessionTimer =
     document.getElementById(
-        "session-timer-box"
+        "session-timer"
     );
 
 
-const sessionTimerLabel =
+const timerSessionName =
     document.getElementById(
-        "session-timer-label"
+        "timer-session-name"
     );
 
 
-const sessionTimerValue =
+const timerAction =
     document.getElementById(
-        "session-timer-value"
+        "timer-action"
     );
 
 
-/* =====================================================
-   SESSION NODES
-===================================================== */
+const timerCount =
+    document.getElementById(
+        "timer-count"
+    );
+
 
 const sessionNodes = {
 
@@ -2293,24 +2198,25 @@ const sessionNodes = {
 
 
 /* =====================================================
-   HH:MM → MINUTES
+   HH:MM → minutes
 ===================================================== */
 
 function timeToMinutes(time) {
 
-    const parts =
-        time.split(":");
+    const [
+        hours,
+        minutes
+    ] = time.split(":").map(Number);
 
     return (
-        Number(parts[0]) * 60 +
-        Number(parts[1])
+        hours * 60 +
+        minutes
     );
-
 }
 
 
 /* =====================================================
-   GET TEHRAN PARTS
+   تهران
 ===================================================== */
 
 function getTehranDateParts(
@@ -2357,7 +2263,8 @@ function getTehranDateParts(
         part => {
 
             if (
-                part.type !== "literal"
+                part.type !==
+                "literal"
             ) {
 
                 result[part.type] =
@@ -2395,10 +2302,10 @@ function getTehranDateParts(
 
 
 /* =====================================================
-   GET CURRENT TEHRAN MINUTE
+   روز هفته تهران
 ===================================================== */
 
-function getTehranMinuteOfDay(
+function getTehranDayOfWeek(
     date = new Date()
 ) {
 
@@ -2407,39 +2314,6 @@ function getTehranMinuteOfDay(
             date
         );
 
-
-    return (
-
-        parts.hour * 60 +
-        parts.minute +
-        parts.second / 60
-
-    );
-
-}
-
-
-/* =====================================================
-   WEEKEND
-===================================================== */
-
-function isWeekend(
-    date = new Date()
-) {
-
-    const parts =
-        getTehranDateParts(
-            date
-        );
-
-
-    /*
-       ساخت Date مصنوعی فقط برای
-       تعیین روز هفته.
-
-       هیچ Session Time Zoneای
-       از این Date گرفته نمی‌شود.
-    */
 
     const utcDate =
         new Date(
@@ -2451,75 +2325,81 @@ function isWeekend(
         );
 
 
+    return utcDate.getUTCDay();
+
+}
+
+
+/* =====================================================
+   تعطیلی هفتگی
+===================================================== */
+
+function isWeekend(
+    date = new Date()
+) {
+
     const day =
-        utcDate.getUTCDay();
+        getTehranDayOfWeek(
+            date
+        );
 
 
     return (
-
         day === 0 ||
         day === 6
-
     );
 
 }
 
 
 /* =====================================================
-   CORE SESSION LOGIC
-   =====================================================
+   آیا روز معاملاتی است؟
+===================================================== */
 
-   نکته بسیار مهم:
+function isTradingDay(
+    date = new Date()
+) {
 
-   Session New York از 16:30 تا 00:30 است.
+    return !isWeekend(date);
 
-   اما 00:00 تا 00:30 مربوط به Session
-   روز معاملاتی قبلی است.
+}
 
-   بنابراین در روز جدید، قبل از 00:30
-   نباید New York را Active کنیم.
 
-   برای حل کامل این موضوع، Sessionها را
-   نسبت به "روز معاملاتی تهران" بررسی می‌کنیم.
+/* =====================================================
+   دقیقه فعلی تهران
+===================================================== */
+
+function getCurrentTehranMinute(
+    date = new Date()
+) {
+
+    const parts =
+        getTehranDateParts(
+            date
+        );
+
+
+    return (
+        parts.hour * 60 +
+        parts.minute +
+        parts.second / 60
+    );
+
+}
+
+
+/* =====================================================
+   وضعیت خام Session
+=====================================================
+
+   این تابع فقط Session Schedule را بررسی می‌کند.
 
 ===================================================== */
 
 function getSessionState(
-    id,
     session,
-    currentMinute,
-    date = new Date()
+    currentMinute
 ) {
-
-    const weekend =
-        isWeekend(date);
-
-
-    /*
-       آخر هفته:
-       هیچ Session فعالی وجود ندارد.
-    */
-
-    if (weekend) {
-
-        return {
-
-            isOpen: false,
-
-            isWeekend: true,
-
-            open: timeToMinutes(
-                session.open
-            ),
-
-            close: timeToMinutes(
-                session.close
-            )
-
-        };
-
-    }
-
 
     const open =
         timeToMinutes(
@@ -2533,95 +2413,37 @@ function getSessionState(
         );
 
 
-    /*
-       Sessionهای معمولی
-       مانند:
+    let isOpen;
 
-       Sydney 01:30 → 09:30
-       Tokyo  03:30 → 12:30
-       London 10:30 → 19:30
-    */
 
     if (open < close) {
 
-        return {
-
-            isOpen:
-                currentMinute >= open &&
-                currentMinute < close,
-
-            isWeekend: false,
-
-            open,
-
-            close
-
-        };
+        isOpen =
+            currentMinute >= open &&
+            currentMinute < close;
 
     }
 
+    else {
 
-    /*
-       =================================================
-       SESSION عبوری از نیمه‌شب
-       =================================================
+        /*
+           Session عبوری از نیمه‌شب
+           مثل NY:
+           16:30 → 00:30
+        */
 
-       فقط New York این حالت را دارد:
-
-       16:30 → 00:30
-
-       منطق قبلی:
-
-       current >= 16:30
-       OR
-       current < 00:30
-
-       باعث می‌شد در روز بعد، ساعت 00:00،
-       New York دوباره Active دیده شود.
-
-       اینجا عمداً قسمت بعد از نیمه‌شب را
-       Active نمی‌کنیم.
-
-       New York فقط از 16:30 همان روز
-       تا 00:00 فعال است.
-
-       از 00:00 تا 00:30:
-       CLOSED
-
-       از 00:30 تا 16:29:
-       CLOSED
-
-       از 16:30:
-       OPEN
-    */
-
-    if (id === "newyork") {
-
-        return {
-
-            isOpen:
-                currentMinute >= open,
-
-            isWeekend: false,
-
-            open,
-
-            close
-
-        };
+        isOpen =
+            currentMinute >= open ||
+            currentMinute < close;
 
     }
 
 
     return {
 
-        isOpen: false,
-
-        isWeekend: false,
-
         open,
-
-        close
+        close,
+        isOpen
 
     };
 
@@ -2629,7 +2451,16 @@ function getSessionState(
 
 
 /* =====================================================
-   ACTIVE SESSIONS
+   Session فعال واقعی
+=====================================================
+
+   نکته بسیار مهم:
+
+   شنبه و یکشنبه قبل از هر چیز بررسی می‌شوند.
+
+   بنابراین NY نمی‌تواند در یکشنبه
+   یا شنبه Active شود.
+
 ===================================================== */
 
 function getActiveSessions(
@@ -2637,8 +2468,12 @@ function getActiveSessions(
     date = new Date()
 ) {
 
+    /*
+       تعطیلی هفتگی
+    */
+
     if (
-        isWeekend(date)
+        !isTradingDay(date)
     ) {
 
         return [];
@@ -2656,10 +2491,8 @@ function getActiveSessions(
 
             const state =
                 getSessionState(
-                    id,
                     session,
-                    currentMinute,
-                    date
+                    currentMinute
                 );
 
 
@@ -2689,7 +2522,7 @@ function getActiveSessions(
 
 
 /* =====================================================
-   PRIMARY ACTIVE SESSION
+   Session اصلی
 ===================================================== */
 
 function getPrimaryActiveSession(
@@ -2714,35 +2547,49 @@ function getPrimaryActiveSession(
 
 
     /*
-       چون Sessionها در طول روز
-       به ترتیب باز می‌شوند،
-       آخرین Session بازشده
-       Session اصلی است.
+       اولویت بر اساس آخرین OPEN
     */
 
-    let primary =
-        active[0];
+    let primary = null;
 
-
-    let latestOpen = -1;
+    let bestScore = -Infinity;
 
 
     active.forEach(
         session => {
 
-            const open =
+            let score =
                 timeToMinutes(
                     session.open
                 );
 
 
+            /*
+               NY بعد از نیمه‌شب:
+               چون open آن 16:30 روز قبل است،
+               باید برای نیمه‌شب امتیاز منفی/روز قبل
+               در نظر گرفته شود.
+            */
+
             if (
-                open <= currentMinute &&
-                open > latestOpen
+                session.id === "newyork" &&
+                currentMinute <
+                    timeToMinutes(
+                        session.close
+                    )
             ) {
 
-                latestOpen =
-                    open;
+                score -= 1440;
+
+            }
+
+
+            if (
+                score > bestScore
+            ) {
+
+                bestScore =
+                    score;
 
                 primary =
                     session;
@@ -2759,7 +2606,7 @@ function getPrimaryActiveSession(
 
 
 /* =====================================================
-   MARKET OPEN
+   MARKET STATUS
 ===================================================== */
 
 function isMarketOpen(
@@ -2767,8 +2614,13 @@ function isMarketOpen(
     date = new Date()
 ) {
 
+    /*
+       شنبه و یکشنبه:
+       همیشه CLOSED
+    */
+
     if (
-        isWeekend(date)
+        !isTradingDay(date)
     ) {
 
         return false;
@@ -2787,7 +2639,7 @@ function isMarketOpen(
 
 
 /* =====================================================
-   MINUTES UNTIL OPEN
+   فاصله تا OPEN
 ===================================================== */
 
 function getMinutesUntilOpen(
@@ -2806,15 +2658,9 @@ function getMinutesUntilOpen(
         currentMinute;
 
 
-    /*
-       برای Sessionهایی که هنوز امروز
-       باز نشده‌اند.
-
-       اگر زمان گذشته باشد،
-       OPEN بعدی فردا خواهد بود.
-    */
-
-    if (diff < 0) {
+    if (
+        diff < 0
+    ) {
 
         diff += 1440;
 
@@ -2827,7 +2673,7 @@ function getMinutesUntilOpen(
 
 
 /* =====================================================
-   MINUTES UNTIL CLOSE
+   فاصله تا CLOSE
 ===================================================== */
 
 function getMinutesUntilClose(
@@ -2841,47 +2687,14 @@ function getMinutesUntilClose(
         );
 
 
-    /*
-       برای New York:
-
-       از 16:30 تا 24:00 باز است.
-
-       CLOSE واقعی 00:30 است،
-       اما چون در منطق Session Map
-       00:00 به بعد New York دیگر
-       Session فعال روز جدید نیست،
-       تایمر بسته نیز باید به صورت
-       منطقی به 00:30 اشاره کند.
-    */
-
-    if (
-        session.id === "newyork"
-    ) {
-
-        if (
-            currentMinute >=
-            timeToMinutes("16:30")
-        ) {
-
-            return (
-                1440 -
-                currentMinute +
-                close
-            );
-
-        }
-
-        return 0;
-
-    }
-
-
     let diff =
         close -
         currentMinute;
 
 
-    if (diff < 0) {
+    if (
+        diff < 0
+    ) {
 
         diff += 1440;
 
@@ -2894,49 +2707,13 @@ function getMinutesUntilClose(
 
 
 /* =====================================================
-   OPEN WARNING
+   هشدار OPEN
 ===================================================== */
 
 function isOpenWarning(
-    id,
     session,
-    currentMinute,
-    date = new Date()
+    currentMinute
 ) {
-
-    if (
-        isWeekend(date)
-    ) {
-
-        return false;
-
-    }
-
-
-    const state =
-        getSessionState(
-            id,
-            session,
-            currentMinute,
-            date
-        );
-
-
-    if (
-        state.isOpen
-    ) {
-
-        return false;
-
-    }
-
-
-    /*
-       برای New York بعد از نیمه‌شب
-       هیچ OPEN WARNING وجود ندارد.
-
-       OPEN بعدی New York ساعت 16:30 است.
-    */
 
     const minutes =
         getMinutesUntilOpen(
@@ -2948,7 +2725,9 @@ function isOpenWarning(
     return (
 
         minutes > 0 &&
-        minutes <= OPEN_WARNING_MINUTES
+
+        minutes <=
+            OPEN_WARNING_MINUTES
 
     );
 
@@ -2956,49 +2735,17 @@ function isOpenWarning(
 
 
 /* =====================================================
-   CLOSE WARNING
+   هشدار CLOSE
 ===================================================== */
 
 function isCloseWarning(
-    id,
     session,
-    currentMinute,
-    date = new Date()
+    currentMinute
 ) {
-
-    if (
-        isWeekend(date)
-    ) {
-
-        return false;
-
-    }
-
-
-    const state =
-        getSessionState(
-            id,
-            session,
-            currentMinute,
-            date
-        );
-
-
-    if (
-        !state.isOpen
-    ) {
-
-        return false;
-
-    }
-
 
     const minutes =
         getMinutesUntilClose(
-            {
-                ...session,
-                id
-            },
+            session,
             currentMinute
         );
 
@@ -3006,7 +2753,9 @@ function isCloseWarning(
     return (
 
         minutes > 0 &&
-        minutes <= CLOSE_WARNING_MINUTES
+
+        minutes <=
+            CLOSE_WARNING_MINUTES
 
     );
 
@@ -3014,7 +2763,350 @@ function isCloseWarning(
 
 
 /* =====================================================
-   FORMAT HH:MM:SS
+   NEXT SESSION EVENT
+=====================================================
+
+   این بخش مستقل از Active Session است.
+
+   اگر بازار بسته باشد:
+   → زمان OPEN بعدی را پیدا می‌کند.
+
+   اگر بازار باز باشد:
+   → CLOSE Session اصلی را نشان می‌دهد.
+
+===================================================== */
+
+function getNextSessionEvent(
+    now = new Date()
+) {
+
+    const currentMinute =
+        getCurrentTehranMinute(
+            now
+        );
+
+
+    /*
+       آخر هفته
+       → فقط Sydney ابتدای هفته
+    */
+
+    if (
+        isWeekend(now)
+    ) {
+
+        return {
+
+            type: "open",
+
+            session:
+                SESSION_CONFIG.sydney,
+
+            seconds:
+                getSecondsUntilNextMondaySydney(
+                    now
+                )
+
+        };
+
+    }
+
+
+    /*
+       روز معاملاتی
+    */
+
+    const active =
+        getActiveSessions(
+            currentMinute,
+            now
+        );
+
+
+    /*
+       اگر Session فعال داریم
+       → CLOSE اصلی
+    */
+
+    if (
+        active.length > 0
+    ) {
+
+        const primary =
+            getPrimaryActiveSession(
+                currentMinute,
+                now
+            );
+
+
+        const seconds =
+            getSecondsUntilSessionClose(
+                primary,
+                now
+            );
+
+
+        return {
+
+            type: "close",
+
+            session:
+                primary,
+
+            seconds
+
+        };
+
+    }
+
+
+    /*
+       بازار فعلاً بین Sessionهاست
+       → نزدیک‌ترین OPEN
+    */
+
+    const upcoming = [];
+
+
+    Object.values(
+        SESSION_CONFIG
+    ).forEach(
+        session => {
+
+            const minutes =
+                getMinutesUntilOpen(
+                    session,
+                    currentMinute
+                );
+
+
+            if (
+                minutes > 0
+            ) {
+
+                upcoming.push({
+
+                    session,
+
+                    minutes
+
+                });
+
+            }
+
+        }
+    );
+
+
+    upcoming.sort(
+        (a, b) =>
+            a.minutes -
+            b.minutes
+    );
+
+
+    if (
+        upcoming.length > 0
+    ) {
+
+        const item =
+            upcoming[0];
+
+
+        return {
+
+            type: "open",
+
+            session:
+                item.session,
+
+            seconds:
+                Math.max(
+                    0,
+                    Math.round(
+                        item.minutes *
+                        60
+                    )
+                )
+
+        };
+
+    }
+
+
+    return {
+
+        type: "open",
+
+        session:
+            SESSION_CONFIG.sydney,
+
+        seconds:
+            0
+
+    };
+
+}
+
+
+/* =====================================================
+   ثانیه تا دوشنبه 00:30 Sydney
+===================================================== */
+
+function getSecondsUntilNextMondaySydney(
+    now = new Date()
+) {
+
+    const parts =
+        getTehranDateParts(
+            now
+        );
+
+
+    const currentDay =
+        getTehranDayOfWeek(
+            now
+        );
+
+
+    /*
+       چند روز تا دوشنبه
+
+       Sunday = 0
+       Monday = 1
+       Tuesday = 2
+       ...
+
+    */
+
+    let daysUntilMonday =
+        (1 - currentDay + 7) % 7;
+
+
+    /*
+       اگر امروز دوشنبه نیست،
+       مستقیم دوشنبه بعدی.
+
+       اگر امروز یکشنبه:
+       → فردا دوشنبه
+    */
+
+    if (
+        currentDay === 1
+    ) {
+
+        const currentSeconds =
+            parts.hour * 3600 +
+            parts.minute * 60 +
+            parts.second;
+
+
+        const targetSeconds =
+            30 * 60;
+
+
+        if (
+            currentSeconds <
+            targetSeconds
+        ) {
+
+            daysUntilMonday = 0;
+
+        }
+
+        else {
+
+            daysUntilMonday = 7;
+
+        }
+
+    }
+
+
+    const currentTotalSeconds =
+        parts.hour * 3600 +
+        parts.minute * 60 +
+        parts.second;
+
+
+    const targetTotalSeconds =
+        (24 * 3600) -
+        currentTotalSeconds +
+        (daysUntilMonday - 1) *
+            24 * 3600 +
+        30 * 60;
+
+
+    return Math.max(
+        0,
+        targetTotalSeconds
+    );
+
+}
+
+
+/* =====================================================
+   ثانیه تا CLOSE واقعی Session
+===================================================== */
+
+function getSecondsUntilSessionClose(
+    session,
+    now = new Date()
+) {
+
+    const parts =
+        getTehranDateParts(
+            now
+        );
+
+
+    const currentSeconds =
+        parts.hour * 3600 +
+        parts.minute * 60 +
+        parts.second;
+
+
+    const closeMinutes =
+        timeToMinutes(
+            session.close
+        );
+
+
+    const closeSeconds =
+        closeMinutes * 60;
+
+
+    let diff =
+        closeSeconds -
+        currentSeconds;
+
+
+    /*
+       برای NY:
+
+       16:30 → 00:30
+
+       بعد از نیمه‌شب:
+       CLOSE همان روز 00:30 است.
+    */
+
+    if (
+        diff < 0
+    ) {
+
+        diff +=
+            24 * 3600;
+
+    }
+
+
+    return diff;
+
+}
+
+
+/* =====================================================
+   تبدیل ثانیه به HH:MM:SS
 ===================================================== */
 
 function formatDuration(
@@ -3024,7 +3116,9 @@ function formatDuration(
     totalSeconds =
         Math.max(
             0,
-            Math.floor(totalSeconds)
+            Math.floor(
+                totalSeconds
+            )
         );
 
 
@@ -3036,7 +3130,8 @@ function formatDuration(
 
     const minutes =
         Math.floor(
-            (totalSeconds % 3600) / 60
+            (totalSeconds % 3600) /
+            60
         );
 
 
@@ -3046,11 +3141,18 @@ function formatDuration(
 
     return (
 
-        String(hours).padStart(2,"0") +
+        String(hours)
+            .padStart(2, "0") +
+
         ":" +
-        String(minutes).padStart(2,"0") +
+
+        String(minutes)
+            .padStart(2, "0") +
+
         ":" +
-        String(seconds).padStart(2,"0")
+
+        String(seconds)
+            .padStart(2, "0")
 
     );
 
@@ -3058,255 +3160,80 @@ function formatDuration(
 
 
 /* =====================================================
-   SESSION TIMER
+   SESSION TIMER UI
 ===================================================== */
 
 function updateSessionTimer(
-    currentMinute,
-    date = new Date()
+    now = new Date()
 ) {
 
-    sessionTimerBox.classList.remove(
-        "warning-close",
-        "warning-open",
-        "closed"
+    const event =
+        getNextSessionEvent(
+            now
+        );
+
+
+    sessionTimer.classList.add(
+        "visible"
     );
 
 
-    /*
-       آخر هفته
-    */
+    timerSessionName.innerText =
+        event.session.shortName;
 
-    if (
-        isWeekend(date)
-    ) {
 
-        sessionTimerLabel.innerText =
-            "MARKET";
-
-
-        sessionTimerValue.innerText =
-            "CLOSED";
-
-
-        sessionTimerBox.classList.add(
-            "closed"
-        );
-
-
-        return;
-
-    }
-
-
-    const active =
-        getActiveSessions(
-            currentMinute,
-            date
-        );
-
-
-    /*
-       اگر Session فعال داریم
-    */
-
-    if (
-        active.length > 0
-    ) {
-
-        const primary =
-            getPrimaryActiveSession(
-                currentMinute,
-                date
-            );
-
-
-        if (!primary) {
-
-            return;
-
-        }
-
-
-        const closeMinutes =
-            getMinutesUntilClose(
-                primary,
-                currentMinute
-            );
-
-
-        const secondsRemaining =
-            Math.max(
-                0,
-                Math.round(
-                    closeMinutes * 60
-                )
-            );
-
-
-        sessionTimerLabel.innerText =
-            primary.shortName +
-            " CLOSE";
-
-
-        sessionTimerValue.innerText =
-            formatDuration(
-                secondsRemaining
-            );
-
-
-        if (
-            closeMinutes <=
-            CLOSE_WARNING_MINUTES
-        ) {
-
-            sessionTimerBox.classList.add(
-                "warning-close"
-            );
-
-        }
-
-
-        return;
-
-    }
-
-
-    /*
-       هیچ Session فعالی نیست.
-
-       پیدا کردن Session بعدی.
-    */
-
-    let nextSession = null;
-
-    let smallestDiff = Infinity;
-
-
-    Object.entries(
-        SESSION_CONFIG
-    ).forEach(
-        ([id, session]) => {
-
-            const state =
-                getSessionState(
-                    id,
-                    session,
-                    currentMinute,
-                    date
-                );
-
-
-            if (
-                state.isOpen
-            ) {
-
-                return;
-
-            }
-
-
-            let diff =
-                getMinutesUntilOpen(
-                    session,
-                    currentMinute
-                );
-
-
-            /*
-               برای New York:
-
-               بعد از نیمه‌شب تا 16:30،
-               OPEN بعدی همان روز 16:30 است.
-
-               تابع بالا ممکن است مسیر روزانه را
-               درست بدهد، ولی این شرط باعث می‌شود
-               رفتار کاملاً شفاف و قطعی باشد.
-            */
-
-            if (
-                id === "newyork" &&
-                currentMinute < timeToMinutes("16:30")
-            ) {
-
-                diff =
-                    timeToMinutes("16:30") -
-                    currentMinute;
-
-            }
-
-
-            if (
-                diff > 0 &&
-                diff < smallestDiff
-            ) {
-
-                smallestDiff =
-                    diff;
-
-                nextSession = {
-
-                    id,
-
-                    ...session
-
-                };
-
-            }
-
-        }
-    );
-
-
-    if (
-        !nextSession
-    ) {
-
-        sessionTimerLabel.innerText =
-            "MARKET";
-
-
-        sessionTimerValue.innerText =
-            "CLOSED";
-
-
-        sessionTimerBox.classList.add(
-            "closed"
-        );
-
-
-        return;
-
-    }
-
-
-    const secondsRemaining =
-        Math.max(
-            0,
-            Math.round(
-                smallestDiff * 60
-            )
-        );
-
-
-    sessionTimerLabel.innerText =
-        nextSession.shortName +
-        " OPEN";
-
-
-    sessionTimerValue.innerText =
+    timerCount.innerText =
         formatDuration(
-            secondsRemaining
+            event.seconds
         );
 
 
+    /*
+       OPEN
+    */
+
     if (
-        smallestDiff <=
-        OPEN_WARNING_MINUTES
+        event.type === "open"
     ) {
 
-        sessionTimerBox.classList.add(
-            "warning-open"
+        timerAction.innerText =
+            "OPEN IN";
+
+
+        sessionTimer.classList.remove(
+            "closed"
+        );
+
+    }
+
+
+    /*
+       CLOSE
+    */
+
+    else {
+
+        timerAction.innerText =
+            "CLOSE IN";
+
+
+        sessionTimer.classList.remove(
+            "closed"
+        );
+
+    }
+
+
+    /*
+       Weekend
+    */
+
+    if (
+        isWeekend(now)
+    ) {
+
+        sessionTimer.classList.add(
+            "closed"
         );
 
     }
@@ -3315,23 +3242,22 @@ function updateSessionTimer(
 
 
 /* =====================================================
-   UPDATE SESSION MAP
+   SESSION MAP
 ===================================================== */
 
 function updateSessionMap(
     currentMinute,
-    date = new Date()
+    now = new Date()
 ) {
 
+    /*
+       پاک کردن وضعیت‌های قبلی
+    */
+
     sessionMap.classList.remove(
-        "has-active",
-        "weekend"
+        "has-active"
     );
 
-
-    /*
-       پاک کردن تمام وضعیت‌های قبلی
-    */
 
     Object.values(
         sessionNodes
@@ -3353,7 +3279,7 @@ function updateSessionMap(
     */
 
     if (
-        isWeekend(date)
+        isWeekend(now)
     ) {
 
         sessionMap.classList.add(
@@ -3371,45 +3297,32 @@ function updateSessionMap(
 
 
         /*
-           در Weekend فقط حالت
-           قرمز بسته نمایش داده می‌شود.
-
-           هیچ Sessionی Active نیست.
+           همه Sessionها صرفاً CLOSED هستند.
+           
+           مهم:
+           اینجا active اضافه نمی‌کنیم.
         */
-
-        Object.values(
-            sessionNodes
-        ).forEach(
-            node => {
-
-                node.classList.remove(
-                    "active",
-                    "open-warning"
-                );
-
-                node.classList.add(
-                    "close-warning"
-                );
-
-            }
-        );
-
 
         return;
 
     }
 
 
-    const active =
-        getActiveSessions(
-            currentMinute,
-            date
-        );
+    sessionMap.classList.remove(
+        "weekend"
+    );
 
 
     /*
-       حداقل یک Session فعال
+       ACTIVE SESSIONS
     */
+
+    const active =
+        getActiveSessions(
+            currentMinute,
+            now
+        );
+
 
     if (
         active.length > 0
@@ -3421,10 +3334,6 @@ function updateSessionMap(
 
     }
 
-
-    /*
-       ACTIVE
-    */
 
     active.forEach(
         session => {
@@ -3468,10 +3377,8 @@ function updateSessionMap(
 
             const state =
                 getSessionState(
-                    id,
                     session,
-                    currentMinute,
-                    date
+                    currentMinute
                 );
 
 
@@ -3482,10 +3389,8 @@ function updateSessionMap(
             if (
                 state.isOpen &&
                 isCloseWarning(
-                    id,
                     session,
-                    currentMinute,
-                    date
+                    currentMinute
                 )
             ) {
 
@@ -3508,10 +3413,8 @@ function updateSessionMap(
             else if (
                 !state.isOpen &&
                 isOpenWarning(
-                    id,
                     session,
-                    currentMinute,
-                    date
+                    currentMinute
                 )
             ) {
 
@@ -3538,22 +3441,8 @@ function updateSessionMap(
         );
 
 
-        const primary =
-            getPrimaryActiveSession(
-                currentMinute,
-                date
-            );
-
-
-        if (
-            primary
-        ) {
-
-            activeSessionText.innerText =
-                primary.shortName +
-                " ACTIVE";
-
-        }
+        activeSessionText.innerText =
+            "ACTIVE";
 
     }
 
@@ -3574,20 +3463,14 @@ function updateSessionMap(
 
 function updateMarket(
     currentMinute,
-    date = new Date()
+    now = new Date()
 ) {
 
     const open =
         isMarketOpen(
             currentMinute,
-            date
+            now
         );
-
-
-    marketValue.classList.remove(
-        "market-open",
-        "market-closed"
-    );
 
 
     if (open) {
@@ -3596,9 +3479,12 @@ function updateMarket(
             "OPEN";
 
 
-        marketValue.classList.add(
-            "market-open"
-        );
+        marketValue.style.color =
+            "#00ff88";
+
+
+        marketValue.style.textShadow =
+            "0 0 8px #00ff88";
 
     }
 
@@ -3608,9 +3494,12 @@ function updateMarket(
             "CLOSED";
 
 
-        marketValue.classList.add(
-            "market-closed"
-        );
+        marketValue.style.color =
+            "#ff3333";
+
+
+        marketValue.style.textShadow =
+            "0 0 8px #ff3333";
 
     }
 
@@ -3618,7 +3507,7 @@ function updateMarket(
 
 
 /* =====================================================
-   TEHRAN CLOCK
+   ساعت تهران
 ===================================================== */
 
 function getTehranTime(
@@ -3651,7 +3540,7 @@ function getTehranTime(
 
 
 /* =====================================================
-   TEHRAN DATE
+   تاریخ تهران
 ===================================================== */
 
 function getTehranDate(
@@ -3681,7 +3570,7 @@ function getTehranDate(
 
 
 /* =====================================================
-   MAIN UPDATE
+   CLOCKS
 ===================================================== */
 
 function updateClocks() {
@@ -3703,7 +3592,7 @@ function updateClocks() {
 
 
     /*
-       Tehran Clock
+       تهران
     */
 
     tehranClockValue.innerText =
@@ -3737,16 +3626,56 @@ function updateClocks() {
     */
 
     updateSessionTimer(
-        currentMinute,
         now
     );
+
+
+    /*
+       Primary Session Clock
+    */
+
+    const activeSession =
+        getPrimaryActiveSession(
+            currentMinute,
+            now
+        );
+
+
+    if (
+        !activeSession
+    ) {
+
+        sessionClockLabel.innerText =
+            "MARKET";
+
+
+        sessionClockValue.innerText =
+            "--:--:--";
+
+    }
+
+    else {
+
+        sessionClockLabel.innerText =
+            activeSession.name
+                .toUpperCase();
+
+
+        sessionClockValue.innerText =
+            getTehranTime(
+                now
+            );
+
+    }
 
 
     /*
        Date
     */
 
-    dateValue.innerText =
+    document.getElementById(
+        "date-value"
+    ).innerText =
         getTehranDate(
             now
         );
