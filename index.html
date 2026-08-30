@@ -194,8 +194,7 @@ body::before {
 
 
 /* =====================================================
-   انیمیشن هشدار نام سشن
-   ۵ دقیقه مانده به تغییر سشن
+   هشدار نام سشن
 ===================================================== */
 
 #session-value.session-warning {
@@ -217,8 +216,7 @@ body::before {
 
 
 /* =====================================================
-   انیمیشن هشدار ساعت سشن
-   ۲ دقیقه مانده به تغییر سشن
+   هشدار ساعت سشن
 ===================================================== */
 
 #newyork-value.clock-warning {
@@ -663,6 +661,61 @@ body::before {
     100% {
         left: 120%;
     }
+}
+
+
+/* =====================================================
+   NEWS - رنگ Impact
+===================================================== */
+
+#news-value.news-high {
+    color: #ff3333;
+
+    text-shadow:
+        0 0 8px rgba(255,51,51,0.85);
+}
+
+
+#news-value.news-medium {
+    color: #ff9d2e;
+
+    text-shadow:
+        0 0 8px rgba(255,157,46,0.75);
+}
+
+
+#news-value.news-low {
+    color: #ffd84a;
+
+    text-shadow:
+        0 0 8px rgba(255,216,74,0.65);
+}
+
+
+#news-value.news-holiday {
+    color: #b8b8b8;
+
+    text-shadow:
+        0 0 6px rgba(184,184,184,0.55);
+}
+
+
+/* =====================================================
+   NEWS - حرکت نرم متن
+===================================================== */
+
+#news-value {
+    max-width: 280px;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+
+    transition:
+        color 0.25s ease,
+        text-shadow 0.25s ease;
 }
 
 </style>
@@ -1183,58 +1236,33 @@ body::before {
    تنظیمات سشن‌ها
 ===================================================== */
 
-/*
-   زمان شروع هر سشن بر اساس ساعت محلی همان شهر است.
-
-   Sydney    = 08:00
-   Tokyo     = 09:00
-   London    = 08:00
-   New York  = 08:00
-
-   Time Zone ها توسط IANA کنترل می‌شوند،
-   بنابراین DST به صورت خودکار محاسبه می‌شود.
-*/
-
-
 const tradingSessions = [
 
     {
         name: "Sydney",
-
         timeZone: "Australia/Sydney",
-
         openHour: 8,
-
         openMinute: 0
     },
 
     {
         name: "Tokyo",
-
         timeZone: "Asia/Tokyo",
-
         openHour: 9,
-
         openMinute: 0
     },
 
     {
         name: "London",
-
         timeZone: "Europe/London",
-
         openHour: 8,
-
         openMinute: 0
     },
 
     {
         name: "New York",
-
         timeZone: "America/New_York",
-
         openHour: 8,
-
         openMinute: 0
     }
 
@@ -1479,7 +1507,7 @@ function getSessionOpenTimestamp(
 
 
 /* =====================================================
-   آخرین شروع هر سشن
+   آخرین شروع سشن
 ===================================================== */
 
 function getLastSessionOpen(
@@ -1715,20 +1743,12 @@ function updateClocks() {
         new Date();
 
 
-    /* ================================================
-       ساعت تهران
-    ================================================ */
-
     tehranClockValue.innerText =
         getSessionTime(
             "Asia/Tehran",
             now
         );
 
-
-    /* ================================================
-       سشن فعال
-    ================================================ */
 
     const active =
         getActiveSession(
@@ -1740,35 +1760,19 @@ function updateClocks() {
         active.session;
 
 
-    /* ================================================
-       سشن بعدی
-    ================================================ */
-
     const next =
         getNextSession(
             now
         );
 
 
-    /* ================================================
-       نام سشن فعال
-    ================================================ */
-
     sessionValue.innerText =
         activeSession.name;
 
 
-    /* ================================================
-       نام سشن کنار ساعت
-    ================================================ */
-
     sessionClockLabel.innerText =
         activeSession.name.toUpperCase();
 
-
-    /* ================================================
-       ساعت محلی سشن فعال
-    ================================================ */
 
     sessionClockValue.innerText =
         getSessionTime(
@@ -1776,10 +1780,6 @@ function updateClocks() {
             now
         );
 
-
-    /* ================================================
-       محاسبه زمان تا شروع سشن بعدی
-    ================================================ */
 
     const millisecondsUntilNext =
         next.openTimestamp -
@@ -1791,10 +1791,6 @@ function updateClocks() {
         (1000 * 60);
 
 
-    /* ================================================
-       پاک کردن هشدارهای قبلی
-    ================================================ */
-
     sessionValue.classList.remove(
         "session-warning"
     );
@@ -1804,11 +1800,6 @@ function updateClocks() {
         "clock-warning"
     );
 
-
-    /* ================================================
-       هشدار نام سشن
-       از ۵ دقیقه قبل
-    ================================================ */
 
     if (
         minutesUntilNext <= 5 &&
@@ -1822,11 +1813,6 @@ function updateClocks() {
     }
 
 
-    /* ================================================
-       هشدار ساعت سشن
-       از ۲ دقیقه قبل
-    ================================================ */
-
     if (
         minutesUntilNext <= 2 &&
         minutesUntilNext > 0
@@ -1839,10 +1825,6 @@ function updateClocks() {
     }
 
 
-    /* ================================================
-       تاریخ تهران
-    ================================================ */
-
     document.getElementById(
         "date-value"
     ).innerText =
@@ -1852,10 +1834,6 @@ function updateClocks() {
 
 }
 
-
-/* =====================================================
-   اجرای ساعت
-===================================================== */
 
 setInterval(
     updateClocks,
@@ -1867,75 +1845,1004 @@ updateClocks();
 
 
 /* =====================================================
-   خبر
+   NEWS - FOREX FACTORY
 ===================================================== */
 
-async function updateNews() {
+
+/*
+   خروجی رسمی Forex Factory:
+
+   JSON:
+   https://www.forexfactory.com/calendar?export=json&week=this
+
+   در صورت مسدود بودن درخواست مستقیم توسط مرورگر،
+   از Proxy عمومی CORS استفاده می‌شود.
+
+   ترتیب اولویت:
+
+   High       = 3 = قرمز
+   Medium     = 2 = نارنجی
+   Low        = 1 = زرد
+   Holiday    = 0 = طوسی
+*/
+
+
+const FOREX_FACTORY_URL =
+    "https://www.forexfactory.com/calendar?export=json&week=this";
+
+
+const FOREX_FACTORY_PROXY =
+    "https://api.allorigins.win/raw?url=";
+
+
+let newsEvents = [];
+
+let newsQueue = [];
+
+let currentNews = null;
+
+let newsDisplayTimer = null;
+
+let lastNewsFetch = 0;
+
+
+/* =====================================================
+   Impact
+===================================================== */
+
+function getImpactLevel(
+    event
+) {
+
+    const impact =
+        String(
+            event.impact ||
+            event.Impact ||
+            event.impactTitle ||
+            event.ImpactTitle ||
+            ""
+        ).toLowerCase();
+
+
+    if (
+        impact.includes("high") ||
+        impact.includes("red")
+    ) {
+
+        return 3;
+
+    }
+
+
+    if (
+        impact.includes("medium") ||
+        impact.includes("med") ||
+        impact.includes("orange")
+    ) {
+
+        return 2;
+
+    }
+
+
+    if (
+        impact.includes("low") ||
+        impact.includes("yellow")
+    ) {
+
+        return 1;
+
+    }
+
+
+    const title =
+        String(
+            event.title ||
+            event.event ||
+            event.name ||
+            ""
+        ).toLowerCase();
+
+
+    if (
+        title.includes("bank holiday") ||
+        title.includes("holiday")
+    ) {
+
+        return 0;
+
+    }
+
+
+    return 1;
+
+}
+
+
+/* =====================================================
+   تشخیص Bank Holiday
+===================================================== */
+
+function isBankHoliday(
+    event
+) {
+
+    const title =
+        String(
+            event.title ||
+            event.event ||
+            event.name ||
+            event.Event ||
+            ""
+        ).toLowerCase();
+
+
+    const type =
+        String(
+            event.type ||
+            event.eventType ||
+            ""
+        ).toLowerCase();
+
+
+    return (
+        title.includes("bank holiday") ||
+        type.includes("holiday")
+    );
+
+}
+
+
+/* =====================================================
+   گرفتن Currency
+===================================================== */
+
+function getNewsCurrency(
+    event
+) {
+
+    return String(
+        event.currency ||
+        event.Currency ||
+        event.ccy ||
+        event.country ||
+        "ALL"
+    ).toUpperCase();
+
+}
+
+
+/* =====================================================
+   گرفتن عنوان خبر
+===================================================== */
+
+function getNewsTitle(
+    event
+) {
+
+    return String(
+        event.title ||
+        event.event ||
+        event.name ||
+        event.Event ||
+        "Economic Event"
+    ).trim();
+
+}
+
+
+/* =====================================================
+   کوتاه کردن عنوان
+===================================================== */
+
+function shortenNewsTitle(
+    title
+) {
+
+    const replacements = [
+
+        [
+            "Consumer Price Index",
+            "CPI"
+        ],
+
+        [
+            "Consumer Confidence",
+            "Consumer Confidence"
+        ],
+
+        [
+            "Gross Domestic Product",
+            "GDP"
+        ],
+
+        [
+            "Non-Farm Payrolls",
+            "NFP"
+        ],
+
+        [
+            "Nonfarm Payrolls",
+            "NFP"
+        ],
+
+        [
+            "Unemployment Rate",
+            "Unemployment Rate"
+        ],
+
+        [
+            "Employment Change",
+            "Employment Change"
+        ],
+
+        [
+            "Retail Sales",
+            "Retail Sales"
+        ],
+
+        [
+            "Manufacturing Purchasing Managers Index",
+            "Manufacturing PMI"
+        ],
+
+        [
+            "Services Purchasing Managers Index",
+            "Services PMI"
+        ],
+
+        [
+            "Purchasing Managers Index",
+            "PMI"
+        ],
+
+        [
+            "Interest Rate Decision",
+            "Interest Rate"
+        ],
+
+        [
+            "Central Bank",
+            "Central Bank"
+        ],
+
+        [
+            "Producer Price Index",
+            "PPI"
+        ],
+
+        [
+            "Bank Holiday",
+            "Bank Holiday"
+        ]
+
+    ];
+
+
+    let shortTitle =
+        title;
+
+
+    replacements.forEach(
+        pair => {
+
+            shortTitle =
+                shortTitle.replace(
+                    new RegExp(
+                        pair[0],
+                        "gi"
+                    ),
+                    pair[1]
+                );
+
+        }
+    );
+
+
+    return shortTitle;
+
+}
+
+
+/* =====================================================
+   گرفتن زمان Event
+===================================================== */
+
+function getEventTimestamp(
+    event
+) {
+
+    const candidates = [
+
+        event.timestamp,
+
+        event.Timestamp,
+
+        event.date,
+
+        event.Date,
+
+        event.datetime,
+
+        event.datetimeUTC,
+
+        event.dateUtc,
+
+        event.time
+
+    ];
+
+
+    for (
+        const value of candidates
+    ) {
+
+        if (
+            value === undefined ||
+            value === null ||
+            value === ""
+        ) {
+
+            continue;
+
+        }
+
+
+        const parsed =
+            Date.parse(
+                value
+            );
+
+
+        if (
+            !Number.isNaN(parsed)
+        ) {
+
+            return parsed;
+
+        }
+
+    }
+
+
+    return Date.now();
+
+}
+
+
+/* =====================================================
+   تبدیل داده‌های مختلف JSON
+===================================================== */
+
+function normalizeForexFactoryData(
+    data
+) {
+
+    let rawEvents = [];
+
+
+    if (
+        Array.isArray(data)
+    ) {
+
+        rawEvents =
+            data;
+
+    }
+
+    else if (
+        Array.isArray(data.events)
+    ) {
+
+        rawEvents =
+            data.events;
+
+    }
+
+    else if (
+        Array.isArray(data.calendar)
+    ) {
+
+        rawEvents =
+            data.calendar;
+
+    }
+
+    else if (
+        Array.isArray(data.data)
+    ) {
+
+        rawEvents =
+            data.data;
+
+    }
+
+
+    return rawEvents
+        .map(
+            (event, index) => {
+
+                const currency =
+                    getNewsCurrency(
+                        event
+                    );
+
+
+                const title =
+                    getNewsTitle(
+                        event
+                    );
+
+
+                const holiday =
+                    isBankHoliday(
+                        event
+                    );
+
+
+                let impact =
+                    getImpactLevel(
+                        event
+                    );
+
+
+                if (
+                    holiday
+                ) {
+
+                    impact = 0;
+
+                }
+
+
+                return {
+
+                    id:
+                        String(
+                            event.id ||
+                            event.Id ||
+                            (
+                                currency +
+                                "|" +
+                                title +
+                                "|" +
+                                getEventTimestamp(event) +
+                                "|" +
+                                index
+                            )
+                        ),
+
+                    currency:
+                        currency,
+
+                    title:
+                        shortenNewsTitle(
+                            title
+                        ),
+
+                    fullTitle:
+                        title,
+
+                    impact:
+                        impact,
+
+                    timestamp:
+                        getEventTimestamp(
+                            event
+                        )
+
+                };
+
+            }
+        )
+        .filter(
+            event => {
+
+                return (
+                    event.currency ||
+                    event.title
+                );
+
+            }
+        );
+
+}
+
+
+/* =====================================================
+   دریافت تقویم Forex Factory
+===================================================== */
+
+async function fetchForexFactoryNews() {
 
     try {
 
-        const rssUrl =
-            "https://www.marketwatch.com/rss/topstories";
+        const directUrl =
+            FOREX_FACTORY_URL;
 
 
-        const response =
-            await fetch(
-                `https://api.allorigins.win/get?url=${encodeURIComponent(rssUrl)}`
+        let response;
+
+
+        try {
+
+            response =
+                await fetch(
+                    directUrl,
+                    {
+                        cache: "no-store"
+                    }
+                );
+
+        }
+
+        catch (
+            directError
+        ) {
+
+            response =
+                await fetch(
+                    FOREX_FACTORY_PROXY +
+                    encodeURIComponent(
+                        directUrl
+                    ),
+                    {
+                        cache: "no-store"
+                    }
+                );
+
+        }
+
+
+        if (
+            !response.ok
+        ) {
+
+            throw new Error(
+                "Forex Factory request failed"
             );
+
+        }
 
 
         const data =
             await response.json();
 
 
-        const parser =
-            new DOMParser();
-
-
-        const xml =
-            parser.parseFromString(
-                data.contents,
-                "text/xml"
+        const normalized =
+            normalizeForexFactoryData(
+                data
             );
 
 
-        const firstItem =
-            xml.querySelector(
-                "item > title"
-            ).textContent;
+        if (
+            normalized.length === 0
+        ) {
+
+            throw new Error(
+                "No Forex Factory events found"
+            );
+
+        }
 
 
-        const shortTitle =
-            firstItem.length > 55
-                ? firstItem.slice(0, 55) + "..."
-                : firstItem;
+        newsEvents =
+            normalized
+                .sort(
+                    (a, b) => {
+
+                        return (
+                            a.timestamp -
+                            b.timestamp
+                        );
+
+                    }
+                );
 
 
-        document.getElementById(
-            "news-value"
-        ).innerText =
-            shortTitle;
+        lastNewsFetch =
+            Date.now();
+
+
+        updateNewsQueue();
+
 
     }
 
-    catch (e) {
+    catch (
+        error
+    ) {
 
-        document.getElementById(
-            "news-value"
-        ).innerText =
-            "Loading...";
+        /*
+           در صورت خطا، خبر فعلی حفظ می‌شود.
+           اگر هیچ خبری وجود نداشته باشد،
+           پیام Waiting نمایش داده می‌شود.
+        */
+
+        if (
+            newsEvents.length === 0
+        ) {
+
+            const newsElement =
+                document.getElementById(
+                    "news-value"
+                );
+
+
+            newsElement.innerText =
+                "Waiting for news...";
+
+        }
 
     }
 
 }
 
 
-updateNews();
+/* =====================================================
+   شناسه خبر
+===================================================== */
+
+function getNewsUniqueId(
+    event
+) {
+
+    return (
+        event.id +
+        "|" +
+        event.timestamp
+    );
+
+}
+
+
+/* =====================================================
+   آپدیت صف
+===================================================== */
+
+function updateNewsQueue() {
+
+    const now =
+        Date.now();
+
+
+    /*
+       فقط خبرهای مربوط به گذشته نزدیک و آینده
+       وارد سیستم می‌شوند.
+
+       خبرهایی که بیش از 15 دقیقه از زمانشان گذشته
+       دیگر نمایش داده نمی‌شوند.
+    */
+
+    const candidates =
+        newsEvents.filter(
+            event => {
+
+                const age =
+                    now -
+                    event.timestamp;
+
+
+                return (
+                    age >= -60000 &&
+                    age <= 15 * 60 * 1000
+                );
+
+            }
+        );
+
+
+    /*
+       خبرهای قبلی که هنوز نمایش داده نشده‌اند
+       وارد صف می‌شوند.
+    */
+
+    candidates.forEach(
+        event => {
+
+            const id =
+                getNewsUniqueId(
+                    event
+                );
+
+
+            const alreadyQueued =
+                newsQueue.some(
+                    item =>
+                        getNewsUniqueId(item) === id
+                );
+
+
+            const isCurrent =
+                currentNews &&
+                getNewsUniqueId(
+                    currentNews
+                ) === id;
+
+
+            if (
+                !alreadyQueued &&
+                !isCurrent
+            ) {
+
+                newsQueue.push(
+                    event
+                );
+
+            }
+
+        }
+    );
+
+
+    /*
+       مهم‌ترین خبر همیشه جلوتر است.
+
+       ترتیب:
+       Impact
+       سپس زمان
+    */
+
+    newsQueue.sort(
+        (a, b) => {
+
+            if (
+                a.impact !==
+                b.impact
+            ) {
+
+                return (
+                    b.impact -
+                    a.impact
+                );
+
+            }
+
+
+            return (
+                a.timestamp -
+                b.timestamp
+            );
+
+        }
+    );
+
+
+    /*
+       اگر خبر فعلی تمام شده باشد،
+       خبر بعدی را نمایش بده.
+    */
+
+    if (
+        !currentNews
+    ) {
+
+        showNextNews();
+
+    }
+
+}
+
+
+/* =====================================================
+   رنگ خبر
+===================================================== */
+
+function applyNewsColor(
+    impact
+) {
+
+    const element =
+        document.getElementById(
+            "news-value"
+        );
+
+
+    element.classList.remove(
+        "news-high",
+        "news-medium",
+        "news-low",
+        "news-holiday"
+    );
+
+
+    if (
+        impact === 3
+    ) {
+
+        element.classList.add(
+            "news-high"
+        );
+
+    }
+
+    else if (
+        impact === 2
+    ) {
+
+        element.classList.add(
+            "news-medium"
+        );
+
+    }
+
+    else if (
+        impact === 1
+    ) {
+
+        element.classList.add(
+            "news-low"
+        );
+
+    }
+
+    else {
+
+        element.classList.add(
+            "news-holiday"
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   نمایش خبر
+===================================================== */
+
+function displayNews(
+    event
+) {
+
+    const element =
+        document.getElementById(
+            "news-value"
+        );
+
+
+    const currency =
+        event.currency;
+
+
+    const title =
+        event.title;
+
+
+    element.innerText =
+        currency +
+        " | " +
+        title;
+
+
+    applyNewsColor(
+        event.impact
+    );
+
+}
+
+
+/* =====================================================
+   نمایش خبر بعدی
+===================================================== */
+
+function showNextNews() {
+
+    clearTimeout(
+        newsDisplayTimer
+    );
+
+
+    currentNews = null;
+
+
+    /*
+       اگر صف خالی است، دوباره آن را بساز.
+    */
+
+    if (
+        newsQueue.length === 0
+    ) {
+
+        updateNewsQueue();
+
+    }
+
+
+    if (
+        newsQueue.length === 0
+    ) {
+
+        const element =
+            document.getElementById(
+                "news-value"
+            );
+
+
+        element.innerText =
+            "No major news";
+
+
+        element.classList.remove(
+            "news-high",
+            "news-medium",
+            "news-low",
+            "news-holiday"
+        );
+
+
+        return;
+
+    }
+
+
+    /*
+       مهم‌ترین خبر صف
+    */
+
+    currentNews =
+        newsQueue.shift();
+
+
+    displayNews(
+        currentNews
+    );
+
+
+    /*
+       هر خبر دقیقاً یک دقیقه نمایش داده می‌شود.
+    */
+
+    newsDisplayTimer =
+        setTimeout(
+            function () {
+
+                currentNews =
+                    null;
+
+
+                updateNewsQueue();
+
+
+                if (
+                    !currentNews
+                ) {
+
+                    showNextNews();
+
+                }
+
+            },
+            60000
+        );
+
+}
+
+
+/* =====================================================
+   بروزرسانی دوره‌ای News
+===================================================== */
+
+fetchForexFactoryNews();
 
 
 setInterval(
-    updateNews,
-    30000
+    fetchForexFactoryNews,
+    60000
+);
+
+
+/* =====================================================
+   بررسی صف هر 10 ثانیه
+===================================================== */
+
+setInterval(
+    function () {
+
+        updateNewsQueue();
+
+    },
+    10000
 );
 
 
@@ -1964,10 +2871,6 @@ const likeIcon =
 setInterval(
     function () {
 
-        /* =============================================
-           SUBSCRIBE → LIKE
-        ============================================= */
-
         if (
             subscribeState.style.display !== "none"
         ) {
@@ -1993,10 +2896,6 @@ setInterval(
 
         }
 
-
-        /* =============================================
-           LIKE → SUBSCRIBE
-        ============================================= */
 
         else {
 
