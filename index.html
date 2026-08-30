@@ -231,6 +231,29 @@ body::before {
 
 
 /* =====================================================
+   MARKET STATUS
+===================================================== */
+
+#market-status-value.market-open {
+
+    color: #00ff88;
+
+    text-shadow:
+        0 0 8px #00ff88;
+}
+
+
+#market-status-value.market-closed {
+
+    color: #ff3333;
+
+    text-shadow:
+        0 0 8px #ff3333,
+        0 0 16px rgba(255,51,51,0.65);
+}
+
+
+/* =====================================================
    هشدار ساعت سشن
 ===================================================== */
 
@@ -1067,9 +1090,14 @@ body::before {
 
         <div class="text-box">
 
-            <span>MARKET STATUS</span>
+            <span>
+                MARKET STATUS
+            </span>
 
-            <span id="market-status-value">
+            <span
+                id="market-status-value"
+                class="market-open"
+            >
                 OPEN
             </span>
 
@@ -1087,7 +1115,10 @@ body::before {
      SESSION MAP
 ===================================================== -->
 
-<div class="top-item session-map" id="session-map">
+<div
+    class="top-item session-map"
+    id="session-map"
+>
 
     <div class="session-map-inner">
 
@@ -1172,7 +1203,9 @@ body::before {
             id="session-active-label"
         >
 
-            <span class="active-arrow">▲</span>
+            <span class="active-arrow">
+                ▲
+            </span>
 
             <span id="active-session-text">
                 ACTIVE
@@ -1249,7 +1282,9 @@ body::before {
 
         <div class="text-box">
 
-            <span>TEHRAN</span>
+            <span>
+                TEHRAN
+            </span>
 
             <span id="tehran-value">
                 --:--:--
@@ -1295,7 +1330,9 @@ body::before {
 
         <div class="text-box">
 
-            <span>DATE</span>
+            <span>
+                DATE
+            </span>
 
             <span id="date-value">
                 -- --- ----
@@ -2486,6 +2523,16 @@ function updateClocks() {
             "CLOSED";
 
 
+        marketStatusValue.classList.remove(
+            "market-open"
+        );
+
+
+        marketStatusValue.classList.add(
+            "market-closed"
+        );
+
+
         sessionClockLabel.innerText =
             "MARKET";
 
@@ -2499,6 +2546,16 @@ function updateClocks() {
 
         marketStatusValue.innerText =
             "OPEN";
+
+
+        marketStatusValue.classList.remove(
+            "market-closed"
+        );
+
+
+        marketStatusValue.classList.add(
+            "market-open"
+        );
 
 
         sessionClockLabel.innerText =
