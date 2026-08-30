@@ -193,7 +193,55 @@ body::before {
 }
 
 
-/* جداکننده بالا */
+/* =====================================================
+   انیمیشن هشدار نام سشن
+   ۵ دقیقه مانده به تغییر سشن
+===================================================== */
+
+#session-value.session-warning {
+    animation:
+        sessionNameBlink 1s ease-in-out infinite;
+}
+
+
+@keyframes sessionNameBlink {
+
+    0%, 100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.15;
+    }
+}
+
+
+/* =====================================================
+   انیمیشن هشدار ساعت سشن
+   ۲ دقیقه مانده به تغییر سشن
+===================================================== */
+
+#newyork-value.clock-warning {
+    animation:
+        sessionClockBlink 0.65s ease-in-out infinite;
+}
+
+
+@keyframes sessionClockBlink {
+
+    0%, 100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.10;
+    }
+}
+
+
+/* =====================================================
+   جداکننده بالا
+===================================================== */
 
 .divider {
     width: 1px;
@@ -617,27 +665,6 @@ body::before {
     }
 }
 
-
-/* =====================================================
-   هشدار تغییر سشن
-===================================================== */
-
-#newyork-value.session-time-blink {
-    animation: sessionTimeBlink 1s ease-in-out infinite;
-}
-
-
-@keyframes sessionTimeBlink {
-
-    0%, 100% {
-        opacity: 1;
-    }
-
-    50% {
-        opacity: 0.15;
-    }
-}
-
 </style>
 
 </head>
@@ -721,7 +748,7 @@ body::before {
             </span>
 
             <span id="newyork-value">
-                --:--
+                --:--:--
             </span>
 
         </div>
@@ -762,7 +789,7 @@ body::before {
             <span>TEHRAN</span>
 
             <span id="tehran-value">
-                --:--
+                --:--:--
             </span>
 
         </div>
@@ -1153,37 +1180,19 @@ body::before {
 
 
 /* =====================================================
-   ساعت، تاریخ و سشن‌ها
+   تنظیمات سشن‌ها
 ===================================================== */
 
 /*
-   منطق جدید:
+   زمان شروع هر سشن بر اساس ساعت محلی همان شهر است.
 
-   هر سشن بر اساس ساعت محلی همان شهر تعریف می‌شود.
+   Sydney    = 08:00
+   Tokyo     = 09:00
+   London    = 08:00
+   New York  = 08:00
 
-   Sydney    = 08:00 Australia/Sydney
-   Tokyo     = 09:00 Asia/Tokyo
-   London    = 08:00 Europe/London
-   New York  = 08:00 America/New_York
-
-   بنابراین تغییرات DST به صورت خودکار توسط
-   IANA Time Zone و Intl.DateTimeFormat محاسبه می‌شود.
-
-   Tokyo:
-   Asia/Tokyo = UTC+9
-   بدون DST
-
-   London:
-   Europe/London
-   دارای GMT / BST
-
-   New York:
-   America/New_York
-   دارای EST / EDT
-
-   Sydney:
-   Australia/Sydney
-   دارای AEST / AEDT
+   Time Zone ها توسط IANA کنترل می‌شوند،
+   بنابراین DST به صورت خودکار محاسبه می‌شود.
 */
 
 
@@ -1232,6 +1241,10 @@ const tradingSessions = [
 ];
 
 
+/* =====================================================
+   عناصر HTML
+===================================================== */
+
 const sessionValue =
     document.getElementById(
         "session-value"
@@ -1257,7 +1270,7 @@ const tehranClockValue =
 
 
 /* =====================================================
-   گرفتن اجزای تاریخ در یک Time Zone
+   گرفتن اجزای زمان در Time Zone
 ===================================================== */
 
 function getTimeZoneParts(
@@ -1291,18 +1304,20 @@ function getTimeZoneParts(
     const result = {};
 
 
-    parts.forEach(part => {
+    parts.forEach(
+        part => {
 
-        if (
-            part.type !== "literal"
-        ) {
+            if (
+                part.type !== "literal"
+            ) {
 
-            result[part.type] =
-                part.value;
+                result[part.type] =
+                    part.value;
+
+            }
 
         }
-
-    });
+    );
 
 
     return {
@@ -1349,41 +1364,8 @@ function getTimeZoneParts(
 
 
 /* =====================================================
-   تبدیل زمان یک Time Zone به دقیقه روز
+   Offset واقعی Time Zone
 ===================================================== */
-
-function getLocalMinutes(
-    date,
-    timeZone
-) {
-
-    const parts =
-        getTimeZoneParts(
-            date,
-            timeZone
-        );
-
-
-    return (
-        parts.hour * 60 +
-        parts.minute
-    );
-
-}
-
-
-/* =====================================================
-   تبدیل زمان محلی سشن به UTC Timestamp
-===================================================== */
-
-/*
-   این تابع برای پیدا کردن زمان واقعی شروع سشن
-   در همان روز محلی استفاده می‌شود.
-
-   چون JavaScript به صورت مستقیم امکان ساختن
-   Date در یک Time Zone دلخواه را ندارد،
-   Offset واقعی Time Zone را از Intl استخراج می‌کنیم.
-*/
 
 function getTimeZoneOffset(
     date,
@@ -1416,18 +1398,20 @@ function getTimeZoneOffset(
     const values = {};
 
 
-    parts.forEach(part => {
+    parts.forEach(
+        part => {
 
-        if (
-            part.type !== "literal"
-        ) {
+            if (
+                part.type !== "literal"
+            ) {
 
-            values[part.type] =
-                part.value;
+                values[part.type] =
+                    part.value;
+
+            }
 
         }
-
-    });
+    );
 
 
     const asUTC =
@@ -1450,7 +1434,7 @@ function getTimeZoneOffset(
 
 
 /* =====================================================
-   پیدا کردن Timestamp شروع یک سشن
+   Timestamp شروع سشن
 ===================================================== */
 
 function getSessionOpenTimestamp(
@@ -1466,10 +1450,6 @@ function getSessionOpenTimestamp(
         );
 
 
-    /*
-       ابتدا تاریخ محلی سشن را می‌سازیم.
-    */
-
     const localDate =
         new Date(
             Date.UTC(
@@ -1482,11 +1462,6 @@ function getSessionOpenTimestamp(
             )
         );
 
-
-    /*
-       Offset Time Zone را در محدوده موردنظر
-       محاسبه می‌کنیم.
-    */
 
     const offset =
         getTimeZoneOffset(
@@ -1504,7 +1479,7 @@ function getSessionOpenTimestamp(
 
 
 /* =====================================================
-   پیدا کردن آخرین زمان شروع هر سشن
+   آخرین شروع هر سشن
 ===================================================== */
 
 function getLastSessionOpen(
@@ -1520,11 +1495,6 @@ function getLastSessionOpen(
         );
 
 
-    /*
-       اگر شروع امروز گذشته باشد،
-       همین شروع آخرین شروع است.
-    */
-
     if (
         currentOpen <=
         now.getTime()
@@ -1534,11 +1504,6 @@ function getLastSessionOpen(
 
     }
 
-
-    /*
-       اگر هنوز شروع امروز نرسیده،
-       شروع دیروز آخرین شروع است.
-    */
 
     return getSessionOpenTimestamp(
         now,
@@ -1550,7 +1515,7 @@ function getLastSessionOpen(
 
 
 /* =====================================================
-   تشخیص سشن فعال
+   سشن فعال
 ===================================================== */
 
 function getActiveSession(
@@ -1563,7 +1528,8 @@ function getActiveSession(
         ];
 
 
-    let latestOpen = -Infinity;
+    let latestOpen =
+        -Infinity;
 
 
     tradingSessions.forEach(
@@ -1607,7 +1573,7 @@ function getActiveSession(
 
 
 /* =====================================================
-   پیدا کردن سشن بعدی
+   سشن بعدی
 ===================================================== */
 
 function getNextSession(
@@ -1616,7 +1582,8 @@ function getNextSession(
 
     let nextSession = null;
 
-    let nextOpen = Infinity;
+    let nextOpen =
+        Infinity;
 
 
     tradingSessions.forEach(
@@ -1688,7 +1655,7 @@ function getNextSession(
 
 
 /* =====================================================
-   فرمت ساعت محلی
+   نمایش ساعت محلی با ثانیه
 ===================================================== */
 
 function getSessionTime(
@@ -1705,6 +1672,8 @@ function getSessionTime(
 
             minute: "2-digit",
 
+            second: "2-digit",
+
             hour12: true
         }
     ).format(date);
@@ -1713,7 +1682,7 @@ function getSessionTime(
 
 
 /* =====================================================
-   فرمت تاریخ تهران
+   تاریخ تهران
 ===================================================== */
 
 function getTehranDate(
@@ -1737,7 +1706,7 @@ function getTehranDate(
 
 
 /* =====================================================
-   آپدیت ساعت‌ها
+   آپدیت ساعت‌ها و هشدارها
 ===================================================== */
 
 function updateClocks() {
@@ -1747,7 +1716,7 @@ function updateClocks() {
 
 
     /* ================================================
-       ساعت واقعی تهران
+       ساعت تهران
     ================================================ */
 
     tehranClockValue.innerText =
@@ -1782,7 +1751,7 @@ function updateClocks() {
 
 
     /* ================================================
-       نمایش نام سشن
+       نام سشن فعال
     ================================================ */
 
     sessionValue.innerText =
@@ -1790,7 +1759,7 @@ function updateClocks() {
 
 
     /* ================================================
-       نمایش نام شهر کنار ساعت
+       نام سشن کنار ساعت
     ================================================ */
 
     sessionClockLabel.innerText =
@@ -1798,7 +1767,7 @@ function updateClocks() {
 
 
     /* ================================================
-       نمایش ساعت واقعی همان سشن
+       ساعت محلی سشن فعال
     ================================================ */
 
     sessionClockValue.innerText =
@@ -1809,7 +1778,7 @@ function updateClocks() {
 
 
     /* ================================================
-       محاسبه زمان باقی‌مانده تا سشن بعدی
+       محاسبه زمان تا شروع سشن بعدی
     ================================================ */
 
     const millisecondsUntilNext =
@@ -1823,7 +1792,22 @@ function updateClocks() {
 
 
     /* ================================================
-       هشدار ۵ دقیقه مانده
+       پاک کردن هشدارهای قبلی
+    ================================================ */
+
+    sessionValue.classList.remove(
+        "session-warning"
+    );
+
+
+    sessionClockValue.classList.remove(
+        "clock-warning"
+    );
+
+
+    /* ================================================
+       هشدار نام سشن
+       از ۵ دقیقه قبل
     ================================================ */
 
     if (
@@ -1831,14 +1815,25 @@ function updateClocks() {
         minutesUntilNext > 0
     ) {
 
-        sessionClockValue.classList.add(
-            "session-time-blink"
+        sessionValue.classList.add(
+            "session-warning"
         );
 
-    } else {
+    }
 
-        sessionClockValue.classList.remove(
-            "session-time-blink"
+
+    /* ================================================
+       هشدار ساعت سشن
+       از ۲ دقیقه قبل
+    ================================================ */
+
+    if (
+        minutesUntilNext <= 2 &&
+        minutesUntilNext > 0
+    ) {
+
+        sessionClockValue.classList.add(
+            "clock-warning"
         );
 
     }
@@ -1918,7 +1913,8 @@ async function updateNews() {
 
         document.getElementById(
             "news-value"
-        ).innerText = shortTitle;
+        ).innerText =
+            shortTitle;
 
     }
 
@@ -1926,9 +1922,11 @@ async function updateNews() {
 
         document.getElementById(
             "news-value"
-        ).innerText = "Loading...";
+        ).innerText =
+            "Loading...";
 
     }
+
 }
 
 
@@ -1966,6 +1964,10 @@ const likeIcon =
 setInterval(
     function () {
 
+        /* =============================================
+           SUBSCRIBE → LIKE
+        ============================================= */
+
         if (
             subscribeState.style.display !== "none"
         ) {
@@ -1990,6 +1992,11 @@ setInterval(
             );
 
         }
+
+
+        /* =============================================
+           LIKE → SUBSCRIBE
+        ============================================= */
 
         else {
 
