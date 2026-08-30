@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 
 <html lang="en">
@@ -232,7 +231,6 @@ body::before {
 
 /* =====================================================
    هشدار نام سشن
-   ۵ دقیقه مانده به تغییر سشن
 ===================================================== */
 
 #session-value.session-warning {
@@ -256,7 +254,6 @@ body::before {
 
 /* =====================================================
    هشدار ساعت سشن
-   ۲ دقیقه مانده به تغییر سشن
 ===================================================== */
 
 #newyork-value.clock-warning {
@@ -279,7 +276,7 @@ body::before {
 
 
 /* =====================================================
-   جداکننده بالا
+   جداکننده
 ===================================================== */
 
 .divider {
@@ -320,6 +317,94 @@ body::before {
         0 0 55px rgba(0, 255, 102, 0.85),
         0 0 110px rgba(0, 255, 102, 0.65),
         0 0 160px rgba(0, 255, 102, 0.45);
+}
+
+
+/* =====================================================
+   NEWS
+===================================================== */
+
+#news-value {
+
+    max-width: 310px;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+
+    transition:
+        opacity 0.35s ease,
+        transform 0.35s ease;
+}
+
+
+.news-normal {
+
+    color: #00ff88 !important;
+
+    text-shadow:
+        0 0 8px #00ff88 !important;
+}
+
+
+.news-high {
+
+    color: #ff3333 !important;
+
+    text-shadow:
+        0 0 10px #ff3333 !important;
+
+    animation:
+        newsHighPulse 1.4s ease-in-out infinite;
+}
+
+
+.news-medium {
+
+    color: #ffae4a !important;
+
+    text-shadow:
+        0 0 8px #ffae4a !important;
+}
+
+
+.news-low {
+
+    color: #4da6ff !important;
+
+    text-shadow:
+        0 0 8px #4da6ff !important;
+}
+
+
+.news-holiday {
+
+    color: #ffffff !important;
+
+    text-shadow:
+        0 0 8px #ffffff !important;
+}
+
+
+@keyframes newsHighPulse {
+
+    0%, 100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.55;
+    }
+}
+
+
+.news-switch-out {
+
+    opacity: 0;
+
+    transform: translateY(5px);
 }
 
 
@@ -409,7 +494,7 @@ body::before {
 
 
 /* =====================================================
-   رنگ متن‌های معمولی
+   رنگ متن
 ===================================================== */
 
 .bottom-item:not(.subscribe) span {
@@ -422,7 +507,7 @@ body::before {
 
 
 /* =====================================================
-   آیکون‌های نوار پایین
+   آیکون‌های پایین
 ===================================================== */
 
 .bottom-icon {
@@ -742,10 +827,6 @@ body::before {
 <body>
 
 
-<!-- =====================================================
-     فریم اصلی
-===================================================== -->
-
 <div class="main-frame"></div>
 
 
@@ -960,7 +1041,10 @@ body::before {
 
             <span>NEWS</span>
 
-            <span id="news-value">
+            <span
+                id="news-value"
+                class="news-normal"
+            >
                 Loading...
             </span>
 
@@ -996,71 +1080,63 @@ body::before {
 >
 
 
-    <!-- SUBSCRIBE -->
+<div class="promo-state subscribe-state">
 
-    <div
-        class="promo-state subscribe-state"
+    <svg
+        class="bottom-icon bell-icon"
+        viewBox="0 0 24 24"
     >
 
-        <svg
-            class="bottom-icon bell-icon"
-            viewBox="0 0 24 24"
-        >
+        <path
+            d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"
+            stroke-width="2.4"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+        />
 
-            <path
-                d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"
-                stroke-width="2.4"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-            />
+        <path
+            d="M10 21h4"
+            stroke-width="2.4"
+            stroke-linecap="round"
+        />
 
-            <path
-                d="M10 21h4"
-                stroke-width="2.4"
-                stroke-linecap="round"
-            />
-
-        </svg>
+    </svg>
 
 
-        <span>
-            SUBSCRIBE
-        </span>
+    <span>
+        SUBSCRIBE
+    </span>
 
-    </div>
+</div>
 
 
-    <!-- LIKE -->
+<div class="promo-state like-state">
 
-    <div
-        class="promo-state like-state"
+    <svg
+        class="bottom-icon like-icon"
+        viewBox="0 0 24 24"
     >
 
-        <svg
-            class="bottom-icon like-icon"
-            viewBox="0 0 24 24"
-        >
+        <path
+            d="M7 10v12H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h3z"
+            stroke-width="2.2"
+            stroke-linejoin="round"
+        />
 
-            <path
-                d="M7 10v12H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h3z"
-                stroke-width="2.2"
-                stroke-linejoin="round"
-            />
+        <path
+            d="M7 10l4-8c1.5 0 3 1 3 2.5V8h6a2 2 0 0 1 2 2.3l-1.2 8A2 2 0 0 1 18.8 20H7"
+            stroke-width="2.2"
+            stroke-linejoin="round"
+        />
 
-            <path
-                d="M7 10l4-8c1.5 0 3 1 3 2.5V8h6a2 2 0 0 1 2 2.3l-1.2 8A2 2 0 0 1 18.8 20H7"
-                stroke-width="2.2"
-                stroke-linejoin="round"
-            />
-
-        </svg>
+    </svg>
 
 
-        <span>
-            LIKE
-        </span>
+    <span>
+        LIKE
+    </span>
 
-    </div>
+</div>
 
 </div>
 
@@ -1245,75 +1321,44 @@ body::before {
 </div>
 
 
-<!-- =====================================================
-     JAVASCRIPT
-===================================================== -->
-
 <script>
 
-
 /* =====================================================
-   تنظیمات سشن‌ها
+   SESSION SETTINGS
 ===================================================== */
-
-/*
-   زمان شروع سشن‌ها بر اساس ساعت محلی همان شهر است.
-
-   Sydney    = 08:00
-   Tokyo     = 09:00
-   London    = 08:00
-
-   New York  = 09:30
-   این زمان مطابق باز شدن رسمی بازار سهام آمریکا
-   (NYSE / Nasdaq) است.
-
-   Time Zone ها توسط IANA کنترل می‌شوند،
-   بنابراین DST به صورت خودکار محاسبه می‌شود.
-*/
-
 
 const tradingSessions = [
 
     {
         name: "Sydney",
-
         timeZone: "Australia/Sydney",
-
         openHour: 8,
-
         openMinute: 0
     },
-
 
     {
         name: "Tokyo",
-
         timeZone: "Asia/Tokyo",
-
         openHour: 9,
-
         openMinute: 0
     },
-
 
     {
         name: "London",
-
         timeZone: "Europe/London",
-
         openHour: 8,
-
         openMinute: 0
     },
 
-
     {
+        /*
+         * NYSE / NASDAQ regular session
+         * 09:30 New York time
+         */
+
         name: "New York",
-
         timeZone: "America/New_York",
-
         openHour: 9,
-
         openMinute: 30
     }
 
@@ -1321,7 +1366,7 @@ const tradingSessions = [
 
 
 /* =====================================================
-   عناصر HTML
+   HTML ELEMENTS
 ===================================================== */
 
 const sessionValue =
@@ -1348,8 +1393,14 @@ const tehranClockValue =
     );
 
 
+const newsValue =
+    document.getElementById(
+        "news-value"
+    );
+
+
 /* =====================================================
-   گرفتن اجزای زمان در Time Zone
+   TIMEZONE
 ===================================================== */
 
 function getTimeZoneParts(
@@ -1362,7 +1413,7 @@ function getTimeZoneParts(
             "en-US",
             {
 
-                timeZone: timeZone,
+                timeZone,
 
                 year: "numeric",
 
@@ -1445,7 +1496,7 @@ function getTimeZoneParts(
 
 
 /* =====================================================
-   Offset واقعی Time Zone
+   TIMEZONE OFFSET
 ===================================================== */
 
 function getTimeZoneOffset(
@@ -1458,7 +1509,7 @@ function getTimeZoneOffset(
             "en-US",
             {
 
-                timeZone: timeZone,
+                timeZone,
 
                 year: "numeric",
 
@@ -1524,7 +1575,7 @@ function getTimeZoneOffset(
 
 
 /* =====================================================
-   Timestamp شروع سشن
+   SESSION OPEN TIMESTAMP
 ===================================================== */
 
 function getSessionOpenTimestamp(
@@ -1578,7 +1629,7 @@ function getSessionOpenTimestamp(
 
 
 /* =====================================================
-   آخرین شروع هر سشن
+   LAST SESSION OPEN
 ===================================================== */
 
 function getLastSessionOpen(
@@ -1614,7 +1665,7 @@ function getLastSessionOpen(
 
 
 /* =====================================================
-   سشن فعال
+   ACTIVE SESSION
 ===================================================== */
 
 function getActiveSession(
@@ -1672,7 +1723,7 @@ function getActiveSession(
 
 
 /* =====================================================
-   سشن بعدی
+   NEXT SESSION
 ===================================================== */
 
 function getNextSession(
@@ -1704,23 +1755,12 @@ function getNextSession(
                 );
 
 
-            let candidate;
-
-
-            if (
+            const candidate =
                 todayOpen >
                 now.getTime()
-            ) {
 
-                candidate =
-                    todayOpen;
-
-            } else {
-
-                candidate =
-                    tomorrowOpen;
-
-            }
+                    ? todayOpen
+                    : tomorrowOpen;
 
 
             if (
@@ -1754,7 +1794,7 @@ function getNextSession(
 
 
 /* =====================================================
-   نمایش ساعت محلی
+   SESSION CLOCK
 ===================================================== */
 
 function getSessionTime(
@@ -1766,7 +1806,7 @@ function getSessionTime(
         "en-US",
         {
 
-            timeZone: timeZone,
+            timeZone,
 
             hour: "2-digit",
 
@@ -1783,7 +1823,7 @@ function getSessionTime(
 
 
 /* =====================================================
-   تاریخ تهران
+   TEHRAN DATE
 ===================================================== */
 
 function getTehranDate(
@@ -1794,7 +1834,8 @@ function getTehranDate(
         "en-US",
         {
 
-            timeZone: "Asia/Tehran",
+            timeZone:
+                "Asia/Tehran",
 
             day: "2-digit",
 
@@ -1809,7 +1850,7 @@ function getTehranDate(
 
 
 /* =====================================================
-   آپدیت ساعت‌ها و هشدارها
+   CLOCK UPDATE
 ===================================================== */
 
 function updateClocks() {
@@ -1818,10 +1859,6 @@ function updateClocks() {
         new Date();
 
 
-    /* ================================================
-       ساعت تهران
-    ================================================ */
-
     tehranClockValue.innerText =
         getSessionTime(
             "Asia/Tehran",
@@ -1829,12 +1866,14 @@ function updateClocks() {
         );
 
 
-    /* ================================================
-       سشن فعال
-    ================================================ */
-
     const active =
         getActiveSession(
+            now
+        );
+
+
+    const next =
+        getNextSession(
             now
         );
 
@@ -1843,35 +1882,13 @@ function updateClocks() {
         active.session;
 
 
-    /* ================================================
-       سشن بعدی
-    ================================================ */
-
-    const next =
-        getNextSession(
-            now
-        );
-
-
-    /* ================================================
-       نام سشن فعال
-    ================================================ */
-
     sessionValue.innerText =
         activeSession.name;
 
 
-    /* ================================================
-       نام سشن کنار ساعت
-    ================================================ */
-
     sessionClockLabel.innerText =
         activeSession.name.toUpperCase();
 
-
-    /* ================================================
-       ساعت محلی سشن فعال
-    ================================================ */
 
     sessionClockValue.innerText =
         getSessionTime(
@@ -1879,10 +1896,6 @@ function updateClocks() {
             now
         );
 
-
-    /* ================================================
-       زمان تا شروع سشن بعدی
-    ================================================ */
 
     const millisecondsUntilNext =
         next.openTimestamp -
@@ -1894,10 +1907,6 @@ function updateClocks() {
         (1000 * 60);
 
 
-    /* ================================================
-       پاک کردن هشدارهای قبلی
-    ================================================ */
-
     sessionValue.classList.remove(
         "session-warning"
     );
@@ -1907,11 +1916,6 @@ function updateClocks() {
         "clock-warning"
     );
 
-
-    /* ================================================
-       هشدار نام سشن
-       ۵ دقیقه قبل
-    ================================================ */
 
     if (
 
@@ -1928,11 +1932,6 @@ function updateClocks() {
     }
 
 
-    /* ================================================
-       هشدار ساعت سشن
-       ۲ دقیقه قبل
-    ================================================ */
-
     if (
 
         minutesUntilNext <= 2 &&
@@ -1948,10 +1947,6 @@ function updateClocks() {
     }
 
 
-    /* ================================================
-       تاریخ تهران
-    ================================================ */
-
     document.getElementById(
         "date-value"
     ).innerText =
@@ -1963,7 +1958,7 @@ function updateClocks() {
 
 
 /* =====================================================
-   اجرای ساعت
+   RUN CLOCK
 ===================================================== */
 
 setInterval(
@@ -1976,81 +1971,1306 @@ updateClocks();
 
 
 /* =====================================================
-   خبر
+   FOREX FACTORY NEWS ENGINE
 ===================================================== */
 
-async function updateNews() {
+/*
+   Official Forex Factory weekly CSV export.
+
+   Source:
+   Forex Factory Calendar
+
+   Data:
+   - Currency
+   - Impact
+   - Event
+   - Date
+   - Time
+   - Bank Holiday
+
+   Refresh:
+   Every 30 seconds
+*/
+
+const FOREX_FACTORY_CSV_URL =
+    "https://www.forexfactory.com/calendar?export=csv&week=this";
+
+
+/*
+   اگر محیط OBS روی CORS محدودیت اعمال کند،
+   این مقدار را می‌توان بعداً به یک Proxy اختصاصی
+   تغییر داد.
+
+   فعلاً منبع مستقیم Forex Factory است.
+*/
+
+const NEWS_PROXY = "";
+
+
+/* =====================================================
+   NEWS STATE
+===================================================== */
+
+let newsEvents = [];
+
+let currentNewsIndex = 0;
+
+let newsRotationTimer = null;
+
+let newsRefreshTimer = null;
+
+let lastNewsSignature = "";
+
+
+/* =====================================================
+   IMPACT SCORE
+===================================================== */
+
+function getImpactScore(
+    impact
+) {
+
+    const value =
+        String(
+            impact || ""
+        ).toLowerCase();
+
+
+    if (
+        value.includes("high")
+    ) {
+
+        return 3;
+
+    }
+
+
+    if (
+        value.includes("medium") ||
+        value.includes("med")
+    ) {
+
+        return 2;
+
+    }
+
+
+    if (
+        value.includes("low")
+    ) {
+
+        return 1;
+
+    }
+
+
+    return 0;
+
+}
+
+
+/* =====================================================
+   CLEAN TEXT
+===================================================== */
+
+function cleanText(
+    value
+) {
+
+    return String(
+        value || ""
+    )
+
+        .replace(
+            /<[^>]*>/g,
+            ""
+        )
+
+        .replace(
+            /&amp;/g,
+            "&"
+        )
+
+        .replace(
+            /&quot;/g,
+            '"'
+        )
+
+        .replace(
+            /&#39;/g,
+            "'"
+        )
+
+        .replace(
+            /\s+/g,
+            " "
+        )
+
+        .trim();
+
+}
+
+
+/* =====================================================
+   CSV PARSER
+===================================================== */
+
+function parseCSV(
+    text
+) {
+
+    const rows = [];
+
+    let row = [];
+
+    let value = "";
+
+    let insideQuotes = false;
+
+
+    for (
+        let i = 0;
+        i < text.length;
+        i++
+    ) {
+
+        const char =
+            text[i];
+
+
+        const next =
+            text[i + 1];
+
+
+        if (
+            char === '"' &&
+            insideQuotes &&
+            next === '"'
+        ) {
+
+            value += '"';
+
+            i++;
+
+            continue;
+
+        }
+
+
+        if (
+            char === '"'
+        ) {
+
+            insideQuotes =
+                !insideQuotes;
+
+            continue;
+
+        }
+
+
+        if (
+            char === "," &&
+            !insideQuotes
+        ) {
+
+            row.push(value);
+
+            value = "";
+
+            continue;
+
+        }
+
+
+        if (
+            (char === "\n" ||
+             char === "\r") &&
+            !insideQuotes
+        ) {
+
+            if (
+                char === "\r" &&
+                next === "\n"
+            ) {
+
+                i++;
+
+            }
+
+
+            row.push(value);
+
+            value = "";
+
+
+            if (
+                row.some(
+                    cell =>
+                        cell.trim() !== ""
+                )
+            ) {
+
+                rows.push(row);
+
+            }
+
+
+            row = [];
+
+            continue;
+
+        }
+
+
+        value += char;
+
+    }
+
+
+    if (
+        value.length > 0 ||
+        row.length > 0
+    ) {
+
+        row.push(value);
+
+        rows.push(row);
+
+    }
+
+
+    return rows;
+
+}
+
+
+/* =====================================================
+   HEADER FINDER
+===================================================== */
+
+function findColumn(
+    headers,
+    names
+) {
+
+    const normalized =
+        headers.map(
+            header =>
+                cleanText(header)
+                    .toLowerCase()
+        );
+
+
+    for (
+        const name of names
+    ) {
+
+        const index =
+            normalized.indexOf(
+                name.toLowerCase()
+            );
+
+
+        if (
+            index !== -1
+        ) {
+
+            return index;
+
+        }
+
+    }
+
+
+    return -1;
+
+}
+
+
+/* =====================================================
+   DATE PARSER
+===================================================== */
+
+function parseForexFactoryDate(
+    dateText,
+    timeText
+) {
+
+    const date =
+        cleanText(
+            dateText
+        );
+
+
+    const time =
+        cleanText(
+            timeText
+        );
+
+
+    if (
+        !date
+    ) {
+
+        return null;
+
+    }
+
+
+    /*
+       CSV formats can vary.
+
+       We first try native Date parsing.
+    */
+
+    const candidate =
+        new Date(
+            `${date} ${time}`
+        );
+
+
+    if (
+        !isNaN(
+            candidate.getTime()
+        )
+    ) {
+
+        return candidate;
+
+    }
+
+
+    return null;
+
+}
+
+
+/* =====================================================
+   SHORT NEWS TITLE
+===================================================== */
+
+function shortNewsTitle(
+    title
+) {
+
+    let result =
+        cleanText(
+            title
+        );
+
+
+    const replacements = [
+
+        [
+            "Nonfarm Payrolls",
+            "NFP"
+        ],
+
+        [
+            "Non-Farm Employment Change",
+            "NFP"
+        ],
+
+        [
+            "Consumer Price Index",
+            "CPI"
+        ],
+
+        [
+            "Core Consumer Price Index",
+            "CORE CPI"
+        ],
+
+        [
+            "Producer Price Index",
+            "PPI"
+        ],
+
+        [
+            "Federal Funds Rate",
+            "FED RATE"
+        ],
+
+        [
+            "FOMC Statement",
+            "FOMC"
+        ],
+
+        [
+            "Interest Rate Decision",
+            "RATE DECISION"
+        ],
+
+        [
+            "Gross Domestic Product",
+            "GDP"
+        ],
+
+        [
+            "Retail Sales",
+            "RETAIL SALES"
+        ],
+
+        [
+            "Unemployment Rate",
+            "UNEMPLOYMENT"
+        ],
+
+        [
+            "Unemployment Claims",
+            "JOBLESS CLAIMS"
+        ],
+
+        [
+            "Average Hourly Earnings",
+            "AVG HOURLY EARNINGS"
+        ],
+
+        [
+            "Bank Holiday",
+            "BANK HOLIDAY"
+        ]
+
+    ];
+
+
+    replacements.forEach(
+        pair => {
+
+            result =
+                result.replace(
+                    new RegExp(
+                        pair[0],
+                        "gi"
+                    ),
+                    pair[1]
+                );
+
+        }
+    );
+
+
+    /*
+       Remove unnecessary suffixes.
+    */
+
+    result =
+        result
+
+            .replace(
+                /\s+y\/y/gi,
+                ""
+            )
+
+            .replace(
+                /\s+m\/m/gi,
+                ""
+            )
+
+            .replace(
+                /\s+q\/q/gi,
+                ""
+            )
+
+            .trim();
+
+
+    /*
+       Maximum length for Overlay.
+    */
+
+    if (
+        result.length > 28
+    ) {
+
+        result =
+            result.slice(
+                0,
+                28
+            ) + "...";
+
+    }
+
+
+    return result;
+
+}
+
+
+/* =====================================================
+   BANK HOLIDAY DETECTION
+===================================================== */
+
+function isBankHoliday(
+    title
+) {
+
+    return /bank holiday/i.test(
+        title
+    );
+
+}
+
+
+/* =====================================================
+   NEWS FORMAT
+===================================================== */
+
+function formatNewsEvent(
+    event
+) {
+
+    if (
+        event.isHoliday
+    ) {
+
+        return (
+            "🏦 " +
+            event.currency +
+            " | " +
+            event.shortTitle
+        );
+
+    }
+
+
+    let icon =
+        "🟡";
+
+
+    if (
+        event.impactScore === 3
+    ) {
+
+        icon = "🔴";
+
+    }
+
+    else if (
+        event.impactScore === 2
+    ) {
+
+        icon = "🟠";
+
+    }
+
+
+    return (
+        icon +
+        " " +
+        event.currency +
+        " | " +
+        event.shortTitle
+    );
+
+}
+
+
+/* =====================================================
+   SORT NEWS
+===================================================== */
+
+function sortNewsEvents(
+    events
+) {
+
+    return events.sort(
+        (
+            a,
+            b
+        ) => {
+
+            /*
+               Time first.
+
+               For identical/similar times,
+               High Impact comes first.
+            */
+
+            const timeDifference =
+                a.timestamp -
+                b.timestamp;
+
+
+            if (
+                Math.abs(
+                    timeDifference
+                ) > 60 * 1000
+            ) {
+
+                return timeDifference;
+
+            }
+
+
+            /*
+               Economic news has priority
+               over Bank Holiday.
+            */
+
+            if (
+                a.isHoliday !==
+                b.isHoliday
+            ) {
+
+                return a.isHoliday
+                    ? 1
+                    : -1;
+
+            }
+
+
+            /*
+               Impact priority.
+            */
+
+            return (
+                b.impactScore -
+                a.impactScore
+            );
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   LOAD FOREX FACTORY
+===================================================== */
+
+async function loadForexFactoryNews() {
 
     try {
 
-        const rssUrl =
-            "https://www.marketwatch.com/rss/topstories";
+        const requestUrl =
+            NEWS_PROXY
+
+                ? NEWS_PROXY +
+                  encodeURIComponent(
+                      FOREX_FACTORY_CSV_URL
+                  )
+
+                : FOREX_FACTORY_CSV_URL;
 
 
         const response =
             await fetch(
+                requestUrl,
+                {
+                    cache: "no-store"
+                }
+            );
 
-                `https://api.allorigins.win/get?url=${encodeURIComponent(rssUrl)}`
+
+        if (
+            !response.ok
+        ) {
+
+            throw new Error(
+                "Forex Factory request failed"
+            );
+
+        }
+
+
+        const csv =
+            await response.text();
+
+
+        if (
+            !csv ||
+            csv.length < 20
+        ) {
+
+            throw new Error(
+                "Empty Forex Factory data"
+            );
+
+        }
+
+
+        const rows =
+            parseCSV(
+                csv
+            );
+
+
+        if (
+            rows.length < 2
+        ) {
+
+            throw new Error(
+                "Invalid CSV"
+            );
+
+        }
+
+
+        const headers =
+            rows[0];
+
+
+        const dateIndex =
+            findColumn(
+                headers,
+                [
+                    "date"
+                ]
+            );
+
+
+        const timeIndex =
+            findColumn(
+                headers,
+                [
+                    "time"
+                ]
+            );
+
+
+        const currencyIndex =
+            findColumn(
+                headers,
+                [
+                    "currency"
+                ]
+            );
+
+
+        const impactIndex =
+            findColumn(
+                headers,
+                [
+                    "impact"
+                ]
+            );
+
+
+        const eventIndex =
+            findColumn(
+                headers,
+                [
+                    "event"
+                ]
+            );
+
+
+        /*
+           If the CSV column names are not recognized,
+           stop safely.
+        */
+
+        if (
+            dateIndex === -1 ||
+            currencyIndex === -1 ||
+            eventIndex === -1
+        ) {
+
+            throw new Error(
+                "Forex Factory CSV columns not recognized"
+            );
+
+        }
+
+
+        const parsedEvents = [];
+
+
+        for (
+            let i = 1;
+            i < rows.length;
+            i++
+        ) {
+
+            const row =
+                rows[i];
+
+
+            const dateText =
+                row[dateIndex] || "";
+
+
+            const timeText =
+                timeIndex !== -1
+                    ? row[timeIndex]
+                    : "";
+
+
+            const currency =
+                cleanText(
+                    row[currencyIndex]
+                );
+
+
+            const impact =
+                impactIndex !== -1
+                    ? cleanText(
+                        row[impactIndex]
+                    )
+                    : "";
+
+
+            const eventName =
+                cleanText(
+                    row[eventIndex]
+                );
+
+
+            if (
+                !eventName
+            ) {
+
+                continue;
+
+            }
+
+
+            const timestamp =
+                parseForexFactoryDate(
+                    dateText,
+                    timeText
+                );
+
+
+            if (
+                !timestamp
+            ) {
+
+                continue;
+
+            }
+
+
+            const isHoliday =
+                isBankHoliday(
+                    eventName
+                );
+
+
+            const impactScore =
+                getImpactScore(
+                    impact
+                );
+
+
+            /*
+               Economic events:
+               include all impact levels.
+
+               Bank Holidays:
+               always include.
+            */
+
+            const event = {
+
+                timestamp:
+                    timestamp.getTime(),
+
+                currency:
+                    currency || "ALL",
+
+                impact:
+                    impact,
+
+                impactScore:
+                    impactScore,
+
+                title:
+                    eventName,
+
+                shortTitle:
+                    shortNewsTitle(
+                        eventName
+                    ),
+
+                isHoliday:
+                    isHoliday
+
+            };
+
+
+            parsedEvents.push(
+                event
+            );
+
+        }
+
+
+        const now =
+            Date.now();
+
+
+        /*
+           Keep recent events and upcoming events.
+
+           Recent events are kept for a short time
+           so a live result does not disappear
+           immediately after publication.
+        */
+
+        const minimumTimestamp =
+            now -
+            (15 * 60 * 1000);
+
+
+        const maximumTimestamp =
+            now +
+            (7 * 24 * 60 * 60 * 1000);
+
+
+        const filteredEvents =
+            parsedEvents.filter(
+                event =>
+
+                    event.timestamp >=
+                    minimumTimestamp &&
+
+                    event.timestamp <=
+                    maximumTimestamp
 
             );
 
 
-        const data =
-            await response.json();
-
-
-        const parser =
-            new DOMParser();
-
-
-        const xml =
-            parser.parseFromString(
-                data.contents,
-                "text/xml"
+        const sortedEvents =
+            sortNewsEvents(
+                filteredEvents
             );
 
 
-        const firstItem =
-            xml.querySelector(
-                "item > title"
-            ).textContent;
+        if (
+            sortedEvents.length === 0
+        ) {
+
+            showNewsOffline(
+                "NO NEWS"
+            );
+
+            return;
+
+        }
 
 
-        const shortTitle =
+        const signature =
+            sortedEvents
+                .map(
+                    event =>
+                        event.timestamp +
+                        "|" +
+                        event.currency +
+                        "|" +
+                        event.title
+                )
+                .join(
+                    "||"
+                );
 
-            firstItem.length > 55
 
-                ? firstItem.slice(0, 55) + "..."
+        /*
+           Only reset the rotation when
+           the actual news list changed.
+        */
 
-                : firstItem;
+        if (
+            signature !==
+            lastNewsSignature
+        ) {
+
+            lastNewsSignature =
+                signature;
 
 
-        document.getElementById(
-            "news-value"
-        ).innerText =
-            shortTitle;
+            newsEvents =
+                sortedEvents;
+
+
+            currentNewsIndex = 0;
+
+
+            startNewsRotation();
+
+        }
+
+        else {
+
+            newsEvents =
+                sortedEvents;
+
+        }
+
 
     }
 
-    catch (e) {
+    catch (
+        error
+    ) {
 
-        document.getElementById(
-            "news-value"
-        ).innerText =
-            "Loading...";
+        console.warn(
+            "Forex Factory News:",
+            error
+        );
+
+
+        /*
+           Do not destroy the last valid news.
+
+           Only show OFFLINE if we have
+           never successfully loaded news.
+        */
+
+        if (
+            newsEvents.length === 0
+        ) {
+
+            showNewsOffline(
+                "NEWS OFFLINE"
+            );
+
+        }
 
     }
 
 }
 
 
-updateNews();
+/* =====================================================
+   SHOW NEWS
+===================================================== */
+
+function showNewsEvent(
+    event
+) {
+
+    if (
+        !event
+    ) {
+
+        return;
+
+    }
 
 
-setInterval(
-    updateNews,
-    30000
-);
+    newsValue.classList.add(
+        "news-switch-out"
+    );
+
+
+    setTimeout(
+        function () {
+
+            newsValue.innerText =
+                formatNewsEvent(
+                    event
+                );
+
+
+            newsValue.classList.remove(
+                "news-high",
+                "news-medium",
+                "news-low",
+                "news-holiday",
+                "news-normal"
+            );
+
+
+            if (
+                event.isHoliday
+            ) {
+
+                newsValue.classList.add(
+                    "news-holiday"
+                );
+
+            }
+
+            else if (
+                event.impactScore === 3
+            ) {
+
+                newsValue.classList.add(
+                    "news-high"
+                );
+
+            }
+
+            else if (
+                event.impactScore === 2
+            ) {
+
+                newsValue.classList.add(
+                    "news-medium"
+                );
+
+            }
+
+            else if (
+                event.impactScore === 1
+            ) {
+
+                newsValue.classList.add(
+                    "news-low"
+                );
+
+            }
+
+            else {
+
+                newsValue.classList.add(
+                    "news-normal"
+                );
+
+            }
+
+
+            newsValue.classList.remove(
+                "news-switch-out"
+            );
+
+        },
+
+        300
+
+    );
+
+}
+
+
+/* =====================================================
+   NEWS OFFLINE
+===================================================== */
+
+function showNewsOffline(
+    message
+) {
+
+    newsValue.classList.remove(
+        "news-high",
+        "news-medium",
+        "news-low",
+        "news-holiday"
+    );
+
+
+    newsValue.classList.add(
+        "news-normal"
+    );
+
+
+    newsValue.innerText =
+        "📰 " +
+        message;
+
+}
+
+
+/* =====================================================
+   START NEWS ROTATION
+===================================================== */
+
+function startNewsRotation() {
+
+    if (
+        newsRotationTimer
+    ) {
+
+        clearInterval(
+            newsRotationTimer
+        );
+
+    }
+
+
+    if (
+        newsEvents.length === 0
+    ) {
+
+        showNewsOffline(
+            "NO NEWS"
+        );
+
+        return;
+
+    }
+
+
+    /*
+       Show first news immediately.
+    */
+
+    showNewsEvent(
+        newsEvents[
+            currentNewsIndex
+        ]
+    );
+
+
+    /*
+       Every 60 seconds move
+       to the next event.
+    */
+
+    newsRotationTimer =
+        setInterval(
+
+            function () {
+
+                if (
+                    newsEvents.length === 0
+                ) {
+
+                    return;
+
+                }
+
+
+                currentNewsIndex++;
+
+
+                if (
+                    currentNewsIndex >=
+                    newsEvents.length
+                ) {
+
+                    currentNewsIndex = 0;
+
+                }
+
+
+                showNewsEvent(
+                    newsEvents[
+                        currentNewsIndex
+                    ]
+                );
+
+            },
+
+            60000
+
+        );
+
+}
+
+
+/* =====================================================
+   NEWS REFRESH
+===================================================== */
+
+loadForexFactoryNews();
+
+
+newsRefreshTimer =
+    setInterval(
+
+        function () {
+
+            loadForexFactoryNews();
+
+        },
+
+        30000
+
+    );
 
 
 /* =====================================================
@@ -2076,18 +3296,13 @@ const likeIcon =
 
 
 setInterval(
+
     function () {
 
 
-        /* =============================================
-           SUBSCRIBE → LIKE
-        ============================================= */
-
         if (
-
             subscribeState.style.display !==
             "none"
-
         ) {
 
             subscribeState.style.display =
@@ -2112,11 +3327,6 @@ setInterval(
 
         }
 
-
-        /* =============================================
-           LIKE → SUBSCRIBE
-        ============================================= */
-
         else {
 
             likeState.style.display =
@@ -2139,4 +3349,3 @@ setInterval(
 </body>
 
 </html>
-```
