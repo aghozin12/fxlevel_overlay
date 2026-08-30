@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -226,29 +227,6 @@ body::before {
 
     text-shadow:
         0 0 8px #00ff88;
-}
-
-
-/* =====================================================
-   هشدار نام سشن
-===================================================== */
-
-#session-value.session-warning {
-
-    animation:
-        sessionNameBlink 1s ease-in-out infinite;
-}
-
-
-@keyframes sessionNameBlink {
-
-    0%, 100% {
-        opacity: 1;
-    }
-
-    50% {
-        opacity: 0.15;
-    }
 }
 
 
@@ -1064,7 +1042,7 @@ body::before {
 <div class="top-bar">
 
 
-<!-- SESSION -->
+<!-- MARKET STATUS -->
 
 <div class="top-item">
 
@@ -1080,7 +1058,7 @@ body::before {
             />
 
             <path
-                d="M12 6v6l4 2"
+                d="M8 12l3 3 5-6"
                 stroke-width="2"
             />
 
@@ -1089,10 +1067,10 @@ body::before {
 
         <div class="text-box">
 
-            <span>SESSION</span>
+            <span>MARKET STATUS</span>
 
-            <span id="session-value">
-                London
+            <span id="market-status-value">
+                OPEN
             </span>
 
         </div>
@@ -1615,23 +1593,6 @@ body::before {
    تنظیمات سشن‌ها
 ===================================================== */
 
-/*
-   زمان شروع سشن‌ها بر اساس ساعت محلی همان شهر:
-
-   Sydney    = 08:00
-   Tokyo     = 09:00
-   London    = 08:00
-
-   New York  = 09:30
-   اما در این Overlay، باز شدن بازار سهام آمریکا
-   به صورت ثابت 16:30 به وقت تهران در نظر گرفته شده است.
-
-   نکته:
-   منطق Session Map امکان فعال بودن همزمان
-   دو سشن را دارد.
-*/
-
-
 const tradingSessions = [
 
     {
@@ -1706,9 +1667,9 @@ const tradingSessions = [
    عناصر HTML
 ===================================================== */
 
-const sessionValue =
+const marketStatusValue =
     document.getElementById(
-        "session-value"
+        "market-status-value"
     );
 
 
@@ -1933,12 +1894,6 @@ function getSessionOpenTimestamp(
     dayOffset = 0
 ) {
 
-    /* -----------------------------------------------
-       نیویورک:
-       بازار سهام آمریکا = 16:30 تهران
-       فعلاً به صورت ثابت
-    ----------------------------------------------- */
-
     if (
         session.fixedTehranOpen
     ) {
@@ -1986,10 +1941,6 @@ function getSessionOpenTimestamp(
 
     }
 
-
-    /* -----------------------------------------------
-       سایر سشن‌ها
-    ----------------------------------------------- */
 
     const localParts =
         getTimeZoneParts(
@@ -2118,11 +2069,6 @@ function getActiveSessions(
     now
 ) {
 
-    /* -----------------------------------------------
-       شنبه و یکشنبه:
-       بازار تعطیل
-    ----------------------------------------------- */
-
     if (
         isWeekend(now)
     ) {
@@ -2145,17 +2091,6 @@ function getActiveSessions(
                 );
 
 
-            /*
-               هر سشن از زمان باز شدن خودش
-               تا قبل از شروع سشن بعدی فعال است.
-
-               برای Session Map فقط سشن‌هایی را
-               نمایش می‌دهیم که در وضعیت فعال
-               معاملاتی قرار دارند.
-
-               همپوشانی کاملاً مجاز است.
-            */
-
             if (
                 open <= now.getTime()
             ) {
@@ -2169,11 +2104,6 @@ function getActiveSessions(
         }
     );
 
-
-    /*
-       فقط چهار سشن آخرین چرخه را بررسی می‌کنیم.
-       ترتیب زمانی برای مشخص کردن سشن جاری حفظ می‌شود.
-    */
 
     return activeSessions;
 
@@ -2287,7 +2217,9 @@ function getNextSession(
                 candidate =
                     todayOpen;
 
-            } else {
+            }
+
+            else {
 
                 candidate =
                     tomorrowOpen;
@@ -2413,10 +2345,6 @@ function updateSessionMap(
     };
 
 
-    /* -----------------------------------------------
-       حذف Active قبلی
-    ----------------------------------------------- */
-
     Object.values(nodes).forEach(
         node => {
 
@@ -2427,10 +2355,6 @@ function updateSessionMap(
         }
     );
 
-
-    /* -----------------------------------------------
-       آخر هفته
-    ----------------------------------------------- */
 
     if (
         isWeekend(now)
@@ -2460,10 +2384,6 @@ function updateSessionMap(
     );
 
 
-    /* -----------------------------------------------
-       سشن‌های فعال
-    ----------------------------------------------- */
-
     const active =
         getActiveSessions(
             now
@@ -2488,10 +2408,6 @@ function updateSessionMap(
         }
     );
 
-
-    /* -----------------------------------------------
-       نمایش Active
-    ----------------------------------------------- */
 
     if (
         active.length > 0
@@ -2559,14 +2475,14 @@ function updateClocks() {
 
 
     /* ================================================
-       آخر هفته
+       وضعیت بازار
     ================================================ */
 
     if (
         !activeSession
     ) {
 
-        sessionValue.innerText =
+        marketStatusValue.innerText =
             "CLOSED";
 
 
@@ -2581,25 +2497,13 @@ function updateClocks() {
 
     else {
 
-        /* --------------------------------------------
-           نام سشن اصلی
-        -------------------------------------------- */
+        marketStatusValue.innerText =
+            "OPEN";
 
-        sessionValue.innerText =
-            activeSession.name;
-
-
-        /* --------------------------------------------
-           نام کنار ساعت
-        -------------------------------------------- */
 
         sessionClockLabel.innerText =
             activeSession.name.toUpperCase();
 
-
-        /* --------------------------------------------
-           ساعت سشن
-        -------------------------------------------- */
 
         sessionClockValue.innerText =
             getSessionTime(
@@ -2620,10 +2524,6 @@ function updateClocks() {
         );
 
 
-    /* ================================================
-       زمان تا شروع سشن بعدی
-    ================================================ */
-
     const millisecondsUntilNext =
         next.openTimestamp -
         now.getTime();
@@ -2635,39 +2535,12 @@ function updateClocks() {
 
 
     /* ================================================
-       پاک کردن هشدارها
+       پاک کردن هشدار ساعت
     ================================================ */
-
-    sessionValue.classList.remove(
-        "session-warning"
-    );
-
 
     sessionClockValue.classList.remove(
         "clock-warning"
     );
-
-
-    /* ================================================
-       هشدار نام سشن
-       ۵ دقیقه قبل
-    ================================================ */
-
-    if (
-
-        !isWeekend(now) &&
-
-        minutesUntilNext <= 5 &&
-
-        minutesUntilNext > 0
-
-    ) {
-
-        sessionValue.classList.add(
-            "session-warning"
-        );
-
-    }
 
 
     /* ================================================
@@ -2805,3 +2678,4 @@ setInterval(
 </body>
 
 </html>
+```
