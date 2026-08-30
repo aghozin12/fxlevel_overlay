@@ -104,6 +104,7 @@ body::before {
 
 /* =====================================================
    نوار بالا
+   ابعاد دقیقاً بدون تغییر
 ===================================================== */
 
 .top-bar {
@@ -193,6 +194,64 @@ body::before {
 
 
 /* =====================================================
+   آیکون وضعیت بازار
+===================================================== */
+
+.market-status-icon {
+
+    stroke: #00ff88;
+
+    filter:
+        drop-shadow(0 0 5px #00ff88)
+        drop-shadow(0 0 12px #00ff88);
+
+    transition:
+        stroke 0.3s ease,
+        filter 0.3s ease;
+}
+
+
+/* =====================================================
+   وضعیت CLOSED
+===================================================== */
+
+.market-status-icon.closed {
+
+    stroke: #ff3333;
+
+    filter:
+        drop-shadow(0 0 5px #ff3333)
+        drop-shadow(0 0 12px #ff3333)
+        drop-shadow(0 0 24px rgba(255,51,51,0.9));
+
+    animation:
+        closedIconPulse 1s ease-in-out infinite;
+}
+
+
+@keyframes closedIconPulse {
+
+    0%,
+    100% {
+
+        opacity: 1;
+
+        transform: scale(1);
+
+    }
+
+    50% {
+
+        opacity: 0.55;
+
+        transform: scale(0.9);
+
+    }
+
+}
+
+
+/* =====================================================
    متن‌های بالا
 ===================================================== */
 
@@ -231,25 +290,55 @@ body::before {
 
 
 /* =====================================================
-   MARKET STATUS
+   CLOSED TEXT
 ===================================================== */
 
-#market-status-value.market-open {
-
-    color: #00ff88;
-
-    text-shadow:
-        0 0 8px #00ff88;
-}
-
-
-#market-status-value.market-closed {
+#session-value.closed-text {
 
     color: #ff3333;
 
     text-shadow:
-        0 0 8px #ff3333,
-        0 0 16px rgba(255,51,51,0.65);
+        0 0 6px #ff3333,
+        0 0 14px rgba(255,51,51,0.8);
+
+    animation:
+        closedTextPulse 1s ease-in-out infinite;
+}
+
+
+@keyframes closedTextPulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.45;
+    }
+}
+
+
+/* =====================================================
+   هشدار نام سشن
+===================================================== */
+
+#session-value.session-warning {
+
+    animation:
+        sessionNameBlink 1s ease-in-out infinite;
+}
+
+
+@keyframes sessionNameBlink {
+
+    0%, 100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.15;
+    }
 }
 
 
@@ -554,19 +643,20 @@ body::before {
 
 .session-map.weekend .session-map-title {
 
-    color: #ffae4a;
+    color: #ff3333;
 
     text-shadow:
-        0 0 6px #ffae4a;
+        0 0 6px #ff3333,
+        0 0 12px rgba(255,51,51,0.8);
 }
 
 
 .session-map.weekend .session-active-label {
 
-    color: #ffae4a;
+    color: #ff3333;
 
     text-shadow:
-        0 0 6px #ffae4a;
+        0 0 6px #ff3333;
 }
 
 
@@ -578,10 +668,10 @@ body::before {
 
 .session-map.weekend .session-dot {
 
-    background: rgba(255,174,74,0.28);
+    background: rgba(255,51,51,0.28);
 
     box-shadow:
-        0 0 5px rgba(255,174,74,0.15);
+        0 0 5px rgba(255,51,51,0.15);
 }
 
 
@@ -1065,40 +1155,71 @@ body::before {
 <div class="top-bar">
 
 
-<!-- MARKET STATUS -->
+<!-- MARKET STATUS / SESSION -->
 
 <div class="top-item">
 
     <div class="item-row">
 
-        <svg class="icon" viewBox="0 0 24 24">
+        <!-- آیکون وضعیت -->
+        <svg
+            class="icon market-status-icon"
+            id="market-status-icon"
+            viewBox="0 0 24 24"
+        >
 
-            <circle
-                cx="12"
-                cy="12"
-                r="10"
-                stroke-width="2"
-            />
+            <!-- OPEN : تیک -->
+            <g id="open-icon">
 
-            <path
-                d="M8 12l3 3 5-6"
-                stroke-width="2"
-            />
+                <circle
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke-width="2"
+                />
+
+                <path
+                    d="M7 12l3 3 7-7"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+
+            </g>
+
+
+            <!-- CLOSED : ضربدر -->
+            <g
+                id="closed-icon"
+                style="display:none;"
+            >
+
+                <circle
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke-width="2"
+                />
+
+                <path
+                    d="M7 7l10 10M17 7L7 17"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                />
+
+            </g>
 
         </svg>
 
 
         <div class="text-box">
 
-            <span>
-                MARKET STATUS
+            <span id="session-label">
+                SESSION
             </span>
 
-            <span
-                id="market-status-value"
-                class="market-open"
-            >
-                OPEN
+            <span id="session-value">
+                London
             </span>
 
         </div>
@@ -1203,9 +1324,7 @@ body::before {
             id="session-active-label"
         >
 
-            <span class="active-arrow">
-                ▲
-            </span>
+            <span class="active-arrow">▲</span>
 
             <span id="active-session-text">
                 ACTIVE
@@ -1282,9 +1401,7 @@ body::before {
 
         <div class="text-box">
 
-            <span>
-                TEHRAN
-            </span>
+            <span>TEHRAN</span>
 
             <span id="tehran-value">
                 --:--:--
@@ -1330,9 +1447,7 @@ body::before {
 
         <div class="text-box">
 
-            <span>
-                DATE
-            </span>
+            <span>DATE</span>
 
             <span id="date-value">
                 -- --- ----
@@ -1634,66 +1749,42 @@ const tradingSessions = [
 
     {
         id: "sydney",
-
         name: "Sydney",
-
         shortName: "SYD",
-
         timeZone: "Australia/Sydney",
-
         openHour: 8,
-
         openMinute: 0
     },
-
 
     {
         id: "tokyo",
-
         name: "Tokyo",
-
         shortName: "TOK",
-
         timeZone: "Asia/Tokyo",
-
         openHour: 9,
-
         openMinute: 0
     },
-
 
     {
         id: "london",
-
         name: "London",
-
         shortName: "LON",
-
         timeZone: "Europe/London",
-
         openHour: 8,
-
         openMinute: 0
     },
 
-
     {
         id: "newyork",
-
         name: "New York",
-
         shortName: "NY",
-
         timeZone: "America/New_York",
-
         openHour: 9,
-
         openMinute: 30,
 
         fixedTehranOpen: true,
 
         tehranOpenHour: 16,
-
         tehranOpenMinute: 30
     }
 
@@ -1704,9 +1795,9 @@ const tradingSessions = [
    عناصر HTML
 ===================================================== */
 
-const marketStatusValue =
+const sessionValue =
     document.getElementById(
-        "market-status-value"
+        "session-value"
     );
 
 
@@ -1743,6 +1834,24 @@ const sessionActiveLabel =
 const activeSessionText =
     document.getElementById(
         "active-session-text"
+    );
+
+
+const marketStatusIcon =
+    document.getElementById(
+        "market-status-icon"
+    );
+
+
+const openIcon =
+    document.getElementById(
+        "open-icon"
+    );
+
+
+const closedIcon =
+    document.getElementById(
+        "closed-icon"
     );
 
 
@@ -2060,7 +2169,7 @@ function getLastSessionOpen(
 
 
 /* =====================================================
-   بررسی آخر هفته
+   آخر هفته
 ===================================================== */
 
 function isWeekend(
@@ -2129,7 +2238,8 @@ function getActiveSessions(
 
 
             if (
-                open <= now.getTime()
+                open <=
+                now.getTime()
             ) {
 
                 activeSessions.push(
@@ -2148,7 +2258,7 @@ function getActiveSessions(
 
 
 /* =====================================================
-   سشن اصلی برای نمایش ساعت
+   سشن اصلی
 ===================================================== */
 
 function getPrimaryActiveSession(
@@ -2295,7 +2405,7 @@ function getNextSession(
 
 
 /* =====================================================
-   نمایش ساعت محلی
+   ساعت محلی
 ===================================================== */
 
 function getSessionTime(
@@ -2350,6 +2460,59 @@ function getTehranDate(
 
 
 /* =====================================================
+   تغییر آیکون OPEN / CLOSED
+===================================================== */
+
+function setMarketStatus(
+    isOpen
+) {
+
+    if (
+        isOpen
+    ) {
+
+        /* -----------------------------
+           OPEN
+        ----------------------------- */
+
+        marketStatusIcon.classList.remove(
+            "closed"
+        );
+
+
+        openIcon.style.display =
+            "block";
+
+
+        closedIcon.style.display =
+            "none";
+
+    }
+
+    else {
+
+        /* -----------------------------
+           CLOSED
+        ----------------------------- */
+
+        marketStatusIcon.classList.add(
+            "closed"
+        );
+
+
+        openIcon.style.display =
+            "none";
+
+
+        closedIcon.style.display =
+            "block";
+
+    }
+
+}
+
+
+/* =====================================================
    آپدیت Session Map
 ===================================================== */
 
@@ -2393,6 +2556,10 @@ function updateSessionMap(
     );
 
 
+    /* -----------------------------------------------
+       CLOSED
+    ----------------------------------------------- */
+
     if (
         isWeekend(now)
     ) {
@@ -2420,6 +2587,10 @@ function updateSessionMap(
         "weekend"
     );
 
+
+    /* -----------------------------------------------
+       ACTIVE
+    ----------------------------------------------- */
 
     const active =
         getActiveSessions(
@@ -2472,7 +2643,7 @@ function updateSessionMap(
 
 
 /* =====================================================
-   آپدیت ساعت‌ها و Session Map
+   آپدیت ساعت‌ها
 ===================================================== */
 
 function updateClocks() {
@@ -2512,24 +2683,19 @@ function updateClocks() {
 
 
     /* ================================================
-       وضعیت بازار
+       CLOSED
     ================================================ */
 
     if (
         !activeSession
     ) {
 
-        marketStatusValue.innerText =
+        sessionValue.innerText =
             "CLOSED";
 
 
-        marketStatusValue.classList.remove(
-            "market-open"
-        );
-
-
-        marketStatusValue.classList.add(
-            "market-closed"
+        sessionValue.classList.add(
+            "closed-text"
         );
 
 
@@ -2540,21 +2706,25 @@ function updateClocks() {
         sessionClockValue.innerText =
             "--:--:--";
 
+
+        setMarketStatus(
+            false
+        );
+
     }
 
     else {
 
-        marketStatusValue.innerText =
-            "OPEN";
+        /* --------------------------------------------
+           OPEN
+        -------------------------------------------- */
+
+        sessionValue.innerText =
+            activeSession.name;
 
 
-        marketStatusValue.classList.remove(
-            "market-closed"
-        );
-
-
-        marketStatusValue.classList.add(
-            "market-open"
+        sessionValue.classList.remove(
+            "closed-text"
         );
 
 
@@ -2567,6 +2737,11 @@ function updateClocks() {
                 activeSession.timeZone,
                 now
             );
+
+
+        setMarketStatus(
+            true
+        );
 
     }
 
@@ -2592,8 +2767,13 @@ function updateClocks() {
 
 
     /* ================================================
-       پاک کردن هشدار ساعت
+       هشدارها
     ================================================ */
+
+    sessionValue.classList.remove(
+        "session-warning"
+    );
+
 
     sessionClockValue.classList.remove(
         "clock-warning"
@@ -2601,8 +2781,28 @@ function updateClocks() {
 
 
     /* ================================================
-       هشدار ساعت سشن
-       ۲ دقیقه قبل
+       هشدار ۵ دقیقه‌ای
+    ================================================ */
+
+    if (
+
+        !isWeekend(now) &&
+
+        minutesUntilNext <= 5 &&
+
+        minutesUntilNext > 0
+
+    ) {
+
+        sessionValue.classList.add(
+            "session-warning"
+        );
+
+    }
+
+
+    /* ================================================
+       هشدار ۲ دقیقه‌ای
     ================================================ */
 
     if (
@@ -2623,7 +2823,7 @@ function updateClocks() {
 
 
     /* ================================================
-       تاریخ تهران
+       تاریخ
     ================================================ */
 
     document.getElementById(
