@@ -666,6 +666,25 @@ body::before {
     }
 }
 
+
+
+/* =====================================================
+   هشدار تغییر سشن - ۵ دقیقه مانده به شروع سشن بعدی
+===================================================== */
+
+#newyork-value.session-time-blink {
+    animation: sessionTimeBlink 1s ease-in-out infinite;
+}
+
+@keyframes sessionTimeBlink {
+    0%, 100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.15;
+    }
+}
 </style>
 </head>
 
@@ -746,7 +765,7 @@ body::before {
 
             <div class="text-box">
 
-                <span>NEW YORK</span>
+                <span id="session-clock-label">NEW YORK</span>
 
                 <span id="newyork-value">
                     --:--
@@ -1182,30 +1201,235 @@ body::before {
 
 
 /* =====================================================
-   ساعت و تاریخ
+   ساعت، تاریخ و سشن‌ها
 ===================================================== */
+
+/*
+   زمان شروع سشن‌ها بر اساس وقت تهران:
+   Sydney    = 12:30
+   Tokyo     = 03:30
+   London    = 10:30
+   New York  = 16:30
+
+   منطق انتخاب سشن:
+   همیشه آخرین سشنی که شروع شده، سشن فعال است.
+   بنابراین از 00:00 تا 03:29، آخرین سشن بازشده New York است
+   که از روز قبل در حال فعالیت بوده است.
+*/
+
+const tradingSessions = [
+    {
+        name: "Sydney",
+        start: 12 * 60 + 30,
+        timeZone: "Australia/Sydney"
+    },
+    {
+        name: "Tokyo",
+        start: 3 * 60 + 30,
+        timeZone: "Asia/Tokyo"
+    },
+    {
+        name: "London",
+        start: 10 * 60 + 30,
+        timeZone: "Europe/London"
+    },
+    {
+        name: "New York",
+        start: 16 * 60 + 30,
+        timeZone: "America/New_York"
+    }
+];
+
+const sessionValue =
+    document.getElementById("session-value");
+
+const sessionClockLabel =
+    document.getElementById("session-clock-label");
+
+const sessionClockValue =
+    document.getElementById("newyork-value");
+
+const tehranClockValue =
+    document.getElementById("tehran-value");
+
+function getTehranParts(date = new Date()) {
+
+    const parts = new Intl.DateTimeFormat(
+        "en-US",
+        {
+            timeZone: "Asia/Tehran",
+            hour: "2-digit",
+            minute: "2-digit",
+            hourCycle: "h23"
+        }
+    ).formatToParts(date);
+
+    const result = {};
+
+    parts.forEach(part => {
+        if (part.type !== "literal") {
+            result[part.type] = part.value;
+        }
+    });
+
+    return {
+        hour: parseInt(result.hour, 10),
+        minute: parseInt(result.minute, 10)
+    };
+}
+
+function getActiveSession(tehranMinutes) {
+
+    /*
+       ترتیب از جدیدترین شروع به قدیمی‌ترین شروع است.
+       اگر قبل از 03:30 باشیم، New York سشن فعال باقی می‌ماند
+       چون شروع آن در 16:30 روز قبل بوده است.
+    */
+
+    if (tehranMinutes >= 16 * 60 + 30) {
+        return tradingSessions[3];
+    }
+
+    if (tehranMinutes >= 12 * 60 + 30) {
+        return tradingSessions[0];
+    }
+
+    if (tehranMinutes >= 10 * 60 + 30) {
+        return tradingSessions[2];
+    }
+
+    if (tehranMinutes >= 3 * 60 + 30) {
+        return tradingSessions[1];
+    }
+
+    return tradingSessions[3];
+}
+
+function getNextSession(tehranMinutes) {
+
+    /*
+       نزدیک‌ترین شروع بعدی را پیدا می‌کنیم.
+       اگر از آخرین شروع روز عبور کرده باشیم، شروع Sydney
+       در روز بعد، شروع بعدی خواهد بود.
+    */
+
+    const futureSessions = tradingSessions
+        .filter(session => session.start > tehranMinutes)
+        .sort((a, b) => a.start - b.start);
+
+    return futureSessions.length > 0
+        ? futureSessions[0]
+        : tradingSessions[0];
+}
+
+function getMinutesUntilNextSession(
+    tehranMinutes,
+    nextSession
+) {
+
+    let difference =
+        nextSession.start - tehranMinutes;
+
+    if (difference <= 0) {
+        difference += 24 * 60;
+    }
+
+    return difference;
+}
+
+function getSessionTime(timeZone, date = new Date()) {
+
+    return new Intl.DateTimeFormat(
+        "en-US",
+        {
+            timeZone,
+            hour: "2-digit",
+            minute: "2-digit",
+            hour12: true
+        }
+    ).format(date);
+}
 
 function updateClocks() {
 
-    const tehranTime =
-        new Date().toLocaleTimeString(
-            "en-US",
-            {
-                timeZone: "Asia/Tehran",
-                hour12: true
-            }
+    const now = new Date();
+
+    /* ================================
+       زمان تهران برای تشخیص سشن
+    ================================ */
+
+    const tehran = getTehranParts(now);
+
+    const tehranMinutes =
+        tehran.hour * 60 + tehran.minute;
+
+    /* ================================
+       نمایش ساعت واقعی تهران
+    ================================ */
+
+    tehranClockValue.innerText =
+        getSessionTime("Asia/Tehran", now);
+
+    /* ================================
+       سشن فعال
+    ================================ */
+
+    const activeSession =
+        getActiveSession(tehranMinutes);
+
+    /* ================================
+       سشن بعدی
+    ================================ */
+
+    const nextSession =
+        getNextSession(tehranMinutes);
+
+    const minutesUntilNext =
+        getMinutesUntilNextSession(
+            tehranMinutes,
+            nextSession
         );
 
+    /* ================================
+       نمایش نام سشن
+    ================================ */
 
-    const newYorkTime =
-        new Date().toLocaleTimeString(
-            "en-US",
-            {
-                timeZone: "America/New_York",
-                hour12: true
-            }
+    sessionValue.innerText =
+        activeSession.name;
+
+    /* ================================
+       نمایش ساعت سشن فعال
+    ================================ */
+
+    sessionClockLabel.innerText =
+        activeSession.name.toUpperCase();
+
+    sessionClockValue.innerText =
+        getSessionTime(
+            activeSession.timeZone,
+            now
         );
 
+    /* ================================
+       چشمک زدن ۵ دقیقه مانده به سشن بعدی
+    ================================ */
+
+    if (
+        minutesUntilNext <= 5 &&
+        minutesUntilNext > 0
+    ) {
+        sessionClockValue.classList.add(
+            "session-time-blink"
+        );
+    } else {
+        sessionClockValue.classList.remove(
+            "session-time-blink"
+        );
+    }
+
+    /* ================================
+       تاریخ تهران
+    ================================ */
 
     const today =
         new Date().toLocaleDateString(
@@ -1218,64 +1442,10 @@ function updateClocks() {
             }
         );
 
-
-    const tehranHour =
-        parseInt(
-            new Date().toLocaleString(
-                "en-US",
-                {
-                    timeZone: "Asia/Tehran",
-                    hour: "numeric",
-                    hour12: false
-                }
-            )
-        );
-
-
-    const tehranMinute =
-        parseInt(
-            new Date().toLocaleString(
-                "en-US",
-                {
-                    timeZone: "Asia/Tehran",
-                    minute: "numeric"
-                }
-            )
-        );
-
-
-    const sessionName =
-        (
-            tehranHour < 16 ||
-            (
-                tehranHour === 16 &&
-                tehranMinute < 30
-            )
-        )
-        ? "London"
-        : "New York";
-
-
-    document.getElementById(
-        "session-value"
-    ).innerText = sessionName;
-
-
-    document.getElementById(
-        "tehran-value"
-    ).innerText = tehranTime;
-
-
-    document.getElementById(
-        "newyork-value"
-    ).innerText = newYorkTime;
-
-
     document.getElementById(
         "date-value"
     ).innerText = today;
 }
-
 
 setInterval(
     updateClocks,
@@ -1294,7 +1464,7 @@ async function updateNews() {
     try {
 
         const rssUrl =
-            "https://feeds.content.dowjones.io/public/rss/mw_topstories";
+            "https://www.marketwatch.com/rss/topstories";
 
 
         const response =
