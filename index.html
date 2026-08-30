@@ -232,7 +232,6 @@ body::before {
 
 /* =====================================================
    هشدار نام سشن
-   ۵ دقیقه مانده به تغییر سشن
 ===================================================== */
 
 #session-value.session-warning {
@@ -256,7 +255,6 @@ body::before {
 
 /* =====================================================
    هشدار ساعت سشن
-   ۲ دقیقه مانده به تغییر سشن
 ===================================================== */
 
 #newyork-value.clock-warning {
@@ -1257,18 +1255,27 @@ body::before {
 ===================================================== */
 
 /*
-   زمان شروع سشن‌ها بر اساس ساعت محلی همان شهر است.
+   Sydney
+   ساعت شروع: 08:00 به وقت محلی Sydney
 
-   Sydney    = 08:00
-   Tokyo     = 09:00
-   London    = 08:00
+   Tokyo
+   ساعت شروع: 09:00 به وقت محلی Tokyo
 
-   New York  = 09:30
-   این زمان مطابق باز شدن رسمی بازار سهام آمریکا
-   (NYSE / Nasdaq) است.
+   London
+   ساعت شروع: 08:00 به وقت محلی London
 
-   Time Zone ها توسط IANA کنترل می‌شوند،
-   بنابراین DST به صورت خودکار محاسبه می‌شود.
+   New York
+   =====================================================
+   نکته مهم:
+   New York در این Overlay بر اساس ساعت تهران
+   در ساعت 16:30 شروع می‌شود.
+
+   بنابراین برای New York دیگر از 09:30
+   به وقت محلی New York برای تعیین Session
+   استفاده نمی‌کنیم.
+
+   ساعت نمایش New York همچنان ساعت محلی
+   America/New_York خواهد بود.
 */
 
 
@@ -1281,7 +1288,9 @@ const tradingSessions = [
 
         openHour: 8,
 
-        openMinute: 0
+        openMinute: 0,
+
+        openTimeZone: "Australia/Sydney"
     },
 
 
@@ -1292,7 +1301,9 @@ const tradingSessions = [
 
         openHour: 9,
 
-        openMinute: 0
+        openMinute: 0,
+
+        openTimeZone: "Asia/Tokyo"
     },
 
 
@@ -1303,7 +1314,9 @@ const tradingSessions = [
 
         openHour: 8,
 
-        openMinute: 0
+        openMinute: 0,
+
+        openTimeZone: "Europe/London"
     },
 
 
@@ -1312,9 +1325,11 @@ const tradingSessions = [
 
         timeZone: "America/New_York",
 
-        openHour: 9,
+        openHour: 16,
 
-        openMinute: 30
+        openMinute: 30,
+
+        openTimeZone: "Asia/Tehran"
     }
 
 ];
@@ -1533,10 +1548,29 @@ function getSessionOpenTimestamp(
     dayOffset = 0
 ) {
 
+    /*
+       برای New York:
+
+       زمان باز شدن بر اساس تهران است.
+
+       یعنی:
+
+       16:30 Asia/Tehran
+
+       و نه:
+
+       09:30 America/New_York
+    */
+
+    const openTimeZone =
+        session.openTimeZone ||
+        session.timeZone;
+
+
     const localParts =
         getTimeZoneParts(
             date,
-            session.timeZone
+            openTimeZone
         );
 
 
@@ -1565,7 +1599,7 @@ function getSessionOpenTimestamp(
     const offset =
         getTimeZoneOffset(
             localDate,
-            session.timeZone
+            openTimeZone
         );
 
 
