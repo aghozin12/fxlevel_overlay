@@ -1,58 +1,36 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
-
 <title>FX LEVEL Overlay</title>
-
 
 <style>
 
-/* =====================================================
-   صفحه اصلی
-===================================================== */
-
-html,
-body {
-
+html, body {
     width: 1920px;
     height: 1080px;
-
     margin: 0;
     padding: 0;
-
     overflow: hidden;
-
     background: #808080;
-
     font-family: Arial, sans-serif;
-
     color: white;
 }
 
-
 /* =====================================================
-   شبکه پس‌زمینه
+   BACKGROUND GRID
 ===================================================== */
 
 body::before {
-
     content: "";
-
     position: absolute;
-
     inset: 0;
 
     background-image:
-
         linear-gradient(
             rgba(0,255,136,0.40) 1px,
             transparent 1px
         ),
-
         linear-gradient(
             90deg,
             rgba(0,255,136,0.40) 1px,
@@ -60,17 +38,14 @@ body::before {
         );
 
     background-size: 40px 40px;
-
     pointer-events: none;
 }
 
-
 /* =====================================================
-   فریم اصلی
+   MAIN FRAME
 ===================================================== */
 
 .main-frame {
-
     position: absolute;
 
     top: 40px;
@@ -80,7 +55,6 @@ body::before {
     height: calc(100% - 80px);
 
     clip-path: polygon(
-
         25px 0,
         calc(100% - 25px) 0,
         100% 25px,
@@ -89,27 +63,22 @@ body::before {
         25px 100%,
         0 calc(100% - 25px),
         0 25px
-
     );
 
-    background: rgba(0,0,0,0.18);
+    background: rgba(0, 0, 0, 0.18);
 
     border: 3px solid #00ff88;
 
     box-shadow:
-
         0 0 25px #00ff88,
-
         inset 0 0 25px #00ff88;
 }
 
-
 /* =====================================================
-   نوار بالا
+   TOP BAR
 ===================================================== */
 
 .top-bar {
-
     position: absolute;
 
     top: 55px;
@@ -121,30 +90,25 @@ body::before {
     height: 90px;
 
     clip-path: polygon(
-
         18px 0,
         calc(100% - 18px) 0,
         100% 18px,
         100% 100%,
         0 100%,
         0 18px
-
     );
 
-    background: rgba(0,0,0,0.35);
+    background: rgba(0, 0, 0, 0.35);
 
     border: 2px solid #00ff88;
 
     box-shadow:
-
         0 0 14px #00ff88,
-
         inset 0 0 14px #00ff88;
 
     display: flex;
 
     justify-content: space-between;
-
     align-items: center;
 
     padding: 0 35px;
@@ -152,13 +116,11 @@ body::before {
     box-sizing: border-box;
 }
 
-
 /* =====================================================
-   آیتم‌های نوار بالا
+   TOP ITEMS
 ===================================================== */
 
 .top-item {
-
     flex: 1;
 
     display: flex;
@@ -166,9 +128,7 @@ body::before {
     justify-content: center;
 }
 
-
 .item-row {
-
     display: flex;
 
     align-items: center;
@@ -176,43 +136,34 @@ body::before {
     gap: 14px;
 }
 
-
 /* =====================================================
-   آیکون‌های بالا
+   TOP ICON
 ===================================================== */
 
 .icon {
-
     width: 40px;
     height: 40px;
 
     stroke: #ffffff;
-
     fill: none;
 
     filter:
         drop-shadow(0 0 6px #00ff88);
 }
 
-
 /* =====================================================
-   متن‌های بالا
+   TOP TEXT
 ===================================================== */
 
 .text-box {
-
     display: flex;
 
     flex-direction: column;
 
     line-height: 1.1;
-
-    max-width: 230px;
 }
 
-
 .text-box span:first-child {
-
     font-size: 14px;
 
     color: #ffae4a;
@@ -221,9 +172,7 @@ body::before {
         0 0 6px #ffae4a;
 }
 
-
 .text-box span:last-child {
-
     font-size: 22px;
 
     font-weight: bold;
@@ -232,30 +181,20 @@ body::before {
 
     text-shadow:
         0 0 8px #00ff88;
-
-    white-space: nowrap;
-
-    overflow: hidden;
-
-    text-overflow: ellipsis;
 }
 
-
 /* =====================================================
-   هشدار نام Session
+   SESSION WARNING
 ===================================================== */
 
 #session-value.session-warning {
-
     animation:
         sessionNameBlink 1s ease-in-out infinite;
 }
 
-
 @keyframes sessionNameBlink {
 
-    0%,
-    100% {
+    0%, 100% {
         opacity: 1;
     }
 
@@ -264,22 +203,14 @@ body::before {
     }
 }
 
-
-/* =====================================================
-   هشدار ساعت Session
-===================================================== */
-
 #newyork-value.clock-warning {
-
     animation:
         sessionClockBlink 0.65s ease-in-out infinite;
 }
 
-
 @keyframes sessionClockBlink {
 
-    0%,
-    100% {
+    0%, 100% {
         opacity: 1;
     }
 
@@ -288,13 +219,11 @@ body::before {
     }
 }
 
-
 /* =====================================================
-   جداکننده
+   DIVIDER
 ===================================================== */
 
 .divider {
-
     width: 1px;
 
     height: 60%;
@@ -303,74 +232,11 @@ body::before {
         rgba(255,255,255,0.35);
 }
 
-
 /* =====================================================
-   وضعیت NEXT EVENT
-===================================================== */
-
-#event-value {
-
-    max-width: 280px;
-
-    font-size: 19px !important;
-
-    color: #00ff88 !important;
-
-    text-shadow:
-        0 0 8px #00ff88 !important;
-}
-
-
-#event-value.offline {
-
-    color: #ff3333 !important;
-
-    text-shadow:
-        0 0 8px #ff3333 !important;
-
-    animation:
-        offlineBlink 1.5s ease-in-out infinite;
-}
-
-
-@keyframes offlineBlink {
-
-    0%,
-    100% {
-        opacity: 1;
-    }
-
-    50% {
-        opacity: 0.45;
-    }
-}
-
-
-#event-value.high-impact {
-
-    color: #ff3333 !important;
-
-    text-shadow:
-        0 0 8px #ff3333,
-        0 0 16px rgba(255,51,51,0.6) !important;
-}
-
-
-#event-value.bank-holiday {
-
-    color: #ffae4a !important;
-
-    text-shadow:
-        0 0 8px #ffae4a !important;
-}
-
-
-/* =====================================================
-   وبکم
+   WEBCAM
 ===================================================== */
 
 .webcam-frame {
-
     position: absolute;
 
     bottom: 170px;
@@ -384,26 +250,20 @@ body::before {
     border-radius: 0;
 
     background:
-        rgba(0,0,0,0.18);
+        rgba(0, 0, 0, 0.18);
 
     box-shadow:
-
-        0 0 25px rgba(0,255,102,1),
-
-        0 0 55px rgba(0,255,102,0.85),
-
-        0 0 110px rgba(0,255,102,0.65),
-
-        0 0 160px rgba(0,255,102,0.45);
+        0 0 25px rgba(0, 255, 102, 1),
+        0 0 55px rgba(0, 255, 102, 0.85),
+        0 0 110px rgba(0, 255, 102, 0.65),
+        0 0 160px rgba(0, 255, 102, 0.45);
 }
 
-
 /* =====================================================
-   نوار پایین
+   BOTTOM BAR
 ===================================================== */
 
 .bottom-bar {
-
     position: absolute;
 
     bottom: 55px;
@@ -415,31 +275,26 @@ body::before {
     height: 80px;
 
     clip-path: polygon(
-
         0 0,
         100% 0,
         100% calc(100% - 18px),
         calc(100% - 18px) 100%,
         18px 100%,
         0 calc(100% - 18px)
-
     );
 
     background:
-        rgba(0,0,0,0.35);
+        rgba(0, 0, 0, 0.35);
 
     border: 2px solid #00ff88;
 
     box-shadow:
-
         0 0 14px #00ff88,
-
         inset 0 0 14px #00ff88;
 
     display: flex;
 
     justify-content: space-between;
-
     align-items: center;
 
     padding: 0 40px;
@@ -447,13 +302,11 @@ body::before {
     box-sizing: border-box;
 }
 
-
 /* =====================================================
-   متن پایین
+   BOTTOM TEXT
 ===================================================== */
 
 .bottom-item span {
-
     font-family: Arial, sans-serif;
 
     font-size: 18px;
@@ -469,9 +322,7 @@ body::before {
     white-space: nowrap;
 }
 
-
 .bottom-item {
-
     display: flex;
 
     align-items: center;
@@ -479,22 +330,18 @@ body::before {
     gap: 10px;
 }
 
-
 .bottom-item:not(.subscribe) span {
-
     color: #4da6ff;
 
     text-shadow:
         0 0 6px #4da6ff;
 }
 
-
 /* =====================================================
-   آیکون پایین
+   BOTTOM ICON
 ===================================================== */
 
 .bottom-icon {
-
     width: 40px;
     height: 40px;
 
@@ -512,13 +359,11 @@ body::before {
         drop-shadow(0 0 4px #ffb347);
 }
 
-
 /* =====================================================
    SUBSCRIBE / LIKE
 ===================================================== */
 
 .subscribe {
-
     position: relative;
 
     width: 145px;
@@ -530,9 +375,7 @@ body::before {
     flex-shrink: 0;
 }
 
-
 .promo-state {
-
     position: absolute;
 
     left: 0;
@@ -549,13 +392,7 @@ body::before {
     white-space: nowrap;
 }
 
-
-/* =====================================================
-   SUBSCRIBE
-===================================================== */
-
 .subscribe-state span {
-
     font-family: Arial, sans-serif;
 
     font-size: 18px;
@@ -568,13 +405,7 @@ body::before {
         0 0 5px rgba(255,51,51,0.55);
 }
 
-
-/* =====================================================
-   زنگوله
-===================================================== */
-
 .bell-icon {
-
     stroke: #ff3333;
 
     filter:
@@ -583,13 +414,10 @@ body::before {
     transform-origin: 50% 15%;
 }
 
-
 .subscribe-state .bell-icon {
-
     animation:
         bellMiddle 10s ease-in-out infinite;
 }
-
 
 @keyframes bellMiddle {
 
@@ -638,19 +466,15 @@ body::before {
     }
 }
 
-
 /* =====================================================
    LIKE
 ===================================================== */
 
 .like-state {
-
     display: none;
 }
 
-
 .like-state span {
-
     font-family: Arial, sans-serif;
 
     font-size: 18px;
@@ -663,9 +487,7 @@ body::before {
         0 0 5px rgba(77,166,255,0.55);
 }
 
-
 .like-icon {
-
     stroke: #4da6ff;
 
     filter:
@@ -674,13 +496,10 @@ body::before {
     transform-origin: center;
 }
 
-
 .like-pulse {
-
     animation:
         likePulse 10s ease-in-out infinite;
 }
-
 
 @keyframes likePulse {
 
@@ -713,25 +532,20 @@ body::before {
     }
 }
 
-
 /* =====================================================
    VIP
 ===================================================== */
 
 .vip {
-
     position: relative;
 
     overflow: hidden;
 }
 
-
 .vip span {
-
     animation:
         vipPulse 1.8s infinite ease-in-out;
 }
-
 
 @keyframes vipPulse {
 
@@ -751,9 +565,7 @@ body::before {
     }
 }
 
-
 .vip .shine {
-
     position: absolute;
 
     top: 0;
@@ -774,7 +586,6 @@ body::before {
         shineSweep 3s infinite;
 }
 
-
 @keyframes shineSweep {
 
     0% {
@@ -790,80 +601,242 @@ body::before {
     }
 }
 
-
 /* =====================================================
-   جداکننده پایین
+   MARKET STATUS COLORS
 ===================================================== */
 
-.bottom-divider {
+#news-value.market-open {
+    color: #00ff88 !important;
+    text-shadow:
+        0 0 8px #00ff88 !important;
+}
 
-    width: 1px;
+#news-value.market-closed {
+    color: #ff5555 !important;
+    text-shadow:
+        0 0 8px #ff5555 !important;
+}
 
-    height: 45%;
+#news-value.market-warning {
+    color: #ffae4a !important;
+    text-shadow:
+        0 0 8px #ffae4a !important;
+}
 
-    background:
-        rgba(255,255,255,0.25);
+#news-value.bank-holiday {
+    color: #ffae4a !important;
+    text-shadow:
+        0 0 8px #ffae4a !important;
 }
 
 </style>
-
 </head>
-
 
 <body>
 
-
-<!-- =====================================================
-     فریم اصلی
-===================================================== -->
-
 <div class="main-frame"></div>
 
-
 <!-- =====================================================
-     نوار بالا
+     TOP BAR
 ===================================================== -->
 
 <div class="top-bar">
 
+    <!-- SESSION -->
 
-<!-- =====================================================
-     SESSION
-===================================================== -->
+    <div class="top-item">
 
-<div class="top-item">
+        <div class="item-row">
 
-    <div class="item-row">
+            <svg class="icon" viewBox="0 0 24 24">
 
-        <svg
-            class="icon"
-            viewBox="0 0 24 24"
-        >
+                <circle
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke-width="2"
+                />
 
-            <circle
-                cx="12"
-                cy="12"
-                r="10"
-                stroke-width="2"
-            />
+                <path
+                    d="M12 6v6l4 2"
+                    stroke-width="2"
+                />
 
-            <path
-                d="M12 6v6l4 2"
-                stroke-width="2"
-            />
+            </svg>
 
-        </svg>
+            <div class="text-box">
+
+                <span>SESSION</span>
+
+                <span id="session-value">
+                    London
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
 
 
-        <div class="text-box">
+    <div class="divider"></div>
 
-            <span>
-                SESSION
-            </span>
 
-            <span id="session-value">
-                London
-            </span>
+    <!-- CURRENT SESSION CLOCK -->
+
+    <div class="top-item">
+
+        <div class="item-row">
+
+            <svg class="icon" viewBox="0 0 24 24">
+
+                <path
+                    d="M12 1v22M1 12h22"
+                    stroke-width="2"
+                />
+
+            </svg>
+
+            <div class="text-box">
+
+                <span id="session-clock-label">
+                    LONDON
+                </span>
+
+                <span id="newyork-value">
+                    --:--:--
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="divider"></div>
+
+
+    <!-- TEHRAN -->
+
+    <div class="top-item">
+
+        <div class="item-row">
+
+            <svg class="icon" viewBox="0 0 24 24">
+
+                <circle
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke-width="2"
+                />
+
+                <path
+                    d="M12 12l4 2"
+                    stroke-width="2"
+                />
+
+            </svg>
+
+            <div class="text-box">
+
+                <span>TEHRAN</span>
+
+                <span id="tehran-value">
+                    --:--:--
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="divider"></div>
+
+
+    <!-- DATE -->
+
+    <div class="top-item">
+
+        <div class="item-row">
+
+            <svg class="icon" viewBox="0 0 24 24">
+
+                <rect
+                    x="3"
+                    y="5"
+                    width="18"
+                    height="16"
+                    stroke-width="2"
+                    fill="none"
+                />
+
+                <line
+                    x1="3"
+                    y1="10"
+                    x2="21"
+                    y2="10"
+                    stroke-width="2"
+                />
+
+            </svg>
+
+            <div class="text-box">
+
+                <span>DATE</span>
+
+                <span id="date-value">
+                    -- --- ----
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="divider"></div>
+
+
+    <!-- MARKET STATUS -->
+
+    <div class="top-item">
+
+        <div class="item-row">
+
+            <svg class="icon" viewBox="0 0 24 24">
+
+                <rect
+                    x="3"
+                    y="4"
+                    width="18"
+                    height="16"
+                    stroke-width="2"
+                    fill="none"
+                />
+
+                <path
+                    d="M7 16l3-4 3 2 4-6"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+
+            </svg>
+
+            <div class="text-box">
+
+                <span>MARKET STATUS</span>
+
+                <span id="news-value">
+                    Loading...
+                </span>
+
+            </div>
 
         </div>
 
@@ -872,566 +845,303 @@ body::before {
 </div>
 
 
-<div class="divider"></div>
-
-
 <!-- =====================================================
-     CURRENT SESSION CLOCK
-===================================================== -->
-
-<div class="top-item">
-
-    <div class="item-row">
-
-        <svg
-            class="icon"
-            viewBox="0 0 24 24"
-        >
-
-            <path
-                d="M12 1v22M1 12h22"
-                stroke-width="2"
-            />
-
-        </svg>
-
-
-        <div class="text-box">
-
-            <span id="session-clock-label">
-                LONDON
-            </span>
-
-            <span id="newyork-value">
-                --:--:--
-            </span>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<div class="divider"></div>
-
-
-<!-- =====================================================
-     TEHRAN
-===================================================== -->
-
-<div class="top-item">
-
-    <div class="item-row">
-
-        <svg
-            class="icon"
-            viewBox="0 0 24 24"
-        >
-
-            <circle
-                cx="12"
-                cy="12"
-                r="10"
-                stroke-width="2"
-            />
-
-            <path
-                d="M12 12l4 2"
-                stroke-width="2"
-            />
-
-        </svg>
-
-
-        <div class="text-box">
-
-            <span>
-                TEHRAN
-            </span>
-
-            <span id="tehran-value">
-                --:--:--
-            </span>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<div class="divider"></div>
-
-
-<!-- =====================================================
-     DATE
-===================================================== -->
-
-<div class="top-item">
-
-    <div class="item-row">
-
-        <svg
-            class="icon"
-            viewBox="0 0 24 24"
-        >
-
-            <rect
-                x="3"
-                y="5"
-                width="18"
-                height="16"
-                stroke-width="2"
-                fill="none"
-            />
-
-            <line
-                x1="3"
-                y1="10"
-                x2="21"
-                y2="10"
-                stroke-width="2"
-            />
-
-        </svg>
-
-
-        <div class="text-box">
-
-            <span>
-                DATE
-            </span>
-
-            <span id="date-value">
-                -- --- ----
-            </span>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<div class="divider"></div>
-
-
-<!-- =====================================================
-     NEXT EVENT
-===================================================== -->
-
-<div class="top-item">
-
-    <div class="item-row">
-
-        <svg
-            class="icon"
-            viewBox="0 0 24 24"
-        >
-
-            <rect
-                x="3"
-                y="4"
-                width="18"
-                height="16"
-                stroke-width="2"
-                fill="none"
-            />
-
-            <line
-                x1="7"
-                y1="8"
-                x2="17"
-                y2="8"
-                stroke-width="2"
-            />
-
-            <line
-                x1="7"
-                y1="12"
-                x2="17"
-                y2="12"
-                stroke-width="2"
-            />
-
-            <line
-                x1="7"
-                y1="16"
-                x2="13"
-                y2="16"
-                stroke-width="2"
-            />
-
-        </svg>
-
-
-        <div class="text-box">
-
-            <span>
-                NEXT EVENT
-            </span>
-
-            <span id="event-value">
-                Loading...
-            </span>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-</div>
-
-
-<!-- =====================================================
-     وبکم
+     WEBCAM
 ===================================================== -->
 
 <div class="webcam-frame"></div>
 
 
 <!-- =====================================================
-     نوار پایین
+     BOTTOM BAR
 ===================================================== -->
 
 <div class="bottom-bar">
 
-
-<!-- =====================================================
-     SUBSCRIBE / LIKE
-===================================================== -->
-
-<div
-    class="bottom-item subscribe"
-    id="subscribe-like"
->
-
+    <!-- SUBSCRIBE / LIKE -->
 
     <div
-        class="promo-state subscribe-state"
+        class="bottom-item subscribe"
+        id="subscribe-like"
     >
 
+        <div
+            class="promo-state subscribe-state"
+        >
+
+            <svg
+                class="bottom-icon bell-icon"
+                viewBox="0 0 24 24"
+            >
+
+                <path
+                    d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"
+                    stroke-width="2.4"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+
+                <path
+                    d="M10 21h4"
+                    stroke-width="2.4"
+                    stroke-linecap="round"
+                />
+
+            </svg>
+
+            <span>
+                SUBSCRIBE
+            </span>
+
+        </div>
+
+
+        <div
+            class="promo-state like-state"
+        >
+
+            <svg
+                class="bottom-icon like-icon"
+                viewBox="0 0 24 24"
+            >
+
+                <path
+                    d="M7 10v12H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h3z"
+                    stroke-width="2.2"
+                    stroke-linejoin="round"
+                />
+
+                <path
+                    d="M7 10l4-8c1.5 0 3 1 3 2.5V8h6a2 2 0 0 1 2 2.3l-1.2 8A2 2 0 0 1 18.8 20H7"
+                    stroke-width="2.2"
+                    stroke-linejoin="round"
+                />
+
+            </svg>
+
+            <span>
+                LIKE
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="bottom-divider"></div>
+
+
+    <!-- WEBSITE -->
+
+    <div class="bottom-item">
+
         <svg
-            class="bottom-icon bell-icon"
+            class="bottom-icon"
             viewBox="0 0 24 24"
         >
 
-            <path
-                d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"
-                stroke-width="2.4"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+            <circle
+                cx="12"
+                cy="12"
+                r="10"
+                stroke-width="2"
             />
 
             <path
-                d="M10 21h4"
-                stroke-width="2.4"
-                stroke-linecap="round"
+                d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"
+                stroke-width="2"
             />
 
         </svg>
 
-
         <span>
-            SUBSCRIBE
+            www.aparat.com/FX_LEVEL3
         </span>
 
     </div>
 
 
-    <div
-        class="promo-state like-state"
-    >
+    <div class="bottom-divider"></div>
+
+
+    <!-- INSTAGRAM -->
+
+    <div class="bottom-item">
 
         <svg
-            class="bottom-icon like-icon"
+            class="bottom-icon"
             viewBox="0 0 24 24"
         >
 
-            <path
-                d="M7 10v12H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h3z"
-                stroke-width="2.2"
-                stroke-linejoin="round"
+            <rect
+                x="3"
+                y="3"
+                width="18"
+                height="18"
+                rx="5"
+                stroke-width="2"
             />
 
-            <path
-                d="M7 10l4-8c1.5 0 3 1 3 2.5V8h6a2 2 0 0 1 2 2.3l-1.2 8A2 2 0 0 1 18.8 20H7"
-                stroke-width="2.2"
-                stroke-linejoin="round"
+            <circle
+                cx="12"
+                cy="12"
+                r="4"
+                stroke-width="2"
+            />
+
+            <circle
+                cx="17"
+                cy="7"
+                r="1.5"
+                fill="#fff"
             />
 
         </svg>
 
+        <span>
+            instagram.com/fx_level3
+        </span>
+
+    </div>
+
+
+    <div class="bottom-divider"></div>
+
+
+    <!-- YOUTUBE -->
+
+    <div class="bottom-item">
+
+        <svg
+            class="bottom-icon"
+            viewBox="0 0 24 24"
+        >
+
+            <rect
+                x="3"
+                y="6"
+                width="18"
+                height="12"
+                rx="3"
+                stroke-width="2"
+            />
+
+            <polygon
+                points="10,9 16,12 10,15"
+                fill="#fff"
+            />
+
+        </svg>
 
         <span>
-            LIKE
+            youtube.com/@FX_LEVEL3
         </span>
+
+    </div>
+
+
+    <div class="bottom-divider"></div>
+
+
+    <!-- TELEGRAM -->
+
+    <div class="bottom-item">
+
+        <svg
+            class="bottom-icon"
+            viewBox="0 0 24 24"
+        >
+
+            <path
+                d="M22 2L11 13"
+                stroke-width="2"
+            />
+
+            <path
+                d="M22 2L15 22l-4-9-9-4 20-7z"
+                stroke-width="2"
+            />
+
+        </svg>
+
+        <span>
+            t.me/FX_LEVEL3
+        </span>
+
+    </div>
+
+
+    <div class="bottom-divider"></div>
+
+
+    <!-- MEYSAM GHASEMI -->
+
+    <div class="bottom-item vip">
+
+        <svg
+            class="bottom-icon diamond"
+            viewBox="0 0 24 24"
+        >
+
+            <polygon
+                points="12 2 22 9 12 22 2 9"
+                stroke-width="2"
+            />
+
+        </svg>
+
+        <span>
+            Meysam Ghasemi
+        </span>
+
+        <div class="shine"></div>
 
     </div>
 
 </div>
 
-
-<div class="bottom-divider"></div>
-
-
-<!-- =====================================================
-     WEBSITE
-===================================================== -->
-
-<div class="bottom-item">
-
-    <svg
-        class="bottom-icon"
-        viewBox="0 0 24 24"
-    >
-
-        <circle
-            cx="12"
-            cy="12"
-            r="10"
-            stroke-width="2"
-        />
-
-        <path
-            d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"
-            stroke-width="2"
-        />
-
-    </svg>
-
-
-    <span>
-        www.aparat.com/FX_LEVEL3
-    </span>
-
-</div>
-
-
-<div class="bottom-divider"></div>
-
-
-<!-- =====================================================
-     INSTAGRAM
-===================================================== -->
-
-<div class="bottom-item">
-
-    <svg
-        class="bottom-icon"
-        viewBox="0 0 24 24"
-    >
-
-        <rect
-            x="3"
-            y="3"
-            width="18"
-            height="18"
-            rx="5"
-            stroke-width="2"
-        />
-
-        <circle
-            cx="12"
-            cy="12"
-            r="4"
-            stroke-width="2"
-        />
-
-        <circle
-            cx="17"
-            cy="7"
-            r="1.5"
-            fill="#fff"
-        />
-
-    </svg>
-
-
-    <span>
-        instagram.com/fx_level3
-    </span>
-
-</div>
-
-
-<div class="bottom-divider"></div>
-
-
-<!-- =====================================================
-     YOUTUBE
-===================================================== -->
-
-<div class="bottom-item">
-
-    <svg
-        class="bottom-icon"
-        viewBox="0 0 24 24"
-    >
-
-        <rect
-            x="3"
-            y="6"
-            width="18"
-            height="12"
-            rx="3"
-            stroke-width="2"
-        />
-
-        <polygon
-            points="10,9 16,12 10,15"
-            fill="#fff"
-        />
-
-    </svg>
-
-
-    <span>
-        youtube.com/@FX_LEVEL3
-    </span>
-
-</div>
-
-
-<div class="bottom-divider"></div>
-
-
-<!-- =====================================================
-     TELEGRAM
-===================================================== -->
-
-<div class="bottom-item">
-
-    <svg
-        class="bottom-icon"
-        viewBox="0 0 24 24"
-    >
-
-        <path
-            d="M22 2L11 13"
-            stroke-width="2"
-        />
-
-        <path
-            d="M22 2L15 22l-4-9-9-4 20-7z"
-            stroke-width="2"
-        />
-
-    </svg>
-
-
-    <span>
-        t.me/FX_LEVEL3
-    </span>
-
-</div>
-
-
-<div class="bottom-divider"></div>
-
-
-<!-- =====================================================
-     MEYSAM GHASEMI
-===================================================== -->
-
-<div class="bottom-item vip">
-
-    <svg
-        class="bottom-icon diamond"
-        viewBox="0 0 24 24"
-    >
-
-        <polygon
-            points="12 2 22 9 12 22 2 9"
-            stroke-width="2"
-        />
-
-    </svg>
-
-
-    <span>
-        Meysam Ghasemi
-    </span>
-
-
-    <div class="shine"></div>
-
-</div>
-
-
-</div>
-
-
-<!-- =====================================================
-     JAVASCRIPT
-===================================================== -->
 
 <script>
 
-
 /* =====================================================
-   تنظیمات Session
+   SESSION SETTINGS
 ===================================================== */
 
 const tradingSessions = [
 
     {
         name: "Sydney",
-
         timeZone: "Australia/Sydney",
-
         openHour: 8,
-
         openMinute: 0
     },
 
     {
         name: "Tokyo",
-
         timeZone: "Asia/Tokyo",
-
         openHour: 9,
-
         openMinute: 0
     },
 
     {
         name: "London",
-
         timeZone: "Europe/London",
-
         openHour: 8,
-
         openMinute: 0
     },
 
-    /*
-       طبق تنظیم مورد نظر شما:
-       تغییر Session نیویورک = 16:30 تهران
-
-       09:00 New York
-       در زمان EDT
-       معادل 16:30 تهران است.
-    */
-
     {
         name: "New York",
-
         timeZone: "America/New_York",
-
         openHour: 9,
-
-        openMinute: 0
+        openMinute: 30
     }
 
 ];
 
 
 /* =====================================================
-   عناصر HTML
+   HTML ELEMENTS
 ===================================================== */
 
 const sessionValue =
@@ -1439,33 +1149,29 @@ const sessionValue =
         "session-value"
     );
 
-
 const sessionClockLabel =
     document.getElementById(
         "session-clock-label"
     );
-
 
 const sessionClockValue =
     document.getElementById(
         "newyork-value"
     );
 
-
 const tehranClockValue =
     document.getElementById(
         "tehran-value"
     );
 
-
-const eventValue =
+const marketStatusValue =
     document.getElementById(
-        "event-value"
+        "news-value"
     );
 
 
 /* =====================================================
-   گرفتن اجزای زمان
+   TIME ZONE PARTS
 ===================================================== */
 
 function getTimeZoneParts(
@@ -1477,23 +1183,17 @@ function getTimeZoneParts(
         new Intl.DateTimeFormat(
             "en-US",
             {
-
                 timeZone: timeZone,
 
                 year: "numeric",
-
                 month: "2-digit",
-
                 day: "2-digit",
 
                 hour: "2-digit",
-
                 minute: "2-digit",
-
                 second: "2-digit",
 
                 hourCycle: "h23"
-
             }
         ).formatToParts(date);
 
@@ -1520,40 +1220,22 @@ function getTimeZoneParts(
     return {
 
         year:
-            parseInt(
-                result.year,
-                10
-            ),
+            Number(result.year),
 
         month:
-            parseInt(
-                result.month,
-                10
-            ),
+            Number(result.month),
 
         day:
-            parseInt(
-                result.day,
-                10
-            ),
+            Number(result.day),
 
         hour:
-            parseInt(
-                result.hour,
-                10
-            ),
+            Number(result.hour),
 
         minute:
-            parseInt(
-                result.minute,
-                10
-            ),
+            Number(result.minute),
 
         second:
-            parseInt(
-                result.second,
-                10
-            )
+            Number(result.second)
 
     };
 
@@ -1561,7 +1243,7 @@ function getTimeZoneParts(
 
 
 /* =====================================================
-   Offset Time Zone
+   TIME ZONE OFFSET
 ===================================================== */
 
 function getTimeZoneOffset(
@@ -1573,23 +1255,17 @@ function getTimeZoneOffset(
         new Intl.DateTimeFormat(
             "en-US",
             {
-
                 timeZone: timeZone,
 
                 year: "numeric",
-
                 month: "2-digit",
-
                 day: "2-digit",
 
                 hour: "2-digit",
-
                 minute: "2-digit",
-
                 second: "2-digit",
 
                 hourCycle: "h23"
-
             }
         ).formatToParts(date);
 
@@ -1615,19 +1291,12 @@ function getTimeZoneOffset(
 
     const asUTC =
         Date.UTC(
-
             Number(values.year),
-
             Number(values.month) - 1,
-
             Number(values.day),
-
             Number(values.hour),
-
             Number(values.minute),
-
             Number(values.second)
-
         );
 
 
@@ -1640,7 +1309,7 @@ function getTimeZoneOffset(
 
 
 /* =====================================================
-   Timestamp شروع Session
+   SESSION OPEN TIMESTAMP
 ===================================================== */
 
 function getSessionOpenTimestamp(
@@ -1658,23 +1327,14 @@ function getSessionOpenTimestamp(
 
     const localDate =
         new Date(
-
             Date.UTC(
-
                 localParts.year,
-
                 localParts.month - 1,
-
                 localParts.day + dayOffset,
-
                 session.openHour,
-
                 session.openMinute,
-
                 0
-
             )
-
         );
 
 
@@ -1694,7 +1354,7 @@ function getSessionOpenTimestamp(
 
 
 /* =====================================================
-   آخرین Session Open
+   LAST SESSION OPEN
 ===================================================== */
 
 function getLastSessionOpen(
@@ -1730,7 +1390,7 @@ function getLastSessionOpen(
 
 
 /* =====================================================
-   Session فعال
+   ACTIVE SESSION
 ===================================================== */
 
 function getActiveSession(
@@ -1741,7 +1401,6 @@ function getActiveSession(
         tradingSessions[
             tradingSessions.length - 1
         ];
-
 
     let latestOpen =
         -Infinity;
@@ -1788,7 +1447,7 @@ function getActiveSession(
 
 
 /* =====================================================
-   Session بعدی
+   NEXT SESSION
 ===================================================== */
 
 function getNextSession(
@@ -1811,7 +1470,6 @@ function getNextSession(
                     0
                 );
 
-
             const tomorrowOpen =
                 getSessionOpenTimestamp(
                     now,
@@ -1820,11 +1478,23 @@ function getNextSession(
                 );
 
 
-            const candidate =
+            let candidate;
+
+
+            if (
                 todayOpen >
                 now.getTime()
-                    ? todayOpen
-                    : tomorrowOpen;
+            ) {
+
+                candidate =
+                    todayOpen;
+
+            } else {
+
+                candidate =
+                    tomorrowOpen;
+
+            }
 
 
             if (
@@ -1858,7 +1528,7 @@ function getNextSession(
 
 
 /* =====================================================
-   نمایش ساعت
+   LOCAL TIME
 ===================================================== */
 
 function getSessionTime(
@@ -1869,17 +1539,13 @@ function getSessionTime(
     return new Intl.DateTimeFormat(
         "en-US",
         {
-
             timeZone: timeZone,
 
             hour: "2-digit",
-
             minute: "2-digit",
-
             second: "2-digit",
 
             hour12: true
-
         }
     ).format(date);
 
@@ -1887,7 +1553,7 @@ function getSessionTime(
 
 
 /* =====================================================
-   تاریخ تهران
+   TEHRAN DATE
 ===================================================== */
 
 function getTehranDate(
@@ -1897,15 +1563,11 @@ function getTehranDate(
     return new Intl.DateTimeFormat(
         "en-US",
         {
-
             timeZone: "Asia/Tehran",
 
             day: "2-digit",
-
             month: "short",
-
             year: "numeric"
-
         }
     ).format(date);
 
@@ -1913,7 +1575,678 @@ function getTehranDate(
 
 
 /* =====================================================
-   آپدیت ساعت‌ها
+   NYSE HOLIDAYS 2026
+===================================================== */
+
+/*
+   Official NYSE 2026 full-day holidays.
+
+   These dates are fixed locally so the
+   overlay does NOT need internet access.
+*/
+
+const nyseHolidays2026 = {
+
+    "2026-01-01":
+        "NEW YEAR'S DAY",
+
+    "2026-01-19":
+        "MARTIN LUTHER KING JR. DAY",
+
+    "2026-02-16":
+        "WASHINGTON'S BIRTHDAY",
+
+    "2026-04-03":
+        "GOOD FRIDAY",
+
+    "2026-05-25":
+        "MEMORIAL DAY",
+
+    "2026-06-19":
+        "JUNETEENTH",
+
+    "2026-07-03":
+        "INDEPENDENCE DAY",
+
+    "2026-09-07":
+        "LABOR DAY",
+
+    "2026-11-26":
+        "THANKSGIVING DAY",
+
+    "2026-12-25":
+        "CHRISTMAS DAY"
+
+};
+
+
+/* =====================================================
+   NYSE EARLY CLOSE DAYS 2026
+===================================================== */
+
+/*
+   NYSE early closes at 1:00 PM ET.
+
+   This is also kept offline.
+*/
+
+const nyseEarlyClose2026 = {
+
+    "2026-11-27":
+        "DAY AFTER THANKSGIVING",
+
+    "2026-12-24":
+        "CHRISTMAS EVE"
+
+};
+
+
+/* =====================================================
+   DATE KEY IN NEW YORK
+===================================================== */
+
+function getNewYorkDateKey(
+    date = new Date()
+) {
+
+    const parts =
+        getTimeZoneParts(
+            date,
+            "America/New_York"
+        );
+
+
+    return (
+        parts.year +
+        "-" +
+        String(parts.month).padStart(2, "0") +
+        "-" +
+        String(parts.day).padStart(2, "0")
+    );
+
+}
+
+
+/* =====================================================
+   NEW YORK WEEKDAY
+===================================================== */
+
+function getNewYorkWeekday(
+    date = new Date()
+) {
+
+    const weekday =
+        new Intl.DateTimeFormat(
+            "en-US",
+            {
+                timeZone:
+                    "America/New_York",
+
+                weekday:
+                    "short"
+            }
+        ).format(date);
+
+
+    return weekday;
+
+}
+
+
+/* =====================================================
+   IS WEEKEND?
+===================================================== */
+
+function isNewYorkWeekend(
+    date = new Date()
+) {
+
+    const weekday =
+        getNewYorkWeekday(
+            date
+        );
+
+
+    return (
+        weekday === "Sat" ||
+        weekday === "Sun"
+    );
+
+}
+
+
+/* =====================================================
+   MARKET SESSION
+===================================================== */
+
+function getNYSEOpenTimestamp(
+    date
+) {
+
+    return getSessionOpenTimestamp(
+        date,
+        {
+            name: "New York",
+            timeZone: "America/New_York",
+            openHour: 9,
+            openMinute: 30
+        },
+        0
+    );
+
+}
+
+
+/* =====================================================
+   NYSE CLOSE TIMESTAMP
+===================================================== */
+
+function getNYSECloseTimestamp(
+    date
+) {
+
+    const session = {
+
+        name: "New York",
+
+        timeZone:
+            "America/New_York",
+
+        openHour: 16,
+
+        openMinute: 0
+
+    };
+
+
+    return getSessionOpenTimestamp(
+        date,
+        session,
+        0
+    );
+
+}
+
+
+/* =====================================================
+   GET MARKET STATUS
+===================================================== */
+
+function getNYSEStatus(
+    now
+) {
+
+    const dateKey =
+        getNewYorkDateKey(
+            now
+        );
+
+
+    /* ================================================
+       FULL HOLIDAY
+    ================================================ */
+
+    if (
+        nyseHolidays2026[
+            dateKey
+        ]
+    ) {
+
+        return {
+
+            type:
+                "holiday",
+
+            text:
+                "BANK HOLIDAY",
+
+            detail:
+                nyseHolidays2026[
+                    dateKey
+                ]
+
+        };
+
+    }
+
+
+    /* ================================================
+       WEEKEND
+    ================================================ */
+
+    if (
+        isNewYorkWeekend(
+            now
+        )
+    ) {
+
+        return {
+
+            type:
+                "closed",
+
+            text:
+                "MARKET CLOSED",
+
+            detail:
+                "WEEKEND"
+
+        };
+
+    }
+
+
+    const open =
+        getNYSEOpenTimestamp(
+            now
+        );
+
+
+    let close =
+        getNYSECloseTimestamp(
+            now
+        );
+
+
+    /* ================================================
+       EARLY CLOSE
+    ================================================ */
+
+    if (
+        nyseEarlyClose2026[
+            dateKey
+        ]
+    ) {
+
+        const earlyClose =
+            getSessionOpenTimestamp(
+                now,
+                {
+                    name:
+                        "New York",
+
+                    timeZone:
+                        "America/New_York",
+
+                    openHour:
+                        13,
+
+                    openMinute:
+                        0
+                },
+                0
+            );
+
+
+        close =
+            earlyClose;
+
+    }
+
+
+    /* ================================================
+       MARKET OPEN
+    ================================================ */
+
+    if (
+        now.getTime() >= open &&
+        now.getTime() < close
+    ) {
+
+        return {
+
+            type:
+                "open",
+
+            text:
+                "MARKET OPEN",
+
+            detail:
+                nyseEarlyClose2026[
+                    dateKey
+                ]
+                    ? "EARLY CLOSE"
+                    : "NYSE"
+
+        };
+
+    }
+
+
+    /* ================================================
+       PRE-MARKET
+    ================================================ */
+
+    if (
+        now.getTime() < open
+    ) {
+
+        const minutes =
+            (
+                open -
+                now.getTime()
+            ) /
+            60000;
+
+
+        if (
+            minutes <= 5
+        ) {
+
+            return {
+
+                type:
+                    "warning",
+
+                text:
+                    "OPENING SOON",
+
+                detail:
+                    formatCountdown(
+                        open -
+                        now.getTime()
+                    )
+
+            };
+
+        }
+
+
+        return {
+
+            type:
+                "closed",
+
+            text:
+                "MARKET CLOSED",
+
+            detail:
+                "NEXT OPEN " +
+                formatTimeInTehran(
+                    open
+                )
+
+        };
+
+    }
+
+
+    /* ================================================
+       AFTER MARKET
+    ================================================ */
+
+    return {
+
+        type:
+            "closed",
+
+        text:
+            "MARKET CLOSED",
+
+        detail:
+            "NEXT OPEN TOMORROW"
+
+    };
+
+}
+
+
+/* =====================================================
+   FORMAT COUNTDOWN
+===================================================== */
+
+function formatCountdown(
+    milliseconds
+) {
+
+    const totalSeconds =
+        Math.max(
+            0,
+            Math.floor(
+                milliseconds / 1000
+            )
+        );
+
+
+    const hours =
+        Math.floor(
+            totalSeconds / 3600
+        );
+
+
+    const minutes =
+        Math.floor(
+            (
+                totalSeconds % 3600
+            ) / 60
+        );
+
+
+    const seconds =
+        totalSeconds % 60;
+
+
+    return (
+        String(hours).padStart(2, "0") +
+        ":" +
+        String(minutes).padStart(2, "0") +
+        ":" +
+        String(seconds).padStart(2, "0")
+    );
+
+}
+
+
+/* =====================================================
+   FORMAT TEHRAN TIME
+===================================================== */
+
+function formatTimeInTehran(
+    timestamp
+) {
+
+    return new Intl.DateTimeFormat(
+        "en-US",
+        {
+            timeZone:
+                "Asia/Tehran",
+
+            hour:
+                "2-digit",
+
+            minute:
+                "2-digit",
+
+            hour12:
+                false
+        }
+    ).format(
+        new Date(timestamp)
+    );
+
+}
+
+
+/* =====================================================
+   NEXT NYSE OPEN
+===================================================== */
+
+function getNextNYSEOpen(
+    now
+) {
+
+    for (
+        let dayOffset = 0;
+        dayOffset <= 370;
+        dayOffset++
+    ) {
+
+        const candidateDate =
+            new Date(
+                now.getTime()
+            );
+
+
+        candidateDate.setUTCDate(
+            candidateDate.getUTCDate() +
+            dayOffset
+        );
+
+
+        const dateKey =
+            getNewYorkDateKey(
+                candidateDate
+            );
+
+
+        if (
+            nyseHolidays2026[
+                dateKey
+            ]
+        ) {
+
+            continue;
+
+        }
+
+
+        if (
+            isNewYorkWeekend(
+                candidateDate
+            )
+        ) {
+
+            continue;
+
+        }
+
+
+        const open =
+            getSessionOpenTimestamp(
+                candidateDate,
+                {
+                    name:
+                        "New York",
+
+                    timeZone:
+                        "America/New_York",
+
+                    openHour:
+                        9,
+
+                    openMinute:
+                        30
+                },
+                0
+            );
+
+
+        if (
+            open >
+            now.getTime()
+        ) {
+
+            return open;
+
+        }
+
+    }
+
+
+    return null;
+
+}
+
+
+/* =====================================================
+   UPDATE MARKET STATUS
+===================================================== */
+
+function updateMarketStatus() {
+
+    const now =
+        new Date();
+
+
+    const status =
+        getNYSEStatus(
+            now
+        );
+
+
+    marketStatusValue.classList.remove(
+        "market-open",
+        "market-closed",
+        "market-warning",
+        "bank-holiday"
+    );
+
+
+    if (
+        status.type ===
+        "open"
+    ) {
+
+        marketStatusValue.classList.add(
+            "market-open"
+        );
+
+        marketStatusValue.innerText =
+            "MARKET OPEN";
+
+        return;
+
+    }
+
+
+    if (
+        status.type ===
+        "holiday"
+    ) {
+
+        marketStatusValue.classList.add(
+            "bank-holiday"
+        );
+
+        marketStatusValue.innerText =
+            "BANK HOLIDAY";
+
+        return;
+
+    }
+
+
+    if (
+        status.type ===
+        "warning"
+    ) {
+
+        marketStatusValue.classList.add(
+            "market-warning"
+        );
+
+        marketStatusValue.innerText =
+            "OPEN " +
+            status.detail;
+
+        return;
+
+    }
+
+
+    marketStatusValue.classList.add(
+        "market-closed"
+    );
+
+
+    marketStatusValue.innerText =
+        "MARKET CLOSED";
+
+}
+
+
+/* =====================================================
+   UPDATE CLOCKS
 ===================================================== */
 
 function updateClocks() {
@@ -1923,7 +2256,7 @@ function updateClocks() {
 
 
     /* ================================================
-       تهران
+       TEHRAN
     ================================================ */
 
     tehranClockValue.innerText =
@@ -1934,7 +2267,7 @@ function updateClocks() {
 
 
     /* ================================================
-       Session فعال
+       ACTIVE SESSION
     ================================================ */
 
     const active =
@@ -1948,7 +2281,7 @@ function updateClocks() {
 
 
     /* ================================================
-       Session بعدی
+       NEXT SESSION
     ================================================ */
 
     const next =
@@ -1958,19 +2291,23 @@ function updateClocks() {
 
 
     /* ================================================
-       نام Session
+       SESSION NAME
     ================================================ */
 
     sessionValue.innerText =
         activeSession.name;
 
 
+    /* ================================================
+       SESSION CLOCK LABEL
+    ================================================ */
+
     sessionClockLabel.innerText =
         activeSession.name.toUpperCase();
 
 
     /* ================================================
-       ساعت Session فعال
+       SESSION CLOCK
     ================================================ */
 
     sessionClockValue.innerText =
@@ -1981,7 +2318,7 @@ function updateClocks() {
 
 
     /* ================================================
-       زمان تا Session بعدی
+       NEXT SESSION WARNING
     ================================================ */
 
     const millisecondsUntilNext =
@@ -1991,7 +2328,7 @@ function updateClocks() {
 
     const minutesUntilNext =
         millisecondsUntilNext /
-        (1000 * 60);
+        60000;
 
 
     sessionValue.classList.remove(
@@ -2004,6 +2341,8 @@ function updateClocks() {
     );
 
 
+    /* 5 MINUTES */
+
     if (
         minutesUntilNext <= 5 &&
         minutesUntilNext > 0
@@ -2015,6 +2354,8 @@ function updateClocks() {
 
     }
 
+
+    /* 2 MINUTES */
 
     if (
         minutesUntilNext <= 2 &&
@@ -2029,7 +2370,7 @@ function updateClocks() {
 
 
     /* ================================================
-       تاریخ
+       DATE
     ================================================ */
 
     document.getElementById(
@@ -2039,1550 +2380,25 @@ function updateClocks() {
             now
         );
 
+
+    /* ================================================
+       MARKET STATUS
+    ================================================ */
+
+    updateMarketStatus();
+
 }
 
 
 /* =====================================================
-   اجرای ساعت
+   START CLOCK
 ===================================================== */
+
+updateClocks();
 
 setInterval(
     updateClocks,
     1000
-);
-
-
-updateClocks();
-
-
-/* =====================================================
-   =====================================================
-   NEXT EVENT
-   FOREX FACTORY
-   =====================================================
-   ===================================================== */
-
-
-/*
-   Forex Factory Calendar
-
-   منبع اصلی:
-   https://www.forexfactory.com/calendar
-
-   برای جلوگیری از وابستگی مستقیم به CORS
-   از Proxy عمومی استفاده می‌کنیم.
-
-   اگر Proxy یا اینترنت قطع شود:
-   NEWS OFFLINE
-   نمایش داده می‌شود و Overlay متوقف نمی‌شود.
-*/
-
-
-const FOREX_FACTORY_URL =
-    "https://www.forexfactory.com/calendar";
-
-
-const PROXY_URL =
-    "https://api.allorigins.win/raw?url=";
-
-
-const EVENT_REFRESH_TIME =
-    30000;
-
-
-/* =====================================================
-   حافظه آخرین Event
-===================================================== */
-
-let cachedEvents = [];
-
-
-/* =====================================================
-   ذخیره Event در LocalStorage
-===================================================== */
-
-function saveEventsToStorage(
-    events
-) {
-
-    try {
-
-        localStorage.setItem(
-            "fxlevel_forex_events",
-            JSON.stringify(events)
-        );
-
-    }
-
-    catch (error) {
-
-        console.warn(
-            "Unable to save events."
-        );
-
-    }
-
-}
-
-
-/* =====================================================
-   خواندن Event ذخیره شده
-===================================================== */
-
-function loadEventsFromStorage() {
-
-    try {
-
-        const stored =
-            localStorage.getItem(
-                "fxlevel_forex_events"
-            );
-
-
-        if (!stored) {
-
-            return [];
-
-        }
-
-
-        const events =
-            JSON.parse(
-                stored
-            );
-
-
-        if (
-            !Array.isArray(events)
-        ) {
-
-            return [];
-
-        }
-
-
-        return events;
-
-    }
-
-    catch (error) {
-
-        return [];
-
-    }
-
-}
-
-
-/* =====================================================
-   تمیز کردن عنوان خبر
-===================================================== */
-
-function cleanEventTitle(
-    title
-) {
-
-    if (!title) {
-
-        return "";
-
-    }
-
-
-    let clean =
-        title
-            .replace(
-                /\s+/g,
-                " "
-            )
-            .trim();
-
-
-    /*
-       کوتاه کردن عبارات رایج
-    */
-
-    clean =
-        clean.replace(
-            /m\/m/gi,
-            "MoM"
-        );
-
-
-    clean =
-        clean.replace(
-            /y\/y/gi,
-            "YoY"
-        );
-
-
-    clean =
-        clean.replace(
-            /q\/q/gi,
-            "QoQ"
-        );
-
-
-    return clean;
-
-}
-
-
-/* =====================================================
-   تشخیص Bank Holiday
-===================================================== */
-
-function isBankHoliday(
-    title
-) {
-
-    return /bank holiday|holiday|public holiday/i
-        .test(title);
-
-}
-
-
-/* =====================================================
-   تشخیص Impact
-===================================================== */
-
-function detectImpact(
-    element
-) {
-
-    const className =
-        element.className || "";
-
-
-    const text =
-        element.getAttribute(
-            "title"
-        ) || "";
-
-
-    const combined =
-        (
-            className +
-            " " +
-            text
-        ).toLowerCase();
-
-
-    /*
-       Forex Factory معمولاً
-       Impact را با کلاس‌هایی مثل
-       high / medium / low مشخص می‌کند.
-    */
-
-
-    if (
-        combined.includes("high")
-    ) {
-
-        return "high";
-
-    }
-
-
-    if (
-        combined.includes("medium") ||
-        combined.includes("med")
-    ) {
-
-        return "medium";
-
-    }
-
-
-    if (
-        combined.includes("low")
-    ) {
-
-        return "low";
-
-    }
-
-
-    return "unknown";
-
-}
-
-
-/* =====================================================
-   تبدیل زمان Forex Factory به Timestamp
-===================================================== */
-
-function parseEventTime(
-    dateText,
-    timeText
-) {
-
-    try {
-
-        if (
-            !dateText ||
-            !timeText
-        ) {
-
-            return null;
-
-        }
-
-
-        const cleanTime =
-            timeText
-                .replace(
-                    /\s+/g,
-                    " "
-                )
-                .trim();
-
-
-        /*
-           زمان تقویم Forex Factory
-           بر اساس Time Zone تنظیم‌شده در Calendar است.
-
-           برای Overlay، Calendar را روی
-           Europe/London در نظر می‌گیریم.
-        */
-
-
-        const dateMatch =
-            dateText.match(
-                /(\d{4}).*?(\d{1,2}).*?(\d{1,2})/
-            );
-
-
-        if (
-            !dateMatch
-        ) {
-
-            return null;
-
-        }
-
-
-        let hour = 0;
-        let minute = 0;
-
-
-        const timeMatch =
-            cleanTime.match(
-                /(\d{1,2}):(\d{2})\s*(am|pm)?/i
-            );
-
-
-        if (
-            timeMatch
-        ) {
-
-            hour =
-                parseInt(
-                    timeMatch[1],
-                    10
-                );
-
-
-            minute =
-                parseInt(
-                    timeMatch[2],
-                    10
-                );
-
-
-            const ampm =
-                timeMatch[3];
-
-
-            if (
-                ampm
-            ) {
-
-                if (
-                    ampm.toLowerCase() === "pm" &&
-                    hour < 12
-                ) {
-
-                    hour += 12;
-
-                }
-
-
-                if (
-                    ampm.toLowerCase() === "am" &&
-                    hour === 12
-                ) {
-
-                    hour = 0;
-
-                }
-
-            }
-
-        }
-
-
-        const year =
-            parseInt(
-                dateMatch[1],
-                10
-            );
-
-
-        const month =
-            parseInt(
-                dateMatch[2],
-                10
-            ) - 1;
-
-
-        const day =
-            parseInt(
-                dateMatch[3],
-                10
-            );
-
-
-        /*
-           ابتدا به‌صورت تقریبی ساخته می‌شود.
-           سپس برای جلوگیری از مشکل DST،
-           از Time Zone رسمی لندن استفاده می‌کنیم.
-        */
-
-        const base =
-            new Date(
-                Date.UTC(
-                    year,
-                    month,
-                    day,
-                    hour,
-                    minute,
-                    0
-                )
-            );
-
-
-        return base.getTime();
-
-    }
-
-    catch (error) {
-
-        return null;
-
-    }
-
-}
-
-
-/* =====================================================
-   تبدیل Eventهای HTML به داده
-===================================================== */
-
-function parseForexFactoryHTML(
-    html
-) {
-
-    const parser =
-        new DOMParser();
-
-
-    const document =
-        parser.parseFromString(
-            html,
-            "text/html"
-        );
-
-
-    const events = [];
-
-
-    /*
-       Forex Factory ساختار صفحه را
-       ممکن است تغییر دهد.
-
-       چند روش مختلف برای پیدا کردن
-       Eventها امتحان می‌شود.
-    */
-
-
-    const rows =
-        document.querySelectorAll(
-            "tr"
-        );
-
-
-    rows.forEach(
-        row => {
-
-            const text =
-                row.innerText || "";
-
-
-            if (
-                !text.trim()
-            ) {
-
-                return;
-
-            }
-
-
-            const cells =
-                row.querySelectorAll(
-                    "td"
-                );
-
-
-            if (
-                cells.length < 3
-            ) {
-
-                return;
-
-            }
-
-
-            const cellTexts =
-                Array.from(
-                    cells
-                ).map(
-                    cell =>
-                        (
-                            cell.innerText ||
-                            ""
-                        )
-                        .replace(
-                            /\s+/g,
-                            " "
-                        )
-                        .trim()
-                );
-
-
-            let currency = "";
-
-
-            let title = "";
-
-
-            let time = "";
-
-
-            let impact =
-                "unknown";
-
-
-            cellTexts.forEach(
-                value => {
-
-                    if (
-                        /^(USD|EUR|GBP|JPY|AUD|NZD|CAD|CHF)$/i
-                            .test(value)
-                    ) {
-
-                        currency =
-                            value
-                                .toUpperCase();
-
-                    }
-
-
-                    if (
-                        /\d{1,2}:\d{2}/
-                            .test(value)
-                    ) {
-
-                        time =
-                            value;
-
-                    }
-
-                }
-            );
-
-
-            /*
-               عنوان معمولاً یکی از
-               سلول‌های میانی است.
-            */
-
-            for (
-                let i = 0;
-                i < cellTexts.length;
-                i++
-            ) {
-
-                const value =
-                    cellTexts[i];
-
-
-                if (
-                    !value ||
-                    value === currency ||
-                    value === time
-                ) {
-
-                    continue;
-
-                }
-
-
-                if (
-                    value.length > 4 &&
-                    !/^[\d.,%+\-]+$/.test(value)
-                ) {
-
-                    if (
-                        !/^(actual|forecast|previous)$/i
-                            .test(value)
-                    ) {
-
-                        title =
-                            value;
-
-                    }
-
-                }
-
-            }
-
-
-            /*
-               پیدا کردن Impact از کلاس‌های
-               عناصر داخل Row
-            */
-
-            const impactElements =
-                row.querySelectorAll(
-                    "[class],[title]"
-                );
-
-
-            impactElements.forEach(
-                element => {
-
-                    const detected =
-                        detectImpact(
-                            element
-                        );
-
-
-                    if (
-                        detected !== "unknown"
-                    ) {
-
-                        impact =
-                            detected;
-
-                    }
-
-                }
-            );
-
-
-            if (
-                !title ||
-                !currency
-            ) {
-
-                return;
-
-            }
-
-
-            const holiday =
-                isBankHoliday(
-                    title
-                );
-
-
-            events.push({
-
-                currency:
-                    currency,
-
-                title:
-                    cleanEventTitle(
-                        title
-                    ),
-
-                timeText:
-                    time,
-
-                impact:
-                    impact,
-
-                bankHoliday:
-                    holiday
-
-            });
-
-        }
-    );
-
-
-    return events;
-
-}
-
-
-/* =====================================================
-   دریافت تقویم
-===================================================== */
-
-async function fetchForexFactory() {
-
-    const target =
-        FOREX_FACTORY_URL +
-        "?week=this";
-
-
-    const url =
-        PROXY_URL +
-        encodeURIComponent(
-            target
-        );
-
-
-    const controller =
-        new AbortController();
-
-
-    const timeout =
-        setTimeout(
-            () => {
-
-                controller.abort();
-
-            },
-            12000
-        );
-
-
-    try {
-
-        const response =
-            await fetch(
-                url,
-                {
-
-                    method: "GET",
-
-                    cache: "no-store",
-
-                    signal:
-                        controller.signal
-
-                }
-            );
-
-
-        clearTimeout(
-            timeout
-        );
-
-
-        if (
-            !response.ok
-        ) {
-
-            throw new Error(
-                "Calendar request failed"
-            );
-
-        }
-
-
-        const html =
-            await response.text();
-
-
-        if (
-            !html ||
-            html.length < 1000
-        ) {
-
-            throw new Error(
-                "Invalid calendar data"
-            );
-
-        }
-
-
-        const events =
-            parseForexFactoryHTML(
-                html
-            );
-
-
-        /*
-           حتی اگر Parser چند Event
-           پیدا نکرد، داده خراب را
-           جایگزین Cache نمی‌کنیم.
-        */
-
-        if (
-            events.length === 0
-        ) {
-
-            throw new Error(
-                "No events detected"
-            );
-
-        }
-
-
-        cachedEvents =
-            events;
-
-
-        saveEventsToStorage(
-            events
-        );
-
-
-        return events;
-
-    }
-
-    catch (error) {
-
-        clearTimeout(
-            timeout
-        );
-
-
-        throw error;
-
-    }
-
-}
-
-
-/* =====================================================
-   ساخت Timestamp برای Event
-===================================================== */
-
-function enrichEvents(
-    events
-) {
-
-    const now =
-        new Date();
-
-
-    const currentYear =
-        now.getFullYear();
-
-
-    return events.map(
-        event => {
-
-            /*
-               چون Parser اولیه ممکن است
-               تاریخ را همراه Row نداشته باشد،
-               زمان دقیق را بعداً بر اساس
-               Calendar فعلی تخمین می‌زنیم.
-            */
-
-            return {
-
-                ...event,
-
-                timestamp:
-                    event.timestamp ||
-                    null,
-
-                year:
-                    currentYear
-
-            };
-
-        }
-    );
-
-}
-
-
-/* =====================================================
-   تشخیص Event بعدی
-===================================================== */
-
-function getNextImportantEvent(
-    events
-) {
-
-    if (
-        !events ||
-        events.length === 0
-    ) {
-
-        return null;
-
-    }
-
-
-    /*
-       در این مرحله Eventهای دارای زمان
-       انتخاب می‌شوند.
-
-       High Impact همیشه اولویت دارد.
-       سپس Bank Holiday.
-       سپس Medium.
-       سپس Low.
-    */
-
-
-    const now =
-        Date.now();
-
-
-    const valid =
-        events.filter(
-            event =>
-                event.timestamp &&
-                event.timestamp > now
-        );
-
-
-    if (
-        valid.length === 0
-    ) {
-
-        return null;
-
-    }
-
-
-    valid.sort(
-        (a,b) => {
-
-            const priorityA =
-                a.impact === "high"
-                    ? 3
-                    : a.bankHoliday
-                        ? 2
-                        : a.impact === "medium"
-                            ? 1
-                            : 0;
-
-
-            const priorityB =
-                b.impact === "high"
-                    ? 3
-                    : b.bankHoliday
-                        ? 2
-                        : b.impact === "medium"
-                            ? 1
-                            : 0;
-
-
-            /*
-               اگر High Impact باشد،
-               نزدیک‌ترین High انتخاب می‌شود.
-            */
-
-            if (
-                priorityA !==
-                priorityB
-            ) {
-
-                return (
-                    priorityB -
-                    priorityA
-                );
-
-            }
-
-
-            return (
-                a.timestamp -
-                b.timestamp
-            );
-
-        }
-    );
-
-
-    return valid[0];
-
-}
-
-
-/* =====================================================
-   فرمت ساعت Event به تهران
-===================================================== */
-
-function formatEventTime(
-    timestamp
-) {
-
-    if (
-        !timestamp
-    ) {
-
-        return "--:--";
-
-    }
-
-
-    return new Intl.DateTimeFormat(
-        "en-US",
-        {
-
-            timeZone:
-                "Asia/Tehran",
-
-            hour:
-                "2-digit",
-
-            minute:
-                "2-digit",
-
-            hour12:
-                false
-
-        }
-    ).format(
-        new Date(timestamp)
-    );
-
-}
-
-
-/* =====================================================
-   کوتاه کردن Event
-===================================================== */
-
-function shortEventTitle(
-    title
-) {
-
-    if (
-        !title
-    ) {
-
-        return "UNKNOWN EVENT";
-
-    }
-
-
-    const replacements = {
-
-        "Consumer Price Index":
-            "CPI",
-
-        "Core Consumer Price Index":
-            "Core CPI",
-
-        "Non-Farm Employment Change":
-            "NFP",
-
-        "Unemployment Rate":
-            "Unemployment",
-
-        "Federal Funds Rate":
-            "Fed Rate",
-
-        "Interest Rate Decision":
-            "Rate Decision",
-
-        "Gross Domestic Product":
-            "GDP",
-
-        "Purchasing Managers Index":
-            "PMI",
-
-        "Retail Sales":
-            "Retail Sales",
-
-        "Manufacturing Purchasing Managers Index":
-            "Manufacturing PMI",
-
-        "Services Purchasing Managers Index":
-            "Services PMI"
-
-    };
-
-
-    let result =
-        title;
-
-
-    Object.keys(
-        replacements
-    ).forEach(
-        longName => {
-
-            result =
-                result.replace(
-                    new RegExp(
-                        longName,
-                        "gi"
-                    ),
-                    replacements[
-                        longName
-                    ]
-                );
-
-        }
-    );
-
-
-    /*
-       محدودیت برای Overlay
-    */
-
-    if (
-        result.length > 25
-    ) {
-
-        result =
-            result.substring(
-                0,
-                25
-            ) +
-            "...";
-
-    }
-
-
-    return result;
-
-}
-
-
-/* =====================================================
-   نمایش NEXT EVENT
-===================================================== */
-
-function renderNextEvent(
-    event
-) {
-
-    eventValue.classList.remove(
-        "offline"
-    );
-
-    eventValue.classList.remove(
-        "high-impact"
-    );
-
-    eventValue.classList.remove(
-        "bank-holiday"
-    );
-
-
-    if (
-        !event
-    ) {
-
-        eventValue.innerText =
-            "NO HIGH IMPACT";
-
-        return;
-
-    }
-
-
-    const time =
-        formatEventTime(
-            event.timestamp
-        );
-
-
-    const title =
-        shortEventTitle(
-            event.title
-        );
-
-
-    const text =
-        `${event.currency} ${title} — ${time}`;
-
-
-    eventValue.innerText =
-        text;
-
-
-    if (
-        event.bankHoliday
-    ) {
-
-        eventValue.classList.add(
-            "bank-holiday"
-        );
-
-    }
-
-
-    else if (
-        event.impact === "high"
-    ) {
-
-        eventValue.classList.add(
-            "high-impact"
-        );
-
-    }
-
-}
-
-
-/* =====================================================
-   حالت Offline
-===================================================== */
-
-function renderOffline() {
-
-    eventValue.innerText =
-        "NEWS OFFLINE";
-
-
-    eventValue.classList.remove(
-        "high-impact"
-    );
-
-
-    eventValue.classList.remove(
-        "bank-holiday"
-    );
-
-
-    eventValue.classList.add(
-        "offline"
-    );
-
-}
-
-
-/* =====================================================
-   اصلاح Timestamp Eventها
-===================================================== */
-
-function buildEventTimestamps(
-    events
-) {
-
-    const now =
-        new Date();
-
-
-    const year =
-        now.getFullYear();
-
-
-    const month =
-        now.getMonth();
-
-
-    const day =
-        now.getDate();
-
-
-    return events.map(
-        event => {
-
-            /*
-               اگر Event مربوط به امروز باشد
-               ساعت آن را به Timestamp تبدیل می‌کنیم.
-            */
-
-            if (
-                !event.timeText
-            ) {
-
-                return event;
-
-            }
-
-
-            const match =
-                event.timeText.match(
-                    /(\d{1,2}):(\d{2})\s*(am|pm)?/i
-                );
-
-
-            if (
-                !match
-            ) {
-
-                return event;
-
-            }
-
-
-            let hour =
-                parseInt(
-                    match[1],
-                    10
-                );
-
-
-            const minute =
-                parseInt(
-                    match[2],
-                    10
-                );
-
-
-            const ampm =
-                match[3];
-
-
-            if (
-                ampm
-            ) {
-
-                if (
-                    ampm.toLowerCase() === "pm" &&
-                    hour < 12
-                ) {
-
-                    hour += 12;
-
-                }
-
-
-                if (
-                    ampm.toLowerCase() === "am" &&
-                    hour === 12
-                ) {
-
-                    hour = 0;
-
-                }
-
-            }
-
-
-            /*
-               Calendar فعلی Forex Factory
-               برای روز جاری استفاده می‌شود.
-
-               برای Eventهای هفته آینده،
-               سیستم با توجه به نزدیک‌ترین زمان
-               انتخاب می‌کند.
-            */
-
-            const candidates = [];
-
-
-            for (
-                let offset = -1;
-                offset <= 7;
-                offset++
-            ) {
-
-                const date =
-                    new Date(
-                        year,
-                        month,
-                        day + offset
-                    );
-
-
-                const candidate =
-                    new Date(
-                        date.getFullYear(),
-                        date.getMonth(),
-                        date.getDate(),
-                        hour,
-                        minute,
-                        0
-                    );
-
-
-                candidates.push(
-                    candidate.getTime()
-                );
-
-            }
-
-
-            const future =
-                candidates.filter(
-                    timestamp =>
-                        timestamp >
-                        Date.now() - 60000
-                );
-
-
-            const timestamp =
-                future.length
-                    ? future[0]
-                    : candidates[
-                        candidates.length - 1
-                    ];
-
-
-            return {
-
-                ...event,
-
-                timestamp:
-                    timestamp
-
-            };
-
-        }
-    );
-
-}
-
-
-/* =====================================================
-   آپدیت NEXT EVENT
-===================================================== */
-
-async function updateNextEvent() {
-
-    try {
-
-        const events =
-            await fetchForexFactory();
-
-
-        const enriched =
-            buildEventTimestamps(
-                events
-            );
-
-
-        cachedEvents =
-            enriched;
-
-
-        const next =
-            getNextImportantEvent(
-                enriched
-            );
-
-
-        renderNextEvent(
-            next
-        );
-
-    }
-
-    catch (error) {
-
-        /*
-           اول Cache را امتحان می‌کنیم.
-        */
-
-        if (
-            cachedEvents.length === 0
-        ) {
-
-            cachedEvents =
-                loadEventsFromStorage();
-
-        }
-
-
-        if (
-            cachedEvents.length > 0
-        ) {
-
-            const enriched =
-                buildEventTimestamps(
-                    cachedEvents
-                );
-
-
-            const next =
-                getNextImportantEvent(
-                    enriched
-                );
-
-
-            if (
-                next
-            ) {
-
-                renderNextEvent(
-                    next
-                );
-
-                return;
-
-            }
-
-        }
-
-
-        /*
-           هیچ داده‌ای نداریم
-        */
-
-        renderOffline();
-
-    }
-
-}
-
-
-/* =====================================================
-   اجرای اولیه Event
-===================================================== */
-
-cachedEvents =
-    loadEventsFromStorage();
-
-
-if (
-    cachedEvents.length > 0
-) {
-
-    const enriched =
-        buildEventTimestamps(
-            cachedEvents
-        );
-
-
-    const next =
-        getNextImportantEvent(
-            enriched
-        );
-
-
-    if (
-        next
-    ) {
-
-        renderNextEvent(
-            next
-        );
-
-    }
-
-    else {
-
-        renderOffline();
-
-    }
-
-}
-
-else {
-
-    renderOffline();
-
-}
-
-
-/* =====================================================
-   دریافت جدید هر 30 ثانیه
-===================================================== */
-
-updateNextEvent();
-
-
-setInterval(
-    updateNextEvent,
-    EVENT_REFRESH_TIME
 );
 
 
@@ -3595,12 +2411,10 @@ const subscribeState =
         ".subscribe-state"
     );
 
-
 const likeState =
     document.querySelector(
         ".like-state"
     );
-
 
 const likeIcon =
     document.querySelector(
@@ -3611,14 +2425,13 @@ const likeIcon =
 setInterval(
     function () {
 
-
         if (
-            subscribeState.style.display !== "none"
+            subscribeState.style.display !==
+            "none"
         ) {
 
             subscribeState.style.display =
                 "none";
-
 
             likeState.style.display =
                 "flex";
@@ -3638,12 +2451,10 @@ setInterval(
 
         }
 
-
         else {
 
             likeState.style.display =
                 "none";
-
 
             subscribeState.style.display =
                 "flex";
@@ -3651,17 +2462,10 @@ setInterval(
         }
 
     },
-
     10000
 );
-
-
-/* =====================================================
-   پایان
-===================================================== */
 
 </script>
 
 </body>
-
 </html>
