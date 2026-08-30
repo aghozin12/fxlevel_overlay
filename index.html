@@ -1,307 +1,12 @@
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-
-<meta charset="UTF-8">
-
-<title>FX LEVEL Overlay</title>
-
 <style>
 
 /* =====================================================
-   صفحه اصلی
-===================================================== */
-
-html,
-body {
-
-    width: 1920px;
-    height: 1080px;
-
-    margin: 0;
-    padding: 0;
-
-    overflow: hidden;
-
-    background: #808080;
-
-    font-family: Arial, sans-serif;
-
-    color: white;
-}
-
-
-/* =====================================================
-   شبکه پس‌زمینه
-===================================================== */
-
-body::before {
-
-    content: "";
-
-    position: absolute;
-
-    inset: 0;
-
-    background-image:
-
-        linear-gradient(
-            rgba(0,255,136,0.40) 1px,
-            transparent 1px
-        ),
-
-        linear-gradient(
-            90deg,
-            rgba(0,255,136,0.40) 1px,
-            transparent 1px
-        );
-
-    background-size: 40px 40px;
-
-    pointer-events: none;
-}
-
-
-/* =====================================================
-   فریم اصلی
-===================================================== */
-
-.main-frame {
-
-    position: absolute;
-
-    top: 40px;
-    left: 40px;
-
-    width: calc(100% - 80px);
-    height: calc(100% - 80px);
-
-    clip-path: polygon(
-
-        25px 0,
-        calc(100% - 25px) 0,
-        100% 25px,
-        100% calc(100% - 25px),
-        calc(100% - 25px) 100%,
-        25px 100%,
-        0 calc(100% - 25px),
-        0 25px
-
-    );
-
-    background: rgba(0, 0, 0, 0.18);
-
-    border: 3px solid #00ff88;
-
-    box-shadow:
-
-        0 0 25px #00ff88,
-        inset 0 0 25px #00ff88;
-}
-
-
-/* =====================================================
-   TOP BAR
-===================================================== */
-
-.top-bar {
-
-    position: absolute;
-
-    top: 55px;
-    left: 50%;
-
-    transform: translateX(-50%);
-
-    width: 86%;
-    height: 90px;
-
-    clip-path: polygon(
-
-        18px 0,
-        calc(100% - 18px) 0,
-        100% 18px,
-        100% 100%,
-        0 100%,
-        0 18px
-
-    );
-
-    background: rgba(0, 0, 0, 0.35);
-
-    border: 2px solid #00ff88;
-
-    box-shadow:
-
-        0 0 14px #00ff88,
-        inset 0 0 14px #00ff88;
-
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
-    padding: 0 35px;
-
-    box-sizing: border-box;
-}
-
-
-/* =====================================================
-   آیتم‌های نوار بالا
-===================================================== */
-
-.top-item {
-
-    flex: 1;
-
-    min-width: 0;
-
-    height: 100%;
-
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-}
-
-
-/* =====================================================
-   ردیف آیتم‌ها
-===================================================== */
-
-.item-row {
-
-    width: 100%;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    gap: 14px;
-
-    box-sizing: border-box;
-}
-
-
-/* =====================================================
-   آیکون‌های بالا
-===================================================== */
-
-.icon {
-
-    width: 40px;
-    height: 40px;
-
-    flex: 0 0 40px;
-
-    stroke: #ffffff;
-
-    fill: none;
-
-    filter:
-        drop-shadow(0 0 6px #00ff88);
-}
-
-
-/* =====================================================
-   متن‌های بالا
-===================================================== */
-
-.text-box {
-
-    min-width: 125px;
-
-    height: 44px;
-
-    display: flex;
-
-    flex-direction: column;
-
-    justify-content: center;
-
-    line-height: 1.1;
-
-    text-align: left;
-}
-
-
-.text-box span:first-child {
-
-    font-family: Arial, sans-serif;
-
-    font-size: 14px;
-
-    font-weight: bold;
-
-    line-height: 18px;
-
-    height: 18px;
-
-    color: #ffae4a;
-
-    text-shadow:
-        0 0 6px #ffae4a;
-
-    white-space: nowrap;
-}
-
-
-.text-box span:last-child {
-
-    font-family: Arial, sans-serif;
-
-    font-size: 22px;
-
-    font-weight: bold;
-
-    line-height: 24px;
-
-    height: 24px;
-
-    color: #00ff88;
-
-    text-shadow:
-        0 0 8px #00ff88;
-
-    white-space: nowrap;
-
-    font-variant-numeric:
-        tabular-nums;
-}
-
-
-/* =====================================================
-   جداکننده
-===================================================== */
-
-.divider {
-
-    width: 1px;
-
-    height: 60%;
-
-    flex: 0 0 1px;
-
-    background:
-        rgba(255,255,255,0.35);
-}
-
-
-/* =====================================================
-   SESSION MAP
-   نسخه جدید
+   SESSION - هماهنگ سازی کامل با TOP BAR
 ===================================================== */
 
 .session-map {
 
-    flex: 1.25;
+    flex: 1;
 
     min-width: 0;
 
@@ -313,7 +18,10 @@ body::before {
 
     position: relative;
 
-    transform: translateY(8px);
+    /*
+       سشن کمی پایین‌تر از مرکز قرار می‌گیرد
+    */
+    transform: translateY(5px);
 }
 
 
@@ -331,6 +39,9 @@ body::before {
 
     position: relative;
 
+    /*
+       ارتفاع کنترل شده برای جلوگیری از شلوغی
+    */
     transform: translateY(2px);
 }
 
@@ -343,11 +54,11 @@ body::before {
 
     font-family: Arial, sans-serif;
 
-    font-size: 12px;
+    font-size: 13px;
 
-    font-weight: bold;
+    font-weight: 700;
 
-    letter-spacing: 2px;
+    letter-spacing: 3px;
 
     line-height: 16px;
 
@@ -360,14 +71,14 @@ body::before {
         0 0 6px #ffae4a,
         0 0 14px rgba(255,174,74,0.35);
 
-    margin-bottom: 7px;
+    margin-bottom: 9px;
 
     position: relative;
 }
 
 
 /* =====================================================
-   Session Track
+   مپ سشن
 ===================================================== */
 
 .session-track {
@@ -378,7 +89,10 @@ body::before {
 
     justify-content: center;
 
-    gap: 21px;
+    /*
+       فاصله بیشتر بین سشن‌ها
+    */
+    gap: 22px;
 
     height: 27px;
 
@@ -398,19 +112,20 @@ body::before {
 
     align-items: center;
 
-    gap: 7px;
+    gap: 8px;
 
     position: relative;
 
     font-family: Arial, sans-serif;
 
-    font-size: 14px;
+    /*
+       بولد و یکدست با سایر متن‌های TOP BAR
+    */
+    font-size: 15px;
 
-    font-weight: bold;
+    font-weight: 700;
 
     letter-spacing: 1px;
-
-    line-height: 18px;
 
     color: rgba(255,255,255,0.42);
 
@@ -424,6 +139,10 @@ body::before {
 }
 
 
+/* =====================================================
+   نام سشن
+===================================================== */
+
 .session-name {
 
     position: relative;
@@ -432,9 +151,9 @@ body::before {
 
     font-family: Arial, sans-serif;
 
-    font-size: 14px;
+    font-size: 15px;
 
-    font-weight: bold;
+    font-weight: 700;
 
     line-height: 18px;
 
@@ -447,12 +166,13 @@ body::before {
 
 
 /* =====================================================
-   Dot
+   DOT
 ===================================================== */
 
 .session-dot {
 
     width: 7px;
+
     height: 7px;
 
     flex: 0 0 7px;
@@ -480,150 +200,24 @@ body::before {
 
 
 /* =====================================================
-   Halo
-===================================================== */
-
-.session-dot::before {
-
-    content: "";
-
-    position: absolute;
-
-    width: 18px;
-    height: 18px;
-
-    left: 50%;
-    top: 50%;
-
-    transform:
-        translate(-50%, -50%)
-        scale(0.65);
-
-    border-radius: 50%;
-
-    border: 1px solid
-        rgba(0,255,136,0);
-
-    opacity: 0;
-
-    transition:
-
-        opacity 0.3s ease,
-
-        transform 0.3s ease,
-
-        border-color 0.3s ease;
-}
-
-
-/* =====================================================
-   ACTIVE SESSION
-===================================================== */
-
-.session-node.active {
-
-    color: #00ff88;
-
-    text-shadow:
-
-        0 0 5px #00ff88,
-        0 0 12px rgba(0,255,136,0.8);
-}
-
-
-.session-node.active .session-dot {
-
-    background: #00ff88;
-
-    box-shadow:
-
-        0 0 4px #00ff88,
-        0 0 10px #00ff88,
-        0 0 20px rgba(0,255,136,0.85);
-
-    animation:
-        activeDotPulse 1.25s ease-in-out infinite;
-}
-
-
-.session-node.active .session-dot::before {
-
-    opacity: 0.65;
-
-    transform:
-        translate(-50%, -50%)
-        scale(1);
-
-    border-color:
-        rgba(0,255,136,0.55);
-
-    animation:
-        activeHalo 1.25s ease-in-out infinite;
-}
-
-
-@keyframes activeDotPulse {
-
-    0%,
-    100% {
-
-        transform: scale(0.82);
-
-        opacity: 0.78;
-    }
-
-    50% {
-
-        transform: scale(1.30);
-
-        opacity: 1;
-    }
-}
-
-
-@keyframes activeHalo {
-
-    0%,
-    100% {
-
-        transform:
-            translate(-50%, -50%)
-            scale(0.75);
-
-        opacity: 0.20;
-    }
-
-    50% {
-
-        transform:
-            translate(-50%, -50%)
-            scale(1.35);
-
-        opacity: 0.75;
-    }
-}
-
-
-/* =====================================================
-   خطوط اتصال
-   بزرگ‌تر و واضح‌تر
+   خط اتصال بین سشن‌ها
 ===================================================== */
 
 .session-connector {
 
-    width: 27px;
+    width: 28px;
 
     height: 2px;
 
-    flex: 0 0 27px;
+    flex: 0 0 28px;
 
     background:
-        rgba(255,255,255,0.22);
+        rgba(255,255,255,0.18);
 
     box-shadow:
 
-        0 0 4px rgba(0,255,136,0.22),
-        0 0 8px rgba(0,255,136,0.10);
+        0 0 4px rgba(0,255,136,0.18),
+        0 0 8px rgba(0,255,136,0.08);
 
     position: relative;
 
@@ -631,18 +225,7 @@ body::before {
 }
 
 
-.session-map.has-active
-.session-connector {
-
-    background:
-        rgba(0,255,136,0.28);
-
-    box-shadow:
-
-        0 0 5px rgba(0,255,136,0.35),
-        0 0 10px rgba(0,255,136,0.18);
-}
-
+/* خط سبز متحرک */
 
 .session-map.has-active
 .session-connector::after {
@@ -655,7 +238,7 @@ body::before {
 
     left: -100%;
 
-    width: 70%;
+    width: 60%;
 
     height: 100%;
 
@@ -664,311 +247,106 @@ body::before {
         linear-gradient(
             90deg,
             transparent,
-            rgba(0,255,136,1),
+            rgba(0,255,136,0.95),
             transparent
         );
 
     animation:
-        connectorSweep 2.8s ease-in-out infinite;
+        connectorSweep 3.2s ease-in-out infinite;
 
     opacity: 1;
 }
 
 
-@keyframes connectorSweep {
-
-    0% {
-        left: -100%;
-    }
-
-    55% {
-        left: 130%;
-    }
-
-    100% {
-        left: 130%;
-    }
-}
-
-
 /* =====================================================
-   هشدار OPEN
+   ACTIVE
 ===================================================== */
 
-.session-node.open-warning {
+.session-node.active {
 
     color: #00ff88;
 
-    animation:
-        openWarningBlink 0.72s ease-in-out infinite;
-}
-
-
-.session-node.open-warning .session-dot {
-
-    background: #00ff88;
-
-    box-shadow:
-
-        0 0 5px #00ff88,
-        0 0 13px #00ff88,
-        0 0 28px rgba(0,255,136,0.95);
-
-    animation:
-        openDotWarning 0.72s ease-in-out infinite;
-}
-
-
-.session-node.open-warning .session-dot::before {
-
-    border-color:
-        rgba(0,255,136,0.85);
-
-    opacity: 1;
-
-    animation:
-        warningHalo 0.72s ease-in-out infinite;
-}
-
-
-@keyframes openWarningBlink {
-
-    0%,
-    100% {
-
-        opacity: 1;
-
-        text-shadow:
-
-            0 0 6px #00ff88,
-            0 0 16px #00ff88;
-    }
-
-    50% {
-
-        opacity: 0.22;
-
-        text-shadow:
-            0 0 2px #00ff88;
-    }
-}
-
-
-@keyframes openDotWarning {
-
-    0%,
-    100% {
-
-        transform: scale(0.80);
-
-        opacity: 0.55;
-    }
-
-    50% {
-
-        transform: scale(1.45);
-
-        opacity: 1;
-    }
-}
-
-
-@keyframes warningHalo {
-
-    0%,
-    100% {
-
-        transform:
-            translate(-50%, -50%)
-            scale(0.65);
-
-        opacity: 0.20;
-    }
-
-    50% {
-
-        transform:
-            translate(-50%, -50%)
-            scale(1.55);
-
-        opacity: 0.85;
-    }
-}
-
-
-/* =====================================================
-   هشدار CLOSE
-===================================================== */
-
-.session-node.close-warning {
-
-    color: #ff3333;
-
-    animation:
-        closeWarningBlink 0.65s ease-in-out infinite;
-}
-
-
-.session-node.close-warning .session-dot {
-
-    background: #ff3333;
-
-    box-shadow:
-
-        0 0 5px #ff3333,
-        0 0 13px #ff3333,
-        0 0 30px rgba(255,51,51,0.95);
-
-    animation:
-        closeDotWarning 0.65s ease-in-out infinite;
-}
-
-
-.session-node.close-warning .session-dot::before {
-
-    border-color:
-        rgba(255,51,51,0.85);
-
-    opacity: 1;
-
-    animation:
-        warningHaloRed 0.65s ease-in-out infinite;
-}
-
-
-@keyframes closeWarningBlink {
-
-    0%,
-    100% {
-
-        opacity: 1;
-
-        text-shadow:
-
-            0 0 6px #ff3333,
-            0 0 16px #ff3333;
-    }
-
-    50% {
-
-        opacity: 0.18;
-
-        text-shadow:
-            0 0 2px #ff3333;
-    }
-}
-
-
-@keyframes closeDotWarning {
-
-    0%,
-    100% {
-
-        transform: scale(0.80);
-
-        opacity: 0.55;
-    }
-
-    50% {
-
-        transform: scale(1.50);
-
-        opacity: 1;
-    }
-}
-
-
-@keyframes warningHaloRed {
-
-    0%,
-    100% {
-
-        transform:
-            translate(-50%, -50%)
-            scale(0.65);
-
-        opacity: 0.20;
-    }
-
-    50% {
-
-        transform:
-            translate(-50%, -50%)
-            scale(1.55);
-
-        opacity: 0.85;
-    }
-}
-
-
-/* =====================================================
-   WEEKEND
-===================================================== */
-
-.session-map.weekend
-.session-node {
-
-    color: rgba(255,51,51,0.55);
-}
-
-
-.session-map.weekend
-.session-dot {
-
-    background: #ff3333;
-
-    box-shadow:
-
-        0 0 4px #ff3333,
-        0 0 10px rgba(255,51,51,0.55);
-
-    animation:
-        closedWeekendPulse 1.8s ease-in-out infinite;
-}
-
-
-.session-map.weekend
-.session-dot::before {
-
-    border-color:
-        rgba(255,51,51,0.45);
-
-    opacity: 0.55;
-
-    transform:
-        translate(-50%, -50%)
-        scale(0.9);
-}
-
-
-.session-map.weekend
-.session-active-label {
-
-    color: #ff3333;
+    font-weight: 700;
 
     text-shadow:
 
-        0 0 6px #ff3333,
-        0 0 14px rgba(255,51,51,0.45);
+        0 0 5px #00ff88,
+        0 0 12px rgba(0,255,136,0.8);
 }
 
 
-@keyframes closedWeekendPulse {
+.session-node.active .session-name {
 
-    0%,
-    100% {
+    color: #00ff88;
 
-        transform: scale(0.85);
+    font-weight: 700;
 
-        opacity: 0.55;
-    }
+    text-shadow:
 
-    50% {
+        0 0 5px #00ff88,
+        0 0 12px rgba(0,255,136,0.8);
+}
 
-        transform: scale(1.15);
 
-        opacity: 1;
-    }
+/* =====================================================
+   ACTIVE LABEL
+===================================================== */
+
+.session-active-label {
+
+    position: relative;
+
+    height: 15px;
+
+    margin-top: 2px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 5px;
+
+    font-family: Arial, sans-serif;
+
+    /*
+       کوچک‌تر و هماهنگ‌تر
+    */
+    font-size: 9px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.8px;
+
+    color: #00ff88;
+
+    text-shadow:
+
+        0 0 6px #00ff88,
+        0 0 14px rgba(0,255,136,0.45);
+
+    opacity: 0;
+
+    transition:
+        opacity 0.35s ease;
+}
+
+
+.session-active-label.visible {
+
+    opacity: 1;
+}
+
+
+.active-arrow {
+
+    display: inline-block;
+
+    font-size: 10px;
+
+    animation:
+        activeArrowFloat 1s ease-in-out infinite;
 }
 
 
@@ -978,7 +356,7 @@ body::before {
 
 .session-timer {
 
-    height: 14px;
+    height: 15px;
 
     margin-top: 2px;
 
@@ -994,9 +372,9 @@ body::before {
 
     font-size: 9px;
 
-    font-weight: bold;
+    font-weight: 700;
 
-    letter-spacing: 1px;
+    letter-spacing: 1.2px;
 
     white-space: nowrap;
 
@@ -1020,17 +398,6 @@ body::before {
 }
 
 
-.session-timer.closed {
-
-    color: #ff3333;
-
-    text-shadow:
-
-        0 0 5px #ff3333,
-        0 0 10px rgba(255,51,51,0.45);
-}
-
-
 .timer-name {
 
     color: #ffae4a;
@@ -1050,66 +417,81 @@ body::before {
 
 
 /* =====================================================
-   ACTIVE LABEL
-   کوچک‌تر و پایین‌تر
+   DATE
+   اطمینان از اینکه تاریخ حتماً دیده شود
 ===================================================== */
 
-.session-active-label {
+#date-value {
 
-    position: relative;
-
-    height: 13px;
-
-    margin-top: 1px;
-
-    display: flex;
+    display: flex !important;
 
     align-items: center;
 
-    justify-content: center;
+    height: 24px;
 
-    gap: 4px;
+    min-height: 24px;
+
+    visibility: visible !important;
+
+    opacity: 1 !important;
+
+    color: #00ff88 !important;
+
+    font-family: Arial, sans-serif !important;
+
+    font-size: 22px !important;
+
+    font-weight: 700 !important;
+
+    line-height: 24px !important;
+
+    white-space: nowrap;
+
+    font-variant-numeric: tabular-nums;
+
+    text-shadow:
+        0 0 8px #00ff88;
+}
+
+
+/* =====================================================
+   سایر متن‌های TOP BAR
+   یکدست سازی
+===================================================== */
+
+.top-item .text-box span:first-child {
 
     font-family: Arial, sans-serif;
 
-    font-size: 8px;
-
-    font-weight: bold;
-
-    letter-spacing: 1.5px;
-
-    line-height: 12px;
-
-    color: #00ff88;
-
-    text-shadow:
-
-        0 0 5px #00ff88,
-        0 0 10px rgba(0,255,136,0.45);
-
-    opacity: 0;
-
-    transition:
-        opacity 0.35s ease;
+    font-weight: 700;
 }
 
 
-.session-active-label.visible {
+.top-item .text-box span:last-child {
 
-    opacity: 1;
+    font-family: Arial, sans-serif;
+
+    font-weight: 700;
 }
 
 
-.active-arrow {
+/* =====================================================
+   ANIMATION
+===================================================== */
 
-    display: inline-block;
+@keyframes connectorSweep {
 
-    font-size: 9px;
+    0% {
+        left: -100%;
+    }
 
-    line-height: 10px;
+    55% {
+        left: 130%;
+    }
 
-    animation:
-        activeArrowFloat 1s ease-in-out infinite;
+    100% {
+        left: 130%;
+    }
 }
 
 
@@ -1118,7 +500,7 @@ body::before {
     0%,
     100% {
         transform:
-            translateY(1px);
+            translateY(2px);
     }
 
     50% {
@@ -1127,2596 +509,4 @@ body::before {
     }
 }
 
-
-/* =====================================================
-   وبکم
-===================================================== */
-
-.webcam-frame {
-
-    position: absolute;
-
-    bottom: 170px;
-    left: 80px;
-
-    width: 430px;
-    height: 250px;
-
-    border: 4px solid #00ff66;
-
-    border-radius: 0;
-
-    background:
-        rgba(0, 0, 0, 0.18);
-
-    box-shadow:
-
-        0 0 25px rgba(0, 255, 102, 1),
-        0 0 55px rgba(0, 255, 102, 0.85),
-        0 0 110px rgba(0, 255, 102, 0.65),
-        0 0 160px rgba(0, 255, 102, 0.45);
-}
-
-
-/* =====================================================
-   نوار پایین
-===================================================== */
-
-.bottom-bar {
-
-    position: absolute;
-
-    bottom: 55px;
-    left: 50%;
-
-    transform: translateX(-50%);
-
-    width: 86%;
-    height: 80px;
-
-    clip-path: polygon(
-
-        0 0,
-        100% 0,
-        100% calc(100% - 18px),
-        calc(100% - 18px) 100%,
-        18px 100%,
-        0 calc(100% - 18px)
-
-    );
-
-    background:
-        rgba(0, 0, 0, 0.35);
-
-    border: 2px solid #00ff88;
-
-    box-shadow:
-
-        0 0 14px #00ff88,
-        inset 0 0 14px #00ff88;
-
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
-    padding: 0 40px;
-
-    box-sizing: border-box;
-}
-
-
-/* =====================================================
-   فونت نوار پایین
-===================================================== */
-
-.bottom-item span {
-
-    font-family: Arial, sans-serif;
-
-    font-size: 18px;
-
-    font-weight: bold;
-
-    line-height: 1;
-
-    display: flex;
-
-    align-items: center;
-
-    white-space: nowrap;
-}
-
-
-.bottom-item {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 10px;
-}
-
-
-.bottom-item:not(.subscribe) span {
-
-    color: #4da6ff;
-
-    text-shadow:
-        0 0 6px #4da6ff;
-}
-
-
-.bottom-divider {
-
-    width: 1px;
-
-    height: 35px;
-
-    background:
-        rgba(255,255,255,0.22);
-
-    flex-shrink: 0;
-}
-
-
-.bottom-icon {
-
-    width: 40px;
-    height: 40px;
-
-    stroke: #ffffff;
-
-    fill: none;
-
-    display: flex;
-
-    align-items: center;
-
-    flex-shrink: 0;
-
-    filter:
-        drop-shadow(0 0 4px #ffb347);
-}
-
-
-/* =====================================================
-   SUBSCRIBE
-===================================================== */
-
-.subscribe {
-
-    position: relative;
-
-    width: 145px;
-    min-width: 145px;
-    max-width: 145px;
-
-    height: 40px;
-
-    flex-shrink: 0;
-}
-
-
-.promo-state {
-
-    position: absolute;
-
-    left: 0;
-    top: 50%;
-
-    transform: translateY(-50%);
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 10px;
-
-    white-space: nowrap;
-}
-
-
-.subscribe-state span {
-
-    font-family: Arial, sans-serif;
-
-    font-size: 18px;
-
-    font-weight: bold;
-
-    color: #ff3333;
-
-    text-shadow:
-        0 0 5px rgba(255,51,51,0.55);
-}
-
-
-.bell-icon {
-
-    stroke: #ff3333;
-
-    filter:
-        drop-shadow(0 0 4px #ff3333);
-
-    transform-origin: 50% 15%;
-}
-
-
-.subscribe-state .bell-icon {
-
-    animation:
-        bellMiddle 10s ease-in-out infinite;
-}
-
-
-@keyframes bellMiddle {
-
-    0% {
-        transform: rotate(0deg);
-    }
-
-    45% {
-        transform: rotate(0deg);
-    }
-
-    47% {
-        transform: rotate(-6deg);
-    }
-
-    48.5% {
-        transform: rotate(6deg);
-    }
-
-    50% {
-        transform: rotate(-4deg);
-    }
-
-    51.5% {
-        transform: rotate(0deg);
-    }
-
-    53% {
-        transform: rotate(-6deg);
-    }
-
-    54.5% {
-        transform: rotate(6deg);
-    }
-
-    56% {
-        transform: rotate(-4deg);
-    }
-
-    57.5% {
-        transform: rotate(0deg);
-    }
-
-    100% {
-        transform: rotate(0deg);
-    }
-}
-
-
-/* =====================================================
-   LIKE
-===================================================== */
-
-.like-state {
-
-    display: none;
-}
-
-
-.like-state span {
-
-    font-family: Arial, sans-serif;
-
-    font-size: 18px;
-
-    font-weight: bold;
-
-    color: #4da6ff;
-
-    text-shadow:
-        0 0 5px rgba(77,166,255,0.55);
-}
-
-
-.like-icon {
-
-    stroke: #4da6ff;
-
-    filter:
-        drop-shadow(0 0 4px #4da6ff);
-
-    transform-origin: center;
-}
-
-
-.like-pulse {
-
-    animation:
-        likePulse 10s ease-in-out infinite;
-}
-
-
-@keyframes likePulse {
-
-    0% {
-        transform: scale(0.82);
-    }
-
-    8% {
-        transform: scale(1.10);
-    }
-
-    15% {
-        transform: scale(0.88);
-    }
-
-    22% {
-        transform: scale(1.12);
-    }
-
-    29% {
-        transform: scale(0.88);
-    }
-
-    38% {
-        transform: scale(1);
-    }
-
-    100% {
-        transform: scale(1);
-    }
-}
-
-
-/* =====================================================
-   VIP
-===================================================== */
-
-.vip {
-
-    position: relative;
-
-    overflow: hidden;
-}
-
-
-.vip span {
-
-    animation:
-        vipPulse 1.8s infinite ease-in-out;
-}
-
-
-@keyframes vipPulse {
-
-    0% {
-
-        text-shadow:
-            0 0 6px #00ff88;
-    }
-
-    50% {
-
-        text-shadow:
-            0 0 18px #00ff88;
-    }
-
-    100% {
-
-        text-shadow:
-            0 0 6px #00ff88;
-    }
-}
-
-
-.vip .shine {
-
-    position: absolute;
-
-    top: 0;
-    left: -120%;
-
-    width: 80%;
-    height: 100%;
-
-    background:
-
-        linear-gradient(
-            120deg,
-            transparent,
-            rgba(255,255,255,0.4),
-            transparent
-        );
-
-    animation:
-        shineSweep 3s infinite;
-}
-
-
-@keyframes shineSweep {
-
-    0% {
-        left: -120%;
-    }
-
-    50% {
-        left: 120%;
-    }
-
-    100% {
-        left: 120%;
-    }
-}
-
 </style>
-
-</head>
-
-
-<body>
-
-
-<div class="main-frame"></div>
-
-
-<!-- =====================================================
-     TOP BAR
-===================================================== -->
-
-<div class="top-bar">
-
-
-<!-- MARKET -->
-
-<div class="top-item">
-
-    <div class="item-row">
-
-        <svg class="icon" viewBox="0 0 24 24">
-
-            <path
-                d="M4 17l5-5 3 3 7-8"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-            />
-
-            <path
-                d="M15 7h4v4"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-            />
-
-        </svg>
-
-
-        <div class="text-box">
-
-            <span>MARKET</span>
-
-            <span id="market-value">
-                OPEN
-            </span>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<div class="divider"></div>
-
-
-<!-- =====================================================
-     SESSION MAP
-===================================================== -->
-
-<div class="top-item session-map" id="session-map">
-
-    <div class="session-map-inner">
-
-        <div class="session-map-title">
-            SESSION
-        </div>
-
-
-        <div class="session-track">
-
-
-            <div
-                class="session-node"
-                id="session-sydney"
-            >
-
-                <span class="session-name">
-                    SYD
-                </span>
-
-                <span class="session-dot"></span>
-
-            </div>
-
-
-            <div class="session-connector"></div>
-
-
-            <div
-                class="session-node"
-                id="session-tokyo"
-            >
-
-                <span class="session-name">
-                    TOK
-                </span>
-
-                <span class="session-dot"></span>
-
-            </div>
-
-
-            <div class="session-connector"></div>
-
-
-            <div
-                class="session-node"
-                id="session-london"
-            >
-
-                <span class="session-name">
-                    LON
-                </span>
-
-                <span class="session-dot"></span>
-
-            </div>
-
-
-            <div class="session-connector"></div>
-
-
-            <div
-                class="session-node"
-                id="session-newyork"
-            >
-
-                <span class="session-name">
-                    NY
-                </span>
-
-                <span class="session-dot"></span>
-
-            </div>
-
-
-        </div>
-
-
-        <div
-            class="session-active-label"
-            id="session-active-label"
-        >
-
-            <span class="active-arrow">
-                ▲
-            </span>
-
-            <span id="active-session-text">
-                ACTIVE
-            </span>
-
-        </div>
-
-
-        <div
-            class="session-timer"
-            id="session-timer"
-        >
-
-            <span
-                class="timer-name"
-                id="timer-session-name"
-            >
-                SYD
-            </span>
-
-            <span
-                id="timer-action"
-            >
-                OPEN IN
-            </span>
-
-            <span
-                class="timer-count"
-                id="timer-count"
-            >
-                00:00:00
-            </span>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<div class="divider"></div>
-
-
-<!-- =====================================================
-     SESSION CLOCK
-===================================================== -->
-
-<div class="top-item">
-
-    <div class="item-row">
-
-        <svg class="icon" viewBox="0 0 24 24">
-
-            <path
-                d="M12 1v22M1 12h22"
-                stroke-width="2"
-            />
-
-        </svg>
-
-
-        <div class="text-box">
-
-            <span id="session-clock-label">
-                MARKET
-            </span>
-
-            <span id="newyork-value">
-                --:--:--
-            </span>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<div class="divider"></div>
-
-
-<!-- TEHRAN -->
-
-<div class="top-item">
-
-    <div class="item-row">
-
-        <svg class="icon" viewBox="0 0 24 24">
-
-            <circle
-                cx="12"
-                cy="12"
-                r="10"
-                stroke-width="2"
-            />
-
-            <path
-                d="M12 12l4 2"
-                stroke-width="2"
-            />
-
-        </svg>
-
-
-        <div class="text-box">
-
-            <span>TEHRAN</span>
-
-            <span id="tehran-value">
-                --:--:--
-            </span>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<div class="divider"></div>
-
-
-<!-- DATE -->
-
-<div class="top-item">
-
-    <div class="item-row">
-
-        <svg class="icon" viewBox="0 0 24 24">
-
-            <rect
-                x="3"
-                y="5"
-                width="18"
-                height="16"
-                stroke-width="2"
-                fill="none"
-            />
-
-            <line
-                x1="3"
-                y1="10"
-                x2="21"
-                y2="10"
-                stroke-width="2"
-            />
-
-        </svg>
-
-
-        <div class="text-box">
-
-            <span>DATE</span>
-
-            <span id="date-value">
-                -- --- ----
-            </span>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-</div>
-
-
-<!-- =====================================================
-     WEBCAM
-===================================================== -->
-
-<div class="webcam-frame"></div>
-
-
-<!-- =====================================================
-     BOTTOM BAR
-===================================================== -->
-
-<div class="bottom-bar">
-
-
-<div
-    class="bottom-item subscribe"
-    id="subscribe-like"
->
-
-
-    <div
-        class="promo-state subscribe-state"
-    >
-
-        <svg
-            class="bottom-icon bell-icon"
-            viewBox="0 0 24 24"
-        >
-
-            <path
-                d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"
-                stroke-width="2.4"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-            />
-
-            <path
-                d="M10 21h4"
-                stroke-width="2.4"
-                stroke-linecap="round"
-            />
-
-        </svg>
-
-
-        <span>
-            SUBSCRIBE
-        </span>
-
-    </div>
-
-
-    <div
-        class="promo-state like-state"
-    >
-
-        <svg
-            class="bottom-icon like-icon"
-            viewBox="0 0 24 24"
-        >
-
-            <path
-                d="M7 10v12H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h3z"
-                stroke-width="2.2"
-                stroke-linejoin="round"
-            />
-
-            <path
-                d="M7 10l4-8c1.5 0 3 1 3 2.5V8h6a2 2 0 0 1 2 2.3l-1.2 8A2 2 0 0 1 18.8 20H7"
-                stroke-width="2.2"
-                stroke-linejoin="round"
-            />
-
-        </svg>
-
-
-        <span>
-            LIKE
-        </span>
-
-    </div>
-
-</div>
-
-
-<div class="bottom-divider"></div>
-
-
-<div class="bottom-item">
-
-    <svg
-        class="bottom-icon"
-        viewBox="0 0 24 24"
-    >
-
-        <circle
-            cx="12"
-            cy="12"
-            r="10"
-            stroke-width="2"
-        />
-
-        <path
-            d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"
-            stroke-width="2"
-        />
-
-    </svg>
-
-
-    <span>
-        www.aparat.com/FX_LEVEL3
-    </span>
-
-</div>
-
-
-<div class="bottom-divider"></div>
-
-
-<div class="bottom-item">
-
-    <svg
-        class="bottom-icon"
-        viewBox="0 0 24 24"
-    >
-
-        <rect
-            x="3"
-            y="3"
-            width="18"
-            height="18"
-            rx="5"
-            stroke-width="2"
-        />
-
-        <circle
-            cx="12"
-            cy="12"
-            r="4"
-            stroke-width="2"
-        />
-
-        <circle
-            cx="17"
-            cy="7"
-            r="1.5"
-            fill="#fff"
-        />
-
-    </svg>
-
-
-    <span>
-        instagram.com/fx_level3
-    </span>
-
-</div>
-
-
-<div class="bottom-divider"></div>
-
-
-<div class="bottom-item">
-
-    <svg
-        class="bottom-icon"
-        viewBox="0 0 24 24"
-    >
-
-        <rect
-            x="3"
-            y="6"
-            width="18"
-            height="12"
-            rx="3"
-            stroke-width="2"
-        />
-
-        <polygon
-            points="10,9 16,12 10,15"
-            fill="#fff"
-        />
-
-    </svg>
-
-
-    <span>
-        youtube.com/@FX_LEVEL3
-    </span>
-
-</div>
-
-
-<div class="bottom-divider"></div>
-
-
-<div class="bottom-item">
-
-    <svg
-        class="bottom-icon"
-        viewBox="0 0 24 24"
-    >
-
-        <path
-            d="M22 2L11 13"
-            stroke-width="2"
-        />
-
-        <path
-            d="M22 2L15 22l-4-9-9-4 20-7z"
-            stroke-width="2"
-        />
-
-    </svg>
-
-
-    <span>
-        t.me/FX_LEVEL3
-    </span>
-
-</div>
-
-
-<div class="bottom-divider"></div>
-
-
-<div class="bottom-item vip">
-
-    <svg
-        class="bottom-icon diamond"
-        viewBox="0 0 24 24"
-    >
-
-        <polygon
-            points="12 2 22 9 12 22 2 9"
-            stroke-width="2"
-        />
-
-    </svg>
-
-
-    <span>
-        Meysam Ghasemi
-    </span>
-
-
-    <div class="shine"></div>
-
-</div>
-
-
-</div>
-
-
-<script>
-
-/* =====================================================
-   SESSION CONFIG
-===================================================== */
-
-const SESSION_CONFIG = {
-
-    sydney: {
-
-        name: "Sydney",
-
-        shortName: "SYD",
-
-        open: "00:30",
-
-        close: "09:30"
-
-    },
-
-    tokyo: {
-
-        name: "Tokyo",
-
-        shortName: "TOK",
-
-        open: "03:30",
-
-        close: "12:30"
-
-    },
-
-    london: {
-
-        name: "London",
-
-        shortName: "LON",
-
-        open: "10:30",
-
-        close: "19:30"
-
-    },
-
-    newyork: {
-
-        name: "New York",
-
-        shortName: "NY",
-
-        open: "16:30",
-
-        close: "00:30"
-
-    }
-
-};
-
-
-const OPEN_WARNING_MINUTES = 5;
-
-const CLOSE_WARNING_MINUTES = 5;
-
-
-/* =====================================================
-   DOM
-===================================================== */
-
-const marketValue =
-    document.getElementById(
-        "market-value"
-    );
-
-
-const sessionClockLabel =
-    document.getElementById(
-        "session-clock-label"
-    );
-
-
-const sessionClockValue =
-    document.getElementById(
-        "newyork-value"
-    );
-
-
-const tehranClockValue =
-    document.getElementById(
-        "tehran-value"
-    );
-
-
-const dateValue =
-    document.getElementById(
-        "date-value"
-    );
-
-
-const sessionMap =
-    document.getElementById(
-        "session-map"
-    );
-
-
-const sessionActiveLabel =
-    document.getElementById(
-        "session-active-label"
-    );
-
-
-const activeSessionText =
-    document.getElementById(
-        "active-session-text"
-    );
-
-
-const sessionTimer =
-    document.getElementById(
-        "session-timer"
-    );
-
-
-const timerSessionName =
-    document.getElementById(
-        "timer-session-name"
-    );
-
-
-const timerAction =
-    document.getElementById(
-        "timer-action"
-    );
-
-
-const timerCount =
-    document.getElementById(
-        "timer-count"
-    );
-
-
-const sessionNodes = {
-
-    sydney:
-        document.getElementById(
-            "session-sydney"
-        ),
-
-    tokyo:
-        document.getElementById(
-            "session-tokyo"
-        ),
-
-    london:
-        document.getElementById(
-            "session-london"
-        ),
-
-    newyork:
-        document.getElementById(
-            "session-newyork"
-        )
-
-};
-
-
-/* =====================================================
-   HH:MM → minutes
-===================================================== */
-
-function timeToMinutes(time) {
-
-    const [
-        hours,
-        minutes
-    ] = time.split(":").map(Number);
-
-    return (
-        hours * 60 +
-        minutes
-    );
-
-}
-
-
-/* =====================================================
-   تهران
-===================================================== */
-
-function getTehranDateParts(
-    date = new Date()
-) {
-
-    const parts =
-        new Intl.DateTimeFormat(
-            "en-US",
-            {
-
-                timeZone:
-                    "Asia/Tehran",
-
-                year:
-                    "numeric",
-
-                month:
-                    "2-digit",
-
-                day:
-                    "2-digit",
-
-                hour:
-                    "2-digit",
-
-                minute:
-                    "2-digit",
-
-                second:
-                    "2-digit",
-
-                hourCycle:
-                    "h23"
-
-            }
-        ).formatToParts(date);
-
-
-    const result = {};
-
-
-    parts.forEach(
-        part => {
-
-            if (
-                part.type !==
-                "literal"
-            ) {
-
-                result[part.type] =
-                    part.value;
-
-            }
-
-        }
-    );
-
-
-    return {
-
-        year:
-            Number(result.year),
-
-        month:
-            Number(result.month),
-
-        day:
-            Number(result.day),
-
-        hour:
-            Number(result.hour),
-
-        minute:
-            Number(result.minute),
-
-        second:
-            Number(result.second)
-
-    };
-
-}
-
-
-/* =====================================================
-   روز هفته تهران
-===================================================== */
-
-function getTehranDayOfWeek(
-    date = new Date()
-) {
-
-    const parts =
-        getTehranDateParts(
-            date
-        );
-
-
-    const utcDate =
-        new Date(
-            Date.UTC(
-                parts.year,
-                parts.month - 1,
-                parts.day
-            )
-        );
-
-
-    return utcDate.getUTCDay();
-
-}
-
-
-/* =====================================================
-   تعطیلی هفتگی
-===================================================== */
-
-function isWeekend(
-    date = new Date()
-) {
-
-    const day =
-        getTehranDayOfWeek(
-            date
-        );
-
-
-    return (
-        day === 0 ||
-        day === 6
-    );
-
-}
-
-
-/* =====================================================
-   روز معاملاتی
-===================================================== */
-
-function isTradingDay(
-    date = new Date()
-) {
-
-    return !isWeekend(date);
-
-}
-
-
-/* =====================================================
-   دقیقه فعلی تهران
-===================================================== */
-
-function getCurrentTehranMinute(
-    date = new Date()
-) {
-
-    const parts =
-        getTehranDateParts(
-            date
-        );
-
-
-    return (
-        parts.hour * 60 +
-        parts.minute +
-        parts.second / 60
-    );
-
-}
-
-
-/* =====================================================
-   وضعیت Session
-===================================================== */
-
-function getSessionState(
-    session,
-    currentMinute
-) {
-
-    const open =
-        timeToMinutes(
-            session.open
-        );
-
-
-    const close =
-        timeToMinutes(
-            session.close
-        );
-
-
-    let isOpen;
-
-
-    if (open < close) {
-
-        isOpen =
-            currentMinute >= open &&
-            currentMinute < close;
-
-    }
-
-    else {
-
-        isOpen =
-            currentMinute >= open ||
-            currentMinute < close;
-
-    }
-
-
-    return {
-
-        open,
-        close,
-        isOpen
-
-    };
-
-}
-
-
-/* =====================================================
-   Session فعال
-===================================================== */
-
-function getActiveSessions(
-    currentMinute,
-    date = new Date()
-) {
-
-    if (
-        !isTradingDay(date)
-    ) {
-
-        return [];
-
-    }
-
-
-    const active = [];
-
-
-    Object.entries(
-        SESSION_CONFIG
-    ).forEach(
-        ([id, session]) => {
-
-            const state =
-                getSessionState(
-                    session,
-                    currentMinute
-                );
-
-
-            if (
-                state.isOpen
-            ) {
-
-                active.push({
-
-                    id,
-
-                    ...session,
-
-                    ...state
-
-                });
-
-            }
-
-        }
-    );
-
-
-    return active;
-
-}
-
-
-/* =====================================================
-   Session اصلی
-===================================================== */
-
-function getPrimaryActiveSession(
-    currentMinute,
-    date = new Date()
-) {
-
-    const active =
-        getActiveSessions(
-            currentMinute,
-            date
-        );
-
-
-    if (
-        active.length === 0
-    ) {
-
-        return null;
-
-    }
-
-
-    let primary = null;
-
-    let bestScore = -Infinity;
-
-
-    active.forEach(
-        session => {
-
-            let score =
-                timeToMinutes(
-                    session.open
-                );
-
-
-            if (
-                session.id === "newyork" &&
-                currentMinute <
-                    timeToMinutes(
-                        session.close
-                    )
-            ) {
-
-                score -= 1440;
-
-            }
-
-
-            if (
-                score > bestScore
-            ) {
-
-                bestScore =
-                    score;
-
-                primary =
-                    session;
-
-            }
-
-        }
-    );
-
-
-    return primary;
-
-}
-
-
-/* =====================================================
-   MARKET STATUS
-===================================================== */
-
-function isMarketOpen(
-    currentMinute,
-    date = new Date()
-) {
-
-    if (
-        !isTradingDay(date)
-    ) {
-
-        return false;
-
-    }
-
-
-    return (
-        getActiveSessions(
-            currentMinute,
-            date
-        ).length > 0
-    );
-
-}
-
-
-/* =====================================================
-   فاصله تا OPEN
-===================================================== */
-
-function getMinutesUntilOpen(
-    session,
-    currentMinute
-) {
-
-    const open =
-        timeToMinutes(
-            session.open
-        );
-
-
-    let diff =
-        open -
-        currentMinute;
-
-
-    if (
-        diff < 0
-    ) {
-
-        diff += 1440;
-
-    }
-
-
-    return diff;
-
-}
-
-
-/* =====================================================
-   فاصله تا CLOSE
-===================================================== */
-
-function getMinutesUntilClose(
-    session,
-    currentMinute
-) {
-
-    const close =
-        timeToMinutes(
-            session.close
-        );
-
-
-    let diff =
-        close -
-        currentMinute;
-
-
-    if (
-        diff < 0
-    ) {
-
-        diff += 1440;
-
-    }
-
-
-    return diff;
-
-}
-
-
-/* =====================================================
-   هشدار OPEN
-===================================================== */
-
-function isOpenWarning(
-    session,
-    currentMinute
-) {
-
-    const minutes =
-        getMinutesUntilOpen(
-            session,
-            currentMinute
-        );
-
-
-    return (
-
-        minutes > 0 &&
-
-        minutes <=
-            OPEN_WARNING_MINUTES
-
-    );
-
-}
-
-
-/* =====================================================
-   هشدار CLOSE
-===================================================== */
-
-function isCloseWarning(
-    session,
-    currentMinute
-) {
-
-    const minutes =
-        getMinutesUntilClose(
-            session,
-            currentMinute
-        );
-
-
-    return (
-
-        minutes > 0 &&
-
-        minutes <=
-            CLOSE_WARNING_MINUTES
-
-    );
-
-}
-
-
-/* =====================================================
-   NEXT SESSION EVENT
-===================================================== */
-
-function getNextSessionEvent(
-    now = new Date()
-) {
-
-    const currentMinute =
-        getCurrentTehranMinute(
-            now
-        );
-
-
-    if (
-        isWeekend(now)
-    ) {
-
-        return {
-
-            type: "open",
-
-            session:
-                SESSION_CONFIG.sydney,
-
-            seconds:
-                getSecondsUntilNextMondaySydney(
-                    now
-                )
-
-        };
-
-    }
-
-
-    const active =
-        getActiveSessions(
-            currentMinute,
-            now
-        );
-
-
-    if (
-        active.length > 0
-    ) {
-
-        const primary =
-            getPrimaryActiveSession(
-                currentMinute,
-                now
-            );
-
-
-        const seconds =
-            getSecondsUntilSessionClose(
-                primary,
-                now
-            );
-
-
-        return {
-
-            type: "close",
-
-            session:
-                primary,
-
-            seconds
-
-        };
-
-    }
-
-
-    const upcoming = [];
-
-
-    Object.values(
-        SESSION_CONFIG
-    ).forEach(
-        session => {
-
-            const minutes =
-                getMinutesUntilOpen(
-                    session,
-                    currentMinute
-                );
-
-
-            if (
-                minutes > 0
-            ) {
-
-                upcoming.push({
-
-                    session,
-
-                    minutes
-
-                });
-
-            }
-
-        }
-    );
-
-
-    upcoming.sort(
-        (a, b) =>
-            a.minutes -
-            b.minutes
-    );
-
-
-    if (
-        upcoming.length > 0
-    ) {
-
-        const item =
-            upcoming[0];
-
-
-        return {
-
-            type: "open",
-
-            session:
-                item.session,
-
-            seconds:
-                Math.max(
-                    0,
-                    Math.round(
-                        item.minutes *
-                        60
-                    )
-                )
-
-        };
-
-    }
-
-
-    return {
-
-        type: "open",
-
-        session:
-            SESSION_CONFIG.sydney,
-
-        seconds:
-            0
-
-    };
-
-}
-
-
-/* =====================================================
-   دوشنبه
-===================================================== */
-
-function getSecondsUntilNextMondaySydney(
-    now = new Date()
-) {
-
-    const parts =
-        getTehranDateParts(
-            now
-        );
-
-
-    const currentDay =
-        getTehranDayOfWeek(
-            now
-        );
-
-
-    let daysUntilMonday =
-        (1 - currentDay + 7) % 7;
-
-
-    if (
-        currentDay === 1
-    ) {
-
-        const currentSeconds =
-            parts.hour * 3600 +
-            parts.minute * 60 +
-            parts.second;
-
-
-        const targetSeconds =
-            30 * 60;
-
-
-        if (
-            currentSeconds < targetSeconds
-        ) {
-
-            daysUntilMonday = 0;
-
-        }
-
-        else {
-
-            daysUntilMonday = 7;
-
-        }
-
-    }
-
-
-    const currentTotalSeconds =
-        parts.hour * 3600 +
-        parts.minute * 60 +
-        parts.second;
-
-
-    const targetTotalSeconds =
-        (24 * 3600) -
-        currentTotalSeconds +
-        (daysUntilMonday - 1) *
-            24 * 3600 +
-        30 * 60;
-
-
-    return Math.max(
-        0,
-        targetTotalSeconds
-    );
-
-}
-
-
-/* =====================================================
-   ثانیه تا CLOSE
-===================================================== */
-
-function getSecondsUntilSessionClose(
-    session,
-    now = new Date()
-) {
-
-    const parts =
-        getTehranDateParts(
-            now
-        );
-
-
-    const currentSeconds =
-        parts.hour * 3600 +
-        parts.minute * 60 +
-        parts.second;
-
-
-    const closeMinutes =
-        timeToMinutes(
-            session.close
-        );
-
-
-    const closeSeconds =
-        closeMinutes * 60;
-
-
-    let diff =
-        closeSeconds -
-        currentSeconds;
-
-
-    if (
-        diff < 0
-    ) {
-
-        diff +=
-            24 * 3600;
-
-    }
-
-
-    return diff;
-
-}
-
-
-/* =====================================================
-   تبدیل ثانیه
-===================================================== */
-
-function formatDuration(
-    totalSeconds
-) {
-
-    totalSeconds =
-        Math.max(
-            0,
-            Math.floor(
-                totalSeconds
-            )
-        );
-
-
-    const hours =
-        Math.floor(
-            totalSeconds / 3600
-        );
-
-
-    const minutes =
-        Math.floor(
-            (totalSeconds % 3600) /
-            60
-        );
-
-
-    const seconds =
-        totalSeconds % 60;
-
-
-    return (
-
-        String(hours)
-            .padStart(2, "0") +
-
-        ":" +
-
-        String(minutes)
-            .padStart(2, "0") +
-
-        ":" +
-
-        String(seconds)
-            .padStart(2, "0")
-
-    );
-
-}
-
-
-/* =====================================================
-   SESSION TIMER UI
-===================================================== */
-
-function updateSessionTimer(
-    now = new Date()
-) {
-
-    const event =
-        getNextSessionEvent(
-            now
-        );
-
-
-    sessionTimer.classList.add(
-        "visible"
-    );
-
-
-    timerSessionName.innerText =
-        event.session.shortName;
-
-
-    timerCount.innerText =
-        formatDuration(
-            event.seconds
-        );
-
-
-    if (
-        event.type === "open"
-    ) {
-
-        timerAction.innerText =
-            "OPEN IN";
-
-    }
-
-    else {
-
-        timerAction.innerText =
-            "CLOSE IN";
-
-    }
-
-
-    if (
-        isWeekend(now)
-    ) {
-
-        sessionTimer.classList.add(
-            "closed"
-        );
-
-    }
-
-    else {
-
-        sessionTimer.classList.remove(
-            "closed"
-        );
-
-    }
-
-}
-
-
-/* =====================================================
-   SESSION MAP
-===================================================== */
-
-function updateSessionMap(
-    currentMinute,
-    now = new Date()
-) {
-
-    sessionMap.classList.remove(
-        "has-active",
-        "weekend"
-    );
-
-
-    Object.values(
-        sessionNodes
-    ).forEach(
-        node => {
-
-            node.classList.remove(
-                "active",
-                "open-warning",
-                "close-warning"
-            );
-
-        }
-    );
-
-
-    if (
-        isWeekend(now)
-    ) {
-
-        sessionMap.classList.add(
-            "weekend"
-        );
-
-
-        sessionActiveLabel.classList.add(
-            "visible"
-        );
-
-
-        activeSessionText.innerText =
-            "MARKET CLOSED";
-
-
-        return;
-
-    }
-
-
-    const active =
-        getActiveSessions(
-            currentMinute,
-            now
-        );
-
-
-    if (
-        active.length > 0
-    ) {
-
-        sessionMap.classList.add(
-            "has-active"
-        );
-
-    }
-
-
-    active.forEach(
-        session => {
-
-            const node =
-                sessionNodes[
-                    session.id
-                ];
-
-
-            if (!node) {
-                return;
-            }
-
-
-            node.classList.add(
-                "active"
-            );
-
-        }
-    );
-
-
-    Object.entries(
-        SESSION_CONFIG
-    ).forEach(
-        ([id, session]) => {
-
-            const node =
-                sessionNodes[id];
-
-
-            if (!node) {
-                return;
-            }
-
-
-            const state =
-                getSessionState(
-                    session,
-                    currentMinute
-                );
-
-
-            if (
-                state.isOpen &&
-                isCloseWarning(
-                    session,
-                    currentMinute
-                )
-            ) {
-
-                node.classList.remove(
-                    "active"
-                );
-
-
-                node.classList.add(
-                    "close-warning"
-                );
-
-            }
-
-
-            else if (
-                !state.isOpen &&
-                isOpenWarning(
-                    session,
-                    currentMinute
-                )
-            ) {
-
-                node.classList.add(
-                    "open-warning"
-                );
-
-            }
-
-        }
-    );
-
-
-    if (
-        active.length > 0
-    ) {
-
-        sessionActiveLabel.classList.add(
-            "visible"
-        );
-
-
-        activeSessionText.innerText =
-            "ACTIVE";
-
-    }
-
-    else {
-
-        sessionActiveLabel.classList.remove(
-            "visible"
-        );
-
-    }
-
-}
-
-
-/* =====================================================
-   MARKET
-===================================================== */
-
-function updateMarket(
-    currentMinute,
-    now = new Date()
-) {
-
-    const open =
-        isMarketOpen(
-            currentMinute,
-            now
-        );
-
-
-    if (open) {
-
-        marketValue.innerText =
-            "OPEN";
-
-
-        marketValue.style.color =
-            "#00ff88";
-
-
-        marketValue.style.textShadow =
-            "0 0 8px #00ff88";
-
-    }
-
-    else {
-
-        marketValue.innerText =
-            "CLOSED";
-
-
-        marketValue.style.color =
-            "#ff3333";
-
-
-        marketValue.style.textShadow =
-            "0 0 8px #ff3333";
-
-    }
-
-}
-
-
-/* =====================================================
-   ساعت تهران
-===================================================== */
-
-function getTehranTime(
-    date = new Date()
-) {
-
-    return new Intl.DateTimeFormat(
-        "en-US",
-        {
-
-            timeZone:
-                "Asia/Tehran",
-
-            hour:
-                "2-digit",
-
-            minute:
-                "2-digit",
-
-            second:
-                "2-digit",
-
-            hour12:
-                false
-
-        }
-    ).format(date);
-
-}
-
-
-/* =====================================================
-   تاریخ میلادی
-   نسخه کاملاً مستقل از تهران
-===================================================== */
-
-function getGregorianDate(
-    date = new Date()
-) {
-
-    const year =
-        date.getFullYear();
-
-
-    const month =
-        date.toLocaleString(
-            "en-US",
-            {
-                month: "short"
-            }
-        ).toUpperCase();
-
-
-    const day =
-        String(
-            date.getDate()
-        ).padStart(
-            2,
-            "0"
-        );
-
-
-    return (
-        day +
-        " " +
-        month +
-        " " +
-        year
-    );
-
-}
-
-
-/* =====================================================
-   CLOCKS
-===================================================== */
-
-function updateClocks() {
-
-    const now =
-        new Date();
-
-
-    const tehranParts =
-        getTehranDateParts(
-            now
-        );
-
-
-    const currentMinute =
-        tehranParts.hour * 60 +
-        tehranParts.minute +
-        tehranParts.second / 60;
-
-
-    /* تهران */
-
-    tehranClockValue.innerText =
-        getTehranTime(
-            now
-        );
-
-
-    /* Session */
-
-    updateSessionMap(
-        currentMinute,
-        now
-    );
-
-
-    /* Market */
-
-    updateMarket(
-        currentMinute,
-        now
-    );
-
-
-    /* Timer */
-
-    updateSessionTimer(
-        now
-    );
-
-
-    /* Primary Session Clock */
-
-    const activeSession =
-        getPrimaryActiveSession(
-            currentMinute,
-            now
-        );
-
-
-    if (
-        !activeSession
-    ) {
-
-        sessionClockLabel.innerText =
-            "MARKET";
-
-
-        sessionClockValue.innerText =
-            "--:--:--";
-
-    }
-
-    else {
-
-        sessionClockLabel.innerText =
-            activeSession.name
-                .toUpperCase();
-
-
-        sessionClockValue.innerText =
-            getTehranTime(
-                now
-            );
-
-    }
-
-
-    /* =================================================
-       DATE
-       تاریخ میلادی واقعی
-    ================================================= */
-
-    dateValue.innerText =
-        getGregorianDate(
-            now
-        );
-
-}
-
-
-/* =====================================================
-   START CLOCK
-===================================================== */
-
-updateClocks();
-
-
-setInterval(
-    updateClocks,
-    1000
-);
-
-
-/* =====================================================
-   SUBSCRIBE / LIKE
-===================================================== */
-
-const subscribeState =
-    document.querySelector(
-        ".subscribe-state"
-    );
-
-
-const likeState =
-    document.querySelector(
-        ".like-state"
-    );
-
-
-const likeIcon =
-    document.querySelector(
-        ".like-icon"
-    );
-
-
-setInterval(
-    function () {
-
-        if (
-            subscribeState.style.display !==
-            "none"
-        ) {
-
-            subscribeState.style.display =
-                "none";
-
-
-            likeState.style.display =
-                "flex";
-
-
-            likeIcon.classList.remove(
-                "like-pulse"
-            );
-
-
-            void likeIcon.offsetWidth;
-
-
-            likeIcon.classList.add(
-                "like-pulse"
-            );
-
-        }
-
-        else {
-
-            likeState.style.display =
-                "none";
-
-
-            subscribeState.style.display =
-                "flex";
-
-        }
-
-    },
-
-    10000
-);
-
-</script>
-
-</body>
-
-</html>
-```
