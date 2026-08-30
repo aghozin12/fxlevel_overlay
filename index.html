@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 
 <html lang="en">
@@ -168,6 +169,8 @@ body::before {
     flex-direction: column;
 
     line-height: 1.1;
+
+    min-width: 0;
 }
 
 
@@ -701,17 +704,24 @@ body::before {
 
 
 /* =====================================================
-   NEWS - حرکت نرم متن
+   NEWS - متن کوتاه و محدود
 ===================================================== */
 
 #news-value {
-    max-width: 280px;
+    width: 220px;
+    max-width: 220px;
 
     overflow: hidden;
 
     text-overflow: ellipsis;
 
     white-space: nowrap;
+
+    display: block;
+
+    font-size: 19px !important;
+
+    line-height: 1.1;
 
     transition:
         color 0.25s ease,
@@ -724,20 +734,10 @@ body::before {
 
 <body>
 
-<!-- =====================================================
-     فریم اصلی
-===================================================== -->
-
 <div class="main-frame"></div>
 
-<!-- =====================================================
-     نوار بالا
-===================================================== -->
 
 <div class="top-bar">
-
-```
-<!-- SESSION -->
 
 <div class="top-item">
 
@@ -759,7 +759,6 @@ body::before {
 
         </svg>
 
-
         <div class="text-box">
 
             <span>SESSION</span>
@@ -778,8 +777,6 @@ body::before {
 <div class="divider"></div>
 
 
-<!-- CURRENT SESSION CLOCK -->
-
 <div class="top-item">
 
     <div class="item-row">
@@ -793,7 +790,6 @@ body::before {
 
         </svg>
 
-
         <div class="text-box">
 
             <span id="session-clock-label">
@@ -801,7 +797,7 @@ body::before {
             </span>
 
             <span id="newyork-value">
-                --:--:--
+                --:--
             </span>
 
         </div>
@@ -813,8 +809,6 @@ body::before {
 
 <div class="divider"></div>
 
-
-<!-- TEHRAN -->
 
 <div class="top-item">
 
@@ -836,13 +830,12 @@ body::before {
 
         </svg>
 
-
         <div class="text-box">
 
             <span>TEHRAN</span>
 
             <span id="tehran-value">
-                --:--:--
+                --:--
             </span>
 
         </div>
@@ -854,8 +847,6 @@ body::before {
 
 <div class="divider"></div>
 
-
-<!-- DATE -->
 
 <div class="top-item">
 
@@ -882,7 +873,6 @@ body::before {
 
         </svg>
 
-
         <div class="text-box">
 
             <span>DATE</span>
@@ -900,8 +890,6 @@ body::before {
 
 <div class="divider"></div>
 
-
-<!-- NEWS -->
 
 <div class="top-item">
 
@@ -936,13 +924,12 @@ body::before {
 
         </svg>
 
-
         <div class="text-box">
 
             <span>NEWS</span>
 
             <span id="news-value">
-                Loading...
+                Waiting...
             </span>
 
         </div>
@@ -950,34 +937,19 @@ body::before {
     </div>
 
 </div>
-```
 
 </div>
 
-<!-- =====================================================
-     وبکم
-===================================================== -->
 
 <div class="webcam-frame"></div>
 
-<!-- =====================================================
-     نوار پایین
-===================================================== -->
 
 <div class="bottom-bar">
-
-```
-<!-- =================================================
-     SUBSCRIBE / LIKE
-================================================== -->
 
 <div
     class="bottom-item subscribe"
     id="subscribe-like"
 >
-
-
-    <!-- SUBSCRIBE -->
 
     <div
         class="promo-state subscribe-state"
@@ -1003,15 +975,12 @@ body::before {
 
         </svg>
 
-
         <span>
             SUBSCRIBE
         </span>
 
     </div>
 
-
-    <!-- LIKE -->
 
     <div
         class="promo-state like-state"
@@ -1036,7 +1005,6 @@ body::before {
 
         </svg>
 
-
         <span>
             LIKE
         </span>
@@ -1048,8 +1016,6 @@ body::before {
 
 <div class="bottom-divider"></div>
 
-
-<!-- WEBSITE -->
 
 <div class="bottom-item">
 
@@ -1072,7 +1038,6 @@ body::before {
 
     </svg>
 
-
     <span>
         www.aparat.com/FX_LEVEL3
     </span>
@@ -1082,8 +1047,6 @@ body::before {
 
 <div class="bottom-divider"></div>
 
-
-<!-- INSTAGRAM -->
 
 <div class="bottom-item">
 
@@ -1117,7 +1080,6 @@ body::before {
 
     </svg>
 
-
     <span>
         instagram.com/fx_level3
     </span>
@@ -1127,8 +1089,6 @@ body::before {
 
 <div class="bottom-divider"></div>
 
-
-<!-- YOUTUBE -->
 
 <div class="bottom-item">
 
@@ -1153,7 +1113,6 @@ body::before {
 
     </svg>
 
-
     <span>
         youtube.com/@FX_LEVEL3
     </span>
@@ -1163,8 +1122,6 @@ body::before {
 
 <div class="bottom-divider"></div>
 
-
-<!-- TELEGRAM -->
 
 <div class="bottom-item">
 
@@ -1185,7 +1142,6 @@ body::before {
 
     </svg>
 
-
     <span>
         t.me/FX_LEVEL3
     </span>
@@ -1195,8 +1151,6 @@ body::before {
 
 <div class="bottom-divider"></div>
 
-
-<!-- MEYSAM GHASEMI -->
 
 <div class="bottom-item vip">
 
@@ -1212,25 +1166,18 @@ body::before {
 
     </svg>
 
-
     <span>
         Meysam Ghasemi
     </span>
 
-
     <div class="shine"></div>
 
 </div>
-```
 
 </div>
 
-<!-- =====================================================
-     JAVASCRIPT
-===================================================== -->
 
 <script>
-
 
 /* =====================================================
    تنظیمات سشن‌ها
@@ -1683,7 +1630,7 @@ function getNextSession(
 
 
 /* =====================================================
-   نمایش ساعت محلی با ثانیه
+   نمایش ساعت محلی بدون ثانیه
 ===================================================== */
 
 function getSessionTime(
@@ -1699,8 +1646,6 @@ function getSessionTime(
             hour: "2-digit",
 
             minute: "2-digit",
-
-            second: "2-digit",
 
             hour12: true
         }
@@ -1774,6 +1719,12 @@ function updateClocks() {
         activeSession.name.toUpperCase();
 
 
+    /*
+       ساعت دقیق خود همان Time Zone سشن.
+       بنابراین Tokyo همیشه بر اساس Asia/Tokyo
+       نمایش داده می‌شود.
+    */
+
     sessionClockValue.innerText =
         getSessionTime(
             activeSession.timeZone,
@@ -1801,6 +1752,11 @@ function updateClocks() {
     );
 
 
+    /*
+       هشدار نام سشن:
+       5 دقیقه مانده به شروع سشن بعدی
+    */
+
     if (
         minutesUntilNext <= 5 &&
         minutesUntilNext > 0
@@ -1812,6 +1768,11 @@ function updateClocks() {
 
     }
 
+
+    /*
+       هشدار ساعت:
+       2 دقیقه مانده به شروع سشن بعدی
+    */
 
     if (
         minutesUntilNext <= 2 &&
@@ -1847,25 +1808,6 @@ updateClocks();
 /* =====================================================
    NEWS - FOREX FACTORY
 ===================================================== */
-
-
-/*
-   خروجی رسمی Forex Factory:
-
-   JSON:
-   https://www.forexfactory.com/calendar?export=json&week=this
-
-   در صورت مسدود بودن درخواست مستقیم توسط مرورگر،
-   از Proxy عمومی CORS استفاده می‌شود.
-
-   ترتیب اولویت:
-
-   High       = 3 = قرمز
-   Medium     = 2 = نارنجی
-   Low        = 1 = زرد
-   Holiday    = 0 = طوسی
-*/
-
 
 const FOREX_FACTORY_URL =
     "https://www.forexfactory.com/calendar?export=json&week=this";
@@ -2032,29 +1974,27 @@ function getNewsTitle(
 
 
 /* =====================================================
-   کوتاه کردن عنوان
+   کوتاه کردن عنوان خبر
 ===================================================== */
 
 function shortenNewsTitle(
     title
 ) {
 
+    let shortTitle =
+        String(title)
+            .replace(
+                /\s+/g,
+                " "
+            )
+            .trim();
+
+
+    /*
+       عناوین مهم با نام کوتاه‌تر
+    */
+
     const replacements = [
-
-        [
-            "Consumer Price Index",
-            "CPI"
-        ],
-
-        [
-            "Consumer Confidence",
-            "Consumer Confidence"
-        ],
-
-        [
-            "Gross Domestic Product",
-            "GDP"
-        ],
 
         [
             "Non-Farm Payrolls",
@@ -2067,43 +2007,8 @@ function shortenNewsTitle(
         ],
 
         [
-            "Unemployment Rate",
-            "Unemployment Rate"
-        ],
-
-        [
-            "Employment Change",
-            "Employment Change"
-        ],
-
-        [
-            "Retail Sales",
-            "Retail Sales"
-        ],
-
-        [
-            "Manufacturing Purchasing Managers Index",
-            "Manufacturing PMI"
-        ],
-
-        [
-            "Services Purchasing Managers Index",
-            "Services PMI"
-        ],
-
-        [
-            "Purchasing Managers Index",
-            "PMI"
-        ],
-
-        [
-            "Interest Rate Decision",
-            "Interest Rate"
-        ],
-
-        [
-            "Central Bank",
-            "Central Bank"
+            "Consumer Price Index",
+            "CPI"
         ],
 
         [
@@ -2112,15 +2017,61 @@ function shortenNewsTitle(
         ],
 
         [
+            "Gross Domestic Product",
+            "GDP"
+        ],
+
+        [
+            "Purchasing Managers Index",
+            "PMI"
+        ],
+
+        [
+            "Manufacturing PMI",
+            "Mfg PMI"
+        ],
+
+        [
+            "Services PMI",
+            "Services PMI"
+        ],
+
+        [
+            "Interest Rate Decision",
+            "Rate Decision"
+        ],
+
+        [
+            "Unemployment Rate",
+            "Unemployment"
+        ],
+
+        [
+            "Employment Change",
+            "Employment"
+        ],
+
+        [
+            "Retail Sales",
+            "Retail Sales"
+        ],
+
+        [
+            "Consumer Confidence",
+            "Consumer Confidence"
+        ],
+
+        [
             "Bank Holiday",
             "Bank Holiday"
+        ],
+
+        [
+            "Central Bank",
+            "Central Bank"
         ]
 
     ];
-
-
-    let shortTitle =
-        title;
 
 
     replacements.forEach(
@@ -2137,6 +2088,41 @@ function shortenNewsTitle(
 
         }
     );
+
+
+    /*
+       حذف عبارت‌های اضافی رایج
+    */
+
+    shortTitle =
+        shortTitle
+            .replace(
+                /\s*\(.*?\)\s*/g,
+                " "
+            )
+            .replace(
+                /\s+/g,
+                " "
+            )
+            .trim();
+
+
+    /*
+       محدودیت نهایی برای جلوگیری از
+       بزرگ شدن کادر NEWS
+    */
+
+    if (
+        shortTitle.length > 24
+    ) {
+
+        shortTitle =
+            shortTitle.substring(
+                0,
+                24
+            ).trim();
+
+    }
 
 
     return shortTitle;
@@ -2184,6 +2170,24 @@ function getEventTimestamp(
         ) {
 
             continue;
+
+        }
+
+
+        if (
+            typeof value === "number"
+        ) {
+
+            /*
+               پشتیبانی از timestamp ثانیه‌ای
+               و timestamp میلی‌ثانیه‌ای
+            */
+
+            return (
+                value < 10000000000
+                    ? value * 1000
+                    : value
+            );
 
         }
 
@@ -2339,7 +2343,7 @@ function normalizeForexFactoryData(
             event => {
 
                 return (
-                    event.currency ||
+                    event.currency &&
                     event.title
                 );
 
@@ -2453,12 +2457,6 @@ async function fetchForexFactoryNews() {
         error
     ) {
 
-        /*
-           در صورت خطا، خبر فعلی حفظ می‌شود.
-           اگر هیچ خبری وجود نداشته باشد،
-           پیام Waiting نمایش داده می‌شود.
-        */
-
         if (
             newsEvents.length === 0
         ) {
@@ -2470,7 +2468,7 @@ async function fetchForexFactoryNews() {
 
 
             newsElement.innerText =
-                "Waiting for news...";
+                "Waiting...";
 
         }
 
@@ -2497,7 +2495,32 @@ function getNewsUniqueId(
 
 
 /* =====================================================
-   آپدیت صف
+   شروع ساعت خبر
+===================================================== */
+
+function getNewsHourKey(
+    timestamp
+) {
+
+    const date =
+        new Date(timestamp);
+
+
+    return (
+        date.getFullYear() +
+        "-" +
+        date.getMonth() +
+        "-" +
+        date.getDate() +
+        "-" +
+        date.getHours()
+    );
+
+}
+
+
+/* =====================================================
+   آپدیت صف خبر
 ===================================================== */
 
 function updateNewsQueue() {
@@ -2507,11 +2530,8 @@ function updateNewsQueue() {
 
 
     /*
-       فقط خبرهای مربوط به گذشته نزدیک و آینده
-       وارد سیستم می‌شوند.
-
-       خبرهایی که بیش از 15 دقیقه از زمانشان گذشته
-       دیگر نمایش داده نمی‌شوند.
+       خبرهایی که حداکثر 15 دقیقه از زمانشان گذشته
+       یا تا 1 دقیقه آینده هستند.
     */
 
     const candidates =
@@ -2531,11 +2551,6 @@ function updateNewsQueue() {
             }
         );
 
-
-    /*
-       خبرهای قبلی که هنوز نمایش داده نشده‌اند
-       وارد صف می‌شوند.
-    */
 
     candidates.forEach(
         event => {
@@ -2576,11 +2591,14 @@ function updateNewsQueue() {
 
 
     /*
-       مهم‌ترین خبر همیشه جلوتر است.
+       اولویت:
+       1. High / قرمز
+       2. Medium / نارنجی
+       3. Low / زرد
+       4. Holiday / طوسی
 
-       ترتیب:
-       Impact
-       سپس زمان
+       اگر Impact یکسان باشد:
+       زمان زودتر اول نمایش داده می‌شود.
     */
 
     newsQueue.sort(
@@ -2607,11 +2625,6 @@ function updateNewsQueue() {
         }
     );
 
-
-    /*
-       اگر خبر فعلی تمام شده باشد،
-       خبر بعدی را نمایش بده.
-    */
 
     if (
         !currentNews
@@ -2701,18 +2714,20 @@ function displayNews(
         );
 
 
-    const currency =
-        event.currency;
+    /*
+       ساختار نهایی:
+       USD | CPI
+       CAD | GDP
+       JPY | Rate
+       EUR | NFP
 
-
-    const title =
-        event.title;
-
+       کوتاه و مناسب Overlay
+    */
 
     element.innerText =
-        currency +
+        event.currency +
         " | " +
-        title;
+        event.title;
 
 
     applyNewsColor(
@@ -2735,10 +2750,6 @@ function showNextNews() {
 
     currentNews = null;
 
-
-    /*
-       اگر صف خالی است، دوباره آن را بساز.
-    */
 
     if (
         newsQueue.length === 0
@@ -2777,7 +2788,9 @@ function showNextNews() {
 
 
     /*
-       مهم‌ترین خبر صف
+       خبر مهم‌تر همیشه اول انتخاب می‌شود.
+       اگر دو خبر قرمز وجود داشته باشد،
+       هر دو جداگانه نمایش داده می‌شوند.
     */
 
     currentNews =
@@ -2790,7 +2803,7 @@ function showNextNews() {
 
 
     /*
-       هر خبر دقیقاً یک دقیقه نمایش داده می‌شود.
+       هر خبر دقیقاً 1 دقیقه نمایش داده می‌شود.
     */
 
     newsDisplayTimer =
@@ -2896,7 +2909,6 @@ setInterval(
 
         }
 
-
         else {
 
             likeState.style.display =
@@ -2915,3 +2927,4 @@ setInterval(
 
 </body>
 </html>
+```
