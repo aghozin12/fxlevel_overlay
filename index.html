@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,7 +48,6 @@ body::before {
 
 .main-frame {
     position: absolute;
-
     top: 40px;
     left: 40px;
 
@@ -230,6 +230,167 @@ body::before {
 
     background:
         rgba(255,255,255,0.35);
+}
+
+/* =====================================================
+   MARKET STATUS
+===================================================== */
+
+.market-status-box {
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    min-width: 370px;
+
+    line-height: 1;
+}
+
+.market-title {
+    font-size: 14px;
+
+    color: #ffae4a;
+
+    text-shadow:
+        0 0 6px #ffae4a;
+
+    margin-bottom: 7px;
+}
+
+.market-weekend {
+    font-size: 21px;
+
+    font-weight: bold;
+
+    color: #ff5555;
+
+    text-shadow:
+        0 0 8px #ff5555;
+
+    white-space: nowrap;
+}
+
+/* =====================================================
+   MARKET SESSIONS GRID
+===================================================== */
+
+.market-sessions {
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    grid-template-rows:
+        1fr 1fr;
+
+    column-gap: 22px;
+
+    row-gap: 5px;
+
+    min-width: 370px;
+}
+
+/* =====================================================
+   INDIVIDUAL MARKET SESSION
+===================================================== */
+
+.market-session {
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    white-space: nowrap;
+
+    font-size: 13px;
+
+    font-weight: bold;
+}
+
+.market-session .market-name {
+    color: #ffffff;
+
+    text-shadow:
+        0 0 5px rgba(255,255,255,0.35);
+}
+
+.market-session .market-state {
+    font-size: 13px;
+}
+
+/* OPEN */
+
+.market-session.open
+.market-state {
+
+    color: #00ff88;
+
+    text-shadow:
+        0 0 7px #00ff88;
+}
+
+/* CLOSED */
+
+.market-session.closed
+.market-state {
+
+    color: #ff5555;
+
+    text-shadow:
+        0 0 7px #ff5555;
+}
+
+/* DOT */
+
+.market-session .market-dot {
+    font-size: 11px;
+}
+
+/* OPEN DOT */
+
+.market-session.open
+.market-dot {
+
+    color: #00ff88;
+
+    text-shadow:
+        0 0 7px #00ff88;
+}
+
+/* CLOSED DOT */
+
+.market-session.closed
+.market-dot {
+
+    color: #ff5555;
+
+    text-shadow:
+        0 0 7px #ff5555;
+}
+
+/* =====================================================
+   BANK HOLIDAY
+===================================================== */
+
+.market-session.bank-holiday
+.market-state {
+
+    color: #ffae4a;
+
+    text-shadow:
+        0 0 8px #ffae4a;
+}
+
+.market-session.bank-holiday
+.market-dot {
+
+    color: #ffae4a;
+
+    text-shadow:
+        0 0 8px #ffae4a;
 }
 
 /* =====================================================
@@ -601,34 +762,6 @@ body::before {
     }
 }
 
-/* =====================================================
-   MARKET STATUS COLORS
-===================================================== */
-
-#news-value.market-open {
-    color: #00ff88 !important;
-    text-shadow:
-        0 0 8px #00ff88 !important;
-}
-
-#news-value.market-closed {
-    color: #ff5555 !important;
-    text-shadow:
-        0 0 8px #ff5555 !important;
-}
-
-#news-value.market-warning {
-    color: #ffae4a !important;
-    text-shadow:
-        0 0 8px #ffae4a !important;
-}
-
-#news-value.bank-holiday {
-    color: #ffae4a !important;
-    text-shadow:
-        0 0 8px #ffae4a !important;
-}
-
 </style>
 </head>
 
@@ -828,13 +961,123 @@ body::before {
 
             </svg>
 
-            <div class="text-box">
 
-                <span>MARKET STATUS</span>
+            <div class="market-status-box">
 
-                <span id="news-value">
-                    Loading...
-                </span>
+                <div class="market-title">
+                    MARKET STATUS
+                </div>
+
+
+                <!-- WEEKEND / HOLIDAY -->
+
+                <div
+                    id="market-weekend"
+                    class="market-weekend"
+                >
+                    MARKET CLOSED
+                </div>
+
+
+                <!-- WEEKDAY SESSIONS -->
+
+                <div
+                    id="market-sessions"
+                    class="market-sessions"
+                >
+
+                    <!-- LEFT COLUMN -->
+                    <!-- ROW 1: SYDNEY -->
+
+                    <div
+                        class="market-session"
+                        id="market-sydney"
+                    >
+
+                        <span class="market-name">
+                            SYDNEY
+                        </span>
+
+                        <span class="market-dot">
+                            ●
+                        </span>
+
+                        <span class="market-state">
+                            CLOSED
+                        </span>
+
+                    </div>
+
+
+                    <!-- RIGHT COLUMN -->
+                    <!-- ROW 1: LONDON -->
+
+                    <div
+                        class="market-session"
+                        id="market-london"
+                    >
+
+                        <span class="market-name">
+                            LONDON
+                        </span>
+
+                        <span class="market-dot">
+                            ●
+                        </span>
+
+                        <span class="market-state">
+                            CLOSED
+                        </span>
+
+                    </div>
+
+
+                    <!-- LEFT COLUMN -->
+                    <!-- ROW 2: TOKYO -->
+
+                    <div
+                        class="market-session"
+                        id="market-tokyo"
+                    >
+
+                        <span class="market-name">
+                            TOKYO
+                        </span>
+
+                        <span class="market-dot">
+                            ●
+                        </span>
+
+                        <span class="market-state">
+                            CLOSED
+                        </span>
+
+                    </div>
+
+
+                    <!-- RIGHT COLUMN -->
+                    <!-- ROW 2: NEW YORK -->
+
+                    <div
+                        class="market-session"
+                        id="market-newyork"
+                    >
+
+                        <span class="market-name">
+                            NEW YORK
+                        </span>
+
+                        <span class="market-dot">
+                            ●
+                        </span>
+
+                        <span class="market-state">
+                            CLOSED
+                        </span>
+
+                    </div>
+
+                </div>
 
             </div>
 
@@ -1113,28 +1356,36 @@ const tradingSessions = [
         name: "Sydney",
         timeZone: "Australia/Sydney",
         openHour: 8,
-        openMinute: 0
+        openMinute: 0,
+        closeHour: 17,
+        closeMinute: 0
     },
 
     {
         name: "Tokyo",
         timeZone: "Asia/Tokyo",
         openHour: 9,
-        openMinute: 0
+        openMinute: 0,
+        closeHour: 17,
+        closeMinute: 0
     },
 
     {
         name: "London",
         timeZone: "Europe/London",
         openHour: 8,
-        openMinute: 0
+        openMinute: 0,
+        closeHour: 17,
+        closeMinute: 0
     },
 
     {
         name: "New York",
         timeZone: "America/New_York",
         openHour: 9,
-        openMinute: 30
+        openMinute: 30,
+        closeHour: 16,
+        closeMinute: 0
     }
 
 ];
@@ -1164,9 +1415,14 @@ const tehranClockValue =
         "tehran-value"
     );
 
-const marketStatusValue =
+const marketWeekendValue =
     document.getElementById(
-        "news-value"
+        "market-weekend"
+    );
+
+const marketSessions =
+    document.getElementById(
+        "market-sessions"
     );
 
 
@@ -1309,12 +1565,14 @@ function getTimeZoneOffset(
 
 
 /* =====================================================
-   SESSION OPEN TIMESTAMP
+   SESSION TIMESTAMP
 ===================================================== */
 
-function getSessionOpenTimestamp(
+function getSessionTimestamp(
     date,
     session,
+    hour,
+    minute,
     dayOffset = 0
 ) {
 
@@ -1331,8 +1589,8 @@ function getSessionOpenTimestamp(
                 localParts.year,
                 localParts.month - 1,
                 localParts.day + dayOffset,
-                session.openHour,
-                session.openMinute,
+                hour,
+                minute,
                 0
             )
         );
@@ -1354,37 +1612,141 @@ function getSessionOpenTimestamp(
 
 
 /* =====================================================
-   LAST SESSION OPEN
+   SESSION OPEN TIMESTAMP
 ===================================================== */
 
-function getLastSessionOpen(
+function getSessionOpenTimestamp(
+    date,
+    session,
+    dayOffset = 0
+) {
+
+    return getSessionTimestamp(
+        date,
+        session,
+        session.openHour,
+        session.openMinute,
+        dayOffset
+    );
+
+}
+
+
+/* =====================================================
+   SESSION CLOSE TIMESTAMP
+===================================================== */
+
+function getSessionCloseTimestamp(
+    date,
+    session,
+    dayOffset = 0
+) {
+
+    return getSessionTimestamp(
+        date,
+        session,
+        session.closeHour,
+        session.closeMinute,
+        dayOffset
+    );
+
+}
+
+
+/* =====================================================
+   SESSION WEEKDAY
+===================================================== */
+
+function getSessionWeekday(
+    date,
+    timeZone
+) {
+
+    return new Intl.DateTimeFormat(
+        "en-US",
+        {
+            timeZone: timeZone,
+            weekday: "short"
+        }
+    ).format(date);
+
+}
+
+
+/* =====================================================
+   SESSION WEEKEND
+===================================================== */
+
+function isSessionWeekend(
+    date,
+    timeZone
+) {
+
+    const weekday =
+        getSessionWeekday(
+            date,
+            timeZone
+        );
+
+
+    return (
+        weekday === "Sat" ||
+        weekday === "Sun"
+    );
+
+}
+
+
+/* =====================================================
+   SESSION STATUS
+===================================================== */
+
+function getSessionMarketStatus(
     now,
     session
 ) {
 
-    const currentOpen =
-        getSessionOpenTimestamp(
-            now,
-            session,
-            0
-        );
-
-
     if (
-        currentOpen <=
-        now.getTime()
+        isSessionWeekend(
+            now,
+            session.timeZone
+        )
     ) {
 
-        return currentOpen;
+        return "closed";
 
     }
 
 
-    return getSessionOpenTimestamp(
-        now,
-        session,
-        -1
-    );
+    const open =
+        getSessionOpenTimestamp(
+            now,
+            session
+        );
+
+
+    const close =
+        getSessionCloseTimestamp(
+            now,
+            session
+        );
+
+
+    const currentTime =
+        now.getTime();
+
+
+    if (
+        currentTime >= open &&
+        currentTime < close
+    ) {
+
+        return "open";
+
+    }
+
+
+    return "closed";
 
 }
 
@@ -1409,14 +1771,28 @@ function getActiveSession(
     tradingSessions.forEach(
         session => {
 
+            if (
+                isSessionWeekend(
+                    now,
+                    session.timeZone
+                )
+            ) {
+
+                return;
+
+            }
+
+
             const open =
-                getLastSessionOpen(
+                getSessionOpenTimestamp(
                     now,
                     session
                 );
 
 
             if (
+                open <=
+                now.getTime() &&
                 open >
                 latestOpen
             ) {
@@ -1463,50 +1839,57 @@ function getNextSession(
     tradingSessions.forEach(
         session => {
 
-            const todayOpen =
-                getSessionOpenTimestamp(
-                    now,
-                    session,
-                    0
-                );
-
-            const tomorrowOpen =
-                getSessionOpenTimestamp(
-                    now,
-                    session,
-                    1
-                );
-
-
-            let candidate;
-
-
-            if (
-                todayOpen >
-                now.getTime()
+            for (
+                let dayOffset = 0;
+                dayOffset <= 7;
+                dayOffset++
             ) {
 
-                candidate =
-                    todayOpen;
-
-            } else {
-
-                candidate =
-                    tomorrowOpen;
-
-            }
+                const candidate =
+                    getSessionOpenTimestamp(
+                        now,
+                        session,
+                        dayOffset
+                    );
 
 
-            if (
-                candidate <
-                nextOpen
-            ) {
+                if (
+                    candidate <=
+                    now.getTime()
+                ) {
 
-                nextOpen =
-                    candidate;
+                    continue;
 
-                nextSession =
-                    session;
+                }
+
+
+                if (
+                    isSessionWeekend(
+                        new Date(candidate),
+                        session.timeZone
+                    )
+                ) {
+
+                    continue;
+
+                }
+
+
+                if (
+                    candidate <
+                    nextOpen
+                ) {
+
+                    nextOpen =
+                        candidate;
+
+                    nextSession =
+                        session;
+
+                }
+
+
+                break;
 
             }
 
@@ -1575,15 +1958,34 @@ function getTehranDate(
 
 
 /* =====================================================
-   NYSE HOLIDAYS 2026
+   NEW YORK DATE KEY
 ===================================================== */
 
-/*
-   Official NYSE 2026 full-day holidays.
+function getNewYorkDateKey(
+    date = new Date()
+) {
 
-   These dates are fixed locally so the
-   overlay does NOT need internet access.
-*/
+    const parts =
+        getTimeZoneParts(
+            date,
+            "America/New_York"
+        );
+
+
+    return (
+        parts.year +
+        "-" +
+        String(parts.month).padStart(2, "0") +
+        "-" +
+        String(parts.day).padStart(2, "0")
+    );
+
+}
+
+
+/* =====================================================
+   NYSE HOLIDAYS 2026
+===================================================== */
 
 const nyseHolidays2026 = {
 
@@ -1621,14 +2023,8 @@ const nyseHolidays2026 = {
 
 
 /* =====================================================
-   NYSE EARLY CLOSE DAYS 2026
+   NYSE EARLY CLOSE 2026
 ===================================================== */
-
-/*
-   NYSE early closes at 1:00 PM ET.
-
-   This is also kept offline.
-*/
 
 const nyseEarlyClose2026 = {
 
@@ -1642,40 +2038,22 @@ const nyseEarlyClose2026 = {
 
 
 /* =====================================================
-   DATE KEY IN NEW YORK
+   UPDATE MARKET SESSIONS
 ===================================================== */
 
-function getNewYorkDateKey(
-    date = new Date()
-) {
+function updateMarketSessions() {
 
-    const parts =
-        getTimeZoneParts(
-            date,
-            "America/New_York"
-        );
+    const now =
+        new Date();
 
 
-    return (
-        parts.year +
-        "-" +
-        String(parts.month).padStart(2, "0") +
-        "-" +
-        String(parts.day).padStart(2, "0")
-    );
+    /*
+       طبق خواسته:
+       شنبه و یکشنبه همان نمایش قبلی
+       یعنی فقط MARKET CLOSED
+    */
 
-}
-
-
-/* =====================================================
-   NEW YORK WEEKDAY
-===================================================== */
-
-function getNewYorkWeekday(
-    date = new Date()
-) {
-
-    const weekday =
+    const nyWeekday =
         new Intl.DateTimeFormat(
             "en-US",
             {
@@ -1685,562 +2063,141 @@ function getNewYorkWeekday(
                 weekday:
                     "short"
             }
-        ).format(date);
+        ).format(now);
 
 
-    return weekday;
-
-}
-
-
-/* =====================================================
-   IS WEEKEND?
-===================================================== */
-
-function isNewYorkWeekend(
-    date = new Date()
-) {
-
-    const weekday =
-        getNewYorkWeekday(
-            date
-        );
+    const isWeekend =
+        nyWeekday === "Sat" ||
+        nyWeekday === "Sun";
 
 
-    return (
-        weekday === "Sat" ||
-        weekday === "Sun"
-    );
+    if (isWeekend) {
 
-}
+        marketSessions.style.display =
+            "none";
 
+        marketWeekendValue.style.display =
+            "block";
 
-/* =====================================================
-   MARKET SESSION
-===================================================== */
+        marketWeekendValue.innerText =
+            "MARKET CLOSED";
 
-function getNYSEOpenTimestamp(
-    date
-) {
+        marketWeekendValue.style.color =
+            "#ff5555";
 
-    return getSessionOpenTimestamp(
-        date,
-        {
-            name: "New York",
-            timeZone: "America/New_York",
-            openHour: 9,
-            openMinute: 30
-        },
-        0
-    );
+        marketWeekendValue.style.textShadow =
+            "0 0 8px #ff5555";
 
-}
-
-
-/* =====================================================
-   NYSE CLOSE TIMESTAMP
-===================================================== */
-
-function getNYSECloseTimestamp(
-    date
-) {
-
-    const session = {
-
-        name: "New York",
-
-        timeZone:
-            "America/New_York",
-
-        openHour: 16,
-
-        openMinute: 0
-
-    };
-
-
-    return getSessionOpenTimestamp(
-        date,
-        session,
-        0
-    );
-
-}
-
-
-/* =====================================================
-   GET MARKET STATUS
-===================================================== */
-
-function getNYSEStatus(
-    now
-) {
-
-    const dateKey =
-        getNewYorkDateKey(
-            now
-        );
-
-
-    /* ================================================
-       FULL HOLIDAY
-    ================================================ */
-
-    if (
-        nyseHolidays2026[
-            dateKey
-        ]
-    ) {
-
-        return {
-
-            type:
-                "holiday",
-
-            text:
-                "BANK HOLIDAY",
-
-            detail:
-                nyseHolidays2026[
-                    dateKey
-                ]
-
-        };
+        return;
 
     }
 
 
-    /* ================================================
-       WEEKEND
-    ================================================ */
+    /*
+       روزهای کاری:
+       چهار سشن جداگانه
+    */
 
-    if (
-        isNewYorkWeekend(
-            now
-        )
-    ) {
+    marketWeekendValue.style.display =
+        "none";
 
-        return {
-
-            type:
-                "closed",
-
-            text:
-                "MARKET CLOSED",
-
-            detail:
-                "WEEKEND"
-
-        };
-
-    }
+    marketSessions.style.display =
+        "grid";
 
 
-    const open =
-        getNYSEOpenTimestamp(
-            now
-        );
+    tradingSessions.forEach(
+        session => {
+
+            const element =
+                document.getElementById(
+                    "market-" +
+                    session.name
+                        .toLowerCase()
+                        .replace(
+                            " ",
+                            ""
+                        )
+                );
 
 
-    let close =
-        getNYSECloseTimestamp(
-            now
-        );
+            if (!element) {
+                return;
+            }
 
 
-    /* ================================================
-       EARLY CLOSE
-    ================================================ */
-
-    if (
-        nyseEarlyClose2026[
-            dateKey
-        ]
-    ) {
-
-        const earlyClose =
-            getSessionOpenTimestamp(
-                now,
-                {
-                    name:
-                        "New York",
-
-                    timeZone:
-                        "America/New_York",
-
-                    openHour:
-                        13,
-
-                    openMinute:
-                        0
-                },
-                0
-            );
+            const state =
+                getSessionMarketStatus(
+                    now,
+                    session
+                );
 
 
-        close =
-            earlyClose;
+            const stateElement =
+                element.querySelector(
+                    ".market-state"
+                );
 
-    }
+
+            const dotElement =
+                element.querySelector(
+                    ".market-dot"
+                );
 
 
-    /* ================================================
-       MARKET OPEN
-    ================================================ */
-
-    if (
-        now.getTime() >= open &&
-        now.getTime() < close
-    ) {
-
-        return {
-
-            type:
+            element.classList.remove(
                 "open",
-
-            text:
-                "MARKET OPEN",
-
-            detail:
-                nyseEarlyClose2026[
-                    dateKey
-                ]
-                    ? "EARLY CLOSE"
-                    : "NYSE"
-
-        };
-
-    }
-
-
-    /* ================================================
-       PRE-MARKET
-    ================================================ */
-
-    if (
-        now.getTime() < open
-    ) {
-
-        const minutes =
-            (
-                open -
-                now.getTime()
-            ) /
-            60000;
-
-
-        if (
-            minutes <= 5
-        ) {
-
-            return {
-
-                type:
-                    "warning",
-
-                text:
-                    "OPENING SOON",
-
-                detail:
-                    formatCountdown(
-                        open -
-                        now.getTime()
-                    )
-
-            };
-
-        }
-
-
-        return {
-
-            type:
                 "closed",
-
-            text:
-                "MARKET CLOSED",
-
-            detail:
-                "NEXT OPEN " +
-                formatTimeInTehran(
-                    open
-                )
-
-        };
-
-    }
-
-
-    /* ================================================
-       AFTER MARKET
-    ================================================ */
-
-    return {
-
-        type:
-            "closed",
-
-        text:
-            "MARKET CLOSED",
-
-        detail:
-            "NEXT OPEN TOMORROW"
-
-    };
-
-}
-
-
-/* =====================================================
-   FORMAT COUNTDOWN
-===================================================== */
-
-function formatCountdown(
-    milliseconds
-) {
-
-    const totalSeconds =
-        Math.max(
-            0,
-            Math.floor(
-                milliseconds / 1000
-            )
-        );
-
-
-    const hours =
-        Math.floor(
-            totalSeconds / 3600
-        );
-
-
-    const minutes =
-        Math.floor(
-            (
-                totalSeconds % 3600
-            ) / 60
-        );
-
-
-    const seconds =
-        totalSeconds % 60;
-
-
-    return (
-        String(hours).padStart(2, "0") +
-        ":" +
-        String(minutes).padStart(2, "0") +
-        ":" +
-        String(seconds).padStart(2, "0")
-    );
-
-}
-
-
-/* =====================================================
-   FORMAT TEHRAN TIME
-===================================================== */
-
-function formatTimeInTehran(
-    timestamp
-) {
-
-    return new Intl.DateTimeFormat(
-        "en-US",
-        {
-            timeZone:
-                "Asia/Tehran",
-
-            hour:
-                "2-digit",
-
-            minute:
-                "2-digit",
-
-            hour12:
-                false
-        }
-    ).format(
-        new Date(timestamp)
-    );
-
-}
-
-
-/* =====================================================
-   NEXT NYSE OPEN
-===================================================== */
-
-function getNextNYSEOpen(
-    now
-) {
-
-    for (
-        let dayOffset = 0;
-        dayOffset <= 370;
-        dayOffset++
-    ) {
-
-        const candidateDate =
-            new Date(
-                now.getTime()
+                "bank-holiday"
             );
 
 
-        candidateDate.setUTCDate(
-            candidateDate.getUTCDate() +
-            dayOffset
-        );
+            if (
+                session.name ===
+                "New York"
+            ) {
+
+                const nyDate =
+                    getNewYorkDateKey(
+                        now
+                    );
 
 
-        const dateKey =
-            getNewYorkDateKey(
-                candidateDate
+                if (
+                    nyseHolidays2026[
+                        nyDate
+                    ]
+                ) {
+
+                    element.classList.add(
+                        "bank-holiday"
+                    );
+
+                    stateElement.innerText =
+                        "BANK HOLIDAY";
+
+                    dotElement.innerText =
+                        "●";
+
+                    return;
+
+                }
+
+            }
+
+
+            element.classList.add(
+                state
             );
 
 
-        if (
-            nyseHolidays2026[
-                dateKey
-            ]
-        ) {
+            stateElement.innerText =
+                state.toUpperCase();
 
-            continue;
+            dotElement.innerText =
+                "●";
 
         }
-
-
-        if (
-            isNewYorkWeekend(
-                candidateDate
-            )
-        ) {
-
-            continue;
-
-        }
-
-
-        const open =
-            getSessionOpenTimestamp(
-                candidateDate,
-                {
-                    name:
-                        "New York",
-
-                    timeZone:
-                        "America/New_York",
-
-                    openHour:
-                        9,
-
-                    openMinute:
-                        30
-                },
-                0
-            );
-
-
-        if (
-            open >
-            now.getTime()
-        ) {
-
-            return open;
-
-        }
-
-    }
-
-
-    return null;
-
-}
-
-
-/* =====================================================
-   UPDATE MARKET STATUS
-===================================================== */
-
-function updateMarketStatus() {
-
-    const now =
-        new Date();
-
-
-    const status =
-        getNYSEStatus(
-            now
-        );
-
-
-    marketStatusValue.classList.remove(
-        "market-open",
-        "market-closed",
-        "market-warning",
-        "bank-holiday"
     );
-
-
-    if (
-        status.type ===
-        "open"
-    ) {
-
-        marketStatusValue.classList.add(
-            "market-open"
-        );
-
-        marketStatusValue.innerText =
-            "MARKET OPEN";
-
-        return;
-
-    }
-
-
-    if (
-        status.type ===
-        "holiday"
-    ) {
-
-        marketStatusValue.classList.add(
-            "bank-holiday"
-        );
-
-        marketStatusValue.innerText =
-            "BANK HOLIDAY";
-
-        return;
-
-    }
-
-
-    if (
-        status.type ===
-        "warning"
-    ) {
-
-        marketStatusValue.classList.add(
-            "market-warning"
-        );
-
-        marketStatusValue.innerText =
-            "OPEN " +
-            status.detail;
-
-        return;
-
-    }
-
-
-    marketStatusValue.classList.add(
-        "market-closed"
-    );
-
-
-    marketStatusValue.innerText =
-        "MARKET CLOSED";
 
 }
 
@@ -2321,50 +2278,53 @@ function updateClocks() {
        NEXT SESSION WARNING
     ================================================ */
 
-    const millisecondsUntilNext =
-        next.openTimestamp -
-        now.getTime();
-
-
-    const minutesUntilNext =
-        millisecondsUntilNext /
-        60000;
-
-
-    sessionValue.classList.remove(
-        "session-warning"
-    );
-
-
-    sessionClockValue.classList.remove(
-        "clock-warning"
-    );
-
-
-    /* 5 MINUTES */
-
     if (
-        minutesUntilNext <= 5 &&
-        minutesUntilNext > 0
+        next &&
+        next.openTimestamp !== Infinity
     ) {
 
-        sessionValue.classList.add(
+        const millisecondsUntilNext =
+            next.openTimestamp -
+            now.getTime();
+
+
+        const minutesUntilNext =
+            millisecondsUntilNext /
+            60000;
+
+
+        sessionValue.classList.remove(
             "session-warning"
         );
 
-    }
 
-
-    /* 2 MINUTES */
-
-    if (
-        minutesUntilNext <= 2 &&
-        minutesUntilNext > 0
-    ) {
-
-        sessionClockValue.classList.add(
+        sessionClockValue.classList.remove(
             "clock-warning"
         );
+
+
+        if (
+            minutesUntilNext <= 5 &&
+            minutesUntilNext > 0
+        ) {
+
+            sessionValue.classList.add(
+                "session-warning"
+            );
+
+        }
+
+
+        if (
+            minutesUntilNext <= 2 &&
+            minutesUntilNext > 0
+        ) {
+
+            sessionClockValue.classList.add(
+                "clock-warning"
+            );
+
+        }
 
     }
 
@@ -2385,7 +2345,7 @@ function updateClocks() {
        MARKET STATUS
     ================================================ */
 
-    updateMarketStatus();
+    updateMarketSessions();
 
 }
 
@@ -2469,3 +2429,4 @@ setInterval(
 
 </body>
 </html>
+```
