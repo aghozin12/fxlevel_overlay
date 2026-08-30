@@ -1,6 +1,4 @@
-```html
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
@@ -15,7 +13,8 @@
    صفحه اصلی
 ===================================================== */
 
-html, body {
+html,
+body {
 
     width: 1920px;
     height: 1080px;
@@ -277,7 +276,7 @@ body::before {
 
 
 /* =====================================================
-   جداکننده
+   جداکننده بالا
 ===================================================== */
 
 .divider {
@@ -297,62 +296,37 @@ body::before {
 
 .session-map {
 
-    position: absolute;
+    flex: 1.25;
 
-    top: 170px;
-    right: 80px;
+    display: flex;
 
-    width: 720px;
-    height: 145px;
+    justify-content: center;
 
-    box-sizing: border-box;
+    align-items: center;
 
-    padding: 18px 28px;
+    min-width: 360px;
+}
 
-    background:
-        rgba(0,0,0,0.28);
 
-    border: 2px solid rgba(0,255,136,0.75);
+.session-map-inner {
 
-    clip-path: polygon(
+    display: flex;
 
-        14px 0,
-        calc(100% - 14px) 0,
-        100% 14px,
-        100% calc(100% - 14px),
-        calc(100% - 14px) 100%,
-        14px 100%,
-        0 calc(100% - 14px),
-        0 14px
+    flex-direction: column;
 
-    );
+    justify-content: center;
 
-    box-shadow:
+    align-items: center;
 
-        0 0 15px rgba(0,255,136,0.45),
-        inset 0 0 20px rgba(0,255,136,0.08);
-
-    overflow: hidden;
+    width: 100%;
 }
 
 
 /* =====================================================
-   عنوان SESSION MAP
+   عنوان SESSION
 ===================================================== */
 
 .session-map-title {
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    height: 28px;
-}
-
-
-.session-map-title .title {
 
     font-size: 13px;
 
@@ -363,259 +337,47 @@ body::before {
     color: #ffae4a;
 
     text-shadow:
-        0 0 7px #ffae4a;
-}
+        0 0 6px #ffae4a;
 
-
-#overlap-label {
-
-    font-size: 11px;
-
-    font-weight: bold;
-
-    letter-spacing: 1.5px;
-
-    color: #00ff88;
-
-    opacity: 0;
-
-    transition: opacity 0.3s ease;
-
-    text-shadow:
-        0 0 8px #00ff88;
-}
-
-
-#overlap-label.visible {
-
-    opacity: 1;
+    margin-bottom: 8px;
 }
 
 
 /* =====================================================
-   ردیف Sessionها
-===================================================== */
-
-.sessions-row {
-
-    position: relative;
-
-    height: 72px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: space-between;
-
-    margin-top: 4px;
-}
-
-
-/* =====================================================
-   خط انرژی
+   مپ سشن‌ها
 ===================================================== */
 
 .session-track {
 
-    position: absolute;
-
-    left: 28px;
-    right: 28px;
-
-    top: 36px;
-
-    height: 2px;
-
-    background:
-        rgba(255,255,255,0.18);
-
-    overflow: hidden;
-}
-
-
-.session-track::after {
-
-    content: "";
-
-    position: absolute;
-
-    top: 0;
-    left: -25%;
-
-    width: 25%;
-    height: 100%;
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            #00ff88,
-            transparent
-        );
-
-    animation:
-        trackEnergy 2.4s linear infinite;
-}
-
-
-@keyframes trackEnergy {
-
-    from {
-        left: -25%;
-    }
-
-    to {
-        left: 125%;
-    }
-}
-
-
-/* =====================================================
-   Session Node
-===================================================== */
-
-.session-node {
-
-    position: relative;
-
-    z-index: 5;
-
-    width: 105px;
-
     display: flex;
-
-    flex-direction: column;
 
     align-items: center;
 
-    gap: 9px;
+    justify-content: center;
 
-    transition:
-        transform 0.35s ease,
-        opacity 0.35s ease;
+    gap: 13px;
+
+    height: 27px;
 }
 
 
-.session-dot {
+.session-node {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 5px;
 
     position: relative;
 
-    width: 18px;
-    height: 18px;
-
-    border-radius: 50%;
-
-    background: #3f4a46;
-
-    border: 2px solid rgba(255,255,255,0.35);
-
-    box-sizing: border-box;
-
-    transition:
-        background 0.35s ease,
-        border-color 0.35s ease,
-        box-shadow 0.35s ease,
-        transform 0.35s ease;
-}
-
-
-.session-dot::before {
-
-    content: "";
-
-    position: absolute;
-
-    inset: -7px;
-
-    border-radius: 50%;
-
-    border: 1px solid rgba(0,255,136,0);
-
-    transform: scale(0.5);
-
-    opacity: 0;
-
-}
-
-
-/* =====================================================
-   Session فعال
-===================================================== */
-
-.session-node.active {
-
-    transform:
-        translateY(-4px)
-        scale(1.04);
-}
-
-
-.session-node.active .session-dot {
-
-    background: #00ff88;
-
-    border-color: #ffffff;
-
-    box-shadow:
-
-        0 0 7px #00ff88,
-        0 0 16px #00ff88,
-        0 0 32px rgba(0,255,136,0.9);
-
-    animation:
-        activeDot 1.5s ease-in-out infinite;
-}
-
-
-.session-node.active .session-dot::before {
-
-    border-color: #00ff88;
-
-    animation:
-        activeRing 1.5s ease-out infinite;
-}
-
-
-@keyframes activeDot {
-
-    0%, 100% {
-        transform: scale(0.9);
-    }
-
-    50% {
-        transform: scale(1.18);
-    }
-}
-
-
-@keyframes activeRing {
-
-    0% {
-        transform: scale(0.5);
-        opacity: 0.9;
-    }
-
-    100% {
-        transform: scale(1.7);
-        opacity: 0;
-    }
-}
-
-
-/* =====================================================
-   نام Session
-===================================================== */
-
-.session-name {
-
-    font-size: 13px;
+    font-size: 15px;
 
     font-weight: bold;
 
-    letter-spacing: 1.5px;
+    letter-spacing: 1px;
 
-    color: rgba(255,255,255,0.38);
+    color: rgba(255,255,255,0.55);
 
     transition:
         color 0.35s ease,
@@ -623,114 +385,202 @@ body::before {
 }
 
 
-.session-node.active .session-name {
+.session-dot {
+
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: rgba(255,255,255,0.30);
+
+    box-shadow:
+        0 0 2px rgba(255,255,255,0.2);
+
+    transition:
+        background 0.35s ease,
+        box-shadow 0.35s ease,
+        transform 0.35s ease;
+}
+
+
+/* =====================================================
+   سشن ACTIVE
+===================================================== */
+
+.session-node.active {
 
     color: #00ff88;
 
     text-shadow:
-        0 0 7px #00ff88,
-        0 0 16px rgba(0,255,136,0.75);
+
+        0 0 5px #00ff88,
+        0 0 12px rgba(0,255,136,0.8);
+}
+
+
+.session-node.active .session-dot {
+
+    background: #00ff88;
+
+    box-shadow:
+
+        0 0 5px #00ff88,
+        0 0 12px #00ff88,
+        0 0 22px rgba(0,255,136,0.9);
+
+    animation:
+        activeDotPulse 1.25s ease-in-out infinite;
+}
+
+
+@keyframes activeDotPulse {
+
+    0%,
+    100% {
+
+        transform: scale(0.85);
+
+        opacity: 0.75;
+
+    }
+
+    50% {
+
+        transform: scale(1.35);
+
+        opacity: 1;
+
+    }
 }
 
 
 /* =====================================================
-   وضعیت Session
+   خط اتصال بین سشن‌ها
 ===================================================== */
 
-.session-status {
+.session-connector {
 
-    position: absolute;
+    width: 16px;
 
-    top: 52px;
+    height: 1px;
 
-    font-size: 8px;
+    background:
+        rgba(255,255,255,0.18);
 
-    letter-spacing: 1.5px;
+    box-shadow:
+        0 0 4px rgba(0,255,136,0.15);
+}
+
+
+/* =====================================================
+   ACTIVE LABEL
+===================================================== */
+
+.session-active-label {
+
+    position: relative;
+
+    height: 18px;
+
+    margin-top: 3px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 5px;
+
+    font-size: 10px;
 
     font-weight: bold;
 
-    color: rgba(255,255,255,0.22);
+    letter-spacing: 2px;
+
+    color: #00ff88;
+
+    text-shadow:
+        0 0 6px #00ff88;
+
+    opacity: 0;
 
     transition:
-        color 0.35s ease,
         opacity 0.35s ease;
 }
 
 
-.session-node.active .session-status {
+.session-active-label.visible {
 
-    color: #ffffff;
+    opacity: 1;
+}
 
-    opacity: 0.9;
+
+.active-arrow {
+
+    display: inline-block;
+
+    font-size: 12px;
+
+    animation:
+        activeArrowFloat 1s ease-in-out infinite;
+}
+
+
+@keyframes activeArrowFloat {
+
+    0%,
+    100% {
+
+        transform:
+            translateY(2px);
+
+    }
+
+    50% {
+
+        transform:
+            translateY(-1px);
+
+    }
 }
 
 
 /* =====================================================
-   Weekend
+   آخر هفته / CLOSED
 ===================================================== */
 
-.session-map.weekend .session-map-title .title {
+.session-map.weekend .session-map-title {
 
     color: #ffae4a;
+
+    text-shadow:
+        0 0 6px #ffae4a;
 }
 
 
-.session-map.weekend .session-track {
+.session-map.weekend .session-active-label {
 
-    background:
-        rgba(255,174,74,0.20);
+    color: #ffae4a;
+
+    text-shadow:
+        0 0 6px #ffae4a;
 }
 
 
-.session-map.weekend .session-track::after {
+.session-map.weekend .session-node {
 
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            #ffae4a,
-            transparent
-        );
+    color: rgba(255,255,255,0.35);
 }
 
 
 .session-map.weekend .session-dot {
 
-    background: #333333;
-
-    border-color:
-        rgba(255,174,74,0.45);
-}
-
-
-/* =====================================================
-   Holiday
-===================================================== */
-
-.session-node.holiday .session-dot {
-
-    background: #ff3333;
-
-    border-color: #ff7777;
+    background: rgba(255,174,74,0.28);
 
     box-shadow:
-        0 0 8px #ff3333,
-        0 0 20px rgba(255,51,51,0.65);
-}
-
-
-.session-node.holiday .session-name {
-
-    color: #ff5555;
-
-    text-shadow:
-        0 0 7px #ff3333;
-}
-
-
-.session-node.holiday .session-status {
-
-    color: #ff5555;
+        0 0 5px rgba(255,174,74,0.15);
 }
 
 
@@ -863,6 +713,23 @@ body::before {
 
 
 /* =====================================================
+   جداکننده پایین
+===================================================== */
+
+.bottom-divider {
+
+    width: 1px;
+
+    height: 35px;
+
+    background:
+        rgba(255,255,255,0.22);
+
+    flex-shrink: 0;
+}
+
+
+/* =====================================================
    آیکون‌های نوار پایین
 ===================================================== */
 
@@ -922,6 +789,10 @@ body::before {
     white-space: nowrap;
 }
 
+
+/* =====================================================
+   SUBSCRIBE
+===================================================== */
 
 .subscribe-state span {
 
@@ -1234,6 +1105,111 @@ body::before {
 <div class="divider"></div>
 
 
+<!-- =====================================================
+     SESSION MAP
+===================================================== -->
+
+<div class="top-item session-map" id="session-map">
+
+    <div class="session-map-inner">
+
+        <div class="session-map-title">
+            SESSION
+        </div>
+
+
+        <div class="session-track">
+
+
+            <div
+                class="session-node"
+                id="session-sydney"
+            >
+
+                <span class="session-name">
+                    SYD
+                </span>
+
+                <span class="session-dot"></span>
+
+            </div>
+
+
+            <div class="session-connector"></div>
+
+
+            <div
+                class="session-node"
+                id="session-tokyo"
+            >
+
+                <span class="session-name">
+                    TOK
+                </span>
+
+                <span class="session-dot"></span>
+
+            </div>
+
+
+            <div class="session-connector"></div>
+
+
+            <div
+                class="session-node"
+                id="session-london"
+            >
+
+                <span class="session-name">
+                    LON
+                </span>
+
+                <span class="session-dot"></span>
+
+            </div>
+
+
+            <div class="session-connector"></div>
+
+
+            <div
+                class="session-node"
+                id="session-newyork"
+            >
+
+                <span class="session-name">
+                    NY
+                </span>
+
+                <span class="session-dot"></span>
+
+            </div>
+
+
+        </div>
+
+
+        <div
+            class="session-active-label"
+            id="session-active-label"
+        >
+
+            <span class="active-arrow">▲</span>
+
+            <span id="active-session-text">
+                ACTIVE
+            </span>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<div class="divider"></div>
+
+
 <!-- CURRENT SESSION CLOCK -->
 
 <div class="top-item">
@@ -1353,158 +1329,6 @@ body::before {
 
 </div>
 
-
-<div class="divider"></div>
-
-
-<!-- SESSION MAP -->
-
-<div class="top-item">
-
-    <div class="item-row">
-
-        <svg class="icon" viewBox="0 0 24 24">
-
-            <circle
-                cx="12"
-                cy="12"
-                r="10"
-                stroke-width="2"
-            />
-
-            <path
-                d="M7 12h10M12 7v10"
-                stroke-width="2"
-            />
-
-        </svg>
-
-
-        <div class="text-box">
-
-            <span>SESSION MAP</span>
-
-            <span id="session-map-mini">
-                -- / --
-            </span>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-</div>
-
-
-<!-- =====================================================
-     SESSION MAP GRAPHIC
-===================================================== -->
-
-<div
-    class="session-map"
-    id="session-map"
->
-
-    <div class="session-map-title">
-
-        <div class="title">
-            SESSION
-        </div>
-
-        <div id="overlap-label">
-            OVERLAP
-        </div>
-
-    </div>
-
-
-    <div class="sessions-row">
-
-        <div class="session-track"></div>
-
-
-        <!-- SYDNEY -->
-
-        <div
-            class="session-node"
-            data-session="Sydney"
-        >
-
-            <div class="session-dot"></div>
-
-            <div class="session-name">
-                SYD
-            </div>
-
-            <div class="session-status">
-                CLOSED
-            </div>
-
-        </div>
-
-
-        <!-- TOKYO -->
-
-        <div
-            class="session-node"
-            data-session="Tokyo"
-        >
-
-            <div class="session-dot"></div>
-
-            <div class="session-name">
-                TOK
-            </div>
-
-            <div class="session-status">
-                CLOSED
-            </div>
-
-        </div>
-
-
-        <!-- LONDON -->
-
-        <div
-            class="session-node"
-            data-session="London"
-        >
-
-            <div class="session-dot"></div>
-
-            <div class="session-name">
-                LON
-            </div>
-
-            <div class="session-status">
-                CLOSED
-            </div>
-
-        </div>
-
-
-        <!-- NEW YORK -->
-
-        <div
-            class="session-node"
-            data-session="New York"
-        >
-
-            <div class="session-dot"></div>
-
-            <div class="session-name">
-                NY
-            </div>
-
-            <div class="session-status">
-                CLOSED
-            </div>
-
-        </div>
-
-    </div>
 
 </div>
 
@@ -1788,32 +1612,31 @@ body::before {
 
 
 /* =====================================================
-   تنظیمات Sessionها
-=====================================================
-
-   هر Session بر اساس ساعت محلی همان شهر محاسبه می‌شود.
-
-   Sydney:
-   08:00 → 17:00
-
-   Tokyo:
-   09:00 → 18:00
-
-   London:
-   08:00 → 17:00
-
-   New York:
-   09:30 → 16:00
-   بر اساس ساعت رسمی بازار سهام آمریکا.
-
-   تمام DST ها توسط IANA Time Zone
-   به صورت خودکار محاسبه می‌شوند.
+   تنظیمات سشن‌ها
 ===================================================== */
+
+/*
+   زمان شروع سشن‌ها بر اساس ساعت محلی همان شهر:
+
+   Sydney    = 08:00
+   Tokyo     = 09:00
+   London    = 08:00
+
+   New York  = 09:30
+   اما در این Overlay، باز شدن بازار سهام آمریکا
+   به صورت ثابت 16:30 به وقت تهران در نظر گرفته شده است.
+
+   نکته:
+   منطق Session Map امکان فعال بودن همزمان
+   دو سشن را دارد.
+*/
 
 
 const tradingSessions = [
 
     {
+        id: "sydney",
+
         name: "Sydney",
 
         shortName: "SYD",
@@ -1822,15 +1645,13 @@ const tradingSessions = [
 
         openHour: 8,
 
-        openMinute: 0,
-
-        closeHour: 17,
-
-        closeMinute: 0
+        openMinute: 0
     },
 
 
     {
+        id: "tokyo",
+
         name: "Tokyo",
 
         shortName: "TOK",
@@ -1839,15 +1660,13 @@ const tradingSessions = [
 
         openHour: 9,
 
-        openMinute: 0,
-
-        closeHour: 18,
-
-        closeMinute: 0
+        openMinute: 0
     },
 
 
     {
+        id: "london",
+
         name: "London",
 
         shortName: "LON",
@@ -1856,15 +1675,13 @@ const tradingSessions = [
 
         openHour: 8,
 
-        openMinute: 0,
-
-        closeHour: 17,
-
-        closeMinute: 0
+        openMinute: 0
     },
 
 
     {
+        id: "newyork",
+
         name: "New York",
 
         shortName: "NY",
@@ -1875,31 +1692,12 @@ const tradingSessions = [
 
         openMinute: 30,
 
-        closeHour: 16,
+        fixedTehranOpen: true,
 
-        closeMinute: 0
+        tehranOpenHour: 16,
+
+        tehranOpenMinute: 30
     }
-
-];
-
-
-/* =====================================================
-   تعطیلات NYSE
-   2026
-===================================================== */
-
-const nyseHolidays2026 = [
-
-    "2026-01-01",
-    "2026-01-19",
-    "2026-02-16",
-    "2026-04-03",
-    "2026-05-25",
-    "2026-06-19",
-    "2026-07-03",
-    "2026-09-07",
-    "2026-11-26",
-    "2026-12-25"
 
 ];
 
@@ -1938,15 +1736,15 @@ const sessionMap =
     );
 
 
-const overlapLabel =
+const sessionActiveLabel =
     document.getElementById(
-        "overlap-label"
+        "session-active-label"
     );
 
 
-const sessionMapMini =
+const activeSessionText =
     document.getElementById(
-        "session-map-mini"
+        "active-session-text"
     );
 
 
@@ -1971,8 +1769,6 @@ function getTimeZoneParts(
                 month: "2-digit",
 
                 day: "2-digit",
-
-                weekday: "short",
 
                 hour: "2-digit",
 
@@ -2024,9 +1820,6 @@ function getTimeZoneParts(
                 result.day,
                 10
             ),
-
-        weekday:
-            result.weekday,
 
         hour:
             parseInt(
@@ -2131,21 +1924,77 @@ function getTimeZoneOffset(
 
 
 /* =====================================================
-   ساخت Timestamp یک زمان محلی
+   Timestamp شروع سشن
 ===================================================== */
 
-function getLocalTimestamp(
+function getSessionOpenTimestamp(
     date,
-    timeZone,
-    hour,
-    minute,
+    session,
     dayOffset = 0
 ) {
+
+    /* -----------------------------------------------
+       نیویورک:
+       بازار سهام آمریکا = 16:30 تهران
+       فعلاً به صورت ثابت
+    ----------------------------------------------- */
+
+    if (
+        session.fixedTehranOpen
+    ) {
+
+        const tehranParts =
+            getTimeZoneParts(
+                date,
+                "Asia/Tehran"
+            );
+
+
+        const tehranDate =
+            new Date(
+
+                Date.UTC(
+
+                    tehranParts.year,
+
+                    tehranParts.month - 1,
+
+                    tehranParts.day + dayOffset,
+
+                    session.tehranOpenHour,
+
+                    session.tehranOpenMinute,
+
+                    0
+
+                )
+
+            );
+
+
+        const tehranOffset =
+            getTimeZoneOffset(
+                tehranDate,
+                "Asia/Tehran"
+            );
+
+
+        return (
+            tehranDate.getTime() -
+            tehranOffset
+        );
+
+    }
+
+
+    /* -----------------------------------------------
+       سایر سشن‌ها
+    ----------------------------------------------- */
 
     const localParts =
         getTimeZoneParts(
             date,
-            timeZone
+            session.timeZone
         );
 
 
@@ -2160,9 +2009,9 @@ function getLocalTimestamp(
 
                 localParts.day + dayOffset,
 
-                hour,
+                session.openHour,
 
-                minute,
+                session.openMinute,
 
                 0
 
@@ -2174,7 +2023,7 @@ function getLocalTimestamp(
     const offset =
         getTimeZoneOffset(
             localDate,
-            timeZone
+            session.timeZone
         );
 
 
@@ -2187,176 +2036,15 @@ function getLocalTimestamp(
 
 
 /* =====================================================
-   گرفتن Timestamp شروع Session
+   آخرین شروع هر سشن
 ===================================================== */
 
-function getSessionOpenTimestamp(
-    date,
-    session,
-    dayOffset = 0
-) {
-
-    return getLocalTimestamp(
-
-        date,
-
-        session.timeZone,
-
-        session.openHour,
-
-        session.openMinute,
-
-        dayOffset
-
-    );
-
-}
-
-
-/* =====================================================
-   گرفتن Timestamp پایان Session
-===================================================== */
-
-function getSessionCloseTimestamp(
-    date,
-    session,
-    dayOffset = 0
-) {
-
-    return getLocalTimestamp(
-
-        date,
-
-        session.timeZone,
-
-        session.closeHour,
-
-        session.closeMinute,
-
-        dayOffset
-
-    );
-
-}
-
-
-/* =====================================================
-   بررسی Weekend در Time Zone
-===================================================== */
-
-function isWeekend(
-    date,
-    timeZone
-) {
-
-    const parts =
-        getTimeZoneParts(
-            date,
-            timeZone
-        );
-
-
-    return (
-
-        parts.weekday === "Sat" ||
-
-        parts.weekday === "Sun"
-
-    );
-
-}
-
-
-/* =====================================================
-   تبدیل تاریخ به YYYY-MM-DD
-===================================================== */
-
-function getDateKey(
-    date,
-    timeZone
-) {
-
-    const parts =
-        getTimeZoneParts(
-            date,
-            timeZone
-        );
-
-
-    return (
-
-        String(parts.year) +
-        "-" +
-        String(parts.month).padStart(2, "0") +
-        "-" +
-        String(parts.day).padStart(2, "0")
-
-    );
-
-}
-
-
-/* =====================================================
-   Holiday نیویورک
-===================================================== */
-
-function isNYSEHoliday(
-    date
-) {
-
-    const key =
-        getDateKey(
-            date,
-            "America/New_York"
-        );
-
-
-    return nyseHolidays2026.includes(
-        key
-    );
-
-}
-
-
-/* =====================================================
-   آیا Session فعال است؟
-===================================================== */
-
-function isSessionActive(
+function getLastSessionOpen(
     now,
     session
 ) {
 
-    if (
-        isWeekend(
-            now,
-            session.timeZone
-        )
-    ) {
-
-        return false;
-
-    }
-
-
-    /* -----------------------------------------------
-       New York در Holiday
-    ----------------------------------------------- */
-
-    if (
-
-        session.name === "New York" &&
-
-        isNYSEHoliday(now)
-
-    ) {
-
-        return false;
-
-    }
-
-
-    const open =
+    const currentOpen =
         getSessionOpenTimestamp(
             now,
             session,
@@ -2364,54 +2052,150 @@ function isSessionActive(
         );
 
 
-    const close =
-        getSessionCloseTimestamp(
-            now,
-            session,
-            0
-        );
+    if (
+        currentOpen <=
+        now.getTime()
+    ) {
+
+        return currentOpen;
+
+    }
 
 
-    return (
-
-        now.getTime() >= open &&
-
-        now.getTime() < close
-
+    return getSessionOpenTimestamp(
+        now,
+        session,
+        -1
     );
 
 }
 
 
 /* =====================================================
-   Sessionهای فعال
+   بررسی آخر هفته
+===================================================== */
+
+function isWeekend(
+    date = new Date()
+) {
+
+    const tehran =
+        getTimeZoneParts(
+            date,
+            "Asia/Tehran"
+        );
+
+
+    const day =
+        new Date(
+
+            Date.UTC(
+
+                tehran.year,
+
+                tehran.month - 1,
+
+                tehran.day
+
+            )
+
+        ).getUTCDay();
+
+
+    return (
+        day === 0 ||
+        day === 6
+    );
+
+}
+
+
+/* =====================================================
+   سشن‌های فعال
 ===================================================== */
 
 function getActiveSessions(
     now
 ) {
 
-    return tradingSessions.filter(
-        session =>
-            isSessionActive(
-                now,
-                session
-            )
+    /* -----------------------------------------------
+       شنبه و یکشنبه:
+       بازار تعطیل
+    ----------------------------------------------- */
+
+    if (
+        isWeekend(now)
+    ) {
+
+        return [];
+
+    }
+
+
+    const activeSessions = [];
+
+
+    tradingSessions.forEach(
+        session => {
+
+            const open =
+                getLastSessionOpen(
+                    now,
+                    session
+                );
+
+
+            /*
+               هر سشن از زمان باز شدن خودش
+               تا قبل از شروع سشن بعدی فعال است.
+
+               برای Session Map فقط سشن‌هایی را
+               نمایش می‌دهیم که در وضعیت فعال
+               معاملاتی قرار دارند.
+
+               همپوشانی کاملاً مجاز است.
+            */
+
+            if (
+                open <= now.getTime()
+            ) {
+
+                activeSessions.push(
+                    session
+                );
+
+            }
+
+        }
     );
+
+
+    /*
+       فقط چهار سشن آخرین چرخه را بررسی می‌کنیم.
+       ترتیب زمانی برای مشخص کردن سشن جاری حفظ می‌شود.
+    */
+
+    return activeSessions;
 
 }
 
 
 /* =====================================================
-   Session اصلی برای نمایش بالا
+   سشن اصلی برای نمایش ساعت
 ===================================================== */
 
-function getPrimarySession(
-    activeSessions
+function getPrimaryActiveSession(
+    now
 ) {
 
+    const active =
+        getActiveSessions(
+            now
+        );
+
+
     if (
-        activeSessions.length === 0
+        active.length === 0
     ) {
 
         return null;
@@ -2419,41 +2203,130 @@ function getPrimarySession(
     }
 
 
-    /*
-       اگر دو Session فعال باشند،
-       Session با اولویت بالاتر انتخاب می‌شود.
-
-       New York > London > Tokyo > Sydney
-    */
-
-    const priority = {
-
-        "New York": 4,
-
-        "London": 3,
-
-        "Tokyo": 2,
-
-        "Sydney": 1
-
-    };
+    let primary =
+        active[0];
 
 
-    return [...activeSessions]
-        .sort(
-            (
-                a,
-                b
-            ) =>
-                priority[b.name] -
-                priority[a.name]
-        )[0];
+    let latestOpen =
+        -Infinity;
+
+
+    active.forEach(
+        session => {
+
+            const open =
+                getLastSessionOpen(
+                    now,
+                    session
+                );
+
+
+            if (
+                open >
+                latestOpen
+            ) {
+
+                latestOpen =
+                    open;
+
+                primary =
+                    session;
+
+            }
+
+        }
+    );
+
+
+    return primary;
 
 }
 
 
 /* =====================================================
-   ساعت محلی
+   سشن بعدی
+===================================================== */
+
+function getNextSession(
+    now
+) {
+
+    let nextSession = null;
+
+    let nextOpen =
+        Infinity;
+
+
+    tradingSessions.forEach(
+        session => {
+
+            const todayOpen =
+                getSessionOpenTimestamp(
+                    now,
+                    session,
+                    0
+                );
+
+
+            const tomorrowOpen =
+                getSessionOpenTimestamp(
+                    now,
+                    session,
+                    1
+                );
+
+
+            let candidate;
+
+
+            if (
+                todayOpen >
+                now.getTime()
+            ) {
+
+                candidate =
+                    todayOpen;
+
+            } else {
+
+                candidate =
+                    tomorrowOpen;
+
+            }
+
+
+            if (
+                candidate <
+                nextOpen
+            ) {
+
+                nextOpen =
+                    candidate;
+
+                nextSession =
+                    session;
+
+            }
+
+        }
+    );
+
+
+    return {
+
+        session:
+            nextSession,
+
+        openTimestamp:
+            nextOpen
+
+    };
+
+}
+
+
+/* =====================================================
+   نمایش ساعت محلی
 ===================================================== */
 
 function getSessionTime(
@@ -2508,236 +2381,137 @@ function getTehranDate(
 
 
 /* =====================================================
-   بروزرسانی Session Map
+   آپدیت Session Map
 ===================================================== */
 
 function updateSessionMap(
     now
 ) {
 
-    const activeSessions =
-        getActiveSessions(
-            now
-        );
+    const nodes = {
 
+        sydney:
+            document.getElementById(
+                "session-sydney"
+            ),
 
-    const activeNames =
-        activeSessions.map(
-            session =>
-                session.name
-        );
+        tokyo:
+            document.getElementById(
+                "session-tokyo"
+            ),
 
+        london:
+            document.getElementById(
+                "session-london"
+            ),
 
-    /* -----------------------------------------------
-       Weekend
-    ----------------------------------------------- */
+        newyork:
+            document.getElementById(
+                "session-newyork"
+            )
 
-    const weekend =
-        isWeekend(
-            now,
-            "Europe/London"
-        );
-
-
-    sessionMap.classList.toggle(
-        "weekend",
-        weekend
-    );
+    };
 
 
     /* -----------------------------------------------
-       پیدا کردن Holiday نیویورک
+       حذف Active قبلی
     ----------------------------------------------- */
 
-    const nyHoliday =
-        isNYSEHoliday(
-            now
-        );
+    Object.values(nodes).forEach(
+        node => {
 
-
-    /* -----------------------------------------------
-       Reset Nodeها
-    ----------------------------------------------- */
-
-    document
-        .querySelectorAll(
-            ".session-node"
-        )
-        .forEach(
-            node => {
-
-                node.classList.remove(
-                    "active"
-                );
-
-                node.classList.remove(
-                    "holiday"
-                );
-
-                const name =
-                    node.dataset.session;
-
-
-                const session =
-                    tradingSessions.find(
-                        item =>
-                            item.name ===
-                            name
-                    );
-
-
-                const status =
-                    node.querySelector(
-                        ".session-status"
-                    );
-
-
-                if (
-                    weekend
-                ) {
-
-                    status.innerText =
-                        "WEEKEND";
-
-                }
-
-                else if (
-
-                    name ===
-                    "New York" &&
-
-                    nyHoliday
-
-                ) {
-
-                    node.classList.add(
-                        "holiday"
-                    );
-
-                    status.innerText =
-                        "HOLIDAY";
-
-                }
-
-                else {
-
-                    status.innerText =
-                        "CLOSED";
-
-                }
-
-            }
-        );
-
-
-    /* -----------------------------------------------
-       فعال‌ها
-    ----------------------------------------------- */
-
-    activeSessions.forEach(
-        session => {
-
-            const node =
-                document.querySelector(
-                    `.session-node[data-session="${session.name}"]`
-                );
-
-
-            if (!node) {
-
-                return;
-
-            }
-
-
-            node.classList.add(
+            node.classList.remove(
                 "active"
             );
-
-
-            node.querySelector(
-                ".session-status"
-            ).innerText =
-                "ACTIVE";
 
         }
     );
 
 
     /* -----------------------------------------------
-       Overlap
+       آخر هفته
     ----------------------------------------------- */
 
     if (
-        activeSessions.length >= 2
+        isWeekend(now)
     ) {
 
-        const names =
-            activeSessions.map(
-                session =>
-                    session.shortName
-            );
+        sessionMap.classList.add(
+            "weekend"
+        );
 
 
-        overlapLabel.innerText =
-            names.join(
-                " + "
-            ) +
-            " OVERLAP";
-
-
-        overlapLabel.classList.add(
+        sessionActiveLabel.classList.add(
             "visible"
         );
 
-    }
 
-    else {
-
-        overlapLabel.innerText =
-            "";
+        activeSessionText.innerText =
+            "MARKET CLOSED";
 
 
-        overlapLabel.classList.remove(
-            "visible"
-        );
+        return;
 
     }
+
+
+    sessionMap.classList.remove(
+        "weekend"
+    );
 
 
     /* -----------------------------------------------
-       Mini status
+       سشن‌های فعال
+    ----------------------------------------------- */
+
+    const active =
+        getActiveSessions(
+            now
+        );
+
+
+    active.forEach(
+        session => {
+
+            if (
+                nodes[session.id]
+            ) {
+
+                nodes[
+                    session.id
+                ].classList.add(
+                    "active"
+                );
+
+            }
+
+        }
+    );
+
+
+    /* -----------------------------------------------
+       نمایش Active
     ----------------------------------------------- */
 
     if (
-        weekend
+        active.length > 0
     ) {
 
-        sessionMapMini.innerText =
-            "WEEKEND";
+        sessionActiveLabel.classList.add(
+            "visible"
+        );
 
-    }
 
-    else if (
-        activeSessions.length === 0
-    ) {
-
-        sessionMapMini.innerText =
-            "CLOSED";
+        activeSessionText.innerText =
+            "ACTIVE";
 
     }
 
     else {
 
-        sessionMapMini.innerText =
-            activeSessions
-                .map(
-                    session =>
-                        session.shortName
-                )
-                .join(
-                    " + "
-                );
+        sessionActiveLabel.classList.remove(
+            "visible"
+        );
 
     }
 
@@ -2745,7 +2519,7 @@ function updateSessionMap(
 
 
 /* =====================================================
-   بروزرسانی ساعت‌ها
+   آپدیت ساعت‌ها و Session Map
 ===================================================== */
 
 function updateClocks() {
@@ -2766,50 +2540,31 @@ function updateClocks() {
 
 
     /* ================================================
-       Sessionهای فعال
+       Session Map
     ================================================ */
 
-    const activeSessions =
-        getActiveSessions(
+    updateSessionMap(
+        now
+    );
+
+
+    /* ================================================
+       سشن اصلی
+    ================================================ */
+
+    const activeSession =
+        getPrimaryActiveSession(
             now
         );
 
 
     /* ================================================
-       Session اصلی
-    ================================================ */
-
-    const primarySession =
-        getPrimarySession(
-            activeSessions
-        );
-
-
-    /* ================================================
-       نمایش Session اصلی
+       آخر هفته
     ================================================ */
 
     if (
-        primarySession
+        !activeSession
     ) {
-
-        sessionValue.innerText =
-            primarySession.name;
-
-
-        sessionClockLabel.innerText =
-            primarySession.name.toUpperCase();
-
-
-        sessionClockValue.innerText =
-            getSessionTime(
-                primarySession.timeZone,
-                now
-            );
-
-    }
-
-    else {
 
         sessionValue.innerText =
             "CLOSED";
@@ -2824,18 +2579,121 @@ function updateClocks() {
 
     }
 
+    else {
+
+        /* --------------------------------------------
+           نام سشن اصلی
+        -------------------------------------------- */
+
+        sessionValue.innerText =
+            activeSession.name;
+
+
+        /* --------------------------------------------
+           نام کنار ساعت
+        -------------------------------------------- */
+
+        sessionClockLabel.innerText =
+            activeSession.name.toUpperCase();
+
+
+        /* --------------------------------------------
+           ساعت سشن
+        -------------------------------------------- */
+
+        sessionClockValue.innerText =
+            getSessionTime(
+                activeSession.timeZone,
+                now
+            );
+
+    }
+
 
     /* ================================================
-       Map
+       سشن بعدی
     ================================================ */
 
-    updateSessionMap(
-        now
+    const next =
+        getNextSession(
+            now
+        );
+
+
+    /* ================================================
+       زمان تا شروع سشن بعدی
+    ================================================ */
+
+    const millisecondsUntilNext =
+        next.openTimestamp -
+        now.getTime();
+
+
+    const minutesUntilNext =
+        millisecondsUntilNext /
+        (1000 * 60);
+
+
+    /* ================================================
+       پاک کردن هشدارها
+    ================================================ */
+
+    sessionValue.classList.remove(
+        "session-warning"
+    );
+
+
+    sessionClockValue.classList.remove(
+        "clock-warning"
     );
 
 
     /* ================================================
-       تاریخ
+       هشدار نام سشن
+       ۵ دقیقه قبل
+    ================================================ */
+
+    if (
+
+        !isWeekend(now) &&
+
+        minutesUntilNext <= 5 &&
+
+        minutesUntilNext > 0
+
+    ) {
+
+        sessionValue.classList.add(
+            "session-warning"
+        );
+
+    }
+
+
+    /* ================================================
+       هشدار ساعت سشن
+       ۲ دقیقه قبل
+    ================================================ */
+
+    if (
+
+        !isWeekend(now) &&
+
+        minutesUntilNext <= 2 &&
+
+        minutesUntilNext > 0
+
+    ) {
+
+        sessionClockValue.classList.add(
+            "clock-warning"
+        );
+
+    }
+
+
+    /* ================================================
+       تاریخ تهران
     ================================================ */
 
     document.getElementById(
@@ -2947,4 +2805,3 @@ setInterval(
 </body>
 
 </html>
-```
