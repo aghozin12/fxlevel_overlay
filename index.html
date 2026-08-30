@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -103,7 +104,6 @@ body::before {
 
 /* =====================================================
    نوار بالا
-   این بخش بدون تغییر باقی مانده
 ===================================================== */
 
 .top-bar {
@@ -152,7 +152,6 @@ body::before {
 
 /* =====================================================
    آیتم‌های نوار بالا
-   اصلاح شده برای یکسان‌سازی محتوا
 ===================================================== */
 
 .top-item {
@@ -293,6 +292,7 @@ body::before {
 
 /* =====================================================
    SESSION MAP
+   اصلاح شده برای هماهنگی عمودی با نوار بالا
 ===================================================== */
 
 .session-map {
@@ -324,6 +324,8 @@ body::before {
     width: 100%;
 
     position: relative;
+
+    transform: translateY(1px);
 }
 
 
@@ -335,15 +337,15 @@ body::before {
 
     font-family: Arial, sans-serif;
 
-    font-size: 13px;
+    font-size: 12px;
 
     font-weight: bold;
 
-    letter-spacing: 3px;
+    letter-spacing: 2.5px;
 
-    line-height: 16px;
+    line-height: 14px;
 
-    height: 16px;
+    height: 14px;
 
     color: #ffae4a;
 
@@ -352,7 +354,7 @@ body::before {
         0 0 6px #ffae4a,
         0 0 14px rgba(255,174,74,0.35);
 
-    margin-bottom: 8px;
+    margin-bottom: 5px;
 
     position: relative;
 }
@@ -370,13 +372,15 @@ body::before {
 
     justify-content: center;
 
-    gap: 13px;
+    gap: 11px;
 
-    height: 27px;
+    height: 25px;
 
     position: relative;
 
     white-space: nowrap;
+
+    transform: translateY(3px);
 }
 
 
@@ -390,17 +394,17 @@ body::before {
 
     align-items: center;
 
-    gap: 6px;
+    gap: 5px;
 
     position: relative;
 
     font-family: Arial, sans-serif;
 
-    font-size: 15px;
+    font-size: 14px;
 
     font-weight: bold;
 
-    letter-spacing: 1px;
+    letter-spacing: 0.8px;
 
     color: rgba(255,255,255,0.42);
 
@@ -434,10 +438,10 @@ body::before {
 
 .session-dot {
 
-    width: 7px;
-    height: 7px;
+    width: 6px;
+    height: 6px;
 
-    flex: 0 0 7px;
+    flex: 0 0 6px;
 
     border-radius: 50%;
 
@@ -461,18 +465,14 @@ body::before {
 }
 
 
-/* =====================================================
-   Halo
-===================================================== */
-
 .session-dot::before {
 
     content: "";
 
     position: absolute;
 
-    width: 18px;
-    height: 18px;
+    width: 17px;
+    height: 17px;
 
     left: 50%;
     top: 50%;
@@ -592,11 +592,11 @@ body::before {
 
 .session-connector {
 
-    width: 16px;
+    width: 14px;
 
     height: 1px;
 
-    flex: 0 0 16px;
+    flex: 0 0 14px;
 
     background:
         rgba(255,255,255,0.18);
@@ -944,9 +944,9 @@ body::before {
 
 .session-timer {
 
-    height: 17px;
+    height: 15px;
 
-    margin-top: 3px;
+    margin-top: 2px;
 
     display: flex;
 
@@ -954,15 +954,15 @@ body::before {
 
     justify-content: center;
 
-    gap: 6px;
+    gap: 5px;
 
     font-family: Arial, sans-serif;
 
-    font-size: 10px;
+    font-size: 9px;
 
     font-weight: bold;
 
-    letter-spacing: 1.3px;
+    letter-spacing: 1.1px;
 
     white-space: nowrap;
 
@@ -1011,21 +1011,22 @@ body::before {
     font-variant-numeric:
         tabular-nums;
 
-    letter-spacing: 1.5px;
+    letter-spacing: 1.3px;
 }
 
 
 /* =====================================================
    Active Label
+   کوچک‌تر و فشرده‌تر شده
 ===================================================== */
 
 .session-active-label {
 
     position: relative;
 
-    height: 18px;
+    height: 13px;
 
-    margin-top: 3px;
+    margin-top: 2px;
 
     display: flex;
 
@@ -1033,27 +1034,31 @@ body::before {
 
     justify-content: center;
 
-    gap: 5px;
+    gap: 4px;
 
     font-family: Arial, sans-serif;
 
-    font-size: 10px;
+    font-size: 8px;
 
     font-weight: bold;
 
-    letter-spacing: 2px;
+    letter-spacing: 1.6px;
+
+    line-height: 13px;
 
     color: #00ff88;
 
     text-shadow:
 
-        0 0 6px #00ff88,
-        0 0 14px rgba(0,255,136,0.45);
+        0 0 5px #00ff88,
+        0 0 11px rgba(0,255,136,0.45);
 
     opacity: 0;
 
     transition:
         opacity 0.35s ease;
+
+    transform: translateY(3px);
 }
 
 
@@ -1067,7 +1072,7 @@ body::before {
 
     display: inline-block;
 
-    font-size: 12px;
+    font-size: 9px;
 
     animation:
         activeArrowFloat 1s ease-in-out infinite;
@@ -1079,7 +1084,7 @@ body::before {
     0%,
     100% {
         transform:
-            translateY(2px);
+            translateY(1px);
     }
 
     50% {
@@ -1676,8 +1681,6 @@ body::before {
         </div>
 
 
-        <!-- SESSION TIMER -->
-
         <div
             class="session-timer"
             id="session-timer"
@@ -1690,9 +1693,7 @@ body::before {
                 SYD
             </span>
 
-            <span
-                id="timer-action"
-            >
+            <span id="timer-action">
                 OPEN IN
             </span>
 
@@ -2104,11 +2105,8 @@ const SESSION_CONFIG = {
     sydney: {
 
         name: "Sydney",
-
         shortName: "SYD",
-
         open: "00:30",
-
         close: "09:30"
 
     },
@@ -2116,11 +2114,8 @@ const SESSION_CONFIG = {
     tokyo: {
 
         name: "Tokyo",
-
         shortName: "TOK",
-
         open: "03:30",
-
         close: "12:30"
 
     },
@@ -2128,11 +2123,8 @@ const SESSION_CONFIG = {
     london: {
 
         name: "London",
-
         shortName: "LON",
-
         open: "10:30",
-
         close: "19:30"
 
     },
@@ -2140,11 +2132,8 @@ const SESSION_CONFIG = {
     newyork: {
 
         name: "New York",
-
         shortName: "NY",
-
         open: "16:30",
-
         close: "00:30"
 
     }
@@ -3454,24 +3443,52 @@ function getTehranTime(
 
 /* =====================================================
    تاریخ میلادی
-   تغییر شماره 2:
-   تاریخ بر اساس سیستم/مرورگر
-   و بدون timeZone تهران
+   نسخه اصلاح‌شده
 ===================================================== */
 
 function getDate(
     date = new Date()
 ) {
 
-    return new Intl.DateTimeFormat(
-        "en-US-u-ca-gregory",
-        {
-            calendar: "gregory",
-            day: "2-digit",
-            month: "short",
-            year: "numeric"
-        }
-    ).format(date).toUpperCase();
+    const months = [
+
+        "JAN",
+        "FEB",
+        "MAR",
+        "APR",
+        "MAY",
+        "JUN",
+        "JUL",
+        "AUG",
+        "SEP",
+        "OCT",
+        "NOV",
+        "DEC"
+
+    ];
+
+
+    const day =
+        String(
+            date.getDate()
+        ).padStart(
+            2,
+            "0"
+        );
+
+
+    const month =
+        months[
+            date.getMonth()
+        ];
+
+
+    const year =
+        date.getFullYear();
+
+
+    return `${day} ${month} ${year}`;
+
 }
 
 
@@ -3577,7 +3594,6 @@ function updateClocks() {
 
     /*
        DATE
-       تاریخ میلادی سیستم
     */
 
     document.getElementById(
@@ -3679,3 +3695,4 @@ setInterval(
 </body>
 
 </html>
+```
