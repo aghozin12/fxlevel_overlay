@@ -322,6 +322,8 @@ body::before {
     width: 100%;
 
     position: relative;
+
+    transform: translateY(7px);
 }
 
 
@@ -368,7 +370,7 @@ body::before {
 
     justify-content: center;
 
-    gap: 18px;
+    gap: 20px;
 
     height: 27px;
 
@@ -388,7 +390,7 @@ body::before {
 
     align-items: center;
 
-    gap: 7px;
+    gap: 8px;
 
     position: relative;
 
@@ -590,11 +592,11 @@ body::before {
 
 .session-connector {
 
-    width: 24px;
+    width: 28px;
 
     height: 1px;
 
-    flex: 0 0 24px;
+    flex: 0 0 28px;
 
     background:
         rgba(255,255,255,0.18);
@@ -937,100 +939,75 @@ body::before {
 
 
 /* =====================================================
-   ساعت Session سوم نوار بالا
+   Active Label
 ===================================================== */
 
-.session-clock-box {
+.session-active-label {
 
-    min-width: 145px;
+    position: relative;
 
-    height: 50px;
+    height: 14px;
+
+    margin-top: 1px;
 
     display: flex;
 
-    flex-direction: column;
+    align-items: center;
 
     justify-content: center;
 
-    text-align: left;
-}
-
-
-.session-clock-box .session-clock-title {
+    gap: 5px;
 
     font-family: Arial, sans-serif;
 
-    font-size: 14px;
+    font-size: 9px;
 
     font-weight: bold;
 
-    line-height: 18px;
-
-    height: 18px;
-
-    color: #ffae4a;
-
-    text-shadow:
-        0 0 6px #ffae4a;
-
-    white-space: nowrap;
-}
-
-
-.session-clock-box .session-clock-time {
-
-    font-family: Arial, sans-serif;
-
-    font-size: 22px;
-
-    font-weight: bold;
-
-    line-height: 25px;
-
-    height: 25px;
+    letter-spacing: 2px;
 
     color: #00ff88;
 
     text-shadow:
-        0 0 8px #00ff88;
 
-    white-space: nowrap;
+        0 0 6px #00ff88,
+        0 0 14px rgba(0,255,136,0.45);
 
-    font-variant-numeric:
-        tabular-nums;
+    opacity: 0;
+
+    transition:
+        opacity 0.35s ease;
 }
 
 
-/* =====================================================
-   هشدار 5 دقیقه پایانی Session
-===================================================== */
+.session-active-label.visible {
 
-.session-clock-time.closing-warning {
+    opacity: 1;
+}
+
+
+.active-arrow {
+
+    display: inline-block;
+
+    font-size: 10px;
 
     animation:
-        sessionClockWarning 0.75s ease-in-out infinite;
+        activeArrowFloat 1s ease-in-out infinite;
 }
 
 
-@keyframes sessionClockWarning {
+@keyframes activeArrowFloat {
 
     0%,
     100% {
-
-        opacity: 1;
-
-        text-shadow:
-
-            0 0 8px #00ff88,
-            0 0 18px #00ff88;
+        transform:
+            translateY(2px);
     }
 
     50% {
-
-        opacity: 0.25;
-
-        text-shadow:
-            0 0 2px #00ff88;
+        transform:
+            translateY(-1px);
     }
 }
 
@@ -1479,7 +1456,9 @@ body::before {
 <div class="top-bar">
 
 
-<!-- MARKET -->
+<!-- =====================================================
+     1. MARKET
+===================================================== -->
 
 <div class="top-item">
 
@@ -1523,7 +1502,7 @@ body::before {
 
 
 <!-- =====================================================
-     SESSION MAP
+     2. SESSION
 ===================================================== -->
 
 <div class="top-item session-map" id="session-map">
@@ -1621,7 +1600,6 @@ body::before {
 
         </div>
 
-
     </div>
 
 </div>
@@ -1631,8 +1609,7 @@ body::before {
 
 
 <!-- =====================================================
-     SESSION CLOCK
-     قسمت سوم نوار بالا
+     3. SYDNEY SESSION CLOCK
 ===================================================== -->
 
 <div class="top-item">
@@ -1649,19 +1626,13 @@ body::before {
         </svg>
 
 
-        <div class="session-clock-box">
+        <div class="text-box">
 
-            <span
-                class="session-clock-title"
-                id="session-clock-label"
-            >
-                MARKET
+            <span id="session-clock-label">
+                SYDNEY
             </span>
 
-            <span
-                class="session-clock-time"
-                id="newyork-value"
-            >
+            <span id="sydney-value">
                 --:--:--
             </span>
 
@@ -1675,7 +1646,9 @@ body::before {
 <div class="divider"></div>
 
 
-<!-- TEHRAN -->
+<!-- =====================================================
+     4. TEHRAN
+===================================================== -->
 
 <div class="top-item">
 
@@ -1716,7 +1689,9 @@ body::before {
 <div class="divider"></div>
 
 
-<!-- DATE -->
+<!-- =====================================================
+     5. DATE
+===================================================== -->
 
 <div class="top-item">
 
@@ -2021,7 +1996,6 @@ body::before {
 
 /* =====================================================
    SESSION CONFIG
-   زمان‌ها بر اساس تهران
 ===================================================== */
 
 const SESSION_CONFIG = {
@@ -2034,9 +2008,7 @@ const SESSION_CONFIG = {
 
         open: "01:30",
 
-        close: "09:30",
-
-        timeZone: "Australia/Sydney"
+        close: "10:30"
 
     },
 
@@ -2048,9 +2020,7 @@ const SESSION_CONFIG = {
 
         open: "03:30",
 
-        close: "12:30",
-
-        timeZone: "Asia/Tokyo"
+        close: "12:30"
 
     },
 
@@ -2062,9 +2032,7 @@ const SESSION_CONFIG = {
 
         open: "10:30",
 
-        close: "19:30",
-
-        timeZone: "Europe/London"
+        close: "19:30"
 
     },
 
@@ -2076,9 +2044,7 @@ const SESSION_CONFIG = {
 
         open: "16:30",
 
-        close: "00:30",
-
-        timeZone: "America/New_York"
+        close: "00:30"
 
     }
 
@@ -2106,9 +2072,9 @@ const sessionClockLabel =
     );
 
 
-const sessionClockValue =
+const sydneyClockValue =
     document.getElementById(
-        "newyork-value"
+        "sydney-value"
     );
 
 
@@ -2571,8 +2537,38 @@ function isMarketOpen(
 
 
 /* =====================================================
-   فاصله تا CLOSE
+   هشدار OPEN
 ===================================================== */
+
+function getMinutesUntilOpen(
+    session,
+    currentMinute
+) {
+
+    const open =
+        timeToMinutes(
+            session.open
+        );
+
+
+    let diff =
+        open -
+        currentMinute;
+
+
+    if (
+        diff < 0
+    ) {
+
+        diff += 1440;
+
+    }
+
+
+    return diff;
+
+}
+
 
 function getMinutesUntilClose(
     session,
@@ -2604,9 +2600,29 @@ function getMinutesUntilClose(
 }
 
 
-/* =====================================================
-   هشدار CLOSE
-===================================================== */
+function isOpenWarning(
+    session,
+    currentMinute
+) {
+
+    const minutes =
+        getMinutesUntilOpen(
+            session,
+            currentMinute
+        );
+
+
+    return (
+
+        minutes > 0 &&
+
+        minutes <=
+            OPEN_WARNING_MINUTES
+
+    );
+
+}
+
 
 function isCloseWarning(
     session,
@@ -2675,7 +2691,7 @@ function updateSessionMap(
         );
 
 
-        activeSessionText.innerText =
+        activeSessionText.textContent =
             "MARKET CLOSED";
 
 
@@ -2769,6 +2785,21 @@ function updateSessionMap(
 
             }
 
+
+            else if (
+                !state.isOpen &&
+                isOpenWarning(
+                    session,
+                    currentMinute
+                )
+            ) {
+
+                node.classList.add(
+                    "open-warning"
+                );
+
+            }
+
         }
     );
 
@@ -2782,7 +2813,7 @@ function updateSessionMap(
         );
 
 
-        activeSessionText.innerText =
+        activeSessionText.textContent =
             "ACTIVE";
 
     }
@@ -2816,7 +2847,7 @@ function updateMarket(
 
     if (open) {
 
-        marketValue.innerText =
+        marketValue.textContent =
             "OPEN";
 
 
@@ -2831,7 +2862,7 @@ function updateMarket(
 
     else {
 
-        marketValue.innerText =
+        marketValue.textContent =
             "CLOSED";
 
 
@@ -2881,45 +2912,11 @@ function getTehranTime(
 
 
 /* =====================================================
-   ساعت محلی Session
-===================================================== */
-
-function getSessionLocalTime(
-    session,
-    date = new Date()
-) {
-
-    return new Intl.DateTimeFormat(
-        "en-US",
-        {
-
-            timeZone:
-                session.timeZone,
-
-            hour:
-                "2-digit",
-
-            minute:
-                "2-digit",
-
-            second:
-                "2-digit",
-
-            hourCycle:
-                "h23"
-
-        }
-    ).format(date);
-
-}
-
-
-/* =====================================================
    تاریخ میلادی
-   مستقل از Session و Tehran
+   نسخه پایدار
 ===================================================== */
 
-function getDate(
+function getGregorianDate(
     date = new Date()
 ) {
 
@@ -2938,10 +2935,7 @@ function getDate(
                     "short",
 
                 day:
-                    "2-digit",
-
-                timeZone:
-                    "UTC"
+                    "2-digit"
 
             }
         );
@@ -2976,19 +2970,19 @@ function updateClocks() {
         tehranParts.second / 60;
 
 
-    /* =================================================
-       تهران
-    ================================================= */
+    /* -----------------------------------------------
+       ساعت تهران
+    ------------------------------------------------ */
 
-    tehranClockValue.innerText =
+    tehranClockValue.textContent =
         getTehranTime(
             now
         );
 
 
-    /* =================================================
+    /* -----------------------------------------------
        Session Map
-    ================================================= */
+    ------------------------------------------------ */
 
     updateSessionMap(
         currentMinute,
@@ -2996,9 +2990,9 @@ function updateClocks() {
     );
 
 
-    /* =================================================
+    /* -----------------------------------------------
        Market
-    ================================================= */
+    ------------------------------------------------ */
 
     updateMarket(
         currentMinute,
@@ -3006,77 +3000,28 @@ function updateClocks() {
     );
 
 
-    /* =================================================
+    /* -----------------------------------------------
        Session Clock
-       ساعت محلی Session فعال
-    ================================================= */
+       بخش سوم نوار بالا
+    ------------------------------------------------ */
 
-    const activeSession =
-        getPrimaryActiveSession(
-            currentMinute,
+    sessionClockLabel.textContent =
+        "SYDNEY";
+
+
+    sydneyClockValue.textContent =
+        getTehranTime(
             now
         );
 
 
-    sessionClockValue.classList.remove(
-        "closing-warning"
-    );
-
-
-    if (
-        !activeSession
-    ) {
-
-        sessionClockLabel.innerText =
-            "MARKET";
-
-
-        sessionClockValue.innerText =
-            "--:--:--";
-
-    }
-
-    else {
-
-        sessionClockLabel.innerText =
-            activeSession.name
-                .toUpperCase();
-
-
-        sessionClockValue.innerText =
-            getSessionLocalTime(
-                activeSession,
-                now
-            );
-
-
-        /*
-           اگر 5 دقیقه یا کمتر
-           به پایان Session مانده باشد
-        */
-
-        if (
-            isCloseWarning(
-                activeSession,
-                currentMinute
-            )
-        ) {
-
-            sessionClockValue.classList.add(
-                "closing-warning"
-            );
-
-        }
-
-    }
-
-
-    /* =================================================
+    /* -----------------------------------------------
        DATE
-    ================================================= */
+       تاریخ میلادی واقعی
+    ------------------------------------------------ */
 
-    dateValue.innerText =
-        getDate(
+    dateValue.textContent =
+        getGregorianDate(
             now
         );
 
@@ -3088,7 +3033,6 @@ function updateClocks() {
 ===================================================== */
 
 updateClocks();
-
 
 setInterval(
     updateClocks,
