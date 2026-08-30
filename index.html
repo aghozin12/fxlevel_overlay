@@ -1,5 +1,5 @@
-```html
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -107,290 +107,260 @@ body::before {
         inset 0 0 14px #00ff88;
 
     display: flex;
-
-    justify-content: space-between;
     align-items: center;
 
-    padding: 0 35px;
+    padding: 0 28px;
 
     box-sizing: border-box;
 }
 
 /* =====================================================
-   TOP ITEMS
+   WORKDAY SESSION LAYOUT
 ===================================================== */
 
-.top-item {
-    flex: 1;
+.sessions-left,
+.sessions-right {
 
-    display: flex;
-
-    justify-content: center;
-}
-
-.item-row {
     display: flex;
 
     align-items: center;
 
-    gap: 14px;
+    gap: 24px;
+
+    width: 37%;
+
+}
+
+.sessions-left {
+    justify-content: flex-start;
+}
+
+.sessions-right {
+    justify-content: flex-end;
 }
 
 /* =====================================================
-   TOP ICON
+   SESSION ITEM
 ===================================================== */
 
-.icon {
-    width: 40px;
-    height: 40px;
+.session-item {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    min-width: 145px;
+
+}
+
+.session-icon {
+
+    width: 34px;
+    height: 34px;
 
     stroke: #ffffff;
     fill: none;
 
+    flex-shrink: 0;
+
     filter:
         drop-shadow(0 0 6px #00ff88);
+
 }
 
-/* =====================================================
-   TOP TEXT
-===================================================== */
+.session-text {
 
-.text-box {
     display: flex;
 
     flex-direction: column;
 
     line-height: 1.1;
+
 }
 
-.text-box span:first-child {
-    font-size: 14px;
+.session-name {
+
+    font-size: 13px;
 
     color: #ffae4a;
 
     text-shadow:
         0 0 6px #ffae4a;
+
 }
 
-.text-box span:last-child {
-    font-size: 22px;
+.session-status {
+
+    margin-top: 3px;
+
+    font-size: 18px;
 
     font-weight: bold;
+
+    white-space: nowrap;
+
+    transition:
+        color 0.2s,
+        text-shadow 0.2s;
+
+}
+
+/* =====================================================
+   SESSION COLORS
+===================================================== */
+
+.session-status.open {
 
     color: #00ff88;
 
     text-shadow:
         0 0 8px #00ff88;
+
 }
 
-/* =====================================================
-   SESSION WARNING
-===================================================== */
-
-#session-value.session-warning {
-    animation:
-        sessionNameBlink 1s ease-in-out infinite;
-}
-
-@keyframes sessionNameBlink {
-
-    0%, 100% {
-        opacity: 1;
-    }
-
-    50% {
-        opacity: 0.15;
-    }
-}
-
-#newyork-value.clock-warning {
-    animation:
-        sessionClockBlink 0.65s ease-in-out infinite;
-}
-
-@keyframes sessionClockBlink {
-
-    0%, 100% {
-        opacity: 1;
-    }
-
-    50% {
-        opacity: 0.10;
-    }
-}
-
-/* =====================================================
-   DIVIDER
-===================================================== */
-
-.divider {
-    width: 1px;
-
-    height: 60%;
-
-    background:
-        rgba(255,255,255,0.35);
-}
-
-/* =====================================================
-   MARKET STATUS
-===================================================== */
-
-.market-status-box {
-    display: flex;
-
-    flex-direction: column;
-
-    justify-content: center;
-
-    min-width: 370px;
-
-    line-height: 1;
-}
-
-.market-title {
-    font-size: 14px;
-
-    color: #ffae4a;
-
-    text-shadow:
-        0 0 6px #ffae4a;
-
-    margin-bottom: 7px;
-}
-
-.market-weekend {
-    font-size: 21px;
-
-    font-weight: bold;
+.session-status.closed {
 
     color: #ff5555;
 
     text-shadow:
         0 0 8px #ff5555;
 
-    white-space: nowrap;
+}
+
+.session-status.warning {
+
+    color: #ffae4a;
+
+    text-shadow:
+        0 0 8px #ffae4a;
+
 }
 
 /* =====================================================
-   MARKET SESSIONS GRID
+   SESSION BLINK
 ===================================================== */
 
-.market-sessions {
-    display: grid;
+.session-item.session-warning
+.session-status {
 
-    grid-template-columns:
-        1fr 1fr;
+    animation:
+        sessionBlink 0.65s ease-in-out infinite;
 
-    grid-template-rows:
-        1fr 1fr;
+}
 
-    column-gap: 22px;
+@keyframes sessionBlink {
 
-    row-gap: 5px;
+    0%, 100% {
+        opacity: 1;
+    }
 
-    min-width: 370px;
+    50% {
+        opacity: 0.12;
+    }
+
 }
 
 /* =====================================================
-   INDIVIDUAL MARKET SESSION
+   CENTER MARKET STATUS
 ===================================================== */
 
-.market-session {
-    display: flex;
+.market-status {
+
+    width: 26%;
+
+    height: 100%;
+
+    display: none;
 
     align-items: center;
 
-    gap: 7px;
+    justify-content: center;
 
-    white-space: nowrap;
+    text-align: center;
+
+}
+
+.market-status-inner {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    line-height: 1.1;
+
+}
+
+.market-status-label {
 
     font-size: 13px;
+
+    color: #ffae4a;
+
+    text-shadow:
+        0 0 6px #ffae4a;
+
+}
+
+#market-status-value {
+
+    margin-top: 5px;
+
+    font-size: 22px;
 
     font-weight: bold;
+
 }
 
-.market-session .market-name {
-    color: #ffffff;
-
-    text-shadow:
-        0 0 5px rgba(255,255,255,0.35);
-}
-
-.market-session .market-state {
-    font-size: 13px;
-}
-
-/* OPEN */
-
-.market-session.open
-.market-state {
-
-    color: #00ff88;
-
-    text-shadow:
-        0 0 7px #00ff88;
-}
-
-/* CLOSED */
-
-.market-session.closed
-.market-state {
+#market-status-value.market-closed {
 
     color: #ff5555;
 
     text-shadow:
-        0 0 7px #ff5555;
+        0 0 8px #ff5555;
+
 }
 
-/* DOT */
+#market-status-value.bank-holiday {
 
-.market-session .market-dot {
-    font-size: 11px;
-}
-
-/* OPEN DOT */
-
-.market-session.open
-.market-dot {
-
-    color: #00ff88;
+    color: #ffae4a;
 
     text-shadow:
-        0 0 7px #00ff88;
-}
+        0 0 8px #ffae4a;
 
-/* CLOSED DOT */
-
-.market-session.closed
-.market-dot {
-
-    color: #ff5555;
-
-    text-shadow:
-        0 0 7px #ff5555;
 }
 
 /* =====================================================
-   BANK HOLIDAY
+   WEEKEND MODE
 ===================================================== */
 
-.market-session.bank-holiday
-.market-state {
+.top-bar.weekend {
 
-    color: #ffae4a;
+    justify-content: center;
 
-    text-shadow:
-        0 0 8px #ffae4a;
 }
 
-.market-session.bank-holiday
-.market-dot {
+.top-bar.weekend
+.sessions-left,
+.top-bar.weekend
+.sessions-right {
 
-    color: #ffae4a;
+    display: none;
 
-    text-shadow:
-        0 0 8px #ffae4a;
+}
+
+.top-bar.weekend
+.market-status {
+
+    display: flex;
+
+    width: 100%;
+
 }
 
 /* =====================================================
@@ -398,6 +368,7 @@ body::before {
 ===================================================== */
 
 .webcam-frame {
+
     position: absolute;
 
     bottom: 170px;
@@ -408,8 +379,6 @@ body::before {
 
     border: 4px solid #00ff66;
 
-    border-radius: 0;
-
     background:
         rgba(0, 0, 0, 0.18);
 
@@ -418,6 +387,7 @@ body::before {
         0 0 55px rgba(0, 255, 102, 0.85),
         0 0 110px rgba(0, 255, 102, 0.65),
         0 0 160px rgba(0, 255, 102, 0.45);
+
 }
 
 /* =====================================================
@@ -425,6 +395,7 @@ body::before {
 ===================================================== */
 
 .bottom-bar {
+
     position: absolute;
 
     bottom: 55px;
@@ -461,6 +432,7 @@ body::before {
     padding: 0 40px;
 
     box-sizing: border-box;
+
 }
 
 /* =====================================================
@@ -468,6 +440,7 @@ body::before {
 ===================================================== */
 
 .bottom-item span {
+
     font-family: Arial, sans-serif;
 
     font-size: 18px;
@@ -481,21 +454,26 @@ body::before {
     align-items: center;
 
     white-space: nowrap;
+
 }
 
 .bottom-item {
+
     display: flex;
 
     align-items: center;
 
     gap: 10px;
+
 }
 
 .bottom-item:not(.subscribe) span {
+
     color: #4da6ff;
 
     text-shadow:
         0 0 6px #4da6ff;
+
 }
 
 /* =====================================================
@@ -503,6 +481,7 @@ body::before {
 ===================================================== */
 
 .bottom-icon {
+
     width: 40px;
     height: 40px;
 
@@ -518,13 +497,15 @@ body::before {
 
     filter:
         drop-shadow(0 0 4px #ffb347);
+
 }
 
 /* =====================================================
-   SUBSCRIBE / LIKE
+   SUBSCRIBE
 ===================================================== */
 
 .subscribe {
+
     position: relative;
 
     width: 145px;
@@ -534,9 +515,11 @@ body::before {
     height: 40px;
 
     flex-shrink: 0;
+
 }
 
 .promo-state {
+
     position: absolute;
 
     left: 0;
@@ -551,10 +534,10 @@ body::before {
     gap: 10px;
 
     white-space: nowrap;
+
 }
 
 .subscribe-state span {
-    font-family: Arial, sans-serif;
 
     font-size: 18px;
 
@@ -564,29 +547,30 @@ body::before {
 
     text-shadow:
         0 0 5px rgba(255,51,51,0.55);
+
 }
 
 .bell-icon {
+
     stroke: #ff3333;
 
     filter:
         drop-shadow(0 0 4px #ff3333);
 
     transform-origin: 50% 15%;
+
 }
 
 .subscribe-state .bell-icon {
+
     animation:
         bellMiddle 10s ease-in-out infinite;
+
 }
 
 @keyframes bellMiddle {
 
-    0% {
-        transform: rotate(0deg);
-    }
-
-    45% {
+    0%, 45%, 100% {
         transform: rotate(0deg);
     }
 
@@ -622,9 +606,6 @@ body::before {
         transform: rotate(0deg);
     }
 
-    100% {
-        transform: rotate(0deg);
-    }
 }
 
 /* =====================================================
@@ -632,11 +613,12 @@ body::before {
 ===================================================== */
 
 .like-state {
+
     display: none;
+
 }
 
 .like-state span {
-    font-family: Arial, sans-serif;
 
     font-size: 18px;
 
@@ -646,20 +628,25 @@ body::before {
 
     text-shadow:
         0 0 5px rgba(77,166,255,0.55);
+
 }
 
 .like-icon {
+
     stroke: #4da6ff;
 
     filter:
         drop-shadow(0 0 4px #4da6ff);
 
     transform-origin: center;
+
 }
 
 .like-pulse {
+
     animation:
         likePulse 10s ease-in-out infinite;
+
 }
 
 @keyframes likePulse {
@@ -684,13 +671,10 @@ body::before {
         transform: scale(0.88);
     }
 
-    38% {
+    38%, 100% {
         transform: scale(1);
     }
 
-    100% {
-        transform: scale(1);
-    }
 }
 
 /* =====================================================
@@ -698,19 +682,23 @@ body::before {
 ===================================================== */
 
 .vip {
+
     position: relative;
 
     overflow: hidden;
+
 }
 
 .vip span {
+
     animation:
         vipPulse 1.8s infinite ease-in-out;
+
 }
 
 @keyframes vipPulse {
 
-    0% {
+    0%, 100% {
         text-shadow:
             0 0 6px #00ff88;
     }
@@ -720,13 +708,10 @@ body::before {
             0 0 18px #00ff88;
     }
 
-    100% {
-        text-shadow:
-            0 0 6px #00ff88;
-    }
 }
 
 .vip .shine {
+
     position: absolute;
 
     top: 0;
@@ -745,6 +730,7 @@ body::before {
 
     animation:
         shineSweep 3s infinite;
+
 }
 
 @keyframes shineSweep {
@@ -753,16 +739,14 @@ body::before {
         left: -120%;
     }
 
-    50% {
+    50%, 100% {
         left: 120%;
     }
 
-    100% {
-        left: 120%;
-    }
 }
 
 </style>
+
 </head>
 
 <body>
@@ -773,413 +757,23 @@ body::before {
      TOP BAR
 ===================================================== -->
 
-<div class="top-bar">
+<div class="top-bar" id="top-bar">
 
-    <!-- SESSION -->
+```
+<!-- LEFT SESSIONS -->
 
-    <div class="top-item">
+<div class="sessions-left">
 
-        <div class="item-row">
 
-            <svg class="icon" viewBox="0 0 24 24">
-
-                <circle
-                    cx="12"
-                    cy="12"
-                    r="10"
-                    stroke-width="2"
-                />
-
-                <path
-                    d="M12 6v6l4 2"
-                    stroke-width="2"
-                />
-
-            </svg>
-
-            <div class="text-box">
-
-                <span>SESSION</span>
-
-                <span id="session-value">
-                    London
-                </span>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <div class="divider"></div>
-
-
-    <!-- CURRENT SESSION CLOCK -->
-
-    <div class="top-item">
-
-        <div class="item-row">
-
-            <svg class="icon" viewBox="0 0 24 24">
-
-                <path
-                    d="M12 1v22M1 12h22"
-                    stroke-width="2"
-                />
-
-            </svg>
-
-            <div class="text-box">
-
-                <span id="session-clock-label">
-                    LONDON
-                </span>
-
-                <span id="newyork-value">
-                    --:--:--
-                </span>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <div class="divider"></div>
-
-
-    <!-- TEHRAN -->
-
-    <div class="top-item">
-
-        <div class="item-row">
-
-            <svg class="icon" viewBox="0 0 24 24">
-
-                <circle
-                    cx="12"
-                    cy="12"
-                    r="10"
-                    stroke-width="2"
-                />
-
-                <path
-                    d="M12 12l4 2"
-                    stroke-width="2"
-                />
-
-            </svg>
-
-            <div class="text-box">
-
-                <span>TEHRAN</span>
-
-                <span id="tehran-value">
-                    --:--:--
-                </span>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <div class="divider"></div>
-
-
-    <!-- DATE -->
-
-    <div class="top-item">
-
-        <div class="item-row">
-
-            <svg class="icon" viewBox="0 0 24 24">
-
-                <rect
-                    x="3"
-                    y="5"
-                    width="18"
-                    height="16"
-                    stroke-width="2"
-                    fill="none"
-                />
-
-                <line
-                    x1="3"
-                    y1="10"
-                    x2="21"
-                    y2="10"
-                    stroke-width="2"
-                />
-
-            </svg>
-
-            <div class="text-box">
-
-                <span>DATE</span>
-
-                <span id="date-value">
-                    -- --- ----
-                </span>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <div class="divider"></div>
-
-
-    <!-- MARKET STATUS -->
-
-    <div class="top-item">
-
-        <div class="item-row">
-
-            <svg class="icon" viewBox="0 0 24 24">
-
-                <rect
-                    x="3"
-                    y="4"
-                    width="18"
-                    height="16"
-                    stroke-width="2"
-                    fill="none"
-                />
-
-                <path
-                    d="M7 16l3-4 3 2 4-6"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                />
-
-            </svg>
-
-
-            <div class="market-status-box">
-
-                <div class="market-title">
-                    MARKET STATUS
-                </div>
-
-
-                <!-- WEEKEND / HOLIDAY -->
-
-                <div
-                    id="market-weekend"
-                    class="market-weekend"
-                >
-                    MARKET CLOSED
-                </div>
-
-
-                <!-- WEEKDAY SESSIONS -->
-
-                <div
-                    id="market-sessions"
-                    class="market-sessions"
-                >
-
-                    <!-- LEFT COLUMN -->
-                    <!-- ROW 1: SYDNEY -->
-
-                    <div
-                        class="market-session"
-                        id="market-sydney"
-                    >
-
-                        <span class="market-name">
-                            SYDNEY
-                        </span>
-
-                        <span class="market-dot">
-                            ●
-                        </span>
-
-                        <span class="market-state">
-                            CLOSED
-                        </span>
-
-                    </div>
-
-
-                    <!-- RIGHT COLUMN -->
-                    <!-- ROW 1: LONDON -->
-
-                    <div
-                        class="market-session"
-                        id="market-london"
-                    >
-
-                        <span class="market-name">
-                            LONDON
-                        </span>
-
-                        <span class="market-dot">
-                            ●
-                        </span>
-
-                        <span class="market-state">
-                            CLOSED
-                        </span>
-
-                    </div>
-
-
-                    <!-- LEFT COLUMN -->
-                    <!-- ROW 2: TOKYO -->
-
-                    <div
-                        class="market-session"
-                        id="market-tokyo"
-                    >
-
-                        <span class="market-name">
-                            TOKYO
-                        </span>
-
-                        <span class="market-dot">
-                            ●
-                        </span>
-
-                        <span class="market-state">
-                            CLOSED
-                        </span>
-
-                    </div>
-
-
-                    <!-- RIGHT COLUMN -->
-                    <!-- ROW 2: NEW YORK -->
-
-                    <div
-                        class="market-session"
-                        id="market-newyork"
-                    >
-
-                        <span class="market-name">
-                            NEW YORK
-                        </span>
-
-                        <span class="market-dot">
-                            ●
-                        </span>
-
-                        <span class="market-state">
-                            CLOSED
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- =====================================================
-     WEBCAM
-===================================================== -->
-
-<div class="webcam-frame"></div>
-
-
-<!-- =====================================================
-     BOTTOM BAR
-===================================================== -->
-
-<div class="bottom-bar">
-
-    <!-- SUBSCRIBE / LIKE -->
+    <!-- SYDNEY -->
 
     <div
-        class="bottom-item subscribe"
-        id="subscribe-like"
+        class="session-item"
+        id="session-sydney"
     >
 
-        <div
-            class="promo-state subscribe-state"
-        >
-
-            <svg
-                class="bottom-icon bell-icon"
-                viewBox="0 0 24 24"
-            >
-
-                <path
-                    d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"
-                    stroke-width="2.4"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                />
-
-                <path
-                    d="M10 21h4"
-                    stroke-width="2.4"
-                    stroke-linecap="round"
-                />
-
-            </svg>
-
-            <span>
-                SUBSCRIBE
-            </span>
-
-        </div>
-
-
-        <div
-            class="promo-state like-state"
-        >
-
-            <svg
-                class="bottom-icon like-icon"
-                viewBox="0 0 24 24"
-            >
-
-                <path
-                    d="M7 10v12H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h3z"
-                    stroke-width="2.2"
-                    stroke-linejoin="round"
-                />
-
-                <path
-                    d="M7 10l4-8c1.5 0 3 1 3 2.5V8h6a2 2 0 0 1 2 2.3l-1.2 8A2 2 0 0 1 18.8 20H7"
-                    stroke-width="2.2"
-                    stroke-linejoin="round"
-                />
-
-            </svg>
-
-            <span>
-                LIKE
-            </span>
-
-        </div>
-
-    </div>
-
-
-    <div class="bottom-divider"></div>
-
-
-    <!-- WEBSITE -->
-
-    <div class="bottom-item">
-
         <svg
-            class="bottom-icon"
+            class="session-icon"
             viewBox="0 0 24 24"
         >
 
@@ -1191,195 +785,457 @@ body::before {
             />
 
             <path
-                d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"
+                d="M12 6v6l4 2"
                 stroke-width="2"
             />
 
         </svg>
 
-        <span>
-            www.aparat.com/FX_LEVEL3
-        </span>
+        <div class="session-text">
+
+            <span class="session-name">
+                SYDNEY
+            </span>
+
+            <span
+                class="session-status"
+                id="status-sydney"
+            >
+                CLOSED
+            </span>
+
+        </div>
 
     </div>
 
 
-    <div class="bottom-divider"></div>
+    <!-- TOKYO -->
 
-
-    <!-- INSTAGRAM -->
-
-    <div class="bottom-item">
+    <div
+        class="session-item"
+        id="session-tokyo"
+    >
 
         <svg
-            class="bottom-icon"
+            class="session-icon"
             viewBox="0 0 24 24"
         >
-
-            <rect
-                x="3"
-                y="3"
-                width="18"
-                height="18"
-                rx="5"
-                stroke-width="2"
-            />
 
             <circle
                 cx="12"
                 cy="12"
-                r="4"
-                stroke-width="2"
-            />
-
-            <circle
-                cx="17"
-                cy="7"
-                r="1.5"
-                fill="#fff"
-            />
-
-        </svg>
-
-        <span>
-            instagram.com/fx_level3
-        </span>
-
-    </div>
-
-
-    <div class="bottom-divider"></div>
-
-
-    <!-- YOUTUBE -->
-
-    <div class="bottom-item">
-
-        <svg
-            class="bottom-icon"
-            viewBox="0 0 24 24"
-        >
-
-            <rect
-                x="3"
-                y="6"
-                width="18"
-                height="12"
-                rx="3"
-                stroke-width="2"
-            />
-
-            <polygon
-                points="10,9 16,12 10,15"
-                fill="#fff"
-            />
-
-        </svg>
-
-        <span>
-            youtube.com/@FX_LEVEL3
-        </span>
-
-    </div>
-
-
-    <div class="bottom-divider"></div>
-
-
-    <!-- TELEGRAM -->
-
-    <div class="bottom-item">
-
-        <svg
-            class="bottom-icon"
-            viewBox="0 0 24 24"
-        >
-
-            <path
-                d="M22 2L11 13"
+                r="10"
                 stroke-width="2"
             />
 
             <path
-                d="M22 2L15 22l-4-9-9-4 20-7z"
+                d="M12 6v6l4 2"
                 stroke-width="2"
             />
 
         </svg>
 
-        <span>
-            t.me/FX_LEVEL3
-        </span>
+        <div class="session-text">
 
-    </div>
+            <span class="session-name">
+                TOKYO
+            </span>
 
+            <span
+                class="session-status"
+                id="status-tokyo"
+            >
+                CLOSED
+            </span>
 
-    <div class="bottom-divider"></div>
-
-
-    <!-- MEYSAM GHASEMI -->
-
-    <div class="bottom-item vip">
-
-        <svg
-            class="bottom-icon diamond"
-            viewBox="0 0 24 24"
-        >
-
-            <polygon
-                points="12 2 22 9 12 22 2 9"
-                stroke-width="2"
-            />
-
-        </svg>
-
-        <span>
-            Meysam Ghasemi
-        </span>
-
-        <div class="shine"></div>
+        </div>
 
     </div>
 
 </div>
 
 
+<!-- CENTER MARKET STATUS -->
+
+<div
+    class="market-status"
+    id="market-status"
+>
+
+    <div class="market-status-inner">
+
+        <span class="market-status-label">
+            MARKET STATUS
+        </span>
+
+        <span
+            id="market-status-value"
+            class="market-closed"
+        >
+            MARKET CLOSED
+        </span>
+
+    </div>
+
+</div>
+
+
+<!-- RIGHT SESSIONS -->
+
+<div class="sessions-right">
+
+
+    <!-- LONDON -->
+
+    <div
+        class="session-item"
+        id="session-london"
+    >
+
+        <svg
+            class="session-icon"
+            viewBox="0 0 24 24"
+        >
+
+            <circle
+                cx="12"
+                cy="12"
+                r="10"
+                stroke-width="2"
+            />
+
+            <path
+                d="M12 6v6l4 2"
+                stroke-width="2"
+            />
+
+        </svg>
+
+        <div class="session-text">
+
+            <span class="session-name">
+                LONDON
+            </span>
+
+            <span
+                class="session-status"
+                id="status-london"
+            >
+                CLOSED
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- NEW YORK -->
+
+    <div
+        class="session-item"
+        id="session-newyork"
+    >
+
+        <svg
+            class="session-icon"
+            viewBox="0 0 24 24"
+        >
+
+            <circle
+                cx="12"
+                cy="12"
+                r="10"
+                stroke-width="2"
+            />
+
+            <path
+                d="M12 6v6l4 2"
+                stroke-width="2"
+            />
+
+        </svg>
+
+        <div class="session-text">
+
+            <span class="session-name">
+                NEW YORK
+            </span>
+
+            <span
+                class="session-status"
+                id="status-newyork"
+            >
+                CLOSED
+            </span>
+
+        </div>
+
+    </div>
+
+</div>
+```
+
+</div>
+
+<!-- =====================================================
+     WEBCAM
+===================================================== -->
+
+<div class="webcam-frame"></div>
+
+<!-- =====================================================
+     BOTTOM BAR
+===================================================== -->
+
+<div class="bottom-bar">
+
+```
+<div
+    class="bottom-item subscribe"
+    id="subscribe-like"
+>
+
+    <div class="promo-state subscribe-state">
+
+        <svg
+            class="bottom-icon bell-icon"
+            viewBox="0 0 24 24"
+        >
+
+            <path
+                d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"
+                stroke-width="2.4"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            />
+
+            <path
+                d="M10 21h4"
+                stroke-width="2.4"
+                stroke-linecap="round"
+            />
+
+        </svg>
+
+        <span>
+            SUBSCRIBE
+        </span>
+
+    </div>
+
+
+    <div class="promo-state like-state">
+
+        <svg
+            class="bottom-icon like-icon"
+            viewBox="0 0 24 24"
+        >
+
+            <path
+                d="M7 10v12H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h3z"
+                stroke-width="2.2"
+                stroke-linejoin="round"
+            />
+
+            <path
+                d="M7 10l4-8c1.5 0 3 1 3 2.5V8h6a2 2 0 0 1 2 2.3l-1.2 8A2 2 0 0 1 18.8 20H7"
+                stroke-width="2.2"
+                stroke-linejoin="round"
+            />
+
+        </svg>
+
+        <span>
+            LIKE
+        </span>
+
+    </div>
+
+</div>
+
+
+<div class="bottom-item">
+
+    <svg
+        class="bottom-icon"
+        viewBox="0 0 24 24"
+    >
+
+        <circle
+            cx="12"
+            cy="12"
+            r="10"
+            stroke-width="2"
+        />
+
+        <path
+            d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"
+            stroke-width="2"
+        />
+
+    </svg>
+
+    <span>
+        www.aparat.com/FX_LEVEL3
+    </span>
+
+</div>
+
+
+<div class="bottom-item">
+
+    <svg
+        class="bottom-icon"
+        viewBox="0 0 24 24"
+    >
+
+        <rect
+            x="3"
+            y="3"
+            width="18"
+            height="18"
+            rx="5"
+            stroke-width="2"
+        />
+
+        <circle
+            cx="12"
+            cy="12"
+            r="4"
+            stroke-width="2"
+        />
+
+        <circle
+            cx="17"
+            cy="7"
+            r="1.5"
+            fill="#fff"
+        />
+
+    </svg>
+
+    <span>
+        instagram.com/fx_level3
+    </span>
+
+</div>
+
+
+<div class="bottom-item">
+
+    <svg
+        class="bottom-icon"
+        viewBox="0 0 24 24"
+    >
+
+        <rect
+            x="3"
+            y="6"
+            width="18"
+            height="12"
+            rx="3"
+            stroke-width="2"
+        />
+
+        <polygon
+            points="10,9 16,12 10,15"
+            fill="#fff"
+        />
+
+    </svg>
+
+    <span>
+        youtube.com/@FX_LEVEL3
+    </span>
+
+</div>
+
+
+<div class="bottom-item">
+
+    <svg
+        class="bottom-icon"
+        viewBox="0 0 24 24"
+    >
+
+        <path
+            d="M22 2L11 13"
+            stroke-width="2"
+        />
+
+        <path
+            d="M22 2L15 22l-4-9-9-4 20-7z"
+            stroke-width="2"
+        />
+
+    </svg>
+
+    <span>
+        t.me/FX_LEVEL3
+    </span>
+
+</div>
+
+
+<div class="bottom-item vip">
+
+    <svg
+        class="bottom-icon diamond"
+        viewBox="0 0 24 24"
+    >
+
+        <polygon
+            points="12 2 22 9 12 22 2 9"
+            stroke-width="2"
+        />
+
+    </svg>
+
+    <span>
+        Meysam Ghasemi
+    </span>
+
+    <div class="shine"></div>
+
+</div>
+```
+
+</div>
+
 <script>
 
 /* =====================================================
-   SESSION SETTINGS
+   SESSION CONFIGURATION
 ===================================================== */
 
-const tradingSessions = [
+const sessions = [
 
     {
+        id: "sydney",
         name: "Sydney",
         timeZone: "Australia/Sydney",
         openHour: 8,
-        openMinute: 0,
-        closeHour: 17,
-        closeMinute: 0
+        closeHour: 17
     },
 
     {
+        id: "tokyo",
         name: "Tokyo",
         timeZone: "Asia/Tokyo",
         openHour: 9,
-        openMinute: 0,
-        closeHour: 17,
-        closeMinute: 0
+        closeHour: 18
     },
 
     {
+        id: "london",
         name: "London",
         timeZone: "Europe/London",
         openHour: 8,
-        openMinute: 0,
-        closeHour: 17,
-        closeMinute: 0
+        closeHour: 17
     },
 
     {
+        id: "newyork",
         name: "New York",
         timeZone: "America/New_York",
         openHour: 9,
@@ -1392,37 +1248,17 @@ const tradingSessions = [
 
 
 /* =====================================================
-   HTML ELEMENTS
+   ELEMENTS
 ===================================================== */
 
-const sessionValue =
+const topBar =
     document.getElementById(
-        "session-value"
+        "top-bar"
     );
 
-const sessionClockLabel =
+const marketStatusValue =
     document.getElementById(
-        "session-clock-label"
-    );
-
-const sessionClockValue =
-    document.getElementById(
-        "newyork-value"
-    );
-
-const tehranClockValue =
-    document.getElementById(
-        "tehran-value"
-    );
-
-const marketWeekendValue =
-    document.getElementById(
-        "market-weekend"
-    );
-
-const marketSessions =
-    document.getElementById(
-        "market-sessions"
+        "market-status-value"
     );
 
 
@@ -1439,16 +1275,13 @@ function getTimeZoneParts(
         new Intl.DateTimeFormat(
             "en-US",
             {
-                timeZone: timeZone,
-
+                timeZone,
                 year: "numeric",
                 month: "2-digit",
                 day: "2-digit",
-
                 hour: "2-digit",
                 minute: "2-digit",
                 second: "2-digit",
-
                 hourCycle: "h23"
             }
         ).formatToParts(date);
@@ -1475,23 +1308,12 @@ function getTimeZoneParts(
 
     return {
 
-        year:
-            Number(result.year),
-
-        month:
-            Number(result.month),
-
-        day:
-            Number(result.day),
-
-        hour:
-            Number(result.hour),
-
-        minute:
-            Number(result.minute),
-
-        second:
-            Number(result.second)
+        year: Number(result.year),
+        month: Number(result.month),
+        day: Number(result.day),
+        hour: Number(result.hour),
+        minute: Number(result.minute),
+        second: Number(result.second)
 
     };
 
@@ -1511,16 +1333,13 @@ function getTimeZoneOffset(
         new Intl.DateTimeFormat(
             "en-US",
             {
-                timeZone: timeZone,
-
+                timeZone,
                 year: "numeric",
                 month: "2-digit",
                 day: "2-digit",
-
                 hour: "2-digit",
                 minute: "2-digit",
                 second: "2-digit",
-
                 hourCycle: "h23"
             }
         ).formatToParts(date);
@@ -1565,46 +1384,43 @@ function getTimeZoneOffset(
 
 
 /* =====================================================
-   SESSION TIMESTAMP
+   CREATE TIMESTAMP IN TIMEZONE
 ===================================================== */
 
-function getSessionTimestamp(
+function getTimestamp(
     date,
-    session,
+    timeZone,
     hour,
-    minute,
-    dayOffset = 0
+    minute = 0
 ) {
 
-    const localParts =
+    const local =
         getTimeZoneParts(
             date,
-            session.timeZone
+            timeZone
         );
 
 
-    const localDate =
-        new Date(
-            Date.UTC(
-                localParts.year,
-                localParts.month - 1,
-                localParts.day + dayOffset,
-                hour,
-                minute,
-                0
-            )
+    const utcGuess =
+        Date.UTC(
+            local.year,
+            local.month - 1,
+            local.day,
+            hour,
+            minute,
+            0
         );
 
 
     const offset =
         getTimeZoneOffset(
-            localDate,
-            session.timeZone
+            new Date(utcGuess),
+            timeZone
         );
 
 
     return (
-        localDate.getTime() -
+        utcGuess -
         offset
     );
 
@@ -1612,81 +1428,201 @@ function getSessionTimestamp(
 
 
 /* =====================================================
-   SESSION OPEN TIMESTAMP
+   SESSION STATUS
 ===================================================== */
 
-function getSessionOpenTimestamp(
-    date,
-    session,
-    dayOffset = 0
+function getSessionStatus(
+    now,
+    session
 ) {
 
-    return getSessionTimestamp(
-        date,
-        session,
-        session.openHour,
-        session.openMinute,
-        dayOffset
-    );
-
-}
+    const open =
+        getTimestamp(
+            now,
+            session.timeZone,
+            session.openHour,
+            session.openMinute || 0
+        );
 
 
-/* =====================================================
-   SESSION CLOSE TIMESTAMP
-===================================================== */
-
-function getSessionCloseTimestamp(
-    date,
-    session,
-    dayOffset = 0
-) {
-
-    return getSessionTimestamp(
-        date,
-        session,
-        session.closeHour,
-        session.closeMinute,
-        dayOffset
-    );
-
-}
+    const close =
+        getTimestamp(
+            now,
+            session.timeZone,
+            session.closeHour,
+            session.closeMinute || 0
+        );
 
 
-/* =====================================================
-   SESSION WEEKDAY
-===================================================== */
+    const current =
+        now.getTime();
 
-function getSessionWeekday(
-    date,
-    timeZone
-) {
 
-    return new Intl.DateTimeFormat(
-        "en-US",
-        {
-            timeZone: timeZone,
-            weekday: "short"
+    const fiveMinutes =
+        5 * 60 * 1000;
+
+
+    /* ================================================
+       BEFORE OPEN
+    ================================================ */
+
+    if (
+        current < open
+    ) {
+
+        const remaining =
+            open - current;
+
+
+        if (
+            remaining <= fiveMinutes
+        ) {
+
+            return {
+                state: "warning",
+                label: "OPEN SOON"
+            };
+
         }
-    ).format(date);
+
+
+        return {
+            state: "closed",
+            label: "CLOSED"
+        };
+
+    }
+
+
+    /* ================================================
+       FIVE MINUTES BEFORE CLOSE
+    ================================================ */
+
+    if (
+        current >= open &&
+        current < close
+    ) {
+
+        const remaining =
+            close - current;
+
+
+        if (
+            remaining <= fiveMinutes
+        ) {
+
+            return {
+                state: "warning",
+                label: "CLOSING"
+            };
+
+        }
+
+
+        return {
+            state: "open",
+            label: "OPEN"
+        };
+
+    }
+
+
+    /* ================================================
+       AFTER CLOSE
+    ================================================ */
+
+    return {
+        state: "closed",
+        label: "CLOSED"
+    };
 
 }
 
 
 /* =====================================================
-   SESSION WEEKEND
+   UPDATE ONE SESSION
 ===================================================== */
 
-function isSessionWeekend(
-    date,
-    timeZone
+function updateSession(
+    session,
+    now
+) {
+
+    const item =
+        document.getElementById(
+            "session-" +
+            session.id
+        );
+
+
+    const statusElement =
+        document.getElementById(
+            "status-" +
+            session.id
+        );
+
+
+    const status =
+        getSessionStatus(
+            now,
+            session
+        );
+
+
+    statusElement.classList.remove(
+        "open",
+        "closed",
+        "warning"
+    );
+
+
+    item.classList.remove(
+        "session-warning"
+    );
+
+
+    statusElement.classList.add(
+        status.state
+    );
+
+
+    statusElement.innerText =
+        status.label;
+
+
+    if (
+        status.state ===
+        "warning"
+    ) {
+
+        item.classList.add(
+            "session-warning"
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   WEEKEND
+===================================================== */
+
+function isWeekendInNewYork(
+    now
 ) {
 
     const weekday =
-        getSessionWeekday(
-            date,
-            timeZone
-        );
+        new Intl.DateTimeFormat(
+            "en-US",
+            {
+                timeZone:
+                    "America/New_York",
+
+                weekday:
+                    "short"
+            }
+        ).format(now);
 
 
     return (
@@ -1698,296 +1634,36 @@ function isSessionWeekend(
 
 
 /* =====================================================
-   SESSION STATUS
-===================================================== */
-
-function getSessionMarketStatus(
-    now,
-    session
-) {
-
-    if (
-        isSessionWeekend(
-            now,
-            session.timeZone
-        )
-    ) {
-
-        return "closed";
-
-    }
-
-
-    const open =
-        getSessionOpenTimestamp(
-            now,
-            session
-        );
-
-
-    const close =
-        getSessionCloseTimestamp(
-            now,
-            session
-        );
-
-
-    const currentTime =
-        now.getTime();
-
-
-    if (
-        currentTime >= open &&
-        currentTime < close
-    ) {
-
-        return "open";
-
-    }
-
-
-    return "closed";
-
-}
-
-
-/* =====================================================
-   ACTIVE SESSION
-===================================================== */
-
-function getActiveSession(
-    now
-) {
-
-    let activeSession =
-        tradingSessions[
-            tradingSessions.length - 1
-        ];
-
-    let latestOpen =
-        -Infinity;
-
-
-    tradingSessions.forEach(
-        session => {
-
-            if (
-                isSessionWeekend(
-                    now,
-                    session.timeZone
-                )
-            ) {
-
-                return;
-
-            }
-
-
-            const open =
-                getSessionOpenTimestamp(
-                    now,
-                    session
-                );
-
-
-            if (
-                open <=
-                now.getTime() &&
-                open >
-                latestOpen
-            ) {
-
-                latestOpen =
-                    open;
-
-                activeSession =
-                    session;
-
-            }
-
-        }
-    );
-
-
-    return {
-
-        session:
-            activeSession,
-
-        openTimestamp:
-            latestOpen
-
-    };
-
-}
-
-
-/* =====================================================
-   NEXT SESSION
-===================================================== */
-
-function getNextSession(
-    now
-) {
-
-    let nextSession = null;
-
-    let nextOpen =
-        Infinity;
-
-
-    tradingSessions.forEach(
-        session => {
-
-            for (
-                let dayOffset = 0;
-                dayOffset <= 7;
-                dayOffset++
-            ) {
-
-                const candidate =
-                    getSessionOpenTimestamp(
-                        now,
-                        session,
-                        dayOffset
-                    );
-
-
-                if (
-                    candidate <=
-                    now.getTime()
-                ) {
-
-                    continue;
-
-                }
-
-
-                if (
-                    isSessionWeekend(
-                        new Date(candidate),
-                        session.timeZone
-                    )
-                ) {
-
-                    continue;
-
-                }
-
-
-                if (
-                    candidate <
-                    nextOpen
-                ) {
-
-                    nextOpen =
-                        candidate;
-
-                    nextSession =
-                        session;
-
-                }
-
-
-                break;
-
-            }
-
-        }
-    );
-
-
-    return {
-
-        session:
-            nextSession,
-
-        openTimestamp:
-            nextOpen
-
-    };
-
-}
-
-
-/* =====================================================
-   LOCAL TIME
-===================================================== */
-
-function getSessionTime(
-    timeZone,
-    date = new Date()
-) {
-
-    return new Intl.DateTimeFormat(
-        "en-US",
-        {
-            timeZone: timeZone,
-
-            hour: "2-digit",
-            minute: "2-digit",
-            second: "2-digit",
-
-            hour12: true
-        }
-    ).format(date);
-
-}
-
-
-/* =====================================================
-   TEHRAN DATE
-===================================================== */
-
-function getTehranDate(
-    date = new Date()
-) {
-
-    return new Intl.DateTimeFormat(
-        "en-US",
-        {
-            timeZone: "Asia/Tehran",
-
-            day: "2-digit",
-            month: "short",
-            year: "numeric"
-        }
-    ).format(date);
-
-}
-
-
-/* =====================================================
    NEW YORK DATE KEY
 ===================================================== */
 
 function getNewYorkDateKey(
-    date = new Date()
+    now
 ) {
 
-    const parts =
+    const p =
         getTimeZoneParts(
-            date,
+            now,
             "America/New_York"
         );
 
 
     return (
-        parts.year +
+        p.year +
         "-" +
-        String(parts.month).padStart(2, "0") +
+        String(p.month).padStart(2, "0") +
         "-" +
-        String(parts.day).padStart(2, "0")
+        String(p.day).padStart(2, "0")
     );
 
 }
 
 
 /* =====================================================
-   NYSE HOLIDAYS 2026
+   NYSE HOLIDAYS
 ===================================================== */
 
-const nyseHolidays2026 = {
+const nyseHolidays = {
 
     "2026-01-01":
         "NEW YEAR'S DAY",
@@ -2023,178 +1699,124 @@ const nyseHolidays2026 = {
 
 
 /* =====================================================
-   NYSE EARLY CLOSE 2026
+   WEEKEND / HOLIDAY MARKET STATUS
 ===================================================== */
 
-const nyseEarlyClose2026 = {
-
-    "2026-11-27":
-        "DAY AFTER THANKSGIVING",
-
-    "2026-12-24":
-        "CHRISTMAS EVE"
-
-};
-
-
-/* =====================================================
-   UPDATE MARKET SESSIONS
-===================================================== */
-
-function updateMarketSessions() {
+function updateMarketStatus() {
 
     const now =
         new Date();
 
 
-    /*
-       طبق خواسته:
-       شنبه و یکشنبه همان نمایش قبلی
-       یعنی فقط MARKET CLOSED
-    */
-
-    const nyWeekday =
-        new Intl.DateTimeFormat(
-            "en-US",
-            {
-                timeZone:
-                    "America/New_York",
-
-                weekday:
-                    "short"
-            }
-        ).format(now);
+    const weekend =
+        isWeekendInNewYork(
+            now
+        );
 
 
-    const isWeekend =
-        nyWeekday === "Sat" ||
-        nyWeekday === "Sun";
+    if (
+        !weekend
+    ) {
 
-
-    if (isWeekend) {
-
-        marketSessions.style.display =
-            "none";
-
-        marketWeekendValue.style.display =
-            "block";
-
-        marketWeekendValue.innerText =
-            "MARKET CLOSED";
-
-        marketWeekendValue.style.color =
-            "#ff5555";
-
-        marketWeekendValue.style.textShadow =
-            "0 0 8px #ff5555";
+        topBar.classList.remove(
+            "weekend"
+        );
 
         return;
 
     }
 
 
-    /*
-       روزهای کاری:
-       چهار سشن جداگانه
-    */
-
-    marketWeekendValue.style.display =
-        "none";
-
-    marketSessions.style.display =
-        "grid";
+    topBar.classList.add(
+        "weekend"
+    );
 
 
-    tradingSessions.forEach(
+    const key =
+        getNewYorkDateKey(
+            now
+        );
+
+
+    marketStatusValue.classList.remove(
+        "market-closed",
+        "bank-holiday"
+    );
+
+
+    if (
+        nyseHolidays[key]
+    ) {
+
+        marketStatusValue.classList.add(
+            "bank-holiday"
+        );
+
+        marketStatusValue.innerText =
+            "BANK HOLIDAY";
+
+    }
+    else {
+
+        marketStatusValue.classList.add(
+            "market-closed"
+        );
+
+        marketStatusValue.innerText =
+            "MARKET CLOSED";
+
+    }
+
+}
+
+
+/* =====================================================
+   MAIN UPDATE
+===================================================== */
+
+function updateOverlay() {
+
+    const now =
+        new Date();
+
+
+    const weekend =
+        isWeekendInNewYork(
+            now
+        );
+
+
+    /* ================================================
+       WEEKEND
+    ================================================ */
+
+    if (
+        weekend
+    ) {
+
+        updateMarketStatus();
+
+        return;
+
+    }
+
+
+    /* ================================================
+       WEEKDAY
+    ================================================ */
+
+    topBar.classList.remove(
+        "weekend"
+    );
+
+
+    sessions.forEach(
         session => {
 
-            const element =
-                document.getElementById(
-                    "market-" +
-                    session.name
-                        .toLowerCase()
-                        .replace(
-                            " ",
-                            ""
-                        )
-                );
-
-
-            if (!element) {
-                return;
-            }
-
-
-            const state =
-                getSessionMarketStatus(
-                    now,
-                    session
-                );
-
-
-            const stateElement =
-                element.querySelector(
-                    ".market-state"
-                );
-
-
-            const dotElement =
-                element.querySelector(
-                    ".market-dot"
-                );
-
-
-            element.classList.remove(
-                "open",
-                "closed",
-                "bank-holiday"
+            updateSession(
+                session,
+                now
             );
-
-
-            if (
-                session.name ===
-                "New York"
-            ) {
-
-                const nyDate =
-                    getNewYorkDateKey(
-                        now
-                    );
-
-
-                if (
-                    nyseHolidays2026[
-                        nyDate
-                    ]
-                ) {
-
-                    element.classList.add(
-                        "bank-holiday"
-                    );
-
-                    stateElement.innerText =
-                        "BANK HOLIDAY";
-
-                    dotElement.innerText =
-                        "●";
-
-                    return;
-
-                }
-
-            }
-
-
-            element.classList.add(
-                state
-            );
-
-
-            stateElement.innerText =
-                state.toUpperCase();
-
-            dotElement.innerText =
-                "●";
 
         }
     );
@@ -2203,161 +1825,13 @@ function updateMarketSessions() {
 
 
 /* =====================================================
-   UPDATE CLOCKS
+   START
 ===================================================== */
 
-function updateClocks() {
-
-    const now =
-        new Date();
-
-
-    /* ================================================
-       TEHRAN
-    ================================================ */
-
-    tehranClockValue.innerText =
-        getSessionTime(
-            "Asia/Tehran",
-            now
-        );
-
-
-    /* ================================================
-       ACTIVE SESSION
-    ================================================ */
-
-    const active =
-        getActiveSession(
-            now
-        );
-
-
-    const activeSession =
-        active.session;
-
-
-    /* ================================================
-       NEXT SESSION
-    ================================================ */
-
-    const next =
-        getNextSession(
-            now
-        );
-
-
-    /* ================================================
-       SESSION NAME
-    ================================================ */
-
-    sessionValue.innerText =
-        activeSession.name;
-
-
-    /* ================================================
-       SESSION CLOCK LABEL
-    ================================================ */
-
-    sessionClockLabel.innerText =
-        activeSession.name.toUpperCase();
-
-
-    /* ================================================
-       SESSION CLOCK
-    ================================================ */
-
-    sessionClockValue.innerText =
-        getSessionTime(
-            activeSession.timeZone,
-            now
-        );
-
-
-    /* ================================================
-       NEXT SESSION WARNING
-    ================================================ */
-
-    if (
-        next &&
-        next.openTimestamp !== Infinity
-    ) {
-
-        const millisecondsUntilNext =
-            next.openTimestamp -
-            now.getTime();
-
-
-        const minutesUntilNext =
-            millisecondsUntilNext /
-            60000;
-
-
-        sessionValue.classList.remove(
-            "session-warning"
-        );
-
-
-        sessionClockValue.classList.remove(
-            "clock-warning"
-        );
-
-
-        if (
-            minutesUntilNext <= 5 &&
-            minutesUntilNext > 0
-        ) {
-
-            sessionValue.classList.add(
-                "session-warning"
-            );
-
-        }
-
-
-        if (
-            minutesUntilNext <= 2 &&
-            minutesUntilNext > 0
-        ) {
-
-            sessionClockValue.classList.add(
-                "clock-warning"
-            );
-
-        }
-
-    }
-
-
-    /* ================================================
-       DATE
-    ================================================ */
-
-    document.getElementById(
-        "date-value"
-    ).innerText =
-        getTehranDate(
-            now
-        );
-
-
-    /* ================================================
-       MARKET STATUS
-    ================================================ */
-
-    updateMarketSessions();
-
-}
-
-
-/* =====================================================
-   START CLOCK
-===================================================== */
-
-updateClocks();
+updateOverlay();
 
 setInterval(
-    updateClocks,
+    updateOverlay,
     1000
 );
 
@@ -2410,7 +1884,6 @@ setInterval(
             );
 
         }
-
         else {
 
             likeState.style.display =
@@ -2429,4 +1902,3 @@ setInterval(
 
 </body>
 </html>
-```
