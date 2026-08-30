@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -269,6 +270,107 @@ body::before {
 
     font-variant-numeric:
         tabular-nums;
+}
+
+
+/* =====================================================
+   NEXT EVENT
+===================================================== */
+
+.next-event-value {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    white-space: nowrap;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 22px;
+
+    font-weight: bold;
+
+    line-height: 24px;
+
+    height: 24px;
+
+    color: #00ff88;
+
+    text-shadow:
+        0 0 8px #00ff88;
+
+    font-variant-numeric:
+        tabular-nums;
+}
+
+
+.next-event-value .next-session {
+
+    color: #00ff88;
+
+}
+
+
+.next-event-value .next-open {
+
+    color: #ffae4a;
+
+    font-size: 17px;
+
+}
+
+
+.next-event-value .next-separator {
+
+    color: rgba(255,255,255,0.45);
+
+    font-size: 15px;
+}
+
+
+.next-event-value .next-countdown {
+
+    color: #00ff88;
+
+    font-size: 20px;
+
+    font-variant-numeric:
+        tabular-nums;
+}
+
+
+.next-event-value.warning {
+
+    animation:
+        nextEventWarning 0.72s ease-in-out infinite;
+}
+
+
+.next-event-value.warning .next-countdown {
+
+    color: #ff3333;
+
+    text-shadow:
+        0 0 6px #ff3333,
+        0 0 14px #ff3333;
+}
+
+
+@keyframes nextEventWarning {
+
+    0%,
+    100% {
+
+        opacity: 1;
+    }
+
+    50% {
+
+        opacity: 0.25;
+    }
 }
 
 
@@ -1609,7 +1711,7 @@ body::before {
 
 
 <!-- =====================================================
-     3. SYDNEY SESSION CLOCK
+     3. NEXT EVENT
 ===================================================== -->
 
 <div class="top-item">
@@ -1618,9 +1720,18 @@ body::before {
 
         <svg class="icon" viewBox="0 0 24 24">
 
-            <path
-                d="M12 1v22M1 12h22"
+            <circle
+                cx="12"
+                cy="12"
+                r="9"
                 stroke-width="2"
+            />
+
+            <path
+                d="M12 7v5l3 2"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
             />
 
         </svg>
@@ -1628,12 +1739,41 @@ body::before {
 
         <div class="text-box">
 
-            <span id="session-clock-label">
-                SYDNEY
+            <span>
+                NEXT
             </span>
 
-            <span id="sydney-value">
-                --:--:--
+            <span
+                id="next-event-value"
+                class="next-event-value"
+            >
+
+                <span
+                    id="next-session"
+                    class="next-session"
+                >
+                    LON
+                </span>
+
+                <span
+                    class="next-open"
+                >
+                    OPEN
+                </span>
+
+                <span
+                    class="next-separator"
+                >
+                    ·
+                </span>
+
+                <span
+                    id="next-countdown"
+                    class="next-countdown"
+                >
+                    --:--:--
+                </span>
+
             </span>
 
         </div>
@@ -2066,18 +2206,6 @@ const marketValue =
     );
 
 
-const sessionClockLabel =
-    document.getElementById(
-        "session-clock-label"
-    );
-
-
-const sydneyClockValue =
-    document.getElementById(
-        "sydney-value"
-    );
-
-
 const tehranClockValue =
     document.getElementById(
         "tehran-value"
@@ -2087,6 +2215,24 @@ const tehranClockValue =
 const dateValue =
     document.getElementById(
         "date-value"
+    );
+
+
+const nextEventValue =
+    document.getElementById(
+        "next-event-value"
+    );
+
+
+const nextSession =
+    document.getElementById(
+        "next-session"
+    );
+
+
+const nextCountdown =
+    document.getElementById(
+        "next-countdown"
     );
 
 
@@ -2949,6 +3095,211 @@ function getGregorianDate(
 
 
 /* =====================================================
+   NEXT EVENT
+   نزدیک‌ترین Session بعدی
+===================================================== */
+
+function getNextSessionOpen(
+    currentMinute,
+    date = new Date()
+) {
+
+    const sessions =
+        Object.entries(
+            SESSION_CONFIG
+        );
+
+
+    let next = null;
+
+    let smallestDiff =
+        Infinity;
+
+
+    sessions.forEach(
+        ([id, session]) => {
+
+            const open =
+                timeToMinutes(
+                    session.open
+                );
+
+
+            let diff =
+                open -
+                currentMinute;
+
+
+            if (
+                diff <= 0
+            ) {
+
+                diff += 1440;
+
+            }
+
+
+            if (
+                diff < smallestDiff
+            ) {
+
+                smallestDiff =
+                    diff;
+
+
+                next = {
+
+                    id,
+
+                    ...session,
+
+                    diff
+
+                };
+
+            }
+
+        }
+    );
+
+
+    return next;
+
+}
+
+
+/* =====================================================
+   زمان دقیق تا Session بعدی
+===================================================== */
+
+function updateNextEvent(
+    now = new Date()
+) {
+
+    const tehranParts =
+        getTehranDateParts(
+            now
+        );
+
+
+    const currentMinute =
+        tehranParts.hour * 60 +
+        tehranParts.minute +
+        tehranParts.second / 60;
+
+
+    const next =
+        getNextSessionOpen(
+            currentMinute,
+            now
+        );
+
+
+    if (!next) {
+
+        nextSession.textContent =
+            "---";
+
+
+        nextCountdown.textContent =
+            "--:--:--";
+
+
+        return;
+
+    }
+
+
+    nextSession.textContent =
+        next.shortName;
+
+
+    const openMinutes =
+        timeToMinutes(
+            next.open
+        );
+
+
+    let currentSeconds =
+        tehranParts.hour * 3600 +
+        tehranParts.minute * 60 +
+        tehranParts.second;
+
+
+    let openSeconds =
+        openMinutes * 60;
+
+
+    let secondsUntil =
+        openSeconds -
+        currentSeconds;
+
+
+    if (
+        secondsUntil <= 0
+    ) {
+
+        secondsUntil +=
+            24 * 60 * 60;
+
+    }
+
+
+    const hours =
+        Math.floor(
+            secondsUntil / 3600
+        );
+
+
+    const minutes =
+        Math.floor(
+            (secondsUntil % 3600) / 60
+        );
+
+
+    const seconds =
+        secondsUntil % 60;
+
+
+    nextCountdown.textContent =
+
+        String(hours)
+            .padStart(2, "0")
+
+        + ":" +
+
+        String(minutes)
+            .padStart(2, "0")
+
+        + ":" +
+
+        String(seconds)
+            .padStart(2, "0");
+
+
+    if (
+        secondsUntil <=
+        OPEN_WARNING_MINUTES * 60
+    ) {
+
+        nextEventValue.classList.add(
+            "warning"
+        );
+
+    }
+
+    else {
+
+        nextEventValue.classList.remove(
+            "warning"
+        );
+
+    }
+
+}
+
+
+/* =====================================================
    CLOCKS
 ===================================================== */
 
@@ -3001,18 +3352,13 @@ function updateClocks() {
 
 
     /* -----------------------------------------------
-       Session Clock
+       Next Event
        بخش سوم نوار بالا
     ------------------------------------------------ */
 
-    sessionClockLabel.textContent =
-        "SYDNEY";
-
-
-    sydneyClockValue.textContent =
-        getTehranTime(
-            now
-        );
+    updateNextEvent(
+        now
+    );
 
 
     /* -----------------------------------------------
@@ -3116,3 +3462,4 @@ setInterval(
 </body>
 
 </html>
+```
