@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -362,11 +363,6 @@ body::before {
 }
 
 
-/*
-   هر دو حالت در یک نقطه قرار می‌گیرند
-   تا نوار جابه‌جا نشود.
-*/
-
 .promo-state {
     position: absolute;
 
@@ -417,13 +413,6 @@ body::before {
 }
 
 
-/*
-   در هر ۱۰ ثانیه،
-   زنگوله دو بار لرزش دارد.
-
-   حرکت اصلی در نیمه چرخه اتفاق می‌افتد.
-*/
-
 .subscribe-state .bell-icon {
     animation:
         bellMiddle 10s ease-in-out infinite;
@@ -432,21 +421,13 @@ body::before {
 
 @keyframes bellMiddle {
 
-    /* شروع */
-
     0% {
         transform: rotate(0deg);
     }
 
-
-    /* تا نیمه تقریباً ثابت */
-
     45% {
         transform: rotate(0deg);
     }
-
-
-    /* لرزش اول */
 
     47% {
         transform: rotate(-6deg);
@@ -464,12 +445,6 @@ body::before {
         transform: rotate(0deg);
     }
 
-
-    /* مکث کوتاه */
-
-
-    /* لرزش دوم */
-
     53% {
         transform: rotate(-6deg);
     }
@@ -485,9 +460,6 @@ body::before {
     57.5% {
         transform: rotate(0deg);
     }
-
-
-    /* پایان */
 
     100% {
         transform: rotate(0deg);
@@ -518,8 +490,6 @@ body::before {
 }
 
 
-/* آیکون لایک */
-
 .like-icon {
     stroke: #4da6ff;
 
@@ -534,11 +504,6 @@ body::before {
    انیمیشن لایک
 ===================================================== */
 
-/*
-   وقتی LIKE نمایش داده می‌شود،
-   دو بار کوچک و بزرگ می‌شود.
-*/
-
 .like-pulse {
     animation:
         likePulse 10s ease-in-out infinite;
@@ -547,14 +512,9 @@ body::before {
 
 @keyframes likePulse {
 
-    /* شروع */
-
     0% {
         transform: scale(0.82);
     }
-
-
-    /* حرکت اول */
 
     8% {
         transform: scale(1.10);
@@ -564,9 +524,6 @@ body::before {
         transform: scale(0.88);
     }
 
-
-    /* حرکت دوم */
-
     22% {
         transform: scale(1.12);
     }
@@ -575,15 +532,9 @@ body::before {
         transform: scale(0.88);
     }
 
-
-    /* برگشت آرام */
-
     38% {
         transform: scale(1);
     }
-
-
-    /* بقیه زمان ثابت */
 
     100% {
         transform: scale(1);
@@ -667,16 +618,17 @@ body::before {
 }
 
 
-
 /* =====================================================
-   هشدار تغییر سشن - ۵ دقیقه مانده به شروع سشن بعدی
+   هشدار تغییر سشن
 ===================================================== */
 
 #newyork-value.session-time-blink {
     animation: sessionTimeBlink 1s ease-in-out infinite;
 }
 
+
 @keyframes sessionTimeBlink {
+
     0%, 100% {
         opacity: 1;
     }
@@ -685,12 +637,12 @@ body::before {
         opacity: 0.15;
     }
 }
+
 </style>
+
 </head>
 
-
 <body>
-
 
 <!-- =====================================================
      فریم اصلی
@@ -698,333 +650,20 @@ body::before {
 
 <div class="main-frame"></div>
 
-
 <!-- =====================================================
      نوار بالا
 ===================================================== -->
 
 <div class="top-bar">
 
+```
+<!-- SESSION -->
 
-    <!-- SESSION -->
+<div class="top-item">
 
-    <div class="top-item">
+    <div class="item-row">
 
-        <div class="item-row">
-
-            <svg class="icon" viewBox="0 0 24 24">
-
-                <circle
-                    cx="12"
-                    cy="12"
-                    r="10"
-                    stroke-width="2"
-                />
-
-                <path
-                    d="M12 6v6l4 2"
-                    stroke-width="2"
-                />
-
-            </svg>
-
-
-            <div class="text-box">
-
-                <span>SESSION</span>
-
-                <span id="session-value">
-                    London
-                </span>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <div class="divider"></div>
-
-
-    <!-- NEW YORK -->
-
-    <div class="top-item">
-
-        <div class="item-row">
-
-            <svg class="icon" viewBox="0 0 24 24">
-
-                <path
-                    d="M12 1v22M1 12h22"
-                    stroke-width="2"
-                />
-
-            </svg>
-
-
-            <div class="text-box">
-
-                <span id="session-clock-label">NEW YORK</span>
-
-                <span id="newyork-value">
-                    --:--
-                </span>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <div class="divider"></div>
-
-
-    <!-- TEHRAN -->
-
-    <div class="top-item">
-
-        <div class="item-row">
-
-            <svg class="icon" viewBox="0 0 24 24">
-
-                <circle
-                    cx="12"
-                    cy="12"
-                    r="10"
-                    stroke-width="2"
-                />
-
-                <path
-                    d="M12 12l4 2"
-                    stroke-width="2"
-                />
-
-            </svg>
-
-
-            <div class="text-box">
-
-                <span>TEHRAN</span>
-
-                <span id="tehran-value">
-                    --:--
-                </span>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <div class="divider"></div>
-
-
-    <!-- DATE -->
-
-    <div class="top-item">
-
-        <div class="item-row">
-
-            <svg class="icon" viewBox="0 0 24 24">
-
-                <rect
-                    x="3"
-                    y="5"
-                    width="18"
-                    height="16"
-                    stroke-width="2"
-                    fill="none"
-                />
-
-                <line
-                    x1="3"
-                    y1="10"
-                    x2="21"
-                    y2="10"
-                    stroke-width="2"
-                />
-
-            </svg>
-
-
-            <div class="text-box">
-
-                <span>DATE</span>
-
-                <span id="date-value">
-                    -- --- ----
-                </span>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <div class="divider"></div>
-
-
-    <!-- NEWS -->
-
-    <div class="top-item">
-
-        <div class="item-row">
-
-            <svg class="icon" viewBox="0 0 24 24">
-
-                <rect
-                    x="3"
-                    y="4"
-                    width="18"
-                    height="16"
-                    stroke-width="2"
-                    fill="none"
-                />
-
-                <line
-                    x1="7"
-                    y1="8"
-                    x2="17"
-                    y2="8"
-                    stroke-width="2"
-                />
-
-                <line
-                    x1="7"
-                    y1="12"
-                    x2="17"
-                    y2="12"
-                    stroke-width="2"
-                />
-
-            </svg>
-
-
-            <div class="text-box">
-
-                <span>NEWS</span>
-
-                <span id="news-value">
-                    Loading...
-                </span>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- =====================================================
-     وبکم
-===================================================== -->
-
-<div class="webcam-frame"></div>
-
-
-<!-- =====================================================
-     نوار پایین
-===================================================== -->
-
-<div class="bottom-bar">
-
-
-    <!-- =================================================
-         SUBSCRIBE / LIKE
-    ================================================== -->
-
-    <div
-        class="bottom-item subscribe"
-        id="subscribe-like"
-    >
-
-
-        <!-- SUBSCRIBE -->
-
-        <div
-            class="promo-state subscribe-state"
-        >
-
-            <svg
-                class="bottom-icon bell-icon"
-                viewBox="0 0 24 24"
-            >
-
-                <path
-                    d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"
-                    stroke-width="2.4"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                />
-
-                <path
-                    d="M10 21h4"
-                    stroke-width="2.4"
-                    stroke-linecap="round"
-                />
-
-            </svg>
-
-
-            <span>
-                SUBSCRIBE
-            </span>
-
-        </div>
-
-
-        <!-- LIKE -->
-
-        <div
-            class="promo-state like-state"
-        >
-
-            <svg
-                class="bottom-icon like-icon"
-                viewBox="0 0 24 24"
-            >
-
-                <path
-                    d="M7 10v12H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h3z"
-                    stroke-width="2.2"
-                    stroke-linejoin="round"
-                />
-
-                <path
-                    d="M7 10l4-8c1.5 0 3 1 3 2.5V8h6a2 2 0 0 1 2 2.3l-1.2 8A2 2 0 0 1 18.8 20H7"
-                    stroke-width="2.2"
-                    stroke-linejoin="round"
-                />
-
-            </svg>
-
-
-            <span>
-                LIKE
-            </span>
-
-        </div>
-
-    </div>
-
-
-    <div class="bottom-divider"></div>
-
-
-    <!-- WEBSITE -->
-
-    <div class="bottom-item">
-
-        <svg
-            class="bottom-icon"
-            viewBox="0 0 24 24"
-        >
+        <svg class="icon" viewBox="0 0 24 24">
 
             <circle
                 cx="12"
@@ -1034,164 +673,477 @@ body::before {
             />
 
             <path
-                d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"
+                d="M12 6v6l4 2"
                 stroke-width="2"
             />
 
         </svg>
 
 
-        <span>
-            www.aparat.com/FX_LEVEL3
-        </span>
+        <div class="text-box">
 
-    </div>
+            <span>SESSION</span>
 
+            <span id="session-value">
+                London
+            </span>
 
-    <div class="bottom-divider"></div>
-
-
-    <!-- INSTAGRAM -->
-
-    <div class="bottom-item">
-
-        <svg
-            class="bottom-icon"
-            viewBox="0 0 24 24"
-        >
-
-            <rect
-                x="3"
-                y="3"
-                width="18"
-                height="18"
-                rx="5"
-                stroke-width="2"
-            />
-
-            <circle
-                cx="12"
-                cy="12"
-                r="4"
-                stroke-width="2"
-            />
-
-            <circle
-                cx="17"
-                cy="7"
-                r="1.5"
-                fill="#fff"
-            />
-
-        </svg>
-
-
-        <span>
-            instagram.com/fx_level3
-        </span>
-
-    </div>
-
-
-    <div class="bottom-divider"></div>
-
-
-    <!-- YOUTUBE -->
-
-    <div class="bottom-item">
-
-        <svg
-            class="bottom-icon"
-            viewBox="0 0 24 24"
-        >
-
-            <rect
-                x="3"
-                y="6"
-                width="18"
-                height="12"
-                rx="3"
-                stroke-width="2"
-            />
-
-            <polygon
-                points="10,9 16,12 10,15"
-                fill="#fff"
-            />
-
-        </svg>
-
-
-        <span>
-            youtube.com/@FX_LEVEL3
-        </span>
-
-    </div>
-
-
-    <div class="bottom-divider"></div>
-
-
-    <!-- TELEGRAM -->
-
-    <div class="bottom-item">
-
-        <svg
-            class="bottom-icon"
-            viewBox="0 0 24 24"
-        >
-
-            <path
-                d="M22 2L11 13"
-                stroke-width="2"
-            />
-
-            <path
-                d="M22 2L15 22l-4-9-9-4 20-7z"
-                stroke-width="2"
-            />
-
-        </svg>
-
-
-        <span>
-            t.me/FX_LEVEL3
-        </span>
-
-    </div>
-
-
-    <div class="bottom-divider"></div>
-
-
-    <!-- MEYSAM GHASEMI -->
-
-    <div class="bottom-item vip">
-
-        <svg
-            class="bottom-icon diamond"
-            viewBox="0 0 24 24"
-        >
-
-            <polygon
-                points="12 2 22 9 12 22 2 9"
-                stroke-width="2"
-            />
-
-        </svg>
-
-
-        <span>
-            Meysam Ghasemi
-        </span>
-
-
-        <div class="shine"></div>
+        </div>
 
     </div>
 
 </div>
 
+
+<div class="divider"></div>
+
+
+<!-- CURRENT SESSION CLOCK -->
+
+<div class="top-item">
+
+    <div class="item-row">
+
+        <svg class="icon" viewBox="0 0 24 24">
+
+            <path
+                d="M12 1v22M1 12h22"
+                stroke-width="2"
+            />
+
+        </svg>
+
+
+        <div class="text-box">
+
+            <span id="session-clock-label">
+                LONDON
+            </span>
+
+            <span id="newyork-value">
+                --:--
+            </span>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<div class="divider"></div>
+
+
+<!-- TEHRAN -->
+
+<div class="top-item">
+
+    <div class="item-row">
+
+        <svg class="icon" viewBox="0 0 24 24">
+
+            <circle
+                cx="12"
+                cy="12"
+                r="10"
+                stroke-width="2"
+            />
+
+            <path
+                d="M12 12l4 2"
+                stroke-width="2"
+            />
+
+        </svg>
+
+
+        <div class="text-box">
+
+            <span>TEHRAN</span>
+
+            <span id="tehran-value">
+                --:--
+            </span>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<div class="divider"></div>
+
+
+<!-- DATE -->
+
+<div class="top-item">
+
+    <div class="item-row">
+
+        <svg class="icon" viewBox="0 0 24 24">
+
+            <rect
+                x="3"
+                y="5"
+                width="18"
+                height="16"
+                stroke-width="2"
+                fill="none"
+            />
+
+            <line
+                x1="3"
+                y1="10"
+                x2="21"
+                y2="10"
+                stroke-width="2"
+            />
+
+        </svg>
+
+
+        <div class="text-box">
+
+            <span>DATE</span>
+
+            <span id="date-value">
+                -- --- ----
+            </span>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<div class="divider"></div>
+
+
+<!-- NEWS -->
+
+<div class="top-item">
+
+    <div class="item-row">
+
+        <svg class="icon" viewBox="0 0 24 24">
+
+            <rect
+                x="3"
+                y="4"
+                width="18"
+                height="16"
+                stroke-width="2"
+                fill="none"
+            />
+
+            <line
+                x1="7"
+                y1="8"
+                x2="17"
+                y2="8"
+                stroke-width="2"
+            />
+
+            <line
+                x1="7"
+                y1="12"
+                x2="17"
+                y2="12"
+                stroke-width="2"
+            />
+
+        </svg>
+
+
+        <div class="text-box">
+
+            <span>NEWS</span>
+
+            <span id="news-value">
+                Loading...
+            </span>
+
+        </div>
+
+    </div>
+
+</div>
+```
+
+</div>
+
+<!-- =====================================================
+     وبکم
+===================================================== -->
+
+<div class="webcam-frame"></div>
+
+<!-- =====================================================
+     نوار پایین
+===================================================== -->
+
+<div class="bottom-bar">
+
+```
+<!-- =================================================
+     SUBSCRIBE / LIKE
+================================================== -->
+
+<div
+    class="bottom-item subscribe"
+    id="subscribe-like"
+>
+
+
+    <!-- SUBSCRIBE -->
+
+    <div
+        class="promo-state subscribe-state"
+    >
+
+        <svg
+            class="bottom-icon bell-icon"
+            viewBox="0 0 24 24"
+        >
+
+            <path
+                d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"
+                stroke-width="2.4"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            />
+
+            <path
+                d="M10 21h4"
+                stroke-width="2.4"
+                stroke-linecap="round"
+            />
+
+        </svg>
+
+
+        <span>
+            SUBSCRIBE
+        </span>
+
+    </div>
+
+
+    <!-- LIKE -->
+
+    <div
+        class="promo-state like-state"
+    >
+
+        <svg
+            class="bottom-icon like-icon"
+            viewBox="0 0 24 24"
+        >
+
+            <path
+                d="M7 10v12H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h3z"
+                stroke-width="2.2"
+                stroke-linejoin="round"
+            />
+
+            <path
+                d="M7 10l4-8c1.5 0 3 1 3 2.5V8h6a2 2 0 0 1 2 2.3l-1.2 8A2 2 0 0 1 18.8 20H7"
+                stroke-width="2.2"
+                stroke-linejoin="round"
+            />
+
+        </svg>
+
+
+        <span>
+            LIKE
+        </span>
+
+    </div>
+
+</div>
+
+
+<div class="bottom-divider"></div>
+
+
+<!-- WEBSITE -->
+
+<div class="bottom-item">
+
+    <svg
+        class="bottom-icon"
+        viewBox="0 0 24 24"
+    >
+
+        <circle
+            cx="12"
+            cy="12"
+            r="10"
+            stroke-width="2"
+        />
+
+        <path
+            d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"
+            stroke-width="2"
+        />
+
+    </svg>
+
+
+    <span>
+        www.aparat.com/FX_LEVEL3
+    </span>
+
+</div>
+
+
+<div class="bottom-divider"></div>
+
+
+<!-- INSTAGRAM -->
+
+<div class="bottom-item">
+
+    <svg
+        class="bottom-icon"
+        viewBox="0 0 24 24"
+    >
+
+        <rect
+            x="3"
+            y="3"
+            width="18"
+            height="18"
+            rx="5"
+            stroke-width="2"
+        />
+
+        <circle
+            cx="12"
+            cy="12"
+            r="4"
+            stroke-width="2"
+        />
+
+        <circle
+            cx="17"
+            cy="7"
+            r="1.5"
+            fill="#fff"
+        />
+
+    </svg>
+
+
+    <span>
+        instagram.com/fx_level3
+    </span>
+
+</div>
+
+
+<div class="bottom-divider"></div>
+
+
+<!-- YOUTUBE -->
+
+<div class="bottom-item">
+
+    <svg
+        class="bottom-icon"
+        viewBox="0 0 24 24"
+    >
+
+        <rect
+            x="3"
+            y="6"
+            width="18"
+            height="12"
+            rx="3"
+            stroke-width="2"
+        />
+
+        <polygon
+            points="10,9 16,12 10,15"
+            fill="#fff"
+        />
+
+    </svg>
+
+
+    <span>
+        youtube.com/@FX_LEVEL3
+    </span>
+
+</div>
+
+
+<div class="bottom-divider"></div>
+
+
+<!-- TELEGRAM -->
+
+<div class="bottom-item">
+
+    <svg
+        class="bottom-icon"
+        viewBox="0 0 24 24"
+    >
+
+        <path
+            d="M22 2L11 13"
+            stroke-width="2"
+        />
+
+        <path
+            d="M22 2L15 22l-4-9-9-4 20-7z"
+            stroke-width="2"
+        />
+
+    </svg>
+
+
+    <span>
+        t.me/FX_LEVEL3
+    </span>
+
+</div>
+
+
+<div class="bottom-divider"></div>
+
+
+<!-- MEYSAM GHASEMI -->
+
+<div class="bottom-item vip">
+
+    <svg
+        class="bottom-icon diamond"
+        viewBox="0 0 24 24"
+    >
+
+        <polygon
+            points="12 2 22 9 12 22 2 9"
+            stroke-width="2"
+        />
+
+    </svg>
+
+
+    <span>
+        Meysam Ghasemi
+    </span>
+
+
+    <div class="shine"></div>
+
+</div>
+```
+
+</div>
 
 <!-- =====================================================
      JAVASCRIPT
@@ -1205,204 +1157,649 @@ body::before {
 ===================================================== */
 
 /*
-   زمان شروع سشن‌ها بر اساس وقت تهران:
-   Sydney    = 12:30
-   Tokyo     = 03:30
-   London    = 10:30
-   New York  = 16:30
+   منطق جدید:
 
-   منطق انتخاب سشن:
-   همیشه آخرین سشنی که شروع شده، سشن فعال است.
-   بنابراین از 00:00 تا 03:29، آخرین سشن بازشده New York است
-   که از روز قبل در حال فعالیت بوده است.
+   هر سشن بر اساس ساعت محلی همان شهر تعریف می‌شود.
+
+   Sydney    = 08:00 Australia/Sydney
+   Tokyo     = 09:00 Asia/Tokyo
+   London    = 08:00 Europe/London
+   New York  = 08:00 America/New_York
+
+   بنابراین تغییرات DST به صورت خودکار توسط
+   IANA Time Zone و Intl.DateTimeFormat محاسبه می‌شود.
+
+   Tokyo:
+   Asia/Tokyo = UTC+9
+   بدون DST
+
+   London:
+   Europe/London
+   دارای GMT / BST
+
+   New York:
+   America/New_York
+   دارای EST / EDT
+
+   Sydney:
+   Australia/Sydney
+   دارای AEST / AEDT
 */
 
+
 const tradingSessions = [
+
     {
         name: "Sydney",
-        start: 12 * 60 + 30,
-        timeZone: "Australia/Sydney"
+
+        timeZone: "Australia/Sydney",
+
+        openHour: 8,
+
+        openMinute: 0
     },
+
     {
         name: "Tokyo",
-        start: 3 * 60 + 30,
-        timeZone: "Asia/Tokyo"
+
+        timeZone: "Asia/Tokyo",
+
+        openHour: 9,
+
+        openMinute: 0
     },
+
     {
         name: "London",
-        start: 10 * 60 + 30,
-        timeZone: "Europe/London"
+
+        timeZone: "Europe/London",
+
+        openHour: 8,
+
+        openMinute: 0
     },
+
     {
         name: "New York",
-        start: 16 * 60 + 30,
-        timeZone: "America/New_York"
+
+        timeZone: "America/New_York",
+
+        openHour: 8,
+
+        openMinute: 0
     }
+
 ];
 
+
 const sessionValue =
-    document.getElementById("session-value");
+    document.getElementById(
+        "session-value"
+    );
+
 
 const sessionClockLabel =
-    document.getElementById("session-clock-label");
+    document.getElementById(
+        "session-clock-label"
+    );
+
 
 const sessionClockValue =
-    document.getElementById("newyork-value");
+    document.getElementById(
+        "newyork-value"
+    );
+
 
 const tehranClockValue =
-    document.getElementById("tehran-value");
+    document.getElementById(
+        "tehran-value"
+    );
 
-function getTehranParts(date = new Date()) {
 
-    const parts = new Intl.DateTimeFormat(
-        "en-US",
-        {
-            timeZone: "Asia/Tehran",
-            hour: "2-digit",
-            minute: "2-digit",
-            hourCycle: "h23"
-        }
-    ).formatToParts(date);
+/* =====================================================
+   گرفتن اجزای تاریخ در یک Time Zone
+===================================================== */
+
+function getTimeZoneParts(
+    date,
+    timeZone
+) {
+
+    const parts =
+        new Intl.DateTimeFormat(
+            "en-US",
+            {
+                timeZone: timeZone,
+
+                year: "numeric",
+
+                month: "2-digit",
+
+                day: "2-digit",
+
+                hour: "2-digit",
+
+                minute: "2-digit",
+
+                second: "2-digit",
+
+                hourCycle: "h23"
+            }
+        ).formatToParts(date);
+
 
     const result = {};
 
+
     parts.forEach(part => {
-        if (part.type !== "literal") {
-            result[part.type] = part.value;
+
+        if (
+            part.type !== "literal"
+        ) {
+
+            result[part.type] =
+                part.value;
+
         }
+
     });
 
+
     return {
-        hour: parseInt(result.hour, 10),
-        minute: parseInt(result.minute, 10)
+
+        year:
+            parseInt(
+                result.year,
+                10
+            ),
+
+        month:
+            parseInt(
+                result.month,
+                10
+            ),
+
+        day:
+            parseInt(
+                result.day,
+                10
+            ),
+
+        hour:
+            parseInt(
+                result.hour,
+                10
+            ),
+
+        minute:
+            parseInt(
+                result.minute,
+                10
+            ),
+
+        second:
+            parseInt(
+                result.second,
+                10
+            )
+
     };
+
 }
 
-function getActiveSession(tehranMinutes) {
 
-    /*
-       ترتیب از جدیدترین شروع به قدیمی‌ترین شروع است.
-       اگر قبل از 03:30 باشیم، New York سشن فعال باقی می‌ماند
-       چون شروع آن در 16:30 روز قبل بوده است.
-    */
+/* =====================================================
+   تبدیل زمان یک Time Zone به دقیقه روز
+===================================================== */
 
-    if (tehranMinutes >= 16 * 60 + 30) {
-        return tradingSessions[3];
-    }
-
-    if (tehranMinutes >= 12 * 60 + 30) {
-        return tradingSessions[0];
-    }
-
-    if (tehranMinutes >= 10 * 60 + 30) {
-        return tradingSessions[2];
-    }
-
-    if (tehranMinutes >= 3 * 60 + 30) {
-        return tradingSessions[1];
-    }
-
-    return tradingSessions[3];
-}
-
-function getNextSession(tehranMinutes) {
-
-    /*
-       نزدیک‌ترین شروع بعدی را پیدا می‌کنیم.
-       اگر از آخرین شروع روز عبور کرده باشیم، شروع Sydney
-       در روز بعد، شروع بعدی خواهد بود.
-    */
-
-    const futureSessions = tradingSessions
-        .filter(session => session.start > tehranMinutes)
-        .sort((a, b) => a.start - b.start);
-
-    return futureSessions.length > 0
-        ? futureSessions[0]
-        : tradingSessions[0];
-}
-
-function getMinutesUntilNextSession(
-    tehranMinutes,
-    nextSession
+function getLocalMinutes(
+    date,
+    timeZone
 ) {
 
-    let difference =
-        nextSession.start - tehranMinutes;
+    const parts =
+        getTimeZoneParts(
+            date,
+            timeZone
+        );
 
-    if (difference <= 0) {
-        difference += 24 * 60;
-    }
 
-    return difference;
+    return (
+        parts.hour * 60 +
+        parts.minute
+    );
+
 }
 
-function getSessionTime(timeZone, date = new Date()) {
+
+/* =====================================================
+   تبدیل زمان محلی سشن به UTC Timestamp
+===================================================== */
+
+/*
+   این تابع برای پیدا کردن زمان واقعی شروع سشن
+   در همان روز محلی استفاده می‌شود.
+
+   چون JavaScript به صورت مستقیم امکان ساختن
+   Date در یک Time Zone دلخواه را ندارد،
+   Offset واقعی Time Zone را از Intl استخراج می‌کنیم.
+*/
+
+function getTimeZoneOffset(
+    date,
+    timeZone
+) {
+
+    const parts =
+        new Intl.DateTimeFormat(
+            "en-US",
+            {
+                timeZone: timeZone,
+
+                year: "numeric",
+
+                month: "2-digit",
+
+                day: "2-digit",
+
+                hour: "2-digit",
+
+                minute: "2-digit",
+
+                second: "2-digit",
+
+                hourCycle: "h23"
+            }
+        ).formatToParts(date);
+
+
+    const values = {};
+
+
+    parts.forEach(part => {
+
+        if (
+            part.type !== "literal"
+        ) {
+
+            values[part.type] =
+                part.value;
+
+        }
+
+    });
+
+
+    const asUTC =
+        Date.UTC(
+            Number(values.year),
+            Number(values.month) - 1,
+            Number(values.day),
+            Number(values.hour),
+            Number(values.minute),
+            Number(values.second)
+        );
+
+
+    return (
+        asUTC -
+        date.getTime()
+    );
+
+}
+
+
+/* =====================================================
+   پیدا کردن Timestamp شروع یک سشن
+===================================================== */
+
+function getSessionOpenTimestamp(
+    date,
+    session,
+    dayOffset = 0
+) {
+
+    const localParts =
+        getTimeZoneParts(
+            date,
+            session.timeZone
+        );
+
+
+    /*
+       ابتدا تاریخ محلی سشن را می‌سازیم.
+    */
+
+    const localDate =
+        new Date(
+            Date.UTC(
+                localParts.year,
+                localParts.month - 1,
+                localParts.day + dayOffset,
+                session.openHour,
+                session.openMinute,
+                0
+            )
+        );
+
+
+    /*
+       Offset Time Zone را در محدوده موردنظر
+       محاسبه می‌کنیم.
+    */
+
+    const offset =
+        getTimeZoneOffset(
+            localDate,
+            session.timeZone
+        );
+
+
+    return (
+        localDate.getTime() -
+        offset
+    );
+
+}
+
+
+/* =====================================================
+   پیدا کردن آخرین زمان شروع هر سشن
+===================================================== */
+
+function getLastSessionOpen(
+    now,
+    session
+) {
+
+    const currentOpen =
+        getSessionOpenTimestamp(
+            now,
+            session,
+            0
+        );
+
+
+    /*
+       اگر شروع امروز گذشته باشد،
+       همین شروع آخرین شروع است.
+    */
+
+    if (
+        currentOpen <=
+        now.getTime()
+    ) {
+
+        return currentOpen;
+
+    }
+
+
+    /*
+       اگر هنوز شروع امروز نرسیده،
+       شروع دیروز آخرین شروع است.
+    */
+
+    return getSessionOpenTimestamp(
+        now,
+        session,
+        -1
+    );
+
+}
+
+
+/* =====================================================
+   تشخیص سشن فعال
+===================================================== */
+
+function getActiveSession(
+    now
+) {
+
+    let activeSession =
+        tradingSessions[
+            tradingSessions.length - 1
+        ];
+
+
+    let latestOpen = -Infinity;
+
+
+    tradingSessions.forEach(
+        session => {
+
+            const open =
+                getLastSessionOpen(
+                    now,
+                    session
+                );
+
+
+            if (
+                open >
+                latestOpen
+            ) {
+
+                latestOpen =
+                    open;
+
+                activeSession =
+                    session;
+
+            }
+
+        }
+    );
+
+
+    return {
+
+        session:
+            activeSession,
+
+        openTimestamp:
+            latestOpen
+
+    };
+
+}
+
+
+/* =====================================================
+   پیدا کردن سشن بعدی
+===================================================== */
+
+function getNextSession(
+    now
+) {
+
+    let nextSession = null;
+
+    let nextOpen = Infinity;
+
+
+    tradingSessions.forEach(
+        session => {
+
+            const todayOpen =
+                getSessionOpenTimestamp(
+                    now,
+                    session,
+                    0
+                );
+
+
+            const tomorrowOpen =
+                getSessionOpenTimestamp(
+                    now,
+                    session,
+                    1
+                );
+
+
+            let candidate;
+
+
+            if (
+                todayOpen >
+                now.getTime()
+            ) {
+
+                candidate =
+                    todayOpen;
+
+            } else {
+
+                candidate =
+                    tomorrowOpen;
+
+            }
+
+
+            if (
+                candidate <
+                nextOpen
+            ) {
+
+                nextOpen =
+                    candidate;
+
+                nextSession =
+                    session;
+
+            }
+
+        }
+    );
+
+
+    return {
+
+        session:
+            nextSession,
+
+        openTimestamp:
+            nextOpen
+
+    };
+
+}
+
+
+/* =====================================================
+   فرمت ساعت محلی
+===================================================== */
+
+function getSessionTime(
+    timeZone,
+    date = new Date()
+) {
 
     return new Intl.DateTimeFormat(
         "en-US",
         {
-            timeZone,
+            timeZone: timeZone,
+
             hour: "2-digit",
+
             minute: "2-digit",
+
             hour12: true
         }
     ).format(date);
+
 }
+
+
+/* =====================================================
+   فرمت تاریخ تهران
+===================================================== */
+
+function getTehranDate(
+    date = new Date()
+) {
+
+    return new Intl.DateTimeFormat(
+        "en-US",
+        {
+            timeZone: "Asia/Tehran",
+
+            day: "2-digit",
+
+            month: "short",
+
+            year: "numeric"
+        }
+    ).format(date);
+
+}
+
+
+/* =====================================================
+   آپدیت ساعت‌ها
+===================================================== */
 
 function updateClocks() {
 
-    const now = new Date();
+    const now =
+        new Date();
 
-    /* ================================
-       زمان تهران برای تشخیص سشن
-    ================================ */
 
-    const tehran = getTehranParts(now);
-
-    const tehranMinutes =
-        tehran.hour * 60 + tehran.minute;
-
-    /* ================================
-       نمایش ساعت واقعی تهران
-    ================================ */
+    /* ================================================
+       ساعت واقعی تهران
+    ================================================ */
 
     tehranClockValue.innerText =
-        getSessionTime("Asia/Tehran", now);
-
-    /* ================================
-       سشن فعال
-    ================================ */
-
-    const activeSession =
-        getActiveSession(tehranMinutes);
-
-    /* ================================
-       سشن بعدی
-    ================================ */
-
-    const nextSession =
-        getNextSession(tehranMinutes);
-
-    const minutesUntilNext =
-        getMinutesUntilNextSession(
-            tehranMinutes,
-            nextSession
+        getSessionTime(
+            "Asia/Tehran",
+            now
         );
 
-    /* ================================
+
+    /* ================================================
+       سشن فعال
+    ================================================ */
+
+    const active =
+        getActiveSession(
+            now
+        );
+
+
+    const activeSession =
+        active.session;
+
+
+    /* ================================================
+       سشن بعدی
+    ================================================ */
+
+    const next =
+        getNextSession(
+            now
+        );
+
+
+    /* ================================================
        نمایش نام سشن
-    ================================ */
+    ================================================ */
 
     sessionValue.innerText =
         activeSession.name;
 
-    /* ================================
-       نمایش ساعت سشن فعال
-    ================================ */
+
+    /* ================================================
+       نمایش نام شهر کنار ساعت
+    ================================================ */
 
     sessionClockLabel.innerText =
         activeSession.name.toUpperCase();
+
+
+    /* ================================================
+       نمایش ساعت واقعی همان سشن
+    ================================================ */
 
     sessionClockValue.innerText =
         getSessionTime(
@@ -1410,47 +1807,66 @@ function updateClocks() {
             now
         );
 
-    /* ================================
-       چشمک زدن ۵ دقیقه مانده به سشن بعدی
-    ================================ */
+
+    /* ================================================
+       محاسبه زمان باقی‌مانده تا سشن بعدی
+    ================================================ */
+
+    const millisecondsUntilNext =
+        next.openTimestamp -
+        now.getTime();
+
+
+    const minutesUntilNext =
+        millisecondsUntilNext /
+        (1000 * 60);
+
+
+    /* ================================================
+       هشدار ۵ دقیقه مانده
+    ================================================ */
 
     if (
         minutesUntilNext <= 5 &&
         minutesUntilNext > 0
     ) {
+
         sessionClockValue.classList.add(
             "session-time-blink"
         );
+
     } else {
+
         sessionClockValue.classList.remove(
             "session-time-blink"
         );
+
     }
 
-    /* ================================
-       تاریخ تهران
-    ================================ */
 
-    const today =
-        new Date().toLocaleDateString(
-            "en-US",
-            {
-                timeZone: "Asia/Tehran",
-                day: "2-digit",
-                month: "short",
-                year: "numeric"
-            }
-        );
+    /* ================================================
+       تاریخ تهران
+    ================================================ */
 
     document.getElementById(
         "date-value"
-    ).innerText = today;
+    ).innerText =
+        getTehranDate(
+            now
+        );
+
 }
+
+
+/* =====================================================
+   اجرای ساعت
+===================================================== */
 
 setInterval(
     updateClocks,
     1000
 );
+
 
 updateClocks();
 
@@ -1547,16 +1963,8 @@ const likeIcon =
     );
 
 
-/*
-   هر ۱۰ ثانیه تغییر می‌کند.
-*/
-
 setInterval(
     function () {
-
-        /* =============================================
-           SUBSCRIBE → LIKE
-        ============================================= */
 
         if (
             subscribeState.style.display !== "none"
@@ -1568,11 +1976,6 @@ setInterval(
             likeState.style.display =
                 "flex";
 
-
-            /*
-               انیمیشن لایک از کوچک به بزرگ
-               دو بار در چرخه ۱۰ ثانیه‌ای
-            */
 
             likeIcon.classList.remove(
                 "like-pulse"
@@ -1587,11 +1990,6 @@ setInterval(
             );
 
         }
-
-
-        /* =============================================
-           LIKE → SUBSCRIBE
-        ============================================= */
 
         else {
 
