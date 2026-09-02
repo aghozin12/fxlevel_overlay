@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,7 +10,7 @@
 <style>
 
 /* =====================================================
-   THEME SYSTEM
+   صفحه اصلی
 ===================================================== */
 
 html,
@@ -30,117 +29,11 @@ body {
     font-family: Arial, sans-serif;
 
     color: white;
-
 }
 
 
 /* =====================================================
-   DEFAULT THEME
-===================================================== */
-
-body {
-
-    --theme-color: #00ff88;
-
-    --theme-rgb: 0,255,136;
-
-    --theme-soft: rgba(0,255,136,0.20);
-
-    --theme-faint: rgba(0,255,136,0.08);
-
-    --theme-grid: rgba(0,255,136,0.22);
-
-    --theme-shadow: rgba(0,255,136,0.75);
-
-}
-
-
-/* =====================================================
-   SYDNEY — PURPLE
-===================================================== */
-
-body.theme-sydney {
-
-    --theme-color: #b05cff;
-
-    --theme-rgb: 176,92,255;
-
-    --theme-soft: rgba(176,92,255,0.20);
-
-    --theme-faint: rgba(176,92,255,0.08);
-
-    --theme-grid: rgba(176,92,255,0.22);
-
-    --theme-shadow: rgba(176,92,255,0.75);
-
-}
-
-
-/* =====================================================
-   TOKYO — CYAN
-===================================================== */
-
-body.theme-tokyo {
-
-    --theme-color: #00d9ff;
-
-    --theme-rgb: 0,217,255;
-
-    --theme-soft: rgba(0,217,255,0.20);
-
-    --theme-faint: rgba(0,217,255,0.08);
-
-    --theme-grid: rgba(0,217,255,0.22);
-
-    --theme-shadow: rgba(0,217,255,0.75);
-
-}
-
-
-/* =====================================================
-   LONDON — GREEN
-===================================================== */
-
-body.theme-london {
-
-    --theme-color: #00ff88;
-
-    --theme-rgb: 0,255,136;
-
-    --theme-soft: rgba(0,255,136,0.20);
-
-    --theme-faint: rgba(0,255,136,0.08);
-
-    --theme-grid: rgba(0,255,136,0.22);
-
-    --theme-shadow: rgba(0,255,136,0.75);
-
-}
-
-
-/* =====================================================
-   NEW YORK — ORANGE
-===================================================== */
-
-body.theme-newyork {
-
-    --theme-color: #ffae4a;
-
-    --theme-rgb: 255,174,74;
-
-    --theme-soft: rgba(255,174,74,0.20);
-
-    --theme-faint: rgba(255,174,74,0.08);
-
-    --theme-grid: rgba(255,174,74,0.22);
-
-    --theme-shadow: rgba(255,174,74,0.75);
-
-}
-
-
-/* =====================================================
-   BACKGROUND GRID
+   شبکه پس‌زمینه
 ===================================================== */
 
 body::before {
@@ -154,267 +47,25 @@ body::before {
     background-image:
 
         linear-gradient(
-            var(--theme-grid) 1px,
+            rgba(0,255,136,0.40) 1px,
             transparent 1px
         ),
 
         linear-gradient(
             90deg,
-            var(--theme-grid) 1px,
+            rgba(0,255,136,0.40) 1px,
             transparent 1px
         );
 
     background-size: 40px 40px;
 
     pointer-events: none;
-
-    z-index: 0;
-
-    transition:
-        opacity 0.8s ease;
-
 }
 
 
 /* =====================================================
-   AMBIENT BACKGROUND
-===================================================== */
-
-body::after {
-
-    content: "";
-
-    position: absolute;
-
-    inset: -12%;
-
-    pointer-events: none;
-
-    z-index: 0;
-
-    background:
-
-        radial-gradient(
-            circle at 10% 15%,
-            var(--theme-soft),
-            transparent 28%
-        ),
-
-        radial-gradient(
-            circle at 90% 80%,
-            var(--theme-soft),
-            transparent 32%
-        ),
-
-        radial-gradient(
-            circle at 50% 50%,
-            var(--theme-faint),
-            transparent 55%
-        );
-
-    opacity: 0.85;
-
-    animation:
-        ambientDrift 16s ease-in-out infinite alternate;
-
-    transition:
-        opacity 0.8s ease;
-
-}
-
-
-@keyframes ambientDrift {
-
-    0% {
-
-        transform:
-            translate3d(-1.5%, -1%, 0)
-            scale(1);
-
-    }
-
-    100% {
-
-        transform:
-            translate3d(1.5%, 1%, 0)
-            scale(1.04);
-
-    }
-
-}
-
-
-/* =====================================================
-   SESSION CHANGE RED ALERT
-===================================================== */
-
-body.session-change-alert::after {
-
-    background:
-
-        radial-gradient(
-            circle at 50% 50%,
-            rgba(255,51,51,0.22),
-            transparent 48%
-        ),
-
-        radial-gradient(
-            circle at 10% 20%,
-            rgba(255,51,51,0.14),
-            transparent 30%
-        ),
-
-        radial-gradient(
-            circle at 90% 80%,
-            rgba(255,51,51,0.14),
-            transparent 30%
-        ),
-
-        radial-gradient(
-            circle at 10% 15%,
-            var(--theme-soft),
-            transparent 28%
-        ),
-
-        radial-gradient(
-            circle at 90% 80%,
-            var(--theme-soft),
-            transparent 32%
-        );
-
-    animation:
-        sessionChangeAlert 0.7s ease-in-out 4;
-
-}
-
-
-@keyframes sessionChangeAlert {
-
-    0%,
-    100% {
-
-        opacity: 0.65;
-
-    }
-
-    50% {
-
-        opacity: 1;
-
-    }
-
-}
-
-
-/* =====================================================
-   SESSION WARNING GLOBAL RED
-===================================================== */
-
-body.session-warning::after {
-
-    background:
-
-        radial-gradient(
-            circle at 50% 50%,
-            rgba(255,51,51,0.13),
-            transparent 50%
-        ),
-
-        radial-gradient(
-            circle at 8% 50%,
-            rgba(255,51,51,0.09),
-            transparent 34%
-        ),
-
-        radial-gradient(
-            circle at 92% 50%,
-            rgba(255,51,51,0.09),
-            transparent 34%
-        ),
-
-        radial-gradient(
-            circle at 10% 15%,
-            var(--theme-soft),
-            transparent 28%
-        ),
-
-        radial-gradient(
-            circle at 90% 80%,
-            var(--theme-soft),
-            transparent 32%
-        );
-
-}
-
-
-body.session-warning-open::after {
-
-    animation:
-        warningAmbient 0.95s ease-in-out infinite;
-
-}
-
-
-body.session-warning-close::after {
-
-    background:
-
-        radial-gradient(
-            circle at 50% 50%,
-            rgba(255,51,51,0.18),
-            transparent 48%
-        ),
-
-        radial-gradient(
-            circle at 8% 50%,
-            rgba(255,51,51,0.12),
-            transparent 34%
-        ),
-
-        radial-gradient(
-            circle at 92% 50%,
-            rgba(255,51,51,0.12),
-            transparent 34%
-        ),
-
-        radial-gradient(
-            circle at 10% 15%,
-            var(--theme-soft),
-            transparent 28%
-        ),
-
-        radial-gradient(
-            circle at 90% 80%,
-            var(--theme-soft),
-            transparent 32%
-        );
-
-    animation:
-        warningAmbient 0.7s ease-in-out infinite;
-
-}
-
-
-@keyframes warningAmbient {
-
-    0%,
-    100% {
-
-        opacity: 0.65;
-
-    }
-
-    50% {
-
-        opacity: 1;
-
-    }
-
-}
-
-
-/* =====================================================
-   MAIN FRAME
+   فریم اصلی
+   فقط Layout تغییر کرده
 ===================================================== */
 
 .main-frame {
@@ -440,28 +91,19 @@ body.session-warning-close::after {
 
     );
 
-    background:
-        rgba(0,0,0,0.18);
+    background: rgba(0, 0, 0, 0.18);
 
-    border: 3px solid var(--theme-color);
+    border: 3px solid #00ff88;
 
     box-shadow:
 
-        0 0 25px var(--theme-color),
-        inset 0 0 25px var(--theme-color);
-
-    z-index: 2;
-
-    transition:
-
-        border-color 0.7s ease,
-        box-shadow 0.7s ease;
-
+        0 0 25px #00ff88,
+        inset 0 0 25px #00ff88;
 }
 
 
 /* =====================================================
-   TOP BAR
+   نوار بالا
 ===================================================== */
 
 .top-bar {
@@ -487,15 +129,14 @@ body.session-warning-close::after {
 
     );
 
-    background:
-        rgba(0,0,0,0.35);
+    background: rgba(0, 0, 0, 0.35);
 
-    border: 2px solid var(--theme-color);
+    border: 2px solid #00ff88;
 
     box-shadow:
 
-        0 0 14px var(--theme-color),
-        inset 0 0 14px var(--theme-color);
+        0 0 14px #00ff88,
+        inset 0 0 14px #00ff88;
 
     display: flex;
 
@@ -506,19 +147,11 @@ body.session-warning-close::after {
     padding: 0 30px;
 
     box-sizing: border-box;
-
-    z-index: 3;
-
-    transition:
-
-        border-color 0.7s ease,
-        box-shadow 0.7s ease;
-
 }
 
 
 /* =====================================================
-   TOP ITEMS
+   آیتم‌های نوار بالا
 ===================================================== */
 
 .top-item {
@@ -536,7 +169,6 @@ body.session-warning-close::after {
     align-items: center;
 
     overflow: hidden;
-
 }
 
 
@@ -555,12 +187,11 @@ body.session-warning-close::after {
     box-sizing: border-box;
 
     min-width: 0;
-
 }
 
 
 /* =====================================================
-   TOP ICONS
+   آیکون‌های بالا
 ===================================================== */
 
 .icon {
@@ -575,18 +206,12 @@ body.session-warning-close::after {
     fill: none;
 
     filter:
-        drop-shadow(
-            0 0 6px var(--theme-color)
-        );
-
-    transition:
-        filter 0.7s ease;
-
+        drop-shadow(0 0 6px #00ff88);
 }
 
 
 /* =====================================================
-   TEXT BOX
+   متن‌های بالا
 ===================================================== */
 
 .text-box {
@@ -606,13 +231,8 @@ body.session-warning-close::after {
     text-align: left;
 
     overflow: hidden;
-
 }
 
-
-/* =====================================================
-   TOP LABEL
-===================================================== */
 
 .text-box span:first-child {
 
@@ -626,24 +246,14 @@ body.session-warning-close::after {
 
     height: 18px;
 
-    color: var(--theme-color);
+    color: #ffae4a;
 
     text-shadow:
-        0 0 6px var(--theme-color);
+        0 0 6px #ffae4a;
 
     white-space: nowrap;
-
-    transition:
-
-        color 0.7s ease,
-        text-shadow 0.7s ease;
-
 }
 
-
-/* =====================================================
-   TOP VALUE
-===================================================== */
 
 .text-box span:last-child {
 
@@ -657,21 +267,15 @@ body.session-warning-close::after {
 
     height: 24px;
 
-    color: var(--theme-color);
+    color: #00ff88;
 
     text-shadow:
-        0 0 8px var(--theme-color);
+        0 0 8px #00ff88;
 
     white-space: nowrap;
 
     font-variant-numeric:
         tabular-nums;
-
-    transition:
-
-        color 0.7s ease,
-        text-shadow 0.7s ease;
-
 }
 
 
@@ -699,40 +303,28 @@ body.session-warning-close::after {
 
     height: 24px;
 
-    color: var(--theme-color);
+    color: #00ff88;
 
     text-shadow:
-        0 0 8px var(--theme-color);
+        0 0 8px #00ff88;
 
     font-variant-numeric:
         tabular-nums;
 
     min-width: 0;
-
-    transition:
-
-        color 0.7s ease,
-        text-shadow 0.7s ease;
-
 }
 
 
 .next-event-value .next-session {
 
-    color: var(--theme-color);
-
-    text-shadow:
-        0 0 8px var(--theme-color);
-
-    transition:
-        color 0.7s ease;
+    color: #00ff88;
 
 }
 
 
 .next-event-value .next-open {
 
-    color: rgba(255,255,255,0.75);
+    color: #ffae4a;
 
     font-size: 17px;
 
@@ -741,30 +333,20 @@ body.session-warning-close::after {
 
 .next-event-value .next-separator {
 
-    color:
-        rgba(255,255,255,0.45);
+    color: rgba(255,255,255,0.45);
 
     font-size: 15px;
-
 }
 
 
 .next-event-value .next-countdown {
 
-    color: var(--theme-color);
+    color: #00ff88;
 
     font-size: 20px;
 
     font-variant-numeric:
         tabular-nums;
-
-    text-shadow:
-        0 0 8px var(--theme-color);
-
-    transition:
-        color 0.7s ease,
-        text-shadow 0.7s ease;
-
 }
 
 
@@ -772,7 +354,6 @@ body.session-warning-close::after {
 
     animation:
         nextEventWarning 0.72s ease-in-out infinite;
-
 }
 
 
@@ -781,10 +362,8 @@ body.session-warning-close::after {
     color: #ff3333;
 
     text-shadow:
-
         0 0 6px #ff3333,
         0 0 14px #ff3333;
-
 }
 
 
@@ -794,20 +373,17 @@ body.session-warning-close::after {
     100% {
 
         opacity: 1;
-
     }
 
     50% {
 
         opacity: 0.25;
-
     }
-
 }
 
 
 /* =====================================================
-   DIVIDER
+   جداکننده بالا
 ===================================================== */
 
 .divider {
@@ -820,12 +396,12 @@ body.session-warning-close::after {
 
     background:
         rgba(255,255,255,0.35);
-
 }
 
 
 /* =====================================================
    SESSION MAP
+   Layout اصلاح شده - منطق Session دست نخورده
 ===================================================== */
 
 .session-map {
@@ -845,7 +421,6 @@ body.session-warning-close::after {
     position: relative;
 
     overflow: hidden;
-
 }
 
 
@@ -870,12 +445,11 @@ body.session-warning-close::after {
     transform: translateY(7px);
 
     overflow: hidden;
-
 }
 
 
 /* =====================================================
-   SESSION TITLE
+   عنوان SESSION
 ===================================================== */
 
 .session-map-title {
@@ -892,29 +466,24 @@ body.session-warning-close::after {
 
     height: 16px;
 
-    color: var(--theme-color);
+    color: #ffae4a;
 
     text-shadow:
 
-        0 0 6px var(--theme-color),
-        0 0 14px var(--theme-soft);
+        0 0 6px #ffae4a,
+        0 0 14px rgba(255,174,74,0.35);
 
     margin-bottom: 8px;
 
     position: relative;
 
     flex-shrink: 0;
-
-    transition:
-
-        color 0.7s ease,
-        text-shadow 0.7s ease;
-
 }
 
 
 /* =====================================================
-   SESSION TRACK
+   مپ اصلی
+   محدود به محدوده خودش
 ===================================================== */
 
 .session-track {
@@ -942,12 +511,11 @@ body.session-warning-close::after {
     box-sizing: border-box;
 
     overflow: hidden;
-
 }
 
 
 /* =====================================================
-   SESSION NODE
+   Session Node
 ===================================================== */
 
 .session-node {
@@ -973,7 +541,9 @@ body.session-warning-close::after {
     transition:
 
         color 0.35s ease,
+
         text-shadow 0.35s ease,
+
         opacity 0.35s ease;
 
     flex: 0 1 auto;
@@ -981,47 +551,6 @@ body.session-warning-close::after {
     min-width: 0;
 
     white-space: nowrap;
-
-}
-
-
-/* =====================================================
-   INDIVIDUAL SESSION COLORS
-===================================================== */
-
-#session-sydney {
-
-    --session-color: #b05cff;
-
-    --session-rgb: 176,92,255;
-
-}
-
-
-#session-tokyo {
-
-    --session-color: #00d9ff;
-
-    --session-rgb: 0,217,255;
-
-}
-
-
-#session-london {
-
-    --session-color: #00ff88;
-
-    --session-rgb: 0,255,136;
-
-}
-
-
-#session-newyork {
-
-    --session-color: #ffae4a;
-
-    --session-rgb: 255,174,74;
-
 }
 
 
@@ -1034,15 +563,15 @@ body.session-warning-close::after {
     transition:
 
         color 0.35s ease,
+
         text-shadow 0.35s ease;
 
     white-space: nowrap;
-
 }
 
 
 /* =====================================================
-   SESSION DOT
+   Dot
 ===================================================== */
 
 .session-dot {
@@ -1054,13 +583,11 @@ body.session-warning-close::after {
 
     border-radius: 50%;
 
-    background:
-        rgba(255,255,255,0.25);
+    background: rgba(255,255,255,0.25);
 
     box-shadow:
 
-        0 0 2px
-        rgba(255,255,255,0.15);
+        0 0 2px rgba(255,255,255,0.15);
 
     position: relative;
 
@@ -1069,14 +596,15 @@ body.session-warning-close::after {
     transition:
 
         background 0.35s ease,
-        box-shadow 0.35s ease,
-        transform 0.35s ease;
 
+        box-shadow 0.35s ease,
+
+        transform 0.35s ease;
 }
 
 
 /* =====================================================
-   HALO
+   Halo
 ===================================================== */
 
 .session-dot::before {
@@ -1098,51 +626,47 @@ body.session-warning-close::after {
     border-radius: 50%;
 
     border: 1px solid
-        transparent;
+        rgba(0,255,136,0);
 
     opacity: 0;
 
     transition:
 
         opacity 0.3s ease,
-        transform 0.3s ease,
-        border-color 0.3s ease;
 
+        transform 0.3s ease,
+
+        border-color 0.3s ease;
 }
 
 
 /* =====================================================
-   ACTIVE SESSION
+   Session Active
 ===================================================== */
 
 .session-node.active {
 
-    color: var(--session-color);
+    color: #00ff88;
 
     text-shadow:
 
-        0 0 5px var(--session-color),
-        0 0 12px
-        rgba(var(--session-rgb),0.8);
-
+        0 0 5px #00ff88,
+        0 0 12px rgba(0,255,136,0.8);
 }
 
 
 .session-node.active .session-dot {
 
-    background:
-        var(--session-color);
+    background: #00ff88;
 
     box-shadow:
 
-        0 0 4px var(--session-color),
-        0 0 10px var(--session-color),
-        0 0 20px
-        rgba(var(--session-rgb),0.85);
+        0 0 4px #00ff88,
+        0 0 10px #00ff88,
+        0 0 20px rgba(0,255,136,0.85);
 
     animation:
         activeDotPulse 1.25s ease-in-out infinite;
-
 }
 
 
@@ -1155,11 +679,10 @@ body.session-warning-close::after {
         scale(1);
 
     border-color:
-        rgba(var(--session-rgb),0.55);
+        rgba(0,255,136,0.55);
 
     animation:
         activeHalo 1.25s ease-in-out infinite;
-
 }
 
 
@@ -1171,7 +694,6 @@ body.session-warning-close::after {
         transform: scale(0.82);
 
         opacity: 0.78;
-
     }
 
     50% {
@@ -1179,9 +701,7 @@ body.session-warning-close::after {
         transform: scale(1.30);
 
         opacity: 1;
-
     }
-
 }
 
 
@@ -1195,7 +715,6 @@ body.session-warning-close::after {
             scale(0.75);
 
         opacity: 0.20;
-
     }
 
     50% {
@@ -1205,14 +724,12 @@ body.session-warning-close::after {
             scale(1.35);
 
         opacity: 0.75;
-
     }
-
 }
 
 
 /* =====================================================
-   SESSION CONNECTOR
+   خط اتصال
 ===================================================== */
 
 .session-connector {
@@ -1229,16 +746,11 @@ body.session-warning-close::after {
         rgba(255,255,255,0.18);
 
     box-shadow:
-        0 0 4px
-        var(--theme-soft);
+        0 0 4px rgba(0,255,136,0.12);
 
     position: relative;
 
     overflow: hidden;
-
-    transition:
-        box-shadow 0.7s ease;
-
 }
 
 
@@ -1262,7 +774,7 @@ body.session-warning-close::after {
         linear-gradient(
             90deg,
             transparent,
-            var(--theme-color),
+            rgba(0,255,136,0.9),
             transparent
         );
 
@@ -1270,75 +782,62 @@ body.session-warning-close::after {
         connectorSweep 3.2s ease-in-out infinite;
 
     opacity: 1;
-
 }
 
 
 @keyframes connectorSweep {
 
     0% {
-
         left: -100%;
-
     }
 
     55% {
-
         left: 130%;
-
     }
 
     100% {
-
         left: 130%;
-
     }
-
 }
 
 
 /* =====================================================
-   OPEN WARNING
+   هشدار OPEN
 ===================================================== */
 
 .session-node.open-warning {
 
-    color: var(--session-color);
+    color: #00ff88;
 
     animation:
         openWarningBlink 0.72s ease-in-out infinite;
-
 }
 
 
 .session-node.open-warning .session-dot {
 
-    background:
-        var(--session-color);
+    background: #00ff88;
 
     box-shadow:
 
-        0 0 5px var(--session-color),
-        0 0 13px var(--session-color),
-        0 0 28px
-        rgba(var(--session-rgb),0.95);
+        0 0 5px #00ff88,
+        0 0 13px #00ff88,
+        0 0 28px rgba(0,255,136,0.95);
 
     animation:
         openDotWarning 0.72s ease-in-out infinite;
-
 }
 
 
 .session-node.open-warning .session-dot::before {
 
     border-color:
-        rgba(var(--session-rgb),0.85);
+        rgba(0,255,136,0.85);
 
     opacity: 1;
 
     animation:
         warningHalo 0.72s ease-in-out infinite;
-
 }
 
 
@@ -1351,9 +850,8 @@ body.session-warning-close::after {
 
         text-shadow:
 
-            0 0 6px var(--session-color),
-            0 0 16px var(--session-color);
-
+            0 0 6px #00ff88,
+            0 0 16px #00ff88;
     }
 
     50% {
@@ -1361,10 +859,8 @@ body.session-warning-close::after {
         opacity: 0.22;
 
         text-shadow:
-            0 0 2px var(--session-color);
-
+            0 0 2px #00ff88;
     }
-
 }
 
 
@@ -1376,7 +872,6 @@ body.session-warning-close::after {
         transform: scale(0.80);
 
         opacity: 0.55;
-
     }
 
     50% {
@@ -1384,9 +879,7 @@ body.session-warning-close::after {
         transform: scale(1.45);
 
         opacity: 1;
-
     }
-
 }
 
 
@@ -1400,7 +893,6 @@ body.session-warning-close::after {
             scale(0.65);
 
         opacity: 0.20;
-
     }
 
     50% {
@@ -1410,14 +902,12 @@ body.session-warning-close::after {
             scale(1.55);
 
         opacity: 0.85;
-
     }
-
 }
 
 
 /* =====================================================
-   CLOSE WARNING
+   هشدار CLOSE
 ===================================================== */
 
 .session-node.close-warning {
@@ -1426,7 +916,6 @@ body.session-warning-close::after {
 
     animation:
         closeWarningBlink 0.65s ease-in-out infinite;
-
 }
 
 
@@ -1438,12 +927,10 @@ body.session-warning-close::after {
 
         0 0 5px #ff3333,
         0 0 13px #ff3333,
-        0 0 30px
-        rgba(255,51,51,0.95);
+        0 0 30px rgba(255,51,51,0.95);
 
     animation:
         closeDotWarning 0.65s ease-in-out infinite;
-
 }
 
 
@@ -1456,7 +943,6 @@ body.session-warning-close::after {
 
     animation:
         warningHaloRed 0.65s ease-in-out infinite;
-
 }
 
 
@@ -1471,7 +957,6 @@ body.session-warning-close::after {
 
             0 0 6px #ff3333,
             0 0 16px #ff3333;
-
     }
 
     50% {
@@ -1480,9 +965,7 @@ body.session-warning-close::after {
 
         text-shadow:
             0 0 2px #ff3333;
-
     }
-
 }
 
 
@@ -1494,7 +977,6 @@ body.session-warning-close::after {
         transform: scale(0.80);
 
         opacity: 0.55;
-
     }
 
     50% {
@@ -1502,9 +984,7 @@ body.session-warning-close::after {
         transform: scale(1.50);
 
         opacity: 1;
-
     }
-
 }
 
 
@@ -1518,7 +998,6 @@ body.session-warning-close::after {
             scale(0.65);
 
         opacity: 0.20;
-
     }
 
     50% {
@@ -1528,9 +1007,7 @@ body.session-warning-close::after {
             scale(1.55);
 
         opacity: 0.85;
-
     }
-
 }
 
 
@@ -1541,9 +1018,7 @@ body.session-warning-close::after {
 .session-map.weekend
 .session-node {
 
-    color:
-        rgba(255,51,51,0.55);
-
+    color: rgba(255,51,51,0.55);
 }
 
 
@@ -1555,12 +1030,10 @@ body.session-warning-close::after {
     box-shadow:
 
         0 0 4px #ff3333,
-        0 0 10px
-        rgba(255,51,51,0.55);
+        0 0 10px rgba(255,51,51,0.55);
 
     animation:
         closedWeekendPulse 1.8s ease-in-out infinite;
-
 }
 
 
@@ -1575,7 +1048,6 @@ body.session-warning-close::after {
     transform:
         translate(-50%, -50%)
         scale(0.9);
-
 }
 
 
@@ -1587,9 +1059,7 @@ body.session-warning-close::after {
     text-shadow:
 
         0 0 6px #ff3333,
-        0 0 14px
-        rgba(255,51,51,0.45);
-
+        0 0 14px rgba(255,51,51,0.45);
 }
 
 
@@ -1601,7 +1071,6 @@ body.session-warning-close::after {
         transform: scale(0.85);
 
         opacity: 0.55;
-
     }
 
     50% {
@@ -1609,14 +1078,12 @@ body.session-warning-close::after {
         transform: scale(1.15);
 
         opacity: 1;
-
     }
-
 }
 
 
 /* =====================================================
-   ACTIVE LABEL
+   Active Label
 ===================================================== */
 
 .session-active-label {
@@ -1643,28 +1110,23 @@ body.session-warning-close::after {
 
     letter-spacing: 2px;
 
-    color: var(--theme-color);
+    color: #00ff88;
 
     text-shadow:
 
-        0 0 6px var(--theme-color),
-        0 0 14px var(--theme-soft);
+        0 0 6px #00ff88,
+        0 0 14px rgba(0,255,136,0.45);
 
     opacity: 0;
 
     transition:
-
-        opacity 0.35s ease,
-        color 0.7s ease,
-        text-shadow 0.7s ease;
-
+        opacity 0.35s ease;
 }
 
 
 .session-active-label.visible {
 
     opacity: 1;
-
 }
 
 
@@ -1676,7 +1138,6 @@ body.session-warning-close::after {
 
     animation:
         activeArrowFloat 1s ease-in-out infinite;
-
 }
 
 
@@ -1684,24 +1145,20 @@ body.session-warning-close::after {
 
     0%,
     100% {
-
         transform:
             translateY(2px);
-
     }
 
     50% {
-
         transform:
             translateY(-1px);
-
     }
-
 }
 
 
 /* =====================================================
-   WEBCAM
+   وبکم
+   متناسب با فریم جدید
 ===================================================== */
 
 .webcam-frame {
@@ -1714,32 +1171,24 @@ body.session-warning-close::after {
     width: 430px;
     height: 250px;
 
-    border: 4px solid var(--theme-color);
+    border: 4px solid #00ff66;
 
     border-radius: 0;
 
     background:
-        rgba(0,0,0,0.18);
+        rgba(0, 0, 0, 0.18);
 
     box-shadow:
 
-        0 0 25px var(--theme-color),
-        0 0 55px var(--theme-shadow),
-        0 0 110px var(--theme-soft),
-        0 0 160px var(--theme-faint);
-
-    z-index: 3;
-
-    transition:
-
-        border-color 0.7s ease,
-        box-shadow 0.7s ease;
-
+        0 0 25px rgba(0, 255, 102, 1),
+        0 0 55px rgba(0, 255, 102, 0.85),
+        0 0 110px rgba(0, 255, 102, 0.65),
+        0 0 160px rgba(0, 255, 102, 0.45);
 }
 
 
 /* =====================================================
-   BOTTOM BAR
+   نوار پایین
 ===================================================== */
 
 .bottom-bar {
@@ -1766,14 +1215,14 @@ body.session-warning-close::after {
     );
 
     background:
-        rgba(0,0,0,0.35);
+        rgba(0, 0, 0, 0.35);
 
-    border: 2px solid var(--theme-color);
+    border: 2px solid #00ff88;
 
     box-shadow:
 
-        0 0 14px var(--theme-color),
-        inset 0 0 14px var(--theme-color);
+        0 0 14px #00ff88,
+        inset 0 0 14px #00ff88;
 
     display: flex;
 
@@ -1784,19 +1233,11 @@ body.session-warning-close::after {
     padding: 0 30px;
 
     box-sizing: border-box;
-
-    z-index: 3;
-
-    transition:
-
-        border-color 0.7s ease,
-        box-shadow 0.7s ease;
-
 }
 
 
 /* =====================================================
-   BOTTOM FONT
+   فونت نوار پایین
 ===================================================== */
 
 .bottom-item span {
@@ -1814,7 +1255,6 @@ body.session-warning-close::after {
     align-items: center;
 
     white-space: nowrap;
-
 }
 
 
@@ -1827,7 +1267,6 @@ body.session-warning-close::after {
     gap: 10px;
 
     min-width: 0;
-
 }
 
 
@@ -1841,7 +1280,6 @@ body.session-warning-close::after {
         rgba(255,255,255,0.22);
 
     flex-shrink: 0;
-
 }
 
 
@@ -1861,13 +1299,7 @@ body.session-warning-close::after {
     flex-shrink: 0;
 
     filter:
-        drop-shadow(
-            0 0 4px var(--theme-color)
-        );
-
-    transition:
-        filter 0.7s ease;
-
+        drop-shadow(0 0 4px #ffb347);
 }
 
 
@@ -1886,7 +1318,6 @@ body.session-warning-close::after {
     height: 40px;
 
     flex-shrink: 0;
-
 }
 
 
@@ -1897,8 +1328,7 @@ body.session-warning-close::after {
     left: 0;
     top: 50%;
 
-    transform:
-        translateY(-50%);
+    transform: translateY(-50%);
 
     display: flex;
 
@@ -1907,7 +1337,6 @@ body.session-warning-close::after {
     gap: 10px;
 
     white-space: nowrap;
-
 }
 
 
@@ -1922,9 +1351,7 @@ body.session-warning-close::after {
     color: #ff3333;
 
     text-shadow:
-        0 0 5px
-        rgba(255,51,51,0.55);
-
+        0 0 5px rgba(255,51,51,0.55);
 }
 
 
@@ -1933,13 +1360,9 @@ body.session-warning-close::after {
     stroke: #ff3333;
 
     filter:
-        drop-shadow(
-            0 0 4px #ff3333
-        );
+        drop-shadow(0 0 4px #ff3333);
 
-    transform-origin:
-        50% 15%;
-
+    transform-origin: 50% 15%;
 }
 
 
@@ -1947,7 +1370,6 @@ body.session-warning-close::after {
 
     animation:
         bellMiddle 10s ease-in-out infinite;
-
 }
 
 
@@ -1996,7 +1418,6 @@ body.session-warning-close::after {
     100% {
         transform: rotate(0deg);
     }
-
 }
 
 
@@ -2007,7 +1428,6 @@ body.session-warning-close::after {
 .like-state {
 
     display: none;
-
 }
 
 
@@ -2022,9 +1442,7 @@ body.session-warning-close::after {
     color: #4da6ff;
 
     text-shadow:
-        0 0 5px
-        rgba(77,166,255,0.55);
-
+        0 0 5px rgba(77,166,255,0.55);
 }
 
 
@@ -2033,12 +1451,9 @@ body.session-warning-close::after {
     stroke: #4da6ff;
 
     filter:
-        drop-shadow(
-            0 0 4px #4da6ff
-        );
+        drop-shadow(0 0 4px #4da6ff);
 
     transform-origin: center;
-
 }
 
 
@@ -2046,7 +1461,6 @@ body.session-warning-close::after {
 
     animation:
         likePulse 10s ease-in-out infinite;
-
 }
 
 
@@ -2079,7 +1493,6 @@ body.session-warning-close::after {
     100% {
         transform: scale(1);
     }
-
 }
 
 
@@ -2092,7 +1505,6 @@ body.session-warning-close::after {
     position: relative;
 
     overflow: hidden;
-
 }
 
 
@@ -2100,7 +1512,6 @@ body.session-warning-close::after {
 
     animation:
         vipPulse 1.8s infinite ease-in-out;
-
 }
 
 
@@ -2109,24 +1520,20 @@ body.session-warning-close::after {
     0% {
 
         text-shadow:
-            0 0 6px var(--theme-color);
-
+            0 0 6px #00ff88;
     }
 
     50% {
 
         text-shadow:
-            0 0 18px var(--theme-color);
-
+            0 0 18px #00ff88;
     }
 
     100% {
 
         text-shadow:
-            0 0 6px var(--theme-color);
-
+            0 0 6px #00ff88;
     }
-
 }
 
 
@@ -2151,7 +1558,6 @@ body.session-warning-close::after {
 
     animation:
         shineSweep 3s infinite;
-
 }
 
 
@@ -2168,7 +1574,6 @@ body.session-warning-close::after {
     100% {
         left: 120%;
     }
-
 }
 
 </style>
@@ -2238,10 +1643,7 @@ body.session-warning-close::after {
      2. SESSION
 ===================================================== -->
 
-<div
-    class="top-item session-map"
-    id="session-map"
->
+<div class="top-item session-map" id="session-map">
 
     <div class="session-map-inner">
 
@@ -2389,11 +1791,15 @@ body.session-warning-close::after {
                     LON
                 </span>
 
-                <span class="next-open">
+                <span
+                    class="next-open"
+                >
                     OPEN
                 </span>
 
-                <span class="next-separator">
+                <span
+                    class="next-separator"
+                >
                     ·
                 </span>
 
@@ -2828,17 +2234,6 @@ const CLOSE_WARNING_MINUTES = 5;
 
 
 /* =====================================================
-   THEME STATE
-===================================================== */
-
-let lastPrimarySessionId = null;
-
-let themeInitialized = false;
-
-let sessionAlertTimer = null;
-
-
-/* =====================================================
    DOM
 ===================================================== */
 
@@ -2922,7 +2317,7 @@ const sessionNodes = {
 
 
 /* =====================================================
-   HH:MM → MINUTES
+   HH:MM → minutes
 ===================================================== */
 
 function timeToMinutes(time) {
@@ -2941,7 +2336,7 @@ function timeToMinutes(time) {
 
 
 /* =====================================================
-   TEHRAN
+   تهران
 ===================================================== */
 
 function getTehranDateParts(
@@ -3027,7 +2422,7 @@ function getTehranDateParts(
 
 
 /* =====================================================
-   DAY OF WEEK
+   روز هفته تهران
 ===================================================== */
 
 function getTehranDayOfWeek(
@@ -3056,7 +2451,7 @@ function getTehranDayOfWeek(
 
 
 /* =====================================================
-   WEEKEND
+   تعطیلی هفتگی
 ===================================================== */
 
 function isWeekend(
@@ -3078,7 +2473,7 @@ function isWeekend(
 
 
 /* =====================================================
-   TRADING DAY
+   روز معاملاتی
 ===================================================== */
 
 function isTradingDay(
@@ -3091,7 +2486,7 @@ function isTradingDay(
 
 
 /* =====================================================
-   CURRENT TEHRAN MINUTE
+   دقیقه فعلی تهران
 ===================================================== */
 
 function getCurrentTehranMinute(
@@ -3114,7 +2509,7 @@ function getCurrentTehranMinute(
 
 
 /* =====================================================
-   SESSION STATE
+   وضعیت Session
 ===================================================== */
 
 function getSessionState(
@@ -3166,7 +2561,7 @@ function getSessionState(
 
 
 /* =====================================================
-   ACTIVE SESSIONS
+   Session فعال
 ===================================================== */
 
 function getActiveSessions(
@@ -3224,8 +2619,7 @@ function getActiveSessions(
 
 
 /* =====================================================
-   PRIMARY SESSION
-   بدون تغییر منطق
+   Session اصلی
 ===================================================== */
 
 function getPrimaryActiveSession(
@@ -3326,7 +2720,7 @@ function isMarketOpen(
 
 
 /* =====================================================
-   OPEN WARNING
+   هشدار OPEN
 ===================================================== */
 
 function getMinutesUntilOpen(
@@ -3438,192 +2832,6 @@ function isCloseWarning(
 
 
 /* =====================================================
-   APPLY SESSION THEME
-===================================================== */
-
-function updateSessionTheme(
-    primary,
-    currentMinute,
-    now
-) {
-
-    const body =
-        document.body;
-
-
-    body.classList.remove(
-
-        "theme-sydney",
-        "theme-tokyo",
-        "theme-london",
-        "theme-newyork"
-
-    );
-
-
-    const primaryId =
-        primary
-            ? primary.id
-            : null;
-
-
-    /*
-       وقتی هیچ Session فعال نیست،
-       رنگ پیش‌فرض سبز باقی می‌ماند.
-    */
-
-    if (primaryId) {
-
-        body.classList.add(
-            "theme-" + primaryId
-        );
-
-    }
-
-    else {
-
-        body.classList.add(
-            "theme-london"
-        );
-
-    }
-
-
-    /* -----------------------------------------------
-       Global Warning State
-    ------------------------------------------------ */
-
-    let warningType = null;
-
-
-    if (
-        isTradingDay(now)
-    ) {
-
-        Object.entries(
-            SESSION_CONFIG
-        ).forEach(
-            ([id, session]) => {
-
-                const state =
-                    getSessionState(
-                        session,
-                        currentMinute
-                    );
-
-
-                if (
-                    state.isOpen &&
-                    isCloseWarning(
-                        session,
-                        currentMinute
-                    )
-                ) {
-
-                    warningType = "close";
-
-                }
-
-                else if (
-                    !state.isOpen &&
-                    isOpenWarning(
-                        session,
-                        currentMinute
-                    ) &&
-                    warningType !== "close"
-                ) {
-
-                    warningType = "open";
-
-                }
-
-            }
-        );
-
-    }
-
-
-    body.classList.toggle(
-        "session-warning",
-        warningType !== null
-    );
-
-
-    body.classList.toggle(
-        "session-warning-open",
-        warningType === "open"
-    );
-
-
-    body.classList.toggle(
-        "session-warning-close",
-        warningType === "close"
-    );
-
-
-    /* -----------------------------------------------
-       Session Change Detection
-    ------------------------------------------------ */
-
-    if (
-
-        themeInitialized &&
-
-        primaryId &&
-
-        lastPrimarySessionId &&
-
-        primaryId !== lastPrimarySessionId
-
-    ) {
-
-        body.classList.remove(
-            "session-change-alert"
-        );
-
-
-        /*
-           Restart animation
-        */
-
-        void body.offsetWidth;
-
-
-        body.classList.add(
-            "session-change-alert"
-        );
-
-
-        clearTimeout(
-            sessionAlertTimer
-        );
-
-
-        sessionAlertTimer =
-            setTimeout(
-                function () {
-
-                    body.classList.remove(
-                        "session-change-alert"
-                    );
-
-                },
-                3000
-            );
-
-    }
-
-
-    lastPrimarySessionId =
-        primaryId;
-
-
-    themeInitialized = true;
-
-}
-
-
-/* =====================================================
    SESSION MAP
 ===================================================== */
 
@@ -3643,11 +2851,9 @@ function updateSessionMap(
         node => {
 
             node.classList.remove(
-
                 "active",
                 "open-warning",
                 "close-warning"
-
             );
 
         }
@@ -3672,13 +2878,6 @@ function updateSessionMap(
             "MARKET CLOSED";
 
 
-        updateSessionTheme(
-            null,
-            currentMinute,
-            now
-        );
-
-
         return;
 
     }
@@ -3691,13 +2890,6 @@ function updateSessionMap(
 
     const active =
         getActiveSessions(
-            currentMinute,
-            now
-        );
-
-
-    const primary =
-        getPrimaryActiveSession(
             currentMinute,
             now
         );
@@ -3724,9 +2916,7 @@ function updateSessionMap(
 
 
             if (!node) {
-
                 return;
-
             }
 
 
@@ -3748,9 +2938,7 @@ function updateSessionMap(
 
 
             if (!node) {
-
                 return;
-
             }
 
 
@@ -3762,14 +2950,11 @@ function updateSessionMap(
 
 
             if (
-
                 state.isOpen &&
-
                 isCloseWarning(
                     session,
                     currentMinute
                 )
-
             ) {
 
                 node.classList.remove(
@@ -3785,14 +2970,11 @@ function updateSessionMap(
 
 
             else if (
-
                 !state.isOpen &&
-
                 isOpenWarning(
                     session,
                     currentMinute
                 )
-
             ) {
 
                 node.classList.add(
@@ -3827,18 +3009,6 @@ function updateSessionMap(
 
     }
 
-
-    /*
-       Theme must be updated AFTER
-       primary session has been calculated.
-    */
-
-    updateSessionTheme(
-        primary,
-        currentMinute,
-        now
-    );
-
 }
 
 
@@ -3864,27 +3034,12 @@ function updateMarket(
             "OPEN";
 
 
-        /*
-           Market follows active theme.
-        */
-
-        const themeColor =
-            getComputedStyle(
-                document.body
-            )
-            .getPropertyValue(
-                "--theme-color"
-            )
-            .trim();
-
-
         marketValue.style.color =
-            themeColor;
+            "#00ff88";
 
 
         marketValue.style.textShadow =
-            "0 0 8px " +
-            themeColor;
+            "0 0 8px #00ff88";
 
     }
 
@@ -3907,7 +3062,7 @@ function updateMarket(
 
 
 /* =====================================================
-   TEHRAN TIME
+   ساعت تهران
 ===================================================== */
 
 function getTehranTime(
@@ -3940,7 +3095,7 @@ function getTehranTime(
 
 
 /* =====================================================
-   GREGORIAN DATE
+   تاریخ میلادی
 ===================================================== */
 
 function getGregorianDate(
@@ -3976,7 +3131,7 @@ function getGregorianDate(
 
 
 /* =====================================================
-   NEXT SESSION
+   NEXT EVENT
 ===================================================== */
 
 function getNextSessionOpen(
@@ -4049,7 +3204,7 @@ function getNextSessionOpen(
 
 
 /* =====================================================
-   NEXT EVENT
+   زمان دقیق تا Session بعدی
 ===================================================== */
 
 function updateNextEvent(
@@ -4201,19 +3356,11 @@ function updateClocks() {
         tehranParts.second / 60;
 
 
-    /* -----------------------------------------------
-       Tehran
-    ------------------------------------------------ */
-
     tehranClockValue.textContent =
         getTehranTime(
             now
         );
 
-
-    /* -----------------------------------------------
-       Session
-    ------------------------------------------------ */
 
     updateSessionMap(
         currentMinute,
@@ -4221,28 +3368,16 @@ function updateClocks() {
     );
 
 
-    /* -----------------------------------------------
-       Market
-    ------------------------------------------------ */
-
     updateMarket(
         currentMinute,
         now
     );
 
 
-    /* -----------------------------------------------
-       Next Event
-    ------------------------------------------------ */
-
     updateNextEvent(
         now
     );
 
-
-    /* -----------------------------------------------
-       Date
-    ------------------------------------------------ */
 
     dateValue.textContent =
         getGregorianDate(
@@ -4252,12 +3387,7 @@ function updateClocks() {
 }
 
 
-/* =====================================================
-   START
-===================================================== */
-
 updateClocks();
-
 
 setInterval(
     updateClocks,
@@ -4341,4 +3471,3 @@ setInterval(
 </body>
 
 </html>
-```
