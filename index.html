@@ -10,75 +10,7 @@
 <style>
 
 /* =====================================================
-   THEME SYSTEM
-===================================================== */
-
-:root {
-
-    --theme-color: #00ff88;
-    --theme-rgb: 0,255,136;
-
-    --theme-soft: rgba(0,255,136,0.18);
-    --theme-medium: rgba(0,255,136,0.40);
-    --theme-strong: rgba(0,255,136,0.75);
-
-}
-
-
-/* =====================================================
-   SESSION THEMES
-===================================================== */
-
-body.theme-sydney {
-
-    --theme-color: #b05cff;
-    --theme-rgb: 176,92,255;
-
-    --theme-soft: rgba(176,92,255,0.18);
-    --theme-medium: rgba(176,92,255,0.40);
-    --theme-strong: rgba(176,92,255,0.75);
-
-}
-
-
-body.theme-tokyo {
-
-    --theme-color: #3d8bff;
-    --theme-rgb: 61,139,255;
-
-    --theme-soft: rgba(61,139,255,0.18);
-    --theme-medium: rgba(61,139,255,0.40);
-    --theme-strong: rgba(61,139,255,0.75);
-
-}
-
-
-body.theme-london {
-
-    --theme-color: #00ff88;
-    --theme-rgb: 0,255,136;
-
-    --theme-soft: rgba(0,255,136,0.18);
-    --theme-medium: rgba(0,255,136,0.40);
-    --theme-strong: rgba(0,255,136,0.75);
-
-}
-
-
-body.theme-newyork {
-
-    --theme-color: #ff8a3d;
-    --theme-rgb: 255,138,61;
-
-    --theme-soft: rgba(255,138,61,0.18);
-    --theme-medium: rgba(255,138,61,0.40);
-    --theme-strong: rgba(255,138,61,0.75);
-
-}
-
-
-/* =====================================================
-   PAGE
+   صفحه اصلی
 ===================================================== */
 
 html,
@@ -97,12 +29,11 @@ body {
     font-family: Arial, sans-serif;
 
     color: white;
-
 }
 
 
 /* =====================================================
-   BACKGROUND GRID
+   شبکه پس‌زمینه
 ===================================================== */
 
 body::before {
@@ -116,254 +47,36 @@ body::before {
     background-image:
 
         linear-gradient(
-            rgba(var(--theme-rgb),0.40) 1px,
+            rgba(0,255,136,0.40) 1px,
             transparent 1px
         ),
 
         linear-gradient(
             90deg,
-            rgba(var(--theme-rgb),0.40) 1px,
+            rgba(0,255,136,0.40) 1px,
             transparent 1px
         );
 
     background-size: 40px 40px;
 
     pointer-events: none;
-
-    z-index: 0;
-
-    transition:
-        background-image 0.8s ease;
-
 }
 
 
 /* =====================================================
-   AMBIENT BACKGROUND
-===================================================== */
-
-body::after {
-
-    content: "";
-
-    position: absolute;
-
-    inset: -120px;
-
-    pointer-events: none;
-
-    z-index: 0;
-
-    background:
-
-        radial-gradient(
-            ellipse at 15% 20%,
-            rgba(var(--theme-rgb),0.16),
-            transparent 42%
-        ),
-
-        radial-gradient(
-            ellipse at 85% 25%,
-            rgba(var(--theme-rgb),0.12),
-            transparent 40%
-        ),
-
-        radial-gradient(
-            ellipse at 50% 100%,
-            rgba(var(--theme-rgb),0.10),
-            transparent 48%
-        );
-
-    opacity: 0.85;
-
-    filter: blur(20px);
-
-    animation:
-        ambientFloat 14s ease-in-out infinite alternate;
-
-    transition:
-
-        background 0.8s ease,
-
-        opacity 0.8s ease;
-
-}
-
-
-@keyframes ambientFloat {
-
-    0% {
-
-        transform:
-            scale(1)
-            translate3d(-8px,0,0);
-
-    }
-
-    50% {
-
-        transform:
-            scale(1.035)
-            translate3d(5px,-4px,0);
-
-    }
-
-    100% {
-
-        transform:
-            scale(1.02)
-            translate3d(10px,5px,0);
-
-    }
-
-}
-
-
-/* =====================================================
-   SESSION CHANGE RED FLASH
-===================================================== */
-
-body.session-change::after {
-
-    background:
-
-        radial-gradient(
-            ellipse at 50% 50%,
-            rgba(255,40,40,0.30),
-            transparent 58%
-        ),
-
-        radial-gradient(
-            ellipse at 15% 20%,
-            rgba(255,40,40,0.18),
-            transparent 45%
-        ),
-
-        radial-gradient(
-            ellipse at 85% 80%,
-            rgba(255,40,40,0.18),
-            transparent 45%
-        );
-
-    animation:
-        sessionChangeFlash 1.8s ease-out forwards;
-
-}
-
-
-@keyframes sessionChangeFlash {
-
-    0% {
-
-        opacity: 0;
-
-        filter:
-            blur(30px);
-
-    }
-
-    15% {
-
-        opacity: 1;
-
-        filter:
-            blur(12px);
-
-    }
-
-    35% {
-
-        opacity: 0.85;
-
-    }
-
-    100% {
-
-        opacity: 0;
-
-        filter:
-            blur(24px);
-
-    }
-
-}
-
-
-/* =====================================================
-   SESSION ALERT BACKGROUND
-===================================================== */
-
-body.session-alert::after {
-
-    background:
-
-        radial-gradient(
-            ellipse at 50% 50%,
-            rgba(255,40,40,0.12),
-            transparent 60%
-        ),
-
-        radial-gradient(
-            ellipse at 0% 50%,
-            rgba(255,40,40,0.10),
-            transparent 45%
-        ),
-
-        radial-gradient(
-            ellipse at 100% 50%,
-            rgba(255,40,40,0.10),
-            transparent 45%
-        ),
-
-        radial-gradient(
-            ellipse at 50% 0%,
-            rgba(var(--theme-rgb),0.12),
-            transparent 48%
-        );
-
-    animation:
-        alertAmbientPulse 1.25s ease-in-out infinite;
-
-}
-
-
-@keyframes alertAmbientPulse {
-
-    0%,
-    100% {
-
-        opacity: 0.70;
-
-        transform:
-            scale(1);
-
-    }
-
-    50% {
-
-        opacity: 1;
-
-        transform:
-            scale(1.025);
-
-    }
-
-}
-
-
-/* =====================================================
-   MAIN FRAME
+   فریم اصلی
+   فقط Layout تغییر کرده
 ===================================================== */
 
 .main-frame {
 
     position: absolute;
 
-    top: 40px;
-    left: 40px;
+    top: 20px;
+    left: 20px;
 
-    width: calc(100% - 80px);
-    height: calc(100% - 80px);
+    width: calc(100% - 40px);
+    height: calc(100% - 40px);
 
     clip-path: polygon(
 
@@ -378,41 +91,31 @@ body.session-alert::after {
 
     );
 
-    background:
-        rgba(0, 0, 0, 0.18);
+    background: rgba(0, 0, 0, 0.18);
 
-    border: 3px solid var(--theme-color);
+    border: 3px solid #00ff88;
 
     box-shadow:
 
-        0 0 25px var(--theme-color),
-        inset 0 0 25px var(--theme-color);
-
-    z-index: 1;
-
-    transition:
-
-        border-color 0.8s ease,
-
-        box-shadow 0.8s ease;
-
+        0 0 25px #00ff88,
+        inset 0 0 25px #00ff88;
 }
 
 
 /* =====================================================
-   TOP BAR
+   نوار بالا
 ===================================================== */
 
 .top-bar {
 
     position: absolute;
 
-    top: 55px;
+    top: 35px;
     left: 50%;
 
     transform: translateX(-50%);
 
-    width: 86%;
+    width: 92%;
     height: 90px;
 
     clip-path: polygon(
@@ -426,15 +129,14 @@ body.session-alert::after {
 
     );
 
-    background:
-        rgba(0, 0, 0, 0.35);
+    background: rgba(0, 0, 0, 0.35);
 
-    border: 2px solid var(--theme-color);
+    border: 2px solid #00ff88;
 
     box-shadow:
 
-        0 0 14px var(--theme-color),
-        inset 0 0 14px var(--theme-color);
+        0 0 14px #00ff88,
+        inset 0 0 14px #00ff88;
 
     display: flex;
 
@@ -442,23 +144,14 @@ body.session-alert::after {
 
     align-items: center;
 
-    padding: 0 35px;
+    padding: 0 30px;
 
     box-sizing: border-box;
-
-    z-index: 5;
-
-    transition:
-
-        border-color 0.8s ease,
-
-        box-shadow 0.8s ease;
-
 }
 
 
 /* =====================================================
-   TOP ITEMS
+   آیتم‌های نوار بالا
 ===================================================== */
 
 .top-item {
@@ -475,6 +168,7 @@ body.session-alert::after {
 
     align-items: center;
 
+    overflow: hidden;
 }
 
 
@@ -488,15 +182,16 @@ body.session-alert::after {
 
     justify-content: center;
 
-    gap: 14px;
+    gap: 12px;
 
     box-sizing: border-box;
 
+    min-width: 0;
 }
 
 
 /* =====================================================
-   TOP ICONS
+   آیکون‌های بالا
 ===================================================== */
 
 .icon {
@@ -511,23 +206,17 @@ body.session-alert::after {
     fill: none;
 
     filter:
-        drop-shadow(
-            0 0 6px var(--theme-color)
-        );
-
-    transition:
-        filter 0.8s ease;
-
+        drop-shadow(0 0 6px #00ff88);
 }
 
 
 /* =====================================================
-   TOP TEXT
+   متن‌های بالا
 ===================================================== */
 
 .text-box {
 
-    min-width: 125px;
+    min-width: 0;
 
     height: 44px;
 
@@ -541,6 +230,7 @@ body.session-alert::after {
 
     text-align: left;
 
+    overflow: hidden;
 }
 
 
@@ -556,19 +246,12 @@ body.session-alert::after {
 
     height: 18px;
 
-    color: var(--theme-color);
+    color: #ffae4a;
 
     text-shadow:
-        0 0 6px var(--theme-color);
+        0 0 6px #ffae4a;
 
     white-space: nowrap;
-
-    transition:
-
-        color 0.8s ease,
-
-        text-shadow 0.8s ease;
-
 }
 
 
@@ -584,22 +267,15 @@ body.session-alert::after {
 
     height: 24px;
 
-    color: var(--theme-color);
+    color: #00ff88;
 
     text-shadow:
-        0 0 8px var(--theme-color);
+        0 0 8px #00ff88;
 
     white-space: nowrap;
 
     font-variant-numeric:
         tabular-nums;
-
-    transition:
-
-        color 0.8s ease,
-
-        text-shadow 0.8s ease;
-
 }
 
 
@@ -627,29 +303,21 @@ body.session-alert::after {
 
     height: 24px;
 
-    color: var(--theme-color);
+    color: #00ff88;
 
     text-shadow:
-        0 0 8px var(--theme-color);
+        0 0 8px #00ff88;
 
     font-variant-numeric:
         tabular-nums;
 
-    transition:
-
-        color 0.8s ease,
-
-        text-shadow 0.8s ease;
-
+    min-width: 0;
 }
 
 
 .next-event-value .next-session {
 
-    color: var(--theme-color);
-
-    transition:
-        color 0.8s ease;
+    color: #00ff88;
 
 }
 
@@ -668,22 +336,17 @@ body.session-alert::after {
     color: rgba(255,255,255,0.45);
 
     font-size: 15px;
-
 }
 
 
 .next-event-value .next-countdown {
 
-    color: var(--theme-color);
+    color: #00ff88;
 
     font-size: 20px;
 
     font-variant-numeric:
         tabular-nums;
-
-    transition:
-        color 0.8s ease;
-
 }
 
 
@@ -691,7 +354,6 @@ body.session-alert::after {
 
     animation:
         nextEventWarning 0.72s ease-in-out infinite;
-
 }
 
 
@@ -700,10 +362,8 @@ body.session-alert::after {
     color: #ff3333;
 
     text-shadow:
-
         0 0 6px #ff3333,
         0 0 14px #ff3333;
-
 }
 
 
@@ -713,20 +373,17 @@ body.session-alert::after {
     100% {
 
         opacity: 1;
-
     }
 
     50% {
 
         opacity: 0.25;
-
     }
-
 }
 
 
 /* =====================================================
-   DIVIDER
+   جداکننده بالا
 ===================================================== */
 
 .divider {
@@ -739,19 +396,21 @@ body.session-alert::after {
 
     background:
         rgba(255,255,255,0.35);
-
 }
 
 
 /* =====================================================
    SESSION MAP
+   Layout اصلاح شده - منطق Session دست نخورده
 ===================================================== */
 
 .session-map {
 
-    flex: 1;
+    flex: 1.15;
 
     min-width: 0;
+
+    max-width: 100%;
 
     display: flex;
 
@@ -761,6 +420,7 @@ body.session-alert::after {
 
     position: relative;
 
+    overflow: hidden;
 }
 
 
@@ -776,15 +436,20 @@ body.session-alert::after {
 
     width: 100%;
 
+    max-width: 100%;
+
+    min-width: 0;
+
     position: relative;
 
     transform: translateY(7px);
 
+    overflow: hidden;
 }
 
 
 /* =====================================================
-   SESSION TITLE
+   عنوان SESSION
 ===================================================== */
 
 .session-map-title {
@@ -801,28 +466,24 @@ body.session-alert::after {
 
     height: 16px;
 
-    color: var(--theme-color);
+    color: #ffae4a;
 
     text-shadow:
 
-        0 0 6px var(--theme-color),
-        0 0 14px var(--theme-soft);
+        0 0 6px #ffae4a,
+        0 0 14px rgba(255,174,74,0.35);
 
     margin-bottom: 8px;
 
     position: relative;
 
-    transition:
-
-        color 0.8s ease,
-
-        text-shadow 0.8s ease;
-
+    flex-shrink: 0;
 }
 
 
 /* =====================================================
-   SESSION TRACK
+   مپ اصلی
+   محدود به محدوده خودش
 ===================================================== */
 
 .session-track {
@@ -833,19 +494,28 @@ body.session-alert::after {
 
     justify-content: center;
 
-    gap: 20px;
+    gap: 12px;
 
     height: 27px;
+
+    width: 100%;
+
+    max-width: 100%;
+
+    min-width: 0;
 
     position: relative;
 
     white-space: nowrap;
 
+    box-sizing: border-box;
+
+    overflow: hidden;
 }
 
 
 /* =====================================================
-   SESSION NODE
+   Session Node
 ===================================================== */
 
 .session-node {
@@ -854,17 +524,17 @@ body.session-alert::after {
 
     align-items: center;
 
-    gap: 8px;
+    gap: 6px;
 
     position: relative;
 
     font-family: Arial, sans-serif;
 
-    font-size: 15px;
+    font-size: 14px;
 
     font-weight: bold;
 
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
 
     color: rgba(255,255,255,0.42);
 
@@ -876,6 +546,11 @@ body.session-alert::after {
 
         opacity 0.35s ease;
 
+    flex: 0 1 auto;
+
+    min-width: 0;
+
+    white-space: nowrap;
 }
 
 
@@ -891,11 +566,12 @@ body.session-alert::after {
 
         text-shadow 0.35s ease;
 
+    white-space: nowrap;
 }
 
 
 /* =====================================================
-   SESSION DOT
+   Dot
 ===================================================== */
 
 .session-dot {
@@ -907,13 +583,11 @@ body.session-alert::after {
 
     border-radius: 50%;
 
-    background:
-        rgba(255,255,255,0.25);
+    background: rgba(255,255,255,0.25);
 
     box-shadow:
 
-        0 0 2px
-        rgba(255,255,255,0.15);
+        0 0 2px rgba(255,255,255,0.15);
 
     position: relative;
 
@@ -926,12 +600,11 @@ body.session-alert::after {
         box-shadow 0.35s ease,
 
         transform 0.35s ease;
-
 }
 
 
 /* =====================================================
-   HALO
+   Halo
 ===================================================== */
 
 .session-dot::before {
@@ -953,7 +626,7 @@ body.session-alert::after {
     border-radius: 50%;
 
     border: 1px solid
-        rgba(var(--theme-rgb),0);
+        rgba(0,255,136,0);
 
     opacity: 0;
 
@@ -964,40 +637,36 @@ body.session-alert::after {
         transform 0.3s ease,
 
         border-color 0.3s ease;
-
 }
 
 
 /* =====================================================
-   SESSION ACTIVE
+   Session Active
 ===================================================== */
 
 .session-node.active {
 
-    color: var(--theme-color);
+    color: #00ff88;
 
     text-shadow:
 
-        0 0 5px var(--theme-color),
-        0 0 12px var(--theme-strong);
-
+        0 0 5px #00ff88,
+        0 0 12px rgba(0,255,136,0.8);
 }
 
 
 .session-node.active .session-dot {
 
-    background:
-        var(--theme-color);
+    background: #00ff88;
 
     box-shadow:
 
-        0 0 4px var(--theme-color),
-        0 0 10px var(--theme-color),
-        0 0 20px var(--theme-strong);
+        0 0 4px #00ff88,
+        0 0 10px #00ff88,
+        0 0 20px rgba(0,255,136,0.85);
 
     animation:
         activeDotPulse 1.25s ease-in-out infinite;
-
 }
 
 
@@ -1010,11 +679,10 @@ body.session-alert::after {
         scale(1);
 
     border-color:
-        var(--theme-strong);
+        rgba(0,255,136,0.55);
 
     animation:
         activeHalo 1.25s ease-in-out infinite;
-
 }
 
 
@@ -1023,22 +691,17 @@ body.session-alert::after {
     0%,
     100% {
 
-        transform:
-            scale(0.82);
+        transform: scale(0.82);
 
         opacity: 0.78;
-
     }
 
     50% {
 
-        transform:
-            scale(1.30);
+        transform: scale(1.30);
 
         opacity: 1;
-
     }
-
 }
 
 
@@ -1052,7 +715,6 @@ body.session-alert::after {
             scale(0.75);
 
         opacity: 0.20;
-
     }
 
     50% {
@@ -1062,38 +724,33 @@ body.session-alert::after {
             scale(1.35);
 
         opacity: 0.75;
-
     }
-
 }
 
 
 /* =====================================================
-   CONNECTOR
+   خط اتصال
 ===================================================== */
 
 .session-connector {
 
-    width: 28px;
+    width: 16px;
 
     height: 1px;
 
-    flex: 0 0 28px;
+    flex: 0 1 16px;
+
+    min-width: 8px;
 
     background:
         rgba(255,255,255,0.18);
 
     box-shadow:
-        0 0 4px var(--theme-soft);
+        0 0 4px rgba(0,255,136,0.12);
 
     position: relative;
 
     overflow: hidden;
-
-    transition:
-
-        box-shadow 0.8s ease;
-
 }
 
 
@@ -1117,7 +774,7 @@ body.session-alert::after {
         linear-gradient(
             90deg,
             transparent,
-            var(--theme-color),
+            rgba(0,255,136,0.9),
             transparent
         );
 
@@ -1125,7 +782,6 @@ body.session-alert::after {
         connectorSweep 3.2s ease-in-out infinite;
 
     opacity: 1;
-
 }
 
 
@@ -1142,50 +798,46 @@ body.session-alert::after {
     100% {
         left: 130%;
     }
-
 }
 
 
 /* =====================================================
-   OPEN WARNING
+   هشدار OPEN
 ===================================================== */
 
 .session-node.open-warning {
 
-    color: #ff3333;
+    color: #00ff88;
 
     animation:
         openWarningBlink 0.72s ease-in-out infinite;
-
 }
 
 
 .session-node.open-warning .session-dot {
 
-    background: #ff3333;
+    background: #00ff88;
 
     box-shadow:
 
-        0 0 5px #ff3333,
-        0 0 13px #ff3333,
-        0 0 28px rgba(255,51,51,0.95);
+        0 0 5px #00ff88,
+        0 0 13px #00ff88,
+        0 0 28px rgba(0,255,136,0.95);
 
     animation:
         openDotWarning 0.72s ease-in-out infinite;
-
 }
 
 
 .session-node.open-warning .session-dot::before {
 
     border-color:
-        rgba(255,51,51,0.85);
+        rgba(0,255,136,0.85);
 
     opacity: 1;
 
     animation:
         warningHalo 0.72s ease-in-out infinite;
-
 }
 
 
@@ -1198,9 +850,8 @@ body.session-alert::after {
 
         text-shadow:
 
-            0 0 6px #ff3333,
-            0 0 16px #ff3333;
-
+            0 0 6px #00ff88,
+            0 0 16px #00ff88;
     }
 
     50% {
@@ -1208,10 +859,8 @@ body.session-alert::after {
         opacity: 0.22;
 
         text-shadow:
-            0 0 2px #ff3333;
-
+            0 0 2px #00ff88;
     }
-
 }
 
 
@@ -1220,22 +869,17 @@ body.session-alert::after {
     0%,
     100% {
 
-        transform:
-            scale(0.80);
+        transform: scale(0.80);
 
         opacity: 0.55;
-
     }
 
     50% {
 
-        transform:
-            scale(1.45);
+        transform: scale(1.45);
 
         opacity: 1;
-
     }
-
 }
 
 
@@ -1249,7 +893,6 @@ body.session-alert::after {
             scale(0.65);
 
         opacity: 0.20;
-
     }
 
     50% {
@@ -1259,14 +902,12 @@ body.session-alert::after {
             scale(1.55);
 
         opacity: 0.85;
-
     }
-
 }
 
 
 /* =====================================================
-   CLOSE WARNING
+   هشدار CLOSE
 ===================================================== */
 
 .session-node.close-warning {
@@ -1275,7 +916,6 @@ body.session-alert::after {
 
     animation:
         closeWarningBlink 0.65s ease-in-out infinite;
-
 }
 
 
@@ -1291,7 +931,6 @@ body.session-alert::after {
 
     animation:
         closeDotWarning 0.65s ease-in-out infinite;
-
 }
 
 
@@ -1304,7 +943,6 @@ body.session-alert::after {
 
     animation:
         warningHaloRed 0.65s ease-in-out infinite;
-
 }
 
 
@@ -1319,7 +957,6 @@ body.session-alert::after {
 
             0 0 6px #ff3333,
             0 0 16px #ff3333;
-
     }
 
     50% {
@@ -1328,9 +965,7 @@ body.session-alert::after {
 
         text-shadow:
             0 0 2px #ff3333;
-
     }
-
 }
 
 
@@ -1339,22 +974,17 @@ body.session-alert::after {
     0%,
     100% {
 
-        transform:
-            scale(0.80);
+        transform: scale(0.80);
 
         opacity: 0.55;
-
     }
 
     50% {
 
-        transform:
-            scale(1.50);
+        transform: scale(1.50);
 
         opacity: 1;
-
     }
-
 }
 
 
@@ -1368,7 +998,6 @@ body.session-alert::after {
             scale(0.65);
 
         opacity: 0.20;
-
     }
 
     50% {
@@ -1378,9 +1007,7 @@ body.session-alert::after {
             scale(1.55);
 
         opacity: 0.85;
-
     }
-
 }
 
 
@@ -1391,17 +1018,14 @@ body.session-alert::after {
 .session-map.weekend
 .session-node {
 
-    color:
-        rgba(255,51,51,0.55);
-
+    color: rgba(255,51,51,0.55);
 }
 
 
 .session-map.weekend
 .session-dot {
 
-    background:
-        #ff3333;
+    background: #ff3333;
 
     box-shadow:
 
@@ -1410,7 +1034,6 @@ body.session-alert::after {
 
     animation:
         closedWeekendPulse 1.8s ease-in-out infinite;
-
 }
 
 
@@ -1425,21 +1048,18 @@ body.session-alert::after {
     transform:
         translate(-50%, -50%)
         scale(0.9);
-
 }
 
 
 .session-map.weekend
 .session-active-label {
 
-    color:
-        #ff3333;
+    color: #ff3333;
 
     text-shadow:
 
         0 0 6px #ff3333,
         0 0 14px rgba(255,51,51,0.45);
-
 }
 
 
@@ -1448,27 +1068,22 @@ body.session-alert::after {
     0%,
     100% {
 
-        transform:
-            scale(0.85);
+        transform: scale(0.85);
 
         opacity: 0.55;
-
     }
 
     50% {
 
-        transform:
-            scale(1.15);
+        transform: scale(1.15);
 
         opacity: 1;
-
     }
-
 }
 
 
 /* =====================================================
-   ACTIVE LABEL
+   Active Label
 ===================================================== */
 
 .session-active-label {
@@ -1495,30 +1110,23 @@ body.session-alert::after {
 
     letter-spacing: 2px;
 
-    color: var(--theme-color);
+    color: #00ff88;
 
     text-shadow:
 
-        0 0 6px var(--theme-color),
-        0 0 14px var(--theme-soft);
+        0 0 6px #00ff88,
+        0 0 14px rgba(0,255,136,0.45);
 
     opacity: 0;
 
     transition:
-
-        opacity 0.35s ease,
-
-        color 0.8s ease,
-
-        text-shadow 0.8s ease;
-
+        opacity 0.35s ease;
 }
 
 
 .session-active-label.visible {
 
     opacity: 1;
-
 }
 
 
@@ -1530,7 +1138,6 @@ body.session-alert::after {
 
     animation:
         activeArrowFloat 1s ease-in-out infinite;
-
 }
 
 
@@ -1538,37 +1145,33 @@ body.session-alert::after {
 
     0%,
     100% {
-
         transform:
             translateY(2px);
-
     }
 
     50% {
-
         transform:
             translateY(-1px);
-
     }
-
 }
 
 
 /* =====================================================
-   WEBCAM
+   وبکم
+   متناسب با فریم جدید
 ===================================================== */
 
 .webcam-frame {
 
     position: absolute;
 
-    bottom: 170px;
-    left: 80px;
+    bottom: 125px;
+    left: 55px;
 
     width: 430px;
     height: 250px;
 
-    border: 4px solid var(--theme-color);
+    border: 4px solid #00ff66;
 
     border-radius: 0;
 
@@ -1577,36 +1180,27 @@ body.session-alert::after {
 
     box-shadow:
 
-        0 0 25px var(--theme-color),
-        0 0 55px var(--theme-strong),
-        0 0 110px var(--theme-medium),
-        0 0 160px var(--theme-soft);
-
-    z-index: 4;
-
-    transition:
-
-        border-color 0.8s ease,
-
-        box-shadow 0.8s ease;
-
+        0 0 25px rgba(0, 255, 102, 1),
+        0 0 55px rgba(0, 255, 102, 0.85),
+        0 0 110px rgba(0, 255, 102, 0.65),
+        0 0 160px rgba(0, 255, 102, 0.45);
 }
 
 
 /* =====================================================
-   BOTTOM BAR
+   نوار پایین
 ===================================================== */
 
 .bottom-bar {
 
     position: absolute;
 
-    bottom: 55px;
+    bottom: 35px;
     left: 50%;
 
     transform: translateX(-50%);
 
-    width: 86%;
+    width: 92%;
     height: 80px;
 
     clip-path: polygon(
@@ -1623,12 +1217,12 @@ body.session-alert::after {
     background:
         rgba(0, 0, 0, 0.35);
 
-    border: 2px solid var(--theme-color);
+    border: 2px solid #00ff88;
 
     box-shadow:
 
-        0 0 14px var(--theme-color),
-        inset 0 0 14px var(--theme-color);
+        0 0 14px #00ff88,
+        inset 0 0 14px #00ff88;
 
     display: flex;
 
@@ -1636,23 +1230,14 @@ body.session-alert::after {
 
     align-items: center;
 
-    padding: 0 40px;
+    padding: 0 30px;
 
     box-sizing: border-box;
-
-    z-index: 5;
-
-    transition:
-
-        border-color 0.8s ease,
-
-        box-shadow 0.8s ease;
-
 }
 
 
 /* =====================================================
-   BOTTOM FONT
+   فونت نوار پایین
 ===================================================== */
 
 .bottom-item span {
@@ -1670,7 +1255,6 @@ body.session-alert::after {
     align-items: center;
 
     white-space: nowrap;
-
 }
 
 
@@ -1682,16 +1266,7 @@ body.session-alert::after {
 
     gap: 10px;
 
-}
-
-
-.bottom-item:not(.subscribe) span {
-
-    color: #4da6ff;
-
-    text-shadow:
-        0 0 6px #4da6ff;
-
+    min-width: 0;
 }
 
 
@@ -1705,7 +1280,6 @@ body.session-alert::after {
         rgba(255,255,255,0.22);
 
     flex-shrink: 0;
-
 }
 
 
@@ -1725,11 +1299,7 @@ body.session-alert::after {
     flex-shrink: 0;
 
     filter:
-        drop-shadow(0 0 4px var(--theme-color));
-
-    transition:
-        filter 0.8s ease;
-
+        drop-shadow(0 0 4px #ffb347);
 }
 
 
@@ -1748,7 +1318,6 @@ body.session-alert::after {
     height: 40px;
 
     flex-shrink: 0;
-
 }
 
 
@@ -1768,7 +1337,6 @@ body.session-alert::after {
     gap: 10px;
 
     white-space: nowrap;
-
 }
 
 
@@ -1784,7 +1352,6 @@ body.session-alert::after {
 
     text-shadow:
         0 0 5px rgba(255,51,51,0.55);
-
 }
 
 
@@ -1796,7 +1363,6 @@ body.session-alert::after {
         drop-shadow(0 0 4px #ff3333);
 
     transform-origin: 50% 15%;
-
 }
 
 
@@ -1804,7 +1370,6 @@ body.session-alert::after {
 
     animation:
         bellMiddle 10s ease-in-out infinite;
-
 }
 
 
@@ -1853,7 +1418,6 @@ body.session-alert::after {
     100% {
         transform: rotate(0deg);
     }
-
 }
 
 
@@ -1864,7 +1428,6 @@ body.session-alert::after {
 .like-state {
 
     display: none;
-
 }
 
 
@@ -1880,7 +1443,6 @@ body.session-alert::after {
 
     text-shadow:
         0 0 5px rgba(77,166,255,0.55);
-
 }
 
 
@@ -1892,7 +1454,6 @@ body.session-alert::after {
         drop-shadow(0 0 4px #4da6ff);
 
     transform-origin: center;
-
 }
 
 
@@ -1900,7 +1461,6 @@ body.session-alert::after {
 
     animation:
         likePulse 10s ease-in-out infinite;
-
 }
 
 
@@ -1933,7 +1493,6 @@ body.session-alert::after {
     100% {
         transform: scale(1);
     }
-
 }
 
 
@@ -1946,7 +1505,6 @@ body.session-alert::after {
     position: relative;
 
     overflow: hidden;
-
 }
 
 
@@ -1954,7 +1512,6 @@ body.session-alert::after {
 
     animation:
         vipPulse 1.8s infinite ease-in-out;
-
 }
 
 
@@ -1963,24 +1520,20 @@ body.session-alert::after {
     0% {
 
         text-shadow:
-            0 0 6px var(--theme-color);
-
+            0 0 6px #00ff88;
     }
 
     50% {
 
         text-shadow:
-            0 0 18px var(--theme-color);
-
+            0 0 18px #00ff88;
     }
 
     100% {
 
         text-shadow:
-            0 0 6px var(--theme-color);
-
+            0 0 6px #00ff88;
     }
-
 }
 
 
@@ -2005,7 +1558,6 @@ body.session-alert::after {
 
     animation:
         shineSweep 3s infinite;
-
 }
 
 
@@ -2022,7 +1574,6 @@ body.session-alert::after {
     100% {
         left: 120%;
     }
-
 }
 
 </style>
@@ -2030,7 +1581,7 @@ body.session-alert::after {
 </head>
 
 
-<body class="theme-london">
+<body>
 
 
 <div class="main-frame"></div>
@@ -2621,6 +2172,7 @@ body.session-alert::after {
 
 /* =====================================================
    SESSION CONFIG
+   بدون تغییر
 ===================================================== */
 
 const SESSION_CONFIG = {
@@ -2765,232 +2317,7 @@ const sessionNodes = {
 
 
 /* =====================================================
-   DYNAMIC THEME
-===================================================== */
-
-let lastPrimarySession = null;
-
-let themeInitialized = false;
-
-
-function getThemeClass(
-    sessionId
-) {
-
-    switch (sessionId) {
-
-        case "sydney":
-            return "theme-sydney";
-
-        case "tokyo":
-            return "theme-tokyo";
-
-        case "london":
-            return "theme-london";
-
-        case "newyork":
-            return "theme-newyork";
-
-        default:
-            return "theme-london";
-
-    }
-
-}
-
-
-function getThemeColor() {
-
-    return getComputedStyle(
-        document.body
-    )
-    .getPropertyValue(
-        "--theme-color"
-    )
-    .trim();
-
-}
-
-
-function setSessionTheme(
-    session
-) {
-
-    const body =
-        document.body;
-
-
-    body.classList.remove(
-
-        "theme-sydney",
-        "theme-tokyo",
-        "theme-london",
-        "theme-newyork"
-
-    );
-
-
-    if (!session) {
-
-        body.classList.add(
-            "theme-london"
-        );
-
-        return;
-
-    }
-
-
-    const themeClass =
-        getThemeClass(
-            session.id
-        );
-
-
-    body.classList.add(
-        themeClass
-    );
-
-
-    /*
-       اولین اجرا Flash نمی‌زند.
-       Flash فقط زمانی اجرا می‌شود
-       که Session واقعاً عوض شده باشد.
-    */
-
-    if (
-        themeInitialized &&
-        lastPrimarySession !== null &&
-        lastPrimarySession !== session.id
-    ) {
-
-        body.classList.remove(
-            "session-change"
-        );
-
-
-        void body.offsetWidth;
-
-
-        body.classList.add(
-            "session-change"
-        );
-
-
-        setTimeout(
-            function () {
-
-                body.classList.remove(
-                    "session-change"
-                );
-
-            },
-            1900
-        );
-
-    }
-
-
-    lastPrimarySession =
-        session.id;
-
-    themeInitialized = true;
-
-}
-
-
-/* =====================================================
-   ALERT BACKGROUND
-===================================================== */
-
-function updateBackgroundAlert(
-    currentMinute,
-    now
-) {
-
-    const body =
-        document.body;
-
-
-    if (
-        isWeekend(now)
-    ) {
-
-        body.classList.remove(
-            "session-alert"
-        );
-
-        return;
-
-    }
-
-
-    let hasAlert = false;
-
-
-    Object.values(
-        SESSION_CONFIG
-    ).forEach(
-        session => {
-
-            const state =
-                getSessionState(
-                    session,
-                    currentMinute
-                );
-
-
-            if (
-
-                (
-                    state.isOpen &&
-                    isCloseWarning(
-                        session,
-                        currentMinute
-                    )
-                )
-
-                ||
-
-                (
-                    !state.isOpen &&
-                    isOpenWarning(
-                        session,
-                        currentMinute
-                    )
-                )
-
-            ) {
-
-                hasAlert = true;
-
-            }
-
-        }
-    );
-
-
-    if (hasAlert) {
-
-        body.classList.add(
-            "session-alert"
-        );
-
-    }
-
-    else {
-
-        body.classList.remove(
-            "session-alert"
-        );
-
-    }
-
-}
-
-
-/* =====================================================
-   HH:MM → MINUTES
+   HH:MM → minutes
 ===================================================== */
 
 function timeToMinutes(time) {
@@ -2999,7 +2326,6 @@ function timeToMinutes(time) {
         hours,
         minutes
     ] = time.split(":").map(Number);
-
 
     return (
         hours * 60 +
@@ -3010,7 +2336,7 @@ function timeToMinutes(time) {
 
 
 /* =====================================================
-   TEHRAN
+   تهران
 ===================================================== */
 
 function getTehranDateParts(
@@ -3096,7 +2422,7 @@ function getTehranDateParts(
 
 
 /* =====================================================
-   TEHRAN DAY OF WEEK
+   روز هفته تهران
 ===================================================== */
 
 function getTehranDayOfWeek(
@@ -3125,7 +2451,7 @@ function getTehranDayOfWeek(
 
 
 /* =====================================================
-   WEEKEND
+   تعطیلی هفتگی
 ===================================================== */
 
 function isWeekend(
@@ -3147,7 +2473,7 @@ function isWeekend(
 
 
 /* =====================================================
-   TRADING DAY
+   روز معاملاتی
 ===================================================== */
 
 function isTradingDay(
@@ -3160,7 +2486,7 @@ function isTradingDay(
 
 
 /* =====================================================
-   CURRENT TEHRAN MINUTE
+   دقیقه فعلی تهران
 ===================================================== */
 
 function getCurrentTehranMinute(
@@ -3183,7 +2509,7 @@ function getCurrentTehranMinute(
 
 
 /* =====================================================
-   SESSION STATE
+   وضعیت Session
 ===================================================== */
 
 function getSessionState(
@@ -3235,7 +2561,7 @@ function getSessionState(
 
 
 /* =====================================================
-   ACTIVE SESSIONS
+   Session فعال
 ===================================================== */
 
 function getActiveSessions(
@@ -3293,7 +2619,7 @@ function getActiveSessions(
 
 
 /* =====================================================
-   PRIMARY ACTIVE SESSION
+   Session اصلی
 ===================================================== */
 
 function getPrimaryActiveSession(
@@ -3394,7 +2720,7 @@ function isMarketOpen(
 
 
 /* =====================================================
-   OPEN WARNING
+   هشدار OPEN
 ===================================================== */
 
 function getMinutesUntilOpen(
@@ -3552,17 +2878,6 @@ function updateSessionMap(
             "MARKET CLOSED";
 
 
-        /*
-           Weekend رنگ اصلی ندارد.
-           Theme قبلی حفظ می‌شود،
-           ولی Map قرمز می‌ماند.
-        */
-
-        updateBackgroundAlert(
-            currentMinute,
-            now
-        );
-
         return;
 
     }
@@ -3694,32 +3009,6 @@ function updateSessionMap(
 
     }
 
-
-    /*
-       تعیین Theme بر اساس Session اصلی
-    */
-
-    const primary =
-        getPrimaryActiveSession(
-            currentMinute,
-            now
-        );
-
-
-    setSessionTheme(
-        primary
-    );
-
-
-    /*
-       هشدار پس‌زمینه
-    */
-
-    updateBackgroundAlert(
-        currentMinute,
-        now
-    );
-
 }
 
 
@@ -3739,10 +3028,6 @@ function updateMarket(
         );
 
 
-    const themeColor =
-        getThemeColor();
-
-
     if (open) {
 
         marketValue.textContent =
@@ -3750,12 +3035,11 @@ function updateMarket(
 
 
         marketValue.style.color =
-            themeColor;
+            "#00ff88";
 
 
         marketValue.style.textShadow =
-            "0 0 8px " +
-            themeColor;
+            "0 0 8px #00ff88";
 
     }
 
@@ -3778,7 +3062,7 @@ function updateMarket(
 
 
 /* =====================================================
-   TEHRAN CLOCK
+   ساعت تهران
 ===================================================== */
 
 function getTehranTime(
@@ -3811,7 +3095,7 @@ function getTehranTime(
 
 
 /* =====================================================
-   GREGORIAN DATE
+   تاریخ میلادی
 ===================================================== */
 
 function getGregorianDate(
@@ -3847,7 +3131,7 @@ function getGregorianDate(
 
 
 /* =====================================================
-   NEXT SESSION
+   NEXT EVENT
 ===================================================== */
 
 function getNextSessionOpen(
@@ -3920,7 +3204,7 @@ function getNextSessionOpen(
 
 
 /* =====================================================
-   NEXT EVENT
+   زمان دقیق تا Session بعدی
 ===================================================== */
 
 function updateNextEvent(
@@ -4072,19 +3356,11 @@ function updateClocks() {
         tehranParts.second / 60;
 
 
-    /* -----------------------------------------------
-       Tehran Clock
-    ------------------------------------------------ */
-
     tehranClockValue.textContent =
         getTehranTime(
             now
         );
 
-
-    /* -----------------------------------------------
-       Session Map
-    ------------------------------------------------ */
 
     updateSessionMap(
         currentMinute,
@@ -4092,28 +3368,16 @@ function updateClocks() {
     );
 
 
-    /* -----------------------------------------------
-       Market
-    ------------------------------------------------ */
-
     updateMarket(
         currentMinute,
         now
     );
 
 
-    /* -----------------------------------------------
-       Next Event
-    ------------------------------------------------ */
-
     updateNextEvent(
         now
     );
 
-
-    /* -----------------------------------------------
-       DATE
-    ------------------------------------------------ */
 
     dateValue.textContent =
         getGregorianDate(
@@ -4122,10 +3386,6 @@ function updateClocks() {
 
 }
 
-
-/* =====================================================
-   START CLOCK
-===================================================== */
 
 updateClocks();
 
