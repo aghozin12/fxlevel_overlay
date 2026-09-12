@@ -5,13 +5,14 @@
 
 <meta charset="UTF-8">
 
-<title>FX LEVEL Overlay</title>
+<title>FX LEVEL Neon Overlay</title>
 
 <style>
 
-/* =====================================================
-   صفحه اصلی
-===================================================== */
+/* =========================================================
+   FX LEVEL — NEON ONLY OVERLAY
+   Transparent 1920 × 1080
+========================================================= */
 
 html,
 body {
@@ -24,1582 +25,819 @@ body {
 
     overflow: hidden;
 
-    background: #808080;
+    background: transparent;
 
     font-family: Arial, sans-serif;
-
-    color: white;
-}
-
-
-/* =====================================================
-   شبکه پس‌زمینه
-===================================================== */
-
-body::before {
-
-    content: "";
-
-    position: absolute;
-
-    inset: 0;
-
-    background-image:
-
-        linear-gradient(
-            rgba(0,255,136,0.40) 1px,
-            transparent 1px
-        ),
-
-        linear-gradient(
-            90deg,
-            rgba(0,255,136,0.40) 1px,
-            transparent 1px
-        );
-
-    background-size: 40px 40px;
 
     pointer-events: none;
 }
 
 
-/* =====================================================
-   فریم اصلی
-===================================================== */
+/* =========================================================
+   COMMON
+========================================================= */
 
-.main-frame {
-
-    position: absolute;
-
-    top: 20px;
-    left: 20px;
-
-    width: calc(100% - 40px);
-    height: calc(100% - 40px);
-
-    clip-path: polygon(
-
-        25px 0,
-        calc(100% - 25px) 0,
-        100% 25px,
-        100% calc(100% - 25px),
-        calc(100% - 25px) 100%,
-        25px 100%,
-        0 calc(100% - 25px),
-        0 25px
-
-    );
-
-    background: rgba(0, 0, 0, 0.18);
-
-    border: 3px solid #00ff88;
-
-    box-shadow:
-
-        0 0 25px #00ff88,
-        inset 0 0 25px #00ff88;
-}
-
-
-/* =====================================================
-   نوار بالا
-===================================================== */
-
-.top-bar {
+.neon {
 
     position: absolute;
-
-    top: 35px;
-    left: 50%;
-
-    transform: translateX(-50%);
-
-    width: 92%;
-    height: 90px;
-
-    clip-path: polygon(
-
-        18px 0,
-        calc(100% - 18px) 0,
-        100% 18px,
-        100% 100%,
-        0 100%,
-        0 18px
-
-    );
-
-    background: rgba(0, 0, 0, 0.35);
-
-    border: 2px solid #00ff88;
-
-    box-shadow:
-
-        0 0 14px #00ff88,
-        inset 0 0 14px #00ff88;
-
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
-    padding: 0 30px;
-
-    box-sizing: border-box;
-}
-
-
-/* =====================================================
-   آیتم‌های نوار بالا
-===================================================== */
-
-.top-item {
-
-    flex: 1;
-
-    min-width: 0;
-
-    height: 100%;
-
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-
-    overflow: hidden;
-}
-
-
-.item-row {
-
-    width: 100%;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    gap: 12px;
 
     box-sizing: border-box;
 
-    min-width: 0;
+    pointer-events: none;
+
+    background: transparent;
 }
 
 
-/* =====================================================
-   آیکون‌های بالا
-===================================================== */
+/* =========================================================
+   COPY TRADE NEON FRAME
+   Position matches main overlay exactly
+========================================================= */
 
-.icon {
+.copy-neon {
 
-    width: 40px;
-    height: 40px;
-
-    flex: 0 0 40px;
-
-    stroke: #ffffff;
-
-    fill: none;
-
-    filter:
-        drop-shadow(0 0 6px #00ff88);
-}
-
-
-/* =====================================================
-   متن‌های بالا
-===================================================== */
-
-.text-box {
-
-    min-width: 0;
-
-    height: 44px;
-
-    display: flex;
-
-    flex-direction: column;
-
-    justify-content: center;
-
-    line-height: 1.1;
-
-    text-align: left;
-
-    overflow: hidden;
-}
-
-
-.text-box span:first-child {
-
-    font-family: Arial, sans-serif;
-
-    font-size: 14px;
-
-    font-weight: bold;
-
-    line-height: 18px;
-
-    height: 18px;
-
-    color: #ffae4a;
-
-    text-shadow:
-        0 0 6px #ffae4a;
-
-    white-space: nowrap;
-}
-
-
-.text-box span:last-child {
-
-    font-family: Arial, sans-serif;
-
-    font-size: 22px;
-
-    font-weight: bold;
-
-    line-height: 24px;
-
-    height: 24px;
-
-    color: #00ff88;
-
-    text-shadow:
-        0 0 8px #00ff88;
-
-    white-space: nowrap;
-
-    font-variant-numeric:
-        tabular-nums;
-}
-
-
-/* =====================================================
-   NEXT EVENT
-===================================================== */
-
-.next-event-value {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 7px;
-
-    white-space: nowrap;
-
-    font-family: Arial, sans-serif;
-
-    font-size: 22px;
-
-    font-weight: bold;
-
-    line-height: 24px;
-
-    height: 24px;
-
-    color: #00ff88;
-
-    text-shadow:
-        0 0 8px #00ff88;
-
-    font-variant-numeric:
-        tabular-nums;
-
-    min-width: 0;
-}
-
-
-.next-event-value .next-session {
-
-    color: #00ff88;
-
-}
-
-
-.next-event-value .next-open {
-
-    color: #ffae4a;
-
-    font-size: 17px;
-
-}
-
-
-.next-event-value .next-separator {
-
-    color: rgba(255,255,255,0.45);
-
-    font-size: 15px;
-}
-
-
-.next-event-value .next-countdown {
-
-    color: #00ff88;
-
-    font-size: 20px;
-
-    font-variant-numeric:
-        tabular-nums;
-}
-
-
-.next-event-value.warning {
-
-    animation:
-        nextEventWarning 0.72s ease-in-out infinite;
-}
-
-
-.next-event-value.warning .next-countdown {
-
-    color: #ff3333;
-
-    text-shadow:
-        0 0 6px #ff3333,
-        0 0 14px #ff3333;
-}
-
-
-@keyframes nextEventWarning {
-
-    0%,
-    100% {
-
-        opacity: 1;
-    }
-
-    50% {
-
-        opacity: 0.25;
-    }
-}
-
-
-/* =====================================================
-   جداکننده بالا
-===================================================== */
-
-.divider {
-
-    width: 1px;
-
-    height: 60%;
-
-    flex: 0 0 1px;
-
-    background:
-        rgba(255,255,255,0.35);
-}
-
-
-/* =====================================================
-   SESSION MAP
-===================================================== */
-
-.session-map {
-
-    flex: 1.15;
-
-    min-width: 0;
-
-    max-width: 100%;
-
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-
-    position: relative;
-
-    overflow: hidden;
-}
-
-
-.session-map-inner {
-
-    display: flex;
-
-    flex-direction: column;
-
-    justify-content: center;
-
-    align-items: center;
-
-    width: 100%;
-
-    max-width: 100%;
-
-    min-width: 0;
-
-    position: relative;
-
-    transform: translateY(7px);
-
-    overflow: hidden;
-}
-
-
-/* =====================================================
-   عنوان SESSION
-===================================================== */
-
-.session-map-title {
-
-    font-family: Arial, sans-serif;
-
-    font-size: 13px;
-
-    font-weight: bold;
-
-    letter-spacing: 3px;
-
-    line-height: 16px;
-
-    height: 16px;
-
-    color: #ffae4a;
-
-    text-shadow:
-
-        0 0 6px #ffae4a,
-        0 0 14px rgba(255,174,74,0.35);
-
-    margin-bottom: 8px;
-
-    position: relative;
-
-    flex-shrink: 0;
-}
-
-
-/* =====================================================
-   مپ اصلی
-===================================================== */
-
-.session-track {
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    gap: 12px;
-
-    height: 27px;
-
-    width: 100%;
-
-    max-width: 100%;
-
-    min-width: 0;
-
-    position: relative;
-
-    white-space: nowrap;
-
-    box-sizing: border-box;
-
-    overflow: hidden;
-}
-
-
-/* =====================================================
-   Session Node
-===================================================== */
-
-.session-node {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 6px;
-
-    position: relative;
-
-    font-family: Arial, sans-serif;
-
-    font-size: 14px;
-
-    font-weight: bold;
-
-    letter-spacing: 0.5px;
-
-    color: rgba(255,255,255,0.42);
-
-    transition:
-
-        color 0.35s ease,
-
-        text-shadow 0.35s ease,
-
-        opacity 0.35s ease;
-
-    flex: 0 1 auto;
-
-    min-width: 0;
-
-    white-space: nowrap;
-}
-
-
-.session-name {
-
-    position: relative;
-
-    z-index: 3;
-
-    transition:
-
-        color 0.35s ease,
-
-        text-shadow 0.35s ease;
-
-    white-space: nowrap;
-}
-
-
-/* =====================================================
-   Dot
-===================================================== */
-
-.session-dot {
-
-    width: 7px;
-    height: 7px;
-
-    flex: 0 0 7px;
-
-    border-radius: 50%;
-
-    background: rgba(255,255,255,0.25);
-
-    box-shadow:
-
-        0 0 2px rgba(255,255,255,0.15);
-
-    position: relative;
-
-    z-index: 3;
-
-    transition:
-
-        background 0.35s ease,
-
-        box-shadow 0.35s ease,
-
-        transform 0.35s ease;
-}
-
-
-/* =====================================================
-   Halo
-===================================================== */
-
-.session-dot::before {
-
-    content: "";
-
-    position: absolute;
-
-    width: 18px;
-    height: 18px;
-
-    left: 50%;
-    top: 50%;
-
-    transform:
-        translate(-50%, -50%)
-        scale(0.65);
-
-    border-radius: 50%;
-
-    border: 1px solid
-        rgba(0,255,136,0);
-
-    opacity: 0;
-
-    transition:
-
-        opacity 0.3s ease,
-
-        transform 0.3s ease,
-
-        border-color 0.3s ease;
-}
-
-
-/* =====================================================
-   Session Active
-===================================================== */
-
-.session-node.active {
-
-    color: #00ff88;
-
-    text-shadow:
-
-        0 0 5px #00ff88,
-        0 0 12px rgba(0,255,136,0.8);
-}
-
-
-.session-node.active .session-dot {
-
-    background: #00ff88;
-
-    box-shadow:
-
-        0 0 4px #00ff88,
-        0 0 10px #00ff88,
-        0 0 20px rgba(0,255,136,0.85);
-
-    animation:
-        activeDotPulse 1.25s ease-in-out infinite;
-}
-
-
-.session-node.active .session-dot::before {
-
-    opacity: 0.65;
-
-    transform:
-        translate(-50%, -50%)
-        scale(1);
-
-    border-color:
-        rgba(0,255,136,0.55);
-
-    animation:
-        activeHalo 1.25s ease-in-out infinite;
-}
-
-
-@keyframes activeDotPulse {
-
-    0%,
-    100% {
-
-        transform: scale(0.82);
-
-        opacity: 0.78;
-    }
-
-    50% {
-
-        transform: scale(1.30);
-
-        opacity: 1;
-    }
-}
-
-
-@keyframes activeHalo {
-
-    0%,
-    100% {
-
-        transform:
-            translate(-50%, -50%)
-            scale(0.75);
-
-        opacity: 0.20;
-    }
-
-    50% {
-
-        transform:
-            translate(-50%, -50%)
-            scale(1.35);
-
-        opacity: 0.75;
-    }
-}
-
-
-/* =====================================================
-   خط اتصال
-===================================================== */
-
-.session-connector {
-
-    width: 16px;
-
-    height: 1px;
-
-    flex: 0 1 16px;
-
-    min-width: 8px;
-
-    background:
-        rgba(255,255,255,0.18);
-
-    box-shadow:
-        0 0 4px rgba(0,255,136,0.12);
-
-    position: relative;
-
-    overflow: hidden;
-}
-
-
-.session-map.has-active
-.session-connector::after {
-
-    content: "";
-
-    position: absolute;
-
-    top: 0;
-
-    left: -100%;
-
-    width: 60%;
-
-    height: 100%;
-
-    background:
-
-        linear-gradient(
-            90deg,
-            transparent,
-            rgba(0,255,136,0.9),
-            transparent
-        );
-
-    animation:
-        connectorSweep 3.2s ease-in-out infinite;
-
-    opacity: 1;
-}
-
-
-@keyframes connectorSweep {
-
-    0% {
-        left: -100%;
-    }
-
-    55% {
-        left: 130%;
-    }
-
-    100% {
-        left: 130%;
-    }
-}
-
-
-/* =====================================================
-   هشدار OPEN
-===================================================== */
-
-.session-node.open-warning {
-
-    color: #00ff88;
-
-    animation:
-        openWarningBlink 0.72s ease-in-out infinite;
-}
-
-
-.session-node.open-warning .session-dot {
-
-    background: #00ff88;
-
-    box-shadow:
-
-        0 0 5px #00ff88,
-        0 0 13px #00ff88,
-        0 0 28px rgba(0,255,136,0.95);
-
-    animation:
-        openDotWarning 0.72s ease-in-out infinite;
-}
-
-
-.session-node.open-warning .session-dot::before {
-
-    border-color:
-        rgba(0,255,136,0.85);
-
-    opacity: 1;
-
-    animation:
-        warningHalo 0.72s ease-in-out infinite;
-}
-
-
-@keyframes openWarningBlink {
-
-    0%,
-    100% {
-
-        opacity: 1;
-
-        text-shadow:
-
-            0 0 6px #00ff88,
-            0 0 16px #00ff88;
-    }
-
-    50% {
-
-        opacity: 0.22;
-
-        text-shadow:
-            0 0 2px #00ff88;
-    }
-}
-
-
-@keyframes openDotWarning {
-
-    0%,
-    100% {
-
-        transform: scale(0.80);
-
-        opacity: 0.55;
-    }
-
-    50% {
-
-        transform: scale(1.45);
-
-        opacity: 1;
-    }
-}
-
-
-@keyframes warningHalo {
-
-    0%,
-    100% {
-
-        transform:
-            translate(-50%, -50%)
-            scale(0.65);
-
-        opacity: 0.20;
-    }
-
-    50% {
-
-        transform:
-            translate(-50%, -50%)
-            scale(1.55);
-
-        opacity: 0.85;
-    }
-}
-
-
-/* =====================================================
-   هشدار CLOSE
-===================================================== */
-
-.session-node.close-warning {
-
-    color: #ff3333;
-
-    animation:
-        closeWarningBlink 0.65s ease-in-out infinite;
-}
-
-
-.session-node.close-warning .session-dot {
-
-    background: #ff3333;
-
-    box-shadow:
-
-        0 0 5px #ff3333,
-        0 0 13px #ff3333,
-        0 0 30px rgba(255,51,51,0.95);
-
-    animation:
-        closeDotWarning 0.65s ease-in-out infinite;
-}
-
-
-.session-node.close-warning .session-dot::before {
-
-    border-color:
-        rgba(255,51,51,0.85);
-
-    opacity: 1;
-
-    animation:
-        warningHaloRed 0.65s ease-in-out infinite;
-}
-
-
-@keyframes closeWarningBlink {
-
-    0%,
-    100% {
-
-        opacity: 1;
-
-        text-shadow:
-
-            0 0 6px #ff3333,
-            0 0 16px #ff3333;
-    }
-
-    50% {
-
-        opacity: 0.18;
-
-        text-shadow:
-            0 0 2px #ff3333;
-    }
-}
-
-
-@keyframes closeDotWarning {
-
-    0%,
-    100% {
-
-        transform: scale(0.80);
-
-        opacity: 0.55;
-    }
-
-    50% {
-
-        transform: scale(1.50);
-
-        opacity: 1;
-    }
-}
-
-
-@keyframes warningHaloRed {
-
-    0%,
-    100% {
-
-        transform:
-            translate(-50%, -50%)
-            scale(0.65);
-
-        opacity: 0.20;
-    }
-
-    50% {
-
-        transform:
-            translate(-50%, -50%)
-            scale(1.55);
-
-        opacity: 0.85;
-    }
-}
-
-
-/* =====================================================
-   WEEKEND
-===================================================== */
-
-.session-map.weekend
-.session-node {
-
-    color: rgba(255,51,51,0.55);
-}
-
-
-.session-map.weekend
-.session-dot {
-
-    background: #ff3333;
-
-    box-shadow:
-
-        0 0 4px #ff3333,
-        0 0 10px rgba(255,51,51,0.55);
-
-    animation:
-        closedWeekendPulse 1.8s ease-in-out infinite;
-}
-
-
-.session-map.weekend
-.session-dot::before {
-
-    border-color:
-        rgba(255,51,51,0.45);
-
-    opacity: 0.55;
-
-    transform:
-        translate(-50%, -50%)
-        scale(0.9);
-}
-
-
-.session-map.weekend
-.session-active-label {
-
-    color: #ff3333;
-
-    text-shadow:
-
-        0 0 6px #ff3333,
-        0 0 14px rgba(255,51,51,0.45);
-}
-
-
-@keyframes closedWeekendPulse {
-
-    0%,
-    100% {
-
-        transform: scale(0.85);
-
-        opacity: 0.55;
-    }
-
-    50% {
-
-        transform: scale(1.15);
-
-        opacity: 1;
-    }
-}
-
-
-/* =====================================================
-   Active Label
-===================================================== */
-
-.session-active-label {
-
-    position: relative;
-
-    height: 14px;
-
-    margin-top: 1px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    gap: 5px;
-
-    font-family: Arial, sans-serif;
-
-    font-size: 9px;
-
-    font-weight: bold;
-
-    letter-spacing: 2px;
-
-    color: #00ff88;
-
-    text-shadow:
-
-        0 0 6px #00ff88,
-        0 0 14px rgba(0,255,136,0.45);
-
-    opacity: 0;
-
-    transition:
-        opacity 0.35s ease;
-}
-
-
-.session-active-label.visible {
-
-    opacity: 1;
-}
-
-
-.active-arrow {
-
-    display: inline-block;
-
-    font-size: 10px;
-
-    animation:
-        activeArrowFloat 1s ease-in-out infinite;
-}
-
-
-@keyframes activeArrowFloat {
-
-    0%,
-    100% {
-        transform:
-            translateY(2px);
-    }
-
-    50% {
-        transform:
-            translateY(-1px);
-    }
-}
-
-
-/* =====================================================
-   وبکم
-   فقط رنگ و موقعیت تغییر کرده
-===================================================== */
-
-.webcam-frame {
-
-    position: absolute;
-
-    bottom: 125px;
     left: 40px;
-
-    width: 430px;
-    height: 250px;
-
-    border: 4px solid #ffae4a;
-
-    border-radius: 0;
-
-    background:
-        rgba(0, 0, 0, 0.18);
-
-    box-shadow:
-
-        0 0 25px rgba(255, 174, 74, 1),
-        0 0 55px rgba(255, 174, 74, 0.85),
-        0 0 110px rgba(255, 174, 74, 0.65),
-        0 0 160px rgba(255, 174, 74, 0.45);
-}
-
-
-/* =====================================================
-   پنل بالای وبکم
-===================================================== */
-
-.webcam-panel {
-
-    position: absolute;
-
     bottom: 389px;
-    left: 40px;
 
     width: 430px;
     height: 140px;
 
-    border: 4px solid #ffae4a;
-
-    border-radius: 0;
-
-    background:
-        rgba(0, 0, 0, 0.18);
+    border: 2px solid rgba(0, 217, 255, 0.95);
 
     box-shadow:
 
-        0 0 25px rgba(255, 174, 74, 1),
-        0 0 55px rgba(255, 174, 74, 0.85),
-        0 0 110px rgba(255, 174, 74, 0.65),
-        0 0 160px rgba(255, 174, 74, 0.45);
+        0 0 8px rgba(0, 217, 255, 1),
+
+        0 0 18px rgba(0, 217, 255, 0.95),
+
+        0 0 35px rgba(0, 217, 255, 0.75),
+
+        0 0 65px rgba(0, 217, 255, 0.50),
+
+        0 0 105px rgba(0, 217, 255, 0.25);
+
+    animation: copyPulse 3.5s ease-in-out infinite;
 }
 
 
-/* =====================================================
-   نوار پایین
-===================================================== */
+/* =========================================================
+   COPY TRADE CORNER ACCENTS
+========================================================= */
 
-.bottom-bar {
+.copy-neon::before,
+.copy-neon::after {
+
+    content: "";
 
     position: absolute;
 
-    bottom: 35px;
-    left: 50%;
-
-    transform: translateX(-50%);
-
-    width: 92%;
-    height: 80px;
-
-    clip-path: polygon(
-
-        0 0,
-        100% 0,
-        100% calc(100% - 18px),
-        calc(100% - 18px) 100%,
-        18px 100%,
-        0 calc(100% - 18px)
-
-    );
-
-    background:
-        rgba(0, 0, 0, 0.35);
-
-    border: 2px solid #00ff88;
-
-    box-shadow:
-
-        0 0 14px #00ff88,
-        inset 0 0 14px #00ff88;
-
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
-    padding: 0 30px;
+    pointer-events: none;
 
     box-sizing: border-box;
 }
 
 
-/* =====================================================
-   فونت نوار پایین
-===================================================== */
+/* Top / bottom electric lines */
 
-.bottom-item span {
+.copy-neon::before {
 
-    font-family: Arial, sans-serif;
+    left: 14px;
+    right: 14px;
 
-    font-size: 18px;
+    top: -2px;
 
-    font-weight: bold;
+    height: 2px;
 
-    line-height: 1;
+    background: linear-gradient(
 
-    display: flex;
+        90deg,
 
-    align-items: center;
+        transparent 0%,
 
-    white-space: nowrap;
+        rgba(0,217,255,0.2) 10%,
+
+        rgba(0,217,255,1) 25%,
+
+        rgba(0,217,255,1) 75%,
+
+        rgba(0,217,255,0.2) 90%,
+
+        transparent 100%
+
+    );
+
+    box-shadow:
+
+        0 0 8px rgba(0,217,255,1),
+
+        0 0 18px rgba(0,217,255,0.8);
 }
 
 
-.bottom-item {
+/* Bottom electric line */
 
-    display: flex;
+.copy-neon::after {
 
-    align-items: center;
+    left: 14px;
+    right: 14px;
 
-    gap: 10px;
+    bottom: -2px;
 
-    min-width: 0;
+    height: 2px;
+
+    background: linear-gradient(
+
+        90deg,
+
+        transparent 0%,
+
+        rgba(0,217,255,0.2) 10%,
+
+        rgba(0,217,255,1) 25%,
+
+        rgba(0,217,255,1) 75%,
+
+        rgba(0,217,255,0.2) 90%,
+
+        transparent 100%
+
+    );
+
+    box-shadow:
+
+        0 0 8px rgba(0,217,255,1),
+
+        0 0 18px rgba(0,217,255,0.8);
 }
 
 
-.bottom-divider {
+/* =========================================================
+   COPY TRADE CORNER BRACKETS
+========================================================= */
 
-    width: 1px;
-
-    height: 35px;
-
-    background:
-        rgba(255,255,255,0.22);
-
-    flex-shrink: 0;
-}
-
-
-.bottom-icon {
-
-    width: 40px;
-    height: 40px;
-
-    stroke: #ffffff;
-
-    fill: none;
-
-    display: flex;
-
-    align-items: center;
-
-    flex-shrink: 0;
-
-    filter:
-        drop-shadow(0 0 4px #ffb347);
-}
-
-
-/* =====================================================
-   SUBSCRIBE
-===================================================== */
-
-.subscribe {
-
-    position: relative;
-
-    width: 145px;
-    min-width: 145px;
-    max-width: 145px;
-
-    height: 40px;
-
-    flex-shrink: 0;
-}
-
-
-.promo-state {
+.copy-corner {
 
     position: absolute;
 
-    left: 0;
-    top: 50%;
+    width: 22px;
+    height: 22px;
 
-    transform: translateY(-50%);
+    box-sizing: border-box;
 
-    display: flex;
+    pointer-events: none;
 
-    align-items: center;
-
-    gap: 10px;
-
-    white-space: nowrap;
+    z-index: 5;
 }
 
 
-.subscribe-state span {
+/* Top Left */
 
-    font-family: Arial, sans-serif;
+.copy-corner.tl {
 
-    font-size: 18px;
+    left: -4px;
+    top: -4px;
 
-    font-weight: bold;
+    border-left: 4px solid #00d9ff;
+    border-top: 4px solid #00d9ff;
 
-    color: #ff3333;
+    box-shadow:
 
-    text-shadow:
-        0 0 5px rgba(255,51,51,0.55);
+        -3px -3px 12px rgba(0,217,255,0.9),
+
+        0 0 18px rgba(0,217,255,0.7);
 }
 
 
-.bell-icon {
+/* Top Right */
 
-    stroke: #ff3333;
+.copy-corner.tr {
 
-    filter:
-        drop-shadow(0 0 4px #ff3333);
+    right: -4px;
+    top: -4px;
 
-    transform-origin: 50% 15%;
+    border-right: 4px solid #00d9ff;
+    border-top: 4px solid #00d9ff;
+
+    box-shadow:
+
+        3px -3px 12px rgba(0,217,255,0.9),
+
+        0 0 18px rgba(0,217,255,0.7);
 }
 
 
-.subscribe-state .bell-icon {
+/* Bottom Left */
 
-    animation:
-        bellMiddle 10s ease-in-out infinite;
+.copy-corner.bl {
+
+    left: -4px;
+    bottom: -4px;
+
+    border-left: 4px solid #00d9ff;
+    border-bottom: 4px solid #00d9ff;
+
+    box-shadow:
+
+        -3px 3px 12px rgba(0,217,255,0.9),
+
+        0 0 18px rgba(0,217,255,0.7);
 }
 
 
-@keyframes bellMiddle {
+/* Bottom Right */
 
-    0% {
-        transform: rotate(0deg);
-    }
+.copy-corner.br {
 
-    45% {
-        transform: rotate(0deg);
-    }
+    right: -4px;
+    bottom: -4px;
 
-    47% {
-        transform: rotate(-6deg);
-    }
+    border-right: 4px solid #00d9ff;
+    border-bottom: 4px solid #00d9ff;
 
-    48.5% {
-        transform: rotate(6deg);
-    }
+    box-shadow:
 
-    50% {
-        transform: rotate(-4deg);
-    }
+        3px 3px 12px rgba(0,217,255,0.9),
 
-    51.5% {
-        transform: rotate(0deg);
-    }
-
-    53% {
-        transform: rotate(-6deg);
-    }
-
-    54.5% {
-        transform: rotate(6deg);
-    }
-
-    56% {
-        transform: rotate(-4deg);
-    }
-
-    57.5% {
-        transform: rotate(0deg);
-    }
-
-    100% {
-        transform: rotate(0deg);
-    }
+        0 0 18px rgba(0,217,255,0.7);
 }
 
 
-/* =====================================================
-   LIKE
-===================================================== */
+/* =========================================================
+   COPY TRADE MOVING LIGHT
+========================================================= */
 
-.like-state {
-
-    display: none;
-}
-
-
-.like-state span {
-
-    font-family: Arial, sans-serif;
-
-    font-size: 18px;
-
-    font-weight: bold;
-
-    color: #4da6ff;
-
-    text-shadow:
-        0 0 5px rgba(77,166,255,0.55);
-}
-
-
-.like-icon {
-
-    stroke: #4da6ff;
-
-    filter:
-        drop-shadow(0 0 4px #4da6ff);
-
-    transform-origin: center;
-}
-
-
-.like-pulse {
-
-    animation:
-        likePulse 10s ease-in-out infinite;
-}
-
-
-@keyframes likePulse {
-
-    0% {
-        transform: scale(0.82);
-    }
-
-    8% {
-        transform: scale(1.10);
-    }
-
-    15% {
-        transform: scale(0.88);
-    }
-
-    22% {
-        transform: scale(1.12);
-    }
-
-    29% {
-        transform: scale(0.88);
-    }
-
-    38% {
-        transform: scale(1);
-    }
-
-    100% {
-        transform: scale(1);
-    }
-}
-
-
-/* =====================================================
-   VIP
-===================================================== */
-
-.vip {
-
-    position: relative;
-
-    overflow: hidden;
-}
-
-
-.vip span {
-
-    animation:
-        vipPulse 1.8s infinite ease-in-out;
-}
-
-
-@keyframes vipPulse {
-
-    0% {
-
-        text-shadow:
-            0 0 6px #00ff88;
-    }
-
-    50% {
-
-        text-shadow:
-            0 0 18px #00ff88;
-    }
-
-    100% {
-
-        text-shadow:
-            0 0 6px #00ff88;
-    }
-}
-
-
-.vip .shine {
+.copy-scan {
 
     position: absolute;
 
     top: 0;
-    left: -120%;
+    left: -90px;
 
-    width: 80%;
-    height: 100%;
+    width: 90px;
+    height: 2px;
 
-    background:
+    background: linear-gradient(
 
-        linear-gradient(
-            120deg,
-            transparent,
-            rgba(255,255,255,0.4),
-            transparent
-        );
+        90deg,
 
-    animation:
-        shineSweep 3s infinite;
+        transparent,
+
+        rgba(255,255,255,0.95),
+
+        #00d9ff,
+
+        transparent
+
+    );
+
+    filter:
+
+        drop-shadow(0 0 6px #00d9ff)
+
+        drop-shadow(0 0 12px #00d9ff);
+
+    animation: copyScan 4.5s linear infinite;
+
+    pointer-events: none;
 }
 
 
-@keyframes shineSweep {
+/* =========================================================
+   WEBCAM NEON FRAME
+   Position matches main overlay exactly
+========================================================= */
+
+.webcam-neon {
+
+    left: 40px;
+    bottom: 125px;
+
+    width: 430px;
+    height: 250px;
+
+    border: 2px solid rgba(0, 255, 102, 0.95);
+
+    box-shadow:
+
+        0 0 8px rgba(0, 255, 102, 1),
+
+        0 0 18px rgba(0, 255, 102, 0.95),
+
+        0 0 35px rgba(0, 255, 102, 0.80),
+
+        0 0 65px rgba(0, 255, 102, 0.55),
+
+        0 0 105px rgba(0, 255, 102, 0.30),
+
+        0 0 150px rgba(0, 255, 102, 0.15);
+
+    animation: webcamPulse 4s ease-in-out infinite;
+}
+
+
+/* =========================================================
+   WEBCAM EDGE LIGHTS
+========================================================= */
+
+.webcam-neon::before,
+.webcam-neon::after {
+
+    content: "";
+
+    position: absolute;
+
+    pointer-events: none;
+
+    box-sizing: border-box;
+}
+
+
+/* Top edge */
+
+.webcam-neon::before {
+
+    left: 18px;
+    right: 18px;
+
+    top: -2px;
+
+    height: 2px;
+
+    background: linear-gradient(
+
+        90deg,
+
+        transparent 0%,
+
+        rgba(0,255,102,0.15) 8%,
+
+        #00ff66 22%,
+
+        #00ff66 78%,
+
+        rgba(0,255,102,0.15) 92%,
+
+        transparent 100%
+
+    );
+
+    box-shadow:
+
+        0 0 8px #00ff66,
+
+        0 0 20px rgba(0,255,102,0.8);
+}
+
+
+/* Bottom edge */
+
+.webcam-neon::after {
+
+    left: 18px;
+    right: 18px;
+
+    bottom: -2px;
+
+    height: 2px;
+
+    background: linear-gradient(
+
+        90deg,
+
+        transparent 0%,
+
+        rgba(0,255,102,0.15) 8%,
+
+        #00ff66 22%,
+
+        #00ff66 78%,
+
+        rgba(0,255,102,0.15) 92%,
+
+        transparent 100%
+
+    );
+
+    box-shadow:
+
+        0 0 8px #00ff66,
+
+        0 0 20px rgba(0,255,102,0.8);
+}
+
+
+/* =========================================================
+   WEBCAM CORNER BRACKETS
+========================================================= */
+
+.webcam-corner {
+
+    position: absolute;
+
+    width: 30px;
+    height: 30px;
+
+    box-sizing: border-box;
+
+    pointer-events: none;
+
+    z-index: 5;
+}
+
+
+/* Top Left */
+
+.webcam-corner.tl {
+
+    left: -4px;
+    top: -4px;
+
+    border-left: 4px solid #00ff66;
+    border-top: 4px solid #00ff66;
+
+    box-shadow:
+
+        -4px -4px 14px rgba(0,255,102,0.95),
+
+        0 0 22px rgba(0,255,102,0.75);
+}
+
+
+/* Top Right */
+
+.webcam-corner.tr {
+
+    right: -4px;
+    top: -4px;
+
+    border-right: 4px solid #00ff66;
+    border-top: 4px solid #00ff66;
+
+    box-shadow:
+
+        4px -4px 14px rgba(0,255,102,0.95),
+
+        0 0 22px rgba(0,255,102,0.75);
+}
+
+
+/* Bottom Left */
+
+.webcam-corner.bl {
+
+    left: -4px;
+    bottom: -4px;
+
+    border-left: 4px solid #00ff66;
+    border-bottom: 4px solid #00ff66;
+
+    box-shadow:
+
+        -4px 4px 14px rgba(0,255,102,0.95),
+
+        0 0 22px rgba(0,255,102,0.75);
+}
+
+
+/* Bottom Right */
+
+.webcam-corner.br {
+
+    right: -4px;
+    bottom: -4px;
+
+    border-right: 4px solid #00ff66;
+    border-bottom: 4px solid #00ff66;
+
+    box-shadow:
+
+        4px 4px 14px rgba(0,255,102,0.95),
+
+        0 0 22px rgba(0,255,102,0.75);
+}
+
+
+/* =========================================================
+   WEBCAM SCAN LIGHT
+========================================================= */
+
+.webcam-scan {
+
+    position: absolute;
+
+    top: -2px;
+
+    left: -120px;
+
+    width: 120px;
+    height: 2px;
+
+    background: linear-gradient(
+
+        90deg,
+
+        transparent,
+
+        rgba(255,255,255,0.95),
+
+        #00ff66,
+
+        transparent
+
+    );
+
+    filter:
+
+        drop-shadow(0 0 7px #00ff66)
+
+        drop-shadow(0 0 15px #00ff66);
+
+    animation: webcamScan 5.5s linear infinite;
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   SMALL SIDE ENERGY MARKS
+========================================================= */
+
+.energy {
+
+    position: absolute;
+
+    width: 3px;
+
+    pointer-events: none;
+
+    border-radius: 2px;
+
+    opacity: 0.9;
+}
+
+
+/* Copy Trade left energy */
+
+.copy-energy-left {
+
+    left: -12px;
+    top: 48px;
+
+    height: 42px;
+
+    background: #00d9ff;
+
+    box-shadow:
+
+        0 0 6px #00d9ff,
+
+        0 0 15px #00d9ff,
+
+        0 0 30px rgba(0,217,255,0.8);
+
+    animation: energyBlue 2.4s ease-in-out infinite;
+}
+
+
+/* Copy Trade right energy */
+
+.copy-energy-right {
+
+    right: -12px;
+    bottom: 30px;
+
+    height: 25px;
+
+    background: #00d9ff;
+
+    box-shadow:
+
+        0 0 6px #00d9ff,
+
+        0 0 15px #00d9ff,
+
+        0 0 30px rgba(0,217,255,0.8);
+
+    animation: energyBlue 2.8s ease-in-out infinite reverse;
+}
+
+
+/* Webcam left energy */
+
+.webcam-energy-left {
+
+    left: -13px;
+    top: 95px;
+
+    height: 55px;
+
+    background: #00ff66;
+
+    box-shadow:
+
+        0 0 7px #00ff66,
+
+        0 0 18px #00ff66,
+
+        0 0 35px rgba(0,255,102,0.8);
+
+    animation: energyGreen 3s ease-in-out infinite;
+}
+
+
+/* Webcam right energy */
+
+.webcam-energy-right {
+
+    right: -13px;
+    bottom: 75px;
+
+    height: 35px;
+
+    background: #00ff66;
+
+    box-shadow:
+
+        0 0 7px #00ff66,
+
+        0 0 18px #00ff66,
+
+        0 0 35px rgba(0,255,102,0.8);
+
+    animation: energyGreen 3.5s ease-in-out infinite reverse;
+}
+
+
+/* =========================================================
+   ANIMATIONS
+========================================================= */
+
+@keyframes copyPulse {
 
     0% {
-        left: -120%;
+
+        opacity: 0.86;
+
+        filter: brightness(0.95);
     }
 
     50% {
-        left: 120%;
+
+        opacity: 1;
+
+        filter: brightness(1.15);
     }
 
     100% {
-        left: 120%;
+
+        opacity: 0.86;
+
+        filter: brightness(0.95);
+    }
+}
+
+
+@keyframes webcamPulse {
+
+    0% {
+
+        opacity: 0.88;
+
+        filter: brightness(0.95);
+    }
+
+    50% {
+
+        opacity: 1;
+
+        filter: brightness(1.12);
+    }
+
+    100% {
+
+        opacity: 0.88;
+
+        filter: brightness(0.95);
+    }
+}
+
+
+@keyframes copyScan {
+
+    0% {
+
+        left: -100px;
+
+        opacity: 0;
+    }
+
+    8% {
+
+        opacity: 1;
+    }
+
+    45% {
+
+        left: 430px;
+
+        opacity: 1;
+    }
+
+    55% {
+
+        opacity: 0;
+    }
+
+    100% {
+
+        left: 430px;
+
+        opacity: 0;
+    }
+}
+
+
+@keyframes webcamScan {
+
+    0% {
+
+        left: -130px;
+
+        opacity: 0;
+    }
+
+    8% {
+
+        opacity: 1;
+    }
+
+    45% {
+
+        left: 430px;
+
+        opacity: 1;
+    }
+
+    55% {
+
+        opacity: 0;
+    }
+
+    100% {
+
+        left: 430px;
+
+        opacity: 0;
+    }
+}
+
+
+@keyframes energyBlue {
+
+    0% {
+
+        opacity: 0.35;
+
+        transform: scaleY(0.65);
+    }
+
+    50% {
+
+        opacity: 1;
+
+        transform: scaleY(1);
+    }
+
+    100% {
+
+        opacity: 0.35;
+
+        transform: scaleY(0.65);
+    }
+}
+
+
+@keyframes energyGreen {
+
+    0% {
+
+        opacity: 0.3;
+
+        transform: scaleY(0.65);
+    }
+
+    50% {
+
+        opacity: 1;
+
+        transform: scaleY(1);
+    }
+
+    100% {
+
+        opacity: 0.3;
+
+        transform: scaleY(0.65);
     }
 }
 
@@ -1611,1883 +849,43 @@ body::before {
 <body>
 
 
-<div class="main-frame"></div>
+<!-- =======================================================
+     COPY TRADE NEON
+======================================================== -->
 
+<div class="neon copy-neon">
 
-<!-- =====================================================
-     TOP BAR
-===================================================== -->
+    <div class="copy-corner tl"></div>
+    <div class="copy-corner tr"></div>
+    <div class="copy-corner bl"></div>
+    <div class="copy-corner br"></div>
 
-<div class="top-bar">
+    <div class="copy-scan"></div>
 
-
-<!-- =====================================================
-     1. MARKET
-===================================================== -->
-
-<div class="top-item">
-
-    <div class="item-row">
-
-        <svg class="icon" viewBox="0 0 24 24">
-
-            <path
-                d="M4 17l5-5 3 3 7-8"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-            />
-
-            <path
-                d="M15 7h4v4"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-            />
-
-        </svg>
-
-
-        <div class="text-box">
-
-            <span>MARKET</span>
-
-            <span id="market-value">
-                OPEN
-            </span>
-
-        </div>
-
-    </div>
+    <div class="energy copy-energy-left"></div>
+    <div class="energy copy-energy-right"></div>
 
 </div>
 
 
-<div class="divider"></div>
+<!-- =======================================================
+     WEBCAM NEON
+======================================================== -->
 
+<div class="neon webcam-neon">
 
-<!-- =====================================================
-     2. SESSION
-===================================================== -->
+    <div class="webcam-corner tl"></div>
+    <div class="webcam-corner tr"></div>
+    <div class="webcam-corner bl"></div>
+    <div class="webcam-corner br"></div>
 
-<div class="top-item session-map" id="session-map">
+    <div class="webcam-scan"></div>
 
-    <div class="session-map-inner">
-
-        <div class="session-map-title">
-            SESSION
-        </div>
-
-
-        <div class="session-track">
-
-
-            <div
-                class="session-node"
-                id="session-sydney"
-            >
-
-                <span class="session-name">
-                    SYD
-                </span>
-
-                <span class="session-dot"></span>
-
-            </div>
-
-
-            <div class="session-connector"></div>
-
-
-            <div
-                class="session-node"
-                id="session-tokyo"
-            >
-
-                <span class="session-name">
-                    TOK
-                </span>
-
-                <span class="session-dot"></span>
-
-            </div>
-
-
-            <div class="session-connector"></div>
-
-
-            <div
-                class="session-node"
-                id="session-london"
-            >
-
-                <span class="session-name">
-                    LON
-                </span>
-
-                <span class="session-dot"></span>
-
-            </div>
-
-
-            <div class="session-connector"></div>
-
-
-            <div
-                class="session-node"
-                id="session-newyork"
-            >
-
-                <span class="session-name">
-                    NY
-                </span>
-
-                <span class="session-dot"></span>
-
-            </div>
-
-
-        </div>
-
-
-        <div
-            class="session-active-label"
-            id="session-active-label"
-        >
-
-            <span class="active-arrow">
-                ▲
-            </span>
-
-            <span id="active-session-text">
-                ACTIVE
-            </span>
-
-        </div>
-
-    </div>
+    <div class="energy webcam-energy-left"></div>
+    <div class="energy webcam-energy-right"></div>
 
 </div>
 
-
-<div class="divider"></div>
-
-
-<!-- =====================================================
-     3. NEXT EVENT
-===================================================== -->
-
-<div class="top-item">
-
-    <div class="item-row">
-
-        <svg class="icon" viewBox="0 0 24 24">
-
-            <circle
-                cx="12"
-                cy="12"
-                r="9"
-                stroke-width="2"
-            />
-
-            <path
-                d="M12 7v5l3 2"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-            />
-
-        </svg>
-
-
-        <div class="text-box">
-
-            <span>
-                NEXT
-            </span>
-
-            <span
-                id="next-event-value"
-                class="next-event-value"
-            >
-
-                <span
-                    id="next-session"
-                    class="next-session"
-                >
-                    LON
-                </span>
-
-                <span
-                    class="next-open"
-                >
-                    OPEN
-                </span>
-
-                <span
-                    class="next-separator"
-                >
-                    ·
-                </span>
-
-                <span
-                    id="next-countdown"
-                    class="next-countdown"
-                >
-                    --:--:--
-                </span>
-
-            </span>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<div class="divider"></div>
-
-
-<!-- =====================================================
-     4. TEHRAN
-===================================================== -->
-
-<div class="top-item">
-
-    <div class="item-row">
-
-        <svg class="icon" viewBox="0 0 24 24">
-
-            <circle
-                cx="12"
-                cy="12"
-                r="10"
-                stroke-width="2"
-            />
-
-            <path
-                d="M12 12l4 2"
-                stroke-width="2"
-            />
-
-        </svg>
-
-
-        <div class="text-box">
-
-            <span>TEHRAN</span>
-
-            <span id="tehran-value">
-                --:--:--
-            </span>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<div class="divider"></div>
-
-
-<!-- =====================================================
-     5. DATE
-===================================================== -->
-
-<div class="top-item">
-
-    <div class="item-row">
-
-        <svg class="icon" viewBox="0 0 24 24">
-
-            <rect
-                x="3"
-                y="5"
-                width="18"
-                height="16"
-                stroke-width="2"
-                fill="none"
-            />
-
-            <line
-                x1="3"
-                y1="10"
-                x2="21"
-                y2="10"
-                stroke-width="2"
-            />
-
-        </svg>
-
-
-        <div class="text-box">
-
-            <span>DATE</span>
-
-            <span id="date-value">
-                -- --- ----
-            </span>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-</div>
-
-
-<!-- =====================================================
-     PANEL ABOVE WEBCAM
-===================================================== -->
-
-<div class="webcam-panel"></div>
-
-
-<!-- =====================================================
-     WEBCAM
-===================================================== -->
-
-<div class="webcam-frame"></div>
-
-
-<!-- =====================================================
-     BOTTOM BAR
-===================================================== -->
-
-<div class="bottom-bar">
-
-
-<div
-    class="bottom-item subscribe"
-    id="subscribe-like"
->
-
-
-    <div
-        class="promo-state subscribe-state"
-    >
-
-        <svg
-            class="bottom-icon bell-icon"
-            viewBox="0 0 24 24"
-        >
-
-            <path
-                d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"
-                stroke-width="2.4"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-            />
-
-            <path
-                d="M10 21h4"
-                stroke-width="2.4"
-                stroke-linecap="round"
-            />
-
-        </svg>
-
-
-        <span>
-            SUBSCRIBE
-        </span>
-
-    </div>
-
-
-    <div
-        class="promo-state like-state"
-    >
-
-        <svg
-            class="bottom-icon like-icon"
-            viewBox="0 0 24 24"
-        >
-
-            <path
-                d="M7 10v12H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h3z"
-                stroke-width="2.2"
-                stroke-linejoin="round"
-            />
-
-            <path
-                d="M7 10l4-8c1.5 0 3 1 3 2.5V8h6a2 2 0 0 1 2 2.3l-1.2 8A2 2 0 0 1 18.8 20H7"
-                stroke-width="2.2"
-                stroke-linejoin="round"
-            />
-
-        </svg>
-
-
-        <span>
-            LIKE
-        </span>
-
-    </div>
-
-</div>
-
-
-<div class="bottom-divider"></div>
-
-
-<div class="bottom-item">
-
-    <svg
-        class="bottom-icon"
-        viewBox="0 0 24 24"
-    >
-
-        <circle
-            cx="12"
-            cy="12"
-            r="10"
-            stroke-width="2"
-        />
-
-        <path
-            d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"
-            stroke-width="2"
-        />
-
-    </svg>
-
-
-    <span>
-        www.aparat.com/FX_LEVEL3
-    </span>
-
-</div>
-
-
-<div class="bottom-divider"></div>
-
-
-<div class="bottom-item">
-
-    <svg
-        class="bottom-icon"
-        viewBox="0 0 24 24"
-    >
-
-        <rect
-            x="3"
-            y="3"
-            width="18"
-            height="18"
-            rx="5"
-            stroke-width="2"
-        />
-
-        <circle
-            cx="12"
-            cy="12"
-            r="4"
-            stroke-width="2"
-        />
-
-        <circle
-            cx="17"
-            cy="7"
-            r="1.5"
-            fill="#fff"
-        />
-
-    </svg>
-
-
-    <span>
-        instagram.com/fx_level3
-    </span>
-
-</div>
-
-
-<div class="bottom-divider"></div>
-
-
-<div class="bottom-item">
-
-    <svg
-        class="bottom-icon"
-        viewBox="0 0 24 24"
-    >
-
-        <rect
-            x="3"
-            y="6"
-            width="18"
-            height="12"
-            rx="3"
-            stroke-width="2"
-        />
-
-        <polygon
-            points="10,9 16,12 10,15"
-            fill="#fff"
-        />
-
-    </svg>
-
-
-    <span>
-        youtube.com/@FX_LEVEL3
-    </span>
-
-</div>
-
-
-<div class="bottom-divider"></div>
-
-
-<div class="bottom-item">
-
-    <svg
-        class="bottom-icon"
-        viewBox="0 0 24 24"
-    >
-
-        <path
-            d="M22 2L11 13"
-            stroke-width="2"
-        />
-
-        <path
-            d="M22 2L15 22l-4-9-9-4 20-7z"
-            stroke-width="2"
-        />
-
-    </svg>
-
-
-    <span>
-        t.me/FX_LEVEL3
-    </span>
-
-</div>
-
-
-<div class="bottom-divider"></div>
-
-
-<div class="bottom-item vip">
-
-    <svg
-        class="bottom-icon diamond"
-        viewBox="0 0 24 24"
-    >
-
-        <polygon
-            points="12 2 22 9 12 22 2 9"
-            stroke-width="2"
-        />
-
-    </svg>
-
-
-    <span>
-        Meysam Ghasemi
-    </span>
-
-
-    <div class="shine"></div>
-
-</div>
-
-
-</div>
-
-
-<script>
-
-/* =====================================================
-   SESSION CONFIG
-===================================================== */
-
-const SESSION_CONFIG = {
-
-    sydney: {
-
-        name: "Sydney",
-        shortName: "SYD",
-        open: "01:30",
-        close: "10:30"
-
-    },
-
-    tokyo: {
-
-        name: "Tokyo",
-        shortName: "TOK",
-        open: "03:30",
-        close: "12:30"
-
-    },
-
-    london: {
-
-        name: "London",
-        shortName: "LON",
-        open: "10:30",
-        close: "19:30"
-
-    },
-
-    newyork: {
-
-        name: "New York",
-        shortName: "NY",
-        open: "16:30",
-        close: "00:30"
-
-    }
-
-};
-
-
-const OPEN_WARNING_MINUTES = 5;
-
-const CLOSE_WARNING_MINUTES = 5;
-
-
-/* =====================================================
-   DOM
-===================================================== */
-
-const marketValue =
-    document.getElementById(
-        "market-value"
-    );
-
-
-const tehranClockValue =
-    document.getElementById(
-        "tehran-value"
-    );
-
-
-const dateValue =
-    document.getElementById(
-        "date-value"
-    );
-
-
-const nextEventValue =
-    document.getElementById(
-        "next-event-value"
-    );
-
-
-const nextSession =
-    document.getElementById(
-        "next-session"
-    );
-
-
-const nextCountdown =
-    document.getElementById(
-        "next-countdown"
-    );
-
-
-const sessionMap =
-    document.getElementById(
-        "session-map"
-    );
-
-
-const sessionActiveLabel =
-    document.getElementById(
-        "session-active-label"
-    );
-
-
-const activeSessionText =
-    document.getElementById(
-        "active-session-text"
-    );
-
-
-const sessionNodes = {
-
-    sydney:
-        document.getElementById(
-            "session-sydney"
-        ),
-
-    tokyo:
-        document.getElementById(
-            "session-tokyo"
-        ),
-
-    london:
-        document.getElementById(
-            "session-london"
-        ),
-
-    newyork:
-        document.getElementById(
-            "session-newyork"
-        )
-
-};
-
-
-/* =====================================================
-   HH:MM → minutes
-===================================================== */
-
-function timeToMinutes(time) {
-
-    const [
-        hours,
-        minutes
-    ] = time.split(":").map(Number);
-
-    return (
-        hours * 60 +
-        minutes
-    );
-
-}
-
-
-/* =====================================================
-   تهران
-===================================================== */
-
-function getTehranDateParts(
-    date = new Date()
-) {
-
-    const parts =
-        new Intl.DateTimeFormat(
-            "en-US",
-            {
-
-                timeZone:
-                    "Asia/Tehran",
-
-                year:
-                    "numeric",
-
-                month:
-                    "2-digit",
-
-                day:
-                    "2-digit",
-
-                hour:
-                    "2-digit",
-
-                minute:
-                    "2-digit",
-
-                second:
-                    "2-digit",
-
-                hourCycle:
-                    "h23"
-
-            }
-        ).formatToParts(date);
-
-
-    const result = {};
-
-
-    parts.forEach(
-        part => {
-
-            if (
-                part.type !==
-                "literal"
-            ) {
-
-                result[part.type] =
-                    part.value;
-
-            }
-
-        }
-    );
-
-
-    return {
-
-        year:
-            Number(result.year),
-
-        month:
-            Number(result.month),
-
-        day:
-            Number(result.day),
-
-        hour:
-            Number(result.hour),
-
-        minute:
-            Number(result.minute),
-
-        second:
-            Number(result.second)
-
-    };
-
-}
-
-
-/* =====================================================
-   روز هفته تهران
-===================================================== */
-
-function getTehranDayOfWeek(
-    date = new Date()
-) {
-
-    const parts =
-        getTehranDateParts(
-            date
-        );
-
-
-    const utcDate =
-        new Date(
-            Date.UTC(
-                parts.year,
-                parts.month - 1,
-                parts.day
-            )
-        );
-
-
-    return utcDate.getUTCDay();
-
-}
-
-
-/* =====================================================
-   تعطیلی هفتگی
-===================================================== */
-
-function isWeekend(
-    date = new Date()
-) {
-
-    const day =
-        getTehranDayOfWeek(
-            date
-        );
-
-
-    return (
-        day === 0 ||
-        day === 6
-    );
-
-}
-
-
-/* =====================================================
-   روز معاملاتی
-===================================================== */
-
-function isTradingDay(
-    date = new Date()
-) {
-
-    return !isWeekend(date);
-
-}
-
-
-/* =====================================================
-   دقیقه فعلی تهران
-===================================================== */
-
-function getCurrentTehranMinute(
-    date = new Date()
-) {
-
-    const parts =
-        getTehranDateParts(
-            date
-        );
-
-
-    return (
-        parts.hour * 60 +
-        parts.minute +
-        parts.second / 60
-    );
-
-}
-
-
-/* =====================================================
-   وضعیت Session
-===================================================== */
-
-function getSessionState(
-    session,
-    currentMinute
-) {
-
-    const open =
-        timeToMinutes(
-            session.open
-        );
-
-
-    const close =
-        timeToMinutes(
-            session.close
-        );
-
-
-    let isOpen;
-
-
-    if (open < close) {
-
-        isOpen =
-            currentMinute >= open &&
-            currentMinute < close;
-
-    }
-
-    else {
-
-        isOpen =
-            currentMinute >= open ||
-            currentMinute < close;
-
-    }
-
-
-    return {
-
-        open,
-        close,
-        isOpen
-
-    };
-
-}
-
-
-/* =====================================================
-   Session فعال
-===================================================== */
-
-function getActiveSessions(
-    currentMinute,
-    date = new Date()
-) {
-
-    if (
-        !isTradingDay(date)
-    ) {
-
-        return [];
-
-    }
-
-
-    const active = [];
-
-
-    Object.entries(
-        SESSION_CONFIG
-    ).forEach(
-        ([id, session]) => {
-
-            const state =
-                getSessionState(
-                    session,
-                    currentMinute
-                );
-
-
-            if (
-                state.isOpen
-            ) {
-
-                active.push({
-
-                    id,
-
-                    ...session,
-
-                    ...state
-
-                });
-
-            }
-
-        }
-    );
-
-
-    return active;
-
-}
-
-
-/* =====================================================
-   Session اصلی
-===================================================== */
-
-function getPrimaryActiveSession(
-    currentMinute,
-    date = new Date()
-) {
-
-    const active =
-        getActiveSessions(
-            currentMinute,
-            date
-        );
-
-
-    if (
-        active.length === 0
-    ) {
-
-        return null;
-
-    }
-
-
-    let primary = null;
-
-    let bestScore = -Infinity;
-
-
-    active.forEach(
-        session => {
-
-            let score =
-                timeToMinutes(
-                    session.open
-                );
-
-
-            if (
-                session.id === "newyork" &&
-                currentMinute <
-                    timeToMinutes(
-                        session.close
-                    )
-            ) {
-
-                score -= 1440;
-
-            }
-
-
-            if (
-                score > bestScore
-            ) {
-
-                bestScore =
-                    score;
-
-                primary =
-                    session;
-
-            }
-
-        }
-    );
-
-
-    return primary;
-
-}
-
-
-/* =====================================================
-   MARKET STATUS
-===================================================== */
-
-function isMarketOpen(
-    currentMinute,
-    date = new Date()
-) {
-
-    if (
-        !isTradingDay(date)
-    ) {
-
-        return false;
-
-    }
-
-
-    return (
-        getActiveSessions(
-            currentMinute,
-            date
-        ).length > 0
-    );
-
-}
-
-
-/* =====================================================
-   هشدار OPEN
-===================================================== */
-
-function getMinutesUntilOpen(
-    session,
-    currentMinute
-) {
-
-    const open =
-        timeToMinutes(
-            session.open
-        );
-
-
-    let diff =
-        open -
-        currentMinute;
-
-
-    if (
-        diff < 0
-    ) {
-
-        diff += 1440;
-
-    }
-
-
-    return diff;
-
-}
-
-
-function getMinutesUntilClose(
-    session,
-    currentMinute
-) {
-
-    const close =
-        timeToMinutes(
-            session.close
-        );
-
-
-    let diff =
-        close -
-        currentMinute;
-
-
-    if (
-        diff < 0
-    ) {
-
-        diff += 1440;
-
-    }
-
-
-    return diff;
-
-}
-
-
-function isOpenWarning(
-    session,
-    currentMinute
-) {
-
-    const minutes =
-        getMinutesUntilOpen(
-            session,
-            currentMinute
-        );
-
-
-    return (
-
-        minutes > 0 &&
-
-        minutes <=
-            OPEN_WARNING_MINUTES
-
-    );
-
-}
-
-
-function isCloseWarning(
-    session,
-    currentMinute
-) {
-
-    const minutes =
-        getMinutesUntilClose(
-            session,
-            currentMinute
-        );
-
-
-    return (
-
-        minutes > 0 &&
-
-        minutes <=
-            CLOSE_WARNING_MINUTES
-
-    );
-
-}
-
-
-/* =====================================================
-   SESSION MAP
-===================================================== */
-
-function updateSessionMap(
-    currentMinute,
-    now = new Date()
-) {
-
-    sessionMap.classList.remove(
-        "has-active"
-    );
-
-
-    Object.values(
-        sessionNodes
-    ).forEach(
-        node => {
-
-            node.classList.remove(
-                "active",
-                "open-warning",
-                "close-warning"
-            );
-
-        }
-    );
-
-
-    if (
-        isWeekend(now)
-    ) {
-
-        sessionMap.classList.add(
-            "weekend"
-        );
-
-
-        sessionActiveLabel.classList.add(
-            "visible"
-        );
-
-
-        activeSessionText.textContent =
-            "MARKET CLOSED";
-
-
-        return;
-
-    }
-
-
-    sessionMap.classList.remove(
-        "weekend"
-    );
-
-
-    const active =
-        getActiveSessions(
-            currentMinute,
-            now
-        );
-
-
-    if (
-        active.length > 0
-    ) {
-
-        sessionMap.classList.add(
-            "has-active"
-        );
-
-    }
-
-
-    active.forEach(
-        session => {
-
-            const node =
-                sessionNodes[
-                    session.id
-                ];
-
-
-            if (!node) {
-                return;
-            }
-
-
-            node.classList.add(
-                "active"
-            );
-
-        }
-    );
-
-
-    Object.entries(
-        SESSION_CONFIG
-    ).forEach(
-        ([id, session]) => {
-
-            const node =
-                sessionNodes[id];
-
-
-            if (!node) {
-                return;
-            }
-
-
-            const state =
-                getSessionState(
-                    session,
-                    currentMinute
-                );
-
-
-            if (
-                state.isOpen &&
-                isCloseWarning(
-                    session,
-                    currentMinute
-                )
-            ) {
-
-                node.classList.remove(
-                    "active"
-                );
-
-
-                node.classList.add(
-                    "close-warning"
-                );
-
-            }
-
-
-            else if (
-                !state.isOpen &&
-                isOpenWarning(
-                    session,
-                    currentMinute
-                )
-            ) {
-
-                node.classList.add(
-                    "open-warning"
-                );
-
-            }
-
-        }
-    );
-
-
-    if (
-        active.length > 0
-    ) {
-
-        sessionActiveLabel.classList.add(
-            "visible"
-        );
-
-
-        activeSessionText.textContent =
-            "ACTIVE";
-
-    }
-
-    else {
-
-        sessionActiveLabel.classList.remove(
-            "visible"
-        );
-
-    }
-
-}
-
-
-/* =====================================================
-   MARKET
-===================================================== */
-
-function updateMarket(
-    currentMinute,
-    now = new Date()
-) {
-
-    const open =
-        isMarketOpen(
-            currentMinute,
-            now
-        );
-
-
-    if (open) {
-
-        marketValue.textContent =
-            "OPEN";
-
-
-        marketValue.style.color =
-            "#00ff88";
-
-
-        marketValue.style.textShadow =
-            "0 0 8px #00ff88";
-
-    }
-
-    else {
-
-        marketValue.textContent =
-            "CLOSED";
-
-
-        marketValue.style.color =
-            "#ff3333";
-
-
-        marketValue.style.textShadow =
-            "0 0 8px #ff3333";
-
-    }
-
-}
-
-
-/* =====================================================
-   ساعت تهران
-===================================================== */
-
-function getTehranTime(
-    date = new Date()
-) {
-
-    return new Intl.DateTimeFormat(
-        "en-US",
-        {
-
-            timeZone:
-                "Asia/Tehran",
-
-            hour:
-                "2-digit",
-
-            minute:
-                "2-digit",
-
-            second:
-                "2-digit",
-
-            hour12:
-                true
-
-        }
-    ).format(date);
-
-}
-
-
-/* =====================================================
-   تاریخ میلادی
-===================================================== */
-
-function getGregorianDate(
-    date = new Date()
-) {
-
-    const formatter =
-        new Intl.DateTimeFormat(
-            "en-US",
-            {
-
-                calendar:
-                    "gregory",
-
-                year:
-                    "numeric",
-
-                month:
-                    "short",
-
-                day:
-                    "2-digit"
-
-            }
-        );
-
-
-    return formatter
-        .format(date)
-        .toUpperCase();
-
-}
-
-
-/* =====================================================
-   NEXT EVENT
-===================================================== */
-
-function getNextSessionOpen(
-    currentMinute,
-    date = new Date()
-) {
-
-    const sessions =
-        Object.entries(
-            SESSION_CONFIG
-        );
-
-
-    let next = null;
-
-    let smallestDiff =
-        Infinity;
-
-
-    sessions.forEach(
-        ([id, session]) => {
-
-            const open =
-                timeToMinutes(
-                    session.open
-                );
-
-
-            let diff =
-                open -
-                currentMinute;
-
-
-            if (
-                diff <= 0
-            ) {
-
-                diff += 1440;
-
-            }
-
-
-            if (
-                diff < smallestDiff
-            ) {
-
-                smallestDiff =
-                    diff;
-
-
-                next = {
-
-                    id,
-
-                    ...session,
-
-                    diff
-
-                };
-
-            }
-
-        }
-    );
-
-
-    return next;
-
-}
-
-
-/* =====================================================
-   زمان دقیق تا Session بعدی
-===================================================== */
-
-function updateNextEvent(
-    now = new Date()
-) {
-
-    const tehranParts =
-        getTehranDateParts(
-            now
-        );
-
-
-    const currentMinute =
-        tehranParts.hour * 60 +
-        tehranParts.minute +
-        tehranParts.second / 60;
-
-
-    const next =
-        getNextSessionOpen(
-            currentMinute,
-            now
-        );
-
-
-    if (!next) {
-
-        nextSession.textContent =
-            "---";
-
-
-        nextCountdown.textContent =
-            "--:--:--";
-
-
-        return;
-
-    }
-
-
-    nextSession.textContent =
-        next.shortName;
-
-
-    const openMinutes =
-        timeToMinutes(
-            next.open
-        );
-
-
-    let currentSeconds =
-        tehranParts.hour * 3600 +
-        tehranParts.minute * 60 +
-        tehranParts.second;
-
-
-    let openSeconds =
-        openMinutes * 60;
-
-
-    let secondsUntil =
-        openSeconds -
-        currentSeconds;
-
-
-    if (
-        secondsUntil <= 0
-    ) {
-
-        secondsUntil +=
-            24 * 60 * 60;
-
-    }
-
-
-    const hours =
-        Math.floor(
-            secondsUntil / 3600
-        );
-
-
-    const minutes =
-        Math.floor(
-            (secondsUntil % 3600) / 60
-        );
-
-
-    const seconds =
-        secondsUntil % 60;
-
-
-    nextCountdown.textContent =
-
-        String(hours)
-            .padStart(2, "0")
-
-        + ":" +
-
-        String(minutes)
-            .padStart(2, "0")
-
-        + ":" +
-
-        String(seconds)
-            .padStart(2, "0");
-
-
-    if (
-        secondsUntil <=
-        OPEN_WARNING_MINUTES * 60
-    ) {
-
-        nextEventValue.classList.add(
-            "warning"
-        );
-
-    }
-
-    else {
-
-        nextEventValue.classList.remove(
-            "warning"
-        );
-
-    }
-
-}
-
-
-/* =====================================================
-   CLOCKS
-===================================================== */
-
-function updateClocks() {
-
-    const now =
-        new Date();
-
-
-    const tehranParts =
-        getTehranDateParts(
-            now
-        );
-
-
-    const currentMinute =
-        tehranParts.hour * 60 +
-        tehranParts.minute +
-        tehranParts.second / 60;
-
-
-    tehranClockValue.textContent =
-        getTehranTime(
-            now
-        );
-
-
-    updateSessionMap(
-        currentMinute,
-        now
-    );
-
-
-    updateMarket(
-        currentMinute,
-        now
-    );
-
-
-    updateNextEvent(
-        now
-    );
-
-
-    dateValue.textContent =
-        getGregorianDate(
-            now
-        );
-
-}
-
-
-updateClocks();
-
-setInterval(
-    updateClocks,
-    1000
-);
-
-
-/* =====================================================
-   SUBSCRIBE / LIKE
-===================================================== */
-
-const subscribeState =
-    document.querySelector(
-        ".subscribe-state"
-    );
-
-
-const likeState =
-    document.querySelector(
-        ".like-state"
-    );
-
-
-const likeIcon =
-    document.querySelector(
-        ".like-icon"
-    );
-
-
-setInterval(
-    function () {
-
-        if (
-
-            subscribeState.style.display !==
-            "none"
-
-        ) {
-
-            subscribeState.style.display =
-                "none";
-
-
-            likeState.style.display =
-                "flex";
-
-
-            likeIcon.classList.remove(
-                "like-pulse"
-            );
-
-
-            void likeIcon.offsetWidth;
-
-
-            likeIcon.classList.add(
-                "like-pulse"
-            );
-
-        }
-
-        else {
-
-            likeState.style.display =
-                "none";
-
-
-            subscribeState.style.display =
-                "flex";
-
-        }
-
-    },
-
-    10000
-
-);
-
-</script>
 
 </body>
 
