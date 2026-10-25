@@ -47,13 +47,13 @@ body::before {
     background-image:
 
         linear-gradient(
-            rgba(0,255,136,0.40) 1px,
+            rgba(0,217,255,0.40) 1px,
             transparent 1px
         ),
 
         linear-gradient(
             90deg,
-            rgba(0,255,136,0.40) 1px,
+            rgba(0,217,255,0.40) 1px,
             transparent 1px
         );
 
@@ -72,11 +72,12 @@ body::before {
 
     position: absolute;
 
-    top: 20px;
-    left: 20px;
+    top: 2px;
+    left: 2px;
 
-    width: calc(100% - 40px);
-    height: calc(100% - 40px);
+    width: calc(100% - 8px);
+    height: calc(100% - 8px);
+    box-sizing: border-box;
 
     clip-path: polygon(
 
@@ -93,12 +94,12 @@ body::before {
 
     background: rgba(0, 0, 0, 0.18);
 
-    border: 3px solid #00ff88;
+    /* قاب یکدست فیروزه‌ای؛ پس‌زمینه و اجزای داخل قاب بدون تغییر */
+    border: 3px solid #00d9ff;
 
     box-shadow:
-
-        0 0 25px #00ff88,
-        inset 0 0 25px #00ff88;
+        0 0 25px rgba(0, 217, 255, 0.75),
+        inset 0 0 25px rgba(0, 217, 255, 0.45);
 }
 
 
@@ -110,7 +111,7 @@ body::before {
 
     position: absolute;
 
-    top: 35px;
+    top: 10px;
     left: 50%;
 
     transform: translateX(-50%);
@@ -129,14 +130,22 @@ body::before {
 
     );
 
-    background: rgba(0, 0, 0, 0.35);
+    background: linear-gradient(
+        110deg,
+        rgba(5, 18, 23, 0.94) 0%,
+        rgba(8, 28, 30, 0.90) 48%,
+        rgba(8, 16, 28, 0.94) 100%
+    );
 
-    border: 2px solid #00ff88;
+    border: 2px solid rgba(0, 210, 255, 0.95);
 
     box-shadow:
+        0 0 8px rgba(0, 217, 255, 0.72),
+        0 0 22px rgba(0, 217, 255, 0.25),
+        inset 0 0 18px rgba(0, 217, 255, 0.10),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12);
 
-        0 0 14px #00ff88,
-        inset 0 0 14px #00ff88;
+    backdrop-filter: blur(5px);
 
     display: flex;
 
@@ -169,6 +178,62 @@ body::before {
     align-items: center;
 
     overflow: hidden;
+    position: relative;
+}
+
+/* عرض بخش‌های نوار بالا یکسان باشد */
+.top-item.next-event-item {
+    flex: 1 1 0;
+    min-width: 0;
+    overflow: visible;
+}
+
+.top-item.next-event-item .text-box {
+    overflow: visible;
+    min-width: 0;
+}
+
+.top-item.next-event-item .item-row {
+    gap: 5px;
+}
+
+.top-item.next-event-item .icon {
+    width: 30px;
+    height: 30px;
+    flex-basis: 30px;
+}
+
+.top-item.next-event-item .next-event-value {
+    gap: 4px;
+    font-size: 18px;
+}
+
+.top-item.next-event-item .next-open {
+    font-size: 16px;
+}
+
+.top-item.next-event-item .next-countdown {
+    width: 86px;
+    flex-basis: 86px;
+    font-size: 17px;
+}
+
+.top-item + .top-item::before {
+
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 23%;
+    height: 54%;
+    width: 1px;
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        rgba(0, 210, 255, 0.42),
+        rgba(255, 174, 74, 0.32),
+        transparent
+    );
+    box-shadow: 0 0 5px rgba(0, 210, 255, 0.16);
 }
 
 
@@ -201,12 +266,12 @@ body::before {
 
     flex: 0 0 40px;
 
-    stroke: #ffffff;
+    stroke: #b8f8ff;
 
     fill: none;
 
     filter:
-        drop-shadow(0 0 6px #00ff88);
+        drop-shadow(0 0 4px rgba(0, 210, 255, 0.85));
 }
 
 
@@ -236,20 +301,25 @@ body::before {
 
 .text-box span:first-child {
 
-    font-family: Arial, sans-serif;
+    font-family: "Trebuchet MS", "Segoe UI", Arial, sans-serif;
 
     font-size: 14px;
 
-    font-weight: bold;
+    font-weight: 950;
+    -webkit-text-stroke: 0.9px currentColor;
 
-    line-height: 18px;
+    letter-spacing: 2.1px;
 
-    height: 18px;
+    line-height: 20px;
 
-    color: #ffae4a;
+    height: 20px;
+
+    color: #ffad32;
 
     text-shadow:
-        0 0 6px #ffae4a;
+        0 0 7px rgba(255, 157, 28, 0.72),
+        0 0 14px rgba(255, 125, 20, 0.34),
+        0 0 22px rgba(255, 157, 28, 0.16);
 
     white-space: nowrap;
 }
@@ -257,25 +327,50 @@ body::before {
 
 .text-box span:last-child {
 
-    font-family: Arial, sans-serif;
+    font-family: "Segoe UI", Arial, sans-serif;
 
-    font-size: 22px;
+    font-size: 23px;
 
-    font-weight: bold;
+    font-weight: 750;
+
+    letter-spacing: 0.35px;
 
     line-height: 24px;
 
     height: 24px;
 
-    color: #00ff88;
+    color: #8deeff;
 
     text-shadow:
-        0 0 8px #00ff88;
+        0 0 7px rgba(0, 217, 255, 0.62),
+        0 0 16px rgba(0, 217, 255, 0.20);
 
     white-space: nowrap;
 
     font-variant-numeric:
         tabular-nums;
+}
+
+/* یکدست‌سازی ظاهر ساعت‌ها و مقادیر نوار بالا بر اساس ساعت تهران */
+#market-value,
+#tehran-value,
+#date-value {
+    font-family: "Segoe UI", Arial, sans-serif;
+    font-size: 23px;
+    font-weight: 750;
+    letter-spacing: 0.35px;
+    line-height: 24px;
+    height: 24px;
+    color: #73dfff;
+    text-shadow: 0 0 7px rgba(75, 205, 255, 0.48), 0 0 15px rgba(75, 205, 255, 0.16);
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+}
+
+/* حفظ رنگ اصلی تاریخ، در کنار یکسان ماندن فونت و اندازه */
+#date-value {
+    color: #d4c4ff;
+    text-shadow: 0 0 7px rgba(170, 135, 255, 0.38);
 }
 
 
@@ -293,20 +388,23 @@ body::before {
 
     white-space: nowrap;
 
-    font-family: Arial, sans-serif;
+    font-family: "Segoe UI", Arial, sans-serif;
 
     font-size: 22px;
 
-    font-weight: bold;
+    font-weight: 750;
+
+    letter-spacing: 0.25px;
 
     line-height: 24px;
 
     height: 24px;
 
-    color: #00ff88;
+    color: #8deeff;
 
     text-shadow:
-        0 0 8px #00ff88;
+        0 0 7px rgba(0, 217, 255, 0.62),
+        0 0 14px rgba(0, 217, 255, 0.18);
 
     font-variant-numeric:
         tabular-nums;
@@ -317,16 +415,24 @@ body::before {
 
 .next-event-value .next-session {
 
-    color: #00ff88;
+    color: #00d9ff;
 
 }
 
 
 .next-event-value .next-open {
 
-    color: #ffae4a;
+    color: #39ff88;
 
-    font-size: 17px;
+    font-family: "Trebuchet MS", "Segoe UI", Arial, sans-serif;
+
+    font-size: 19px;
+
+    font-weight: 950;
+    -webkit-text-stroke: 0.75px currentColor;
+    text-shadow: 0 0 7px rgba(57, 255, 136, 0.68), 0 0 14px rgba(25, 220, 100, 0.28);
+
+    letter-spacing: 0.7px;
 
 }
 
@@ -341,12 +447,18 @@ body::before {
 
 .next-event-value .next-countdown {
 
-    color: #00ff88;
+    color: #00d9ff;
 
     font-size: 20px;
 
     font-variant-numeric:
         tabular-nums;
+
+    /* عرض ثابت تا با تغییر اعداد تایمر، آیکون و نوشته‌ها جابه‌جا نشوند */
+    display: inline-block;
+    width: 104px;
+    flex: 0 0 104px;
+    text-align: center;
 }
 
 
@@ -454,17 +566,17 @@ body::before {
 
 .session-map-title {
 
-    font-family: Arial, sans-serif;
+    font-family: "Trebuchet MS", "Segoe UI", Arial, sans-serif;
 
-    font-size: 13px;
+    font-size: 16px;
 
-    font-weight: bold;
+    font-weight: 950;
 
-    letter-spacing: 3px;
+    letter-spacing: 3.8px;
 
-    line-height: 16px;
+    line-height: 19px;
 
-    height: 16px;
+    height: 19px;
 
     color: #ffae4a;
 
@@ -494,7 +606,7 @@ body::before {
 
     justify-content: center;
 
-    gap: 12px;
+    gap: 22px;
 
     height: 27px;
 
@@ -530,11 +642,11 @@ body::before {
 
     font-family: Arial, sans-serif;
 
-    font-size: 14px;
+    font-size: 15px;
 
-    font-weight: bold;
+    font-weight: 950;
 
-    letter-spacing: 0.5px;
+    letter-spacing: 0.8px;
 
     color: rgba(255,255,255,0.42);
 
@@ -555,6 +667,8 @@ body::before {
 
 
 .session-name {
+
+    font-weight: 950;
 
     position: relative;
 
@@ -626,7 +740,7 @@ body::before {
     border-radius: 50%;
 
     border: 1px solid
-        rgba(0,255,136,0);
+        rgba(0,217,255,0);
 
     opacity: 0;
 
@@ -646,24 +760,24 @@ body::before {
 
 .session-node.active {
 
-    color: #00ff88;
+    color: #00d9ff;
 
     text-shadow:
 
-        0 0 5px #00ff88,
-        0 0 12px rgba(0,255,136,0.8);
+        0 0 5px #00d9ff,
+        0 0 12px rgba(0,217,255,0.8);
 }
 
 
 .session-node.active .session-dot {
 
-    background: #00ff88;
+    background: #00d9ff;
 
     box-shadow:
 
-        0 0 4px #00ff88,
-        0 0 10px #00ff88,
-        0 0 20px rgba(0,255,136,0.85);
+        0 0 4px #00d9ff,
+        0 0 10px #00d9ff,
+        0 0 20px rgba(0,217,255,0.85);
 
     animation:
         activeDotPulse 1.25s ease-in-out infinite;
@@ -679,7 +793,7 @@ body::before {
         scale(1);
 
     border-color:
-        rgba(0,255,136,0.55);
+        rgba(0,217,255,0.55);
 
     animation:
         activeHalo 1.25s ease-in-out infinite;
@@ -746,7 +860,7 @@ body::before {
         rgba(255,255,255,0.18);
 
     box-shadow:
-        0 0 4px rgba(0,255,136,0.12);
+        0 0 4px rgba(0,217,255,0.12);
 
     position: relative;
 
@@ -774,7 +888,7 @@ body::before {
         linear-gradient(
             90deg,
             transparent,
-            rgba(0,255,136,0.9),
+            rgba(0,217,255,0.9),
             transparent
         );
 
@@ -807,7 +921,7 @@ body::before {
 
 .session-node.open-warning {
 
-    color: #00ff88;
+    color: #00d9ff;
 
     animation:
         openWarningBlink 0.72s ease-in-out infinite;
@@ -816,13 +930,13 @@ body::before {
 
 .session-node.open-warning .session-dot {
 
-    background: #00ff88;
+    background: #00d9ff;
 
     box-shadow:
 
-        0 0 5px #00ff88,
-        0 0 13px #00ff88,
-        0 0 28px rgba(0,255,136,0.95);
+        0 0 5px #00d9ff,
+        0 0 13px #00d9ff,
+        0 0 28px rgba(0,217,255,0.95);
 
     animation:
         openDotWarning 0.72s ease-in-out infinite;
@@ -832,7 +946,7 @@ body::before {
 .session-node.open-warning .session-dot::before {
 
     border-color:
-        rgba(0,255,136,0.85);
+        rgba(0,217,255,0.85);
 
     opacity: 1;
 
@@ -850,8 +964,8 @@ body::before {
 
         text-shadow:
 
-            0 0 6px #00ff88,
-            0 0 16px #00ff88;
+            0 0 6px #00d9ff,
+            0 0 16px #00d9ff;
     }
 
     50% {
@@ -859,7 +973,7 @@ body::before {
         opacity: 0.22;
 
         text-shadow:
-            0 0 2px #00ff88;
+            0 0 2px #00d9ff;
     }
 }
 
@@ -1110,12 +1224,12 @@ body::before {
 
     letter-spacing: 2px;
 
-    color: #00ff88;
+    color: #00d9ff;
 
     text-shadow:
 
-        0 0 6px #00ff88,
-        0 0 14px rgba(0,255,136,0.45);
+        0 0 6px #00d9ff,
+        0 0 14px rgba(0,217,255,0.45);
 
     opacity: 0;
 
@@ -1170,7 +1284,7 @@ body::before {
 
     position: absolute;
 
-    bottom: 35px;
+    bottom: 10px;
     left: 50%;
 
     transform: translateX(-50%);
@@ -1192,12 +1306,12 @@ body::before {
     background:
         rgba(0, 0, 0, 0.35);
 
-    border: 2px solid #00ff88;
+    border: 2px solid #00d9ff;
 
     box-shadow:
 
-        0 0 14px #00ff88,
-        inset 0 0 14px #00ff88;
+        0 0 14px #00d9ff,
+        inset 0 0 14px #00d9ff;
 
     display: flex;
 
@@ -1495,19 +1609,19 @@ body::before {
     0% {
 
         text-shadow:
-            0 0 6px #00ff88;
+            0 0 6px #00d9ff;
     }
 
     50% {
 
         text-shadow:
-            0 0 18px #00ff88;
+            0 0 18px #00d9ff;
     }
 
     100% {
 
         text-shadow:
-            0 0 6px #00ff88;
+            0 0 6px #00d9ff;
     }
 }
 
@@ -1549,6 +1663,282 @@ body::before {
     100% {
         left: 120%;
     }
+}
+
+
+
+/* =====================================================
+   BOTTOM BAR — visual refresh to match the top bar
+   Styling only; markup and JavaScript remain unchanged
+===================================================== */
+.bottom-bar {
+    background: linear-gradient(
+        110deg,
+        rgba(5, 18, 23, 0.95) 0%,
+        rgba(8, 28, 30, 0.92) 48%,
+        rgba(8, 16, 28, 0.95) 100%
+    );
+    border: 2px solid rgba(0, 210, 255, 0.95);
+    box-shadow:
+        0 0 8px rgba(0, 217, 255, 0.68),
+        0 0 22px rgba(0, 217, 255, 0.22),
+        inset 0 0 18px rgba(0, 217, 255, 0.09),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(5px);
+}
+
+.bottom-item span {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    font-style: normal;
+    letter-spacing: 0.25px;
+    line-height: 1.15;
+    color: #f4fbff;
+    text-shadow: 0 0 7px rgba(80, 210, 255, 0.22);
+}
+
+.bottom-divider {
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        rgba(0, 210, 255, 0.52),
+        rgba(255, 174, 74, 0.48),
+        transparent
+    );
+    box-shadow: 0 0 6px rgba(0, 210, 255, 0.16);
+}
+
+.bottom-icon {
+    stroke: #f2fbff;
+    filter: drop-shadow(0 0 4px rgba(255, 179, 71, 0.85));
+}
+
+/* Keep the existing red subscribe/like identity while sharpening legibility. */
+.subscribe-state span,
+.like-state span {
+    font-weight: 900;
+    letter-spacing: 0.45px;
+}
+
+.bell-icon {
+    stroke: #ff684d;
+    filter: drop-shadow(0 0 5px rgba(255, 85, 65, 0.75));
+}
+
+.like-icon {
+    stroke: #ffb347;
+    filter: drop-shadow(0 0 5px rgba(255, 179, 71, 0.72));
+}
+
+.vip span {
+    color: #ffc36b;
+    font-weight: 900;
+}
+
+@media (max-width: 900px) {
+    .bottom-item span {
+        font-size: 16px;
+    }
+}
+
+
+
+/* NEON MODERN ICON PASS — icon styling only */
+.bottom-icon {
+    stroke: #36f3e5 !important;
+    stroke-width: 2.15;
+    filter: drop-shadow(0 0 3px rgba(54,243,229,.55)) !important;
+    transition: filter .25s ease, transform .25s ease;
+}
+.bottom-item:nth-of-type(2) .bottom-icon,
+.bottom-item:nth-of-type(4) .bottom-icon {
+    stroke: #ff8a3d !important;
+    filter: drop-shadow(0 0 4px rgba(255,138,61,.62)) !important;
+}
+.bottom-item:nth-of-type(6) .bottom-icon,
+.bottom-item:nth-of-type(8) .bottom-icon {
+    stroke: #36f3e5 !important;
+}
+.bottom-icon path, .bottom-icon circle, .bottom-icon rect,
+.bottom-icon polygon, .bottom-icon line {
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+.subscribe-state .bell-icon {
+    stroke: #ff3038 !important;
+    filter: drop-shadow(0 0 5px rgba(255,48,56,.72)) !important;
+}
+.subscribe-state span {
+    color: #ff4148 !important;
+    text-shadow: 0 0 7px rgba(255,48,56,.42) !important;
+}
+.like-icon {
+    stroke: #ff8a3d !important;
+    filter: drop-shadow(0 0 5px rgba(255,138,61,.7)) !important;
+}
+.like-state span {
+    color: #ffad66 !important;
+    text-shadow: 0 0 7px rgba(255,138,61,.4) !important;
+}
+.vip .diamond {
+    stroke: #ffad42 !important;
+    filter: drop-shadow(0 0 6px rgba(255,173,66,.72)) !important;
+}
+.vip span {
+    color: #ffcf7d !important;
+    text-shadow: 0 0 6px rgba(255,173,66,.32);
+}
+.bottom-icon:hover { filter: drop-shadow(0 0 7px rgba(54,243,229,.8)) !important; }
+
+/* Consistent typography and platform-specific Aparat mark */
+.bottom-bar, .bottom-bar * {
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: normal;
+}
+.bottom-item span {
+    font-size: 18px;
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: .2px;
+    text-transform: uppercase;
+}
+.aparat-icon rect { filter: none; }
+ .instagram-icon { stroke: none !important; filter: drop-shadow(0 0 5px rgba(225,48,108,.42)) !important; }
+.instagram-icon rect, .instagram-icon circle { filter: none; }
+.youtube-icon { stroke: none !important; filter: drop-shadow(0 0 5px rgba(255,0,51,.42)) !important; }
+.youtube-icon polygon { fill: #FFFFFF !important; }
+
+.aparat-icon { stroke: none !important; filter: drop-shadow(0 0 3px rgba(255,106,53,.28)) !important; }
+.subscribe-state .bell-icon { stroke: #ff3038 !important; }
+.subscribe-state span { color: #ff4148 !important; }
+@media (max-width: 900px) { .bottom-item span { font-size: 16px; } }
+
+
+
+
+/* هماهنگی نهایی ساعت‌ها با استایل ساعت تهران */
+#market-value,
+#tehran-value,
+#date-value,
+.top-item.next-event-item .next-countdown,
+.next-event-value .next-countdown {
+    font-family: "Segoe UI", Arial, sans-serif !important;
+    font-size: 23px !important;
+    font-weight: 750 !important;
+    letter-spacing: 0.35px !important;
+    line-height: 24px !important;
+    height: 24px;
+    font-variant-numeric: tabular-nums !important;
+}
+.top-item.next-event-item .next-countdown,
+.next-event-value .next-countdown {
+    width: 112px;
+    flex: 0 0 112px;
+    text-align: center;
+}
+
+
+/* NEXT OPEN: restore original schematic icon and balanced typography */
+.top-item.next-event-item .item-row { gap: 5px; }
+.top-item.next-event-item .icon {
+  display: block;
+  width: 30px;
+  height: 30px;
+  flex: 0 0 30px;
+}
+.top-item.next-event-item .text-box {
+  height: auto;
+  min-width: 0;
+  padding: 0;
+  justify-content: center;
+  gap: 0;
+  overflow: visible;
+}
+.top-item.next-event-item .text-box > span:first-child {
+  color: #ff9f43;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  line-height: normal;
+  height: auto;
+  -webkit-text-stroke: 0;
+  text-shadow: 0 0 7px rgba(255,159,67,.38);
+}
+.top-item.next-event-item .next-event-value {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  white-space: nowrap;
+  font-size: 18px;
+}
+.top-item.next-event-item .next-open {
+  color: #39ff88;
+  font-family: "Trebuchet MS", "Segoe UI", Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 0.35px;
+  line-height: normal;
+  -webkit-text-stroke: 0.35px currentColor;
+  text-shadow: 0 0 7px rgba(57,255,136,.45), 0 0 12px rgba(25,220,100,.18);
+}
+.top-item.next-event-item .next-session {
+  color: #00d9ff;
+  font-size: 18px;
+  font-weight: 800;
+}
+.top-item.next-event-item .next-separator { font-size: 14px; }
+.top-item.next-event-item .next-countdown {
+  width: 86px;
+  flex-basis: 86px;
+  font-size: 16px;
+}
+@media (max-width: 900px) {
+  .top-item.next-event-item .next-open { font-size: 15px; }
+  .top-item.next-event-item .text-box > span:first-child { font-size: 12px; letter-spacing: 0.3px; }
+}
+
+
+
+/* Final alignment: unify icon and label dimensions across the top-bar items */
+.top-bar > .top-item:not(.session-map) .item-row {
+  gap: 12px !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+.top-bar > .top-item:not(.session-map) .icon {
+  width: 40px !important;
+  height: 40px !important;
+  flex: 0 0 40px !important;
+  box-sizing: border-box;
+}
+.top-bar > .top-item:not(.session-map) .text-box {
+  height: 44px !important;
+  justify-content: center !important;
+  gap: 0 !important;
+}
+.top-bar > .top-item.next-event-item .text-box > span:first-child {
+  font-family: "Trebuchet MS", "Segoe UI", Arial, sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 950 !important;
+  letter-spacing: 2.1px !important;
+  line-height: 20px !important;
+  height: 20px !important;
+  color: #ffad32 !important;
+  -webkit-text-stroke: 0.9px currentColor !important;
+  text-shadow: 0 0 7px rgba(255,157,28,.72), 0 0 14px rgba(255,125,20,.34) !important;
+}
+.top-bar > .top-item.next-event-item .next-open {
+  font-size: 16px !important;
+  font-weight: 800 !important;
+  letter-spacing: .35px !important;
+}
+@media (max-width: 900px) {
+  .top-bar > .top-item:not(.session-map) .item-row { gap: 8px !important; }
+  .top-bar > .top-item:not(.session-map) .icon {
+    width: 32px !important; height: 32px !important; flex-basis: 32px !important;
+  }
 }
 
 </style>
@@ -1725,7 +2115,7 @@ body::before {
      3. NEXT EVENT
 ===================================================== -->
 
-<div class="top-item">
+<div class="top-item next-event-item">
 
     <div class="item-row">
 
@@ -1978,23 +2368,13 @@ body::before {
 
 <div class="bottom-item">
 
-    <svg
-        class="bottom-icon"
-        viewBox="0 0 24 24"
-    >
-
-        <circle
-            cx="12"
-            cy="12"
-            r="10"
-            stroke-width="2"
-        />
-
-        <path
-            d="M2 12h20M12 2a15 15 0 010 20M12 2a15 15 0 000 20"
-            stroke-width="2"
-        />
-
+    <svg class="bottom-icon aparat-icon" viewBox="0 0 28 24" aria-label="Aparat logo" role="img">
+        <rect x="2" y="3" width="7" height="7" rx="2" fill="#ff6a35" stroke="none"/>
+        <rect x="10.5" y="3" width="7" height="7" rx="2" fill="#f44336" stroke="none"/>
+        <rect x="19" y="3" width="7" height="7" rx="2" fill="#ffb52e" stroke="none"/>
+        <rect x="2" y="12" width="7" height="7" rx="2" fill="#ffb52e" stroke="none"/>
+        <rect x="10.5" y="12" width="7" height="7" rx="2" fill="#f44336" stroke="none"/>
+        <rect x="19" y="12" width="7" height="7" rx="2" fill="#ff6a35" stroke="none"/>
     </svg>
 
 
@@ -2011,33 +2391,21 @@ body::before {
 <div class="bottom-item">
 
     <svg
-        class="bottom-icon"
+        class="bottom-icon instagram-icon"
         viewBox="0 0 24 24"
+        aria-label="Instagram logo" role="img"
     >
-
-        <rect
-            x="3"
-            y="3"
-            width="18"
-            height="18"
-            rx="5"
-            stroke-width="2"
-        />
-
-        <circle
-            cx="12"
-            cy="12"
-            r="4"
-            stroke-width="2"
-        />
-
-        <circle
-            cx="17"
-            cy="7"
-            r="1.5"
-            fill="#fff"
-        />
-
+        <defs>
+            <linearGradient id="instagramGradient" x1="0" y1="1" x2="1" y2="0">
+                <stop offset="0%" stop-color="#FFDC80"/>
+                <stop offset="35%" stop-color="#F77737"/>
+                <stop offset="65%" stop-color="#E1306C"/>
+                <stop offset="100%" stop-color="#833AB4"/>
+            </linearGradient>
+        </defs>
+        <rect x="3" y="3" width="18" height="18" rx="5" stroke="url(#instagramGradient)" stroke-width="2.2" fill="none"/>
+        <circle cx="12" cy="12" r="4" stroke="url(#instagramGradient)" stroke-width="2.2" fill="none"/>
+        <circle cx="17.3" cy="6.9" r="1.25" fill="#F77737" stroke="none"/>
     </svg>
 
 
@@ -2054,24 +2422,12 @@ body::before {
 <div class="bottom-item">
 
     <svg
-        class="bottom-icon"
+        class="bottom-icon youtube-icon"
         viewBox="0 0 24 24"
+        aria-label="YouTube logo" role="img"
     >
-
-        <rect
-            x="3"
-            y="6"
-            width="18"
-            height="12"
-            rx="3"
-            stroke-width="2"
-        />
-
-        <polygon
-            points="10,9 16,12 10,15"
-            fill="#fff"
-        />
-
+        <rect x="2.5" y="5" width="19" height="14" rx="4" fill="#FF0033" stroke="#FF0033" stroke-width="1.5"/>
+        <polygon points="10,8.5 16,12 10,15.5" fill="#FFFFFF" stroke="none"/>
     </svg>
 
 
@@ -3010,11 +3366,11 @@ function updateMarket(
 
 
         marketValue.style.color =
-            "#00ff88";
+            "#00d9ff";
 
 
         marketValue.style.textShadow =
-            "0 0 8px #00ff88";
+            "0 0 8px #00d9ff";
 
     }
 
